@@ -1,0 +1,14 @@
+{
+  "watch": [
+    "Document Preview",
+    "server.js"
+  ],
+  "ext": "html,css,js,json",
+  "ignore": [
+    "node_modules",
+    "*.md",
+    ".git"
+  ],
+  "delay": 500
+}
+

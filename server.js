@@ -53,7 +53,9 @@ if (isDev) {
         try {
             const liveReloadServer = livereload.createServer({
                 exts: ['html', 'css', 'js', 'png', 'jpg', 'jpeg', 'svg'],
-                port: liveReloadPort
+                port: liveReloadPort,
+                delay: 100,
+                debug: false
             });
 
             // Attach error handler to catch any unexpected errors
@@ -66,16 +68,26 @@ if (isDev) {
             });
 
             liveReloadServer.server.on('listening', () => {
-                liveReloadServer.watch(path.join(__dirname, 'Document Preview'));
+                // Watch the Document Preview directory and root for any changes
+                liveReloadServer.watch([
+                    path.join(__dirname, 'Document Preview'),
+                    path.join(__dirname, 'server.js')
+                ]);
                 console.log(`🔄 LiveReload enabled on port ${liveReloadPort}`);
+                console.log(`   Watching: Document Preview/ and server.js`);
+                console.log(`   Open http://localhost:${PORT} in your browser to see changes automatically`);
             });
 
-            // Kick the client once on first connection to ensure initial load
-            liveReloadServer.server.once('connection', () => {
-                setTimeout(() => liveReloadServer.refresh('/'), 100);
+            // Log when files change
+            liveReloadServer.server.on('reload', (files) => {
+                console.log(`🔄 Reloading browser for: ${files.join(', ')}`);
             });
 
-            app.use(connectLivereload({ port: liveReloadPort }));
+            // Inject live reload script into HTML responses
+            app.use(connectLivereload({ 
+                port: liveReloadPort,
+                ignore: ['.js', '.svg', '.png', '.jpg', '.jpeg', '.gif', '.ico']
+            }));
         } catch (err) {
             console.error('Failed to start LiveReload:', err);
         }
