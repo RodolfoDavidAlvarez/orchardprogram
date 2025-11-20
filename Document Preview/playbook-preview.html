@@ -137,13 +137,11 @@
         flex-direction: column;
       }
       
-      /* Page content wrapper - content area is 9in (11in - 2in padding) */
+      /* Page content wrapper - content area fits within page */
       .page-content {
         flex: 1;
         min-height: 0;
-        max-height: 9in; /* 11in page - 1in top padding - 1in bottom padding = 9in */
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: visible;
         padding-bottom: 0.5in; /* Space for page number at bottom */
       }
 
@@ -158,6 +156,11 @@
       .page:last-of-type .page-content {
         max-height: none;
         overflow: visible;
+      }
+      
+      /* When content exceeds page height, it will be split by JavaScript */
+      .page:not(:last-of-type) .page-content {
+        overflow: hidden;
       }
       
       /* Sections (h2) always start on a new page */
@@ -2247,85 +2250,95 @@
       // Split long sections into multiple exactly 11in tall pages
       function splitContentIntoPages() {
         const pages = document.querySelectorAll(".page:not(#cover):not(#toc)");
-        const PAGE_HEIGHT_PX = 11 * 96; // 11 inches in pixels (96px per inch)
-        const PADDING_PX = 2 * 96; // 2 inches total padding (1in top + 1in bottom)
-        const MAX_CONTENT_HEIGHT = PAGE_HEIGHT_PX - PADDING_PX - 30; // Subtract padding and page number space
+        const PAGE_HEIGHT = 11 * 96; // 11 inches in pixels (96px per inch at screen resolution)
+        const PADDING = 1 * 96; // 1 inch top padding
+        const PAGE_NUMBER_SPACE = 0.75 * 96; // Space for page number at bottom
+        const MAX_CONTENT_HEIGHT = PAGE_HEIGHT - PADDING - PAGE_NUMBER_SPACE - 20; // Available content height
         
-        pages.forEach((page) => {
+        pages.forEach((page, pageIndex) => {
           const content = page.querySelector(".page-content");
           if (!content) return;
           
-          // Remove max-height restriction for measurement
+          // Temporarily remove height restriction to measure actual content
           const originalMaxHeight = content.style.maxHeight;
+          const originalHeight = page.style.height;
           content.style.maxHeight = 'none';
+          page.style.height = 'auto';
+          
+          // Force a reflow to get accurate measurements
+          void content.offsetHeight;
           
           // Measure actual content height
           const contentHeight = content.scrollHeight;
           
-          // If content exceeds max height, we need to split it
+          // If content exceeds max height, we need to split it into multiple pages
           if (contentHeight > MAX_CONTENT_HEIGHT) {
-            // Split content into multiple pages
             const children = Array.from(content.children);
+            let newPages = [];
             let currentPage = page;
+            let currentPageContent = content;
             let currentHeight = 0;
-            let newPage = null;
+            let pageCounter = 1;
             
-            children.forEach((child) => {
-              const childHeight = child.offsetHeight;
+            children.forEach((child, childIndex) => {
+              // Measure child height
+              const childHeight = child.offsetHeight || child.scrollHeight;
               
-              // If adding this child would exceed the limit, start a new page
+              // If adding this child would exceed the limit, create a new page
               if (currentHeight + childHeight > MAX_CONTENT_HEIGHT && currentHeight > 0) {
                 // Create new page
-                const sectionId = page.id;
-                const sectionNumber = sectionId.replace('section', '');
-                const pageIndex = Array.from(page.parentElement.querySelectorAll(`.page:not(#cover):not(#toc)`)).indexOf(currentPage);
+                const sectionId = page.id.replace(/-page\d+$/, '');
+                const newPageId = `${sectionId}-page${pageCounter + 1}`;
                 
-                newPage = document.createElement('div');
+                const newPage = document.createElement('div');
                 newPage.className = 'page';
-                newPage.id = `${sectionId}-page${pageIndex + 1}`;
+                newPage.id = newPageId;
+                newPage.style.height = '11in';
+                newPage.style.minHeight = '11in';
+                newPage.style.maxHeight = '11in';
                 
                 const newContent = document.createElement('div');
                 newContent.className = 'page-content';
                 newPage.appendChild(newContent);
                 
-                // Copy page number
-                const pageNumber = currentPage.querySelector('.page-number');
+                // Copy page number from original
+                const pageNumber = page.querySelector('.page-number');
                 if (pageNumber) {
                   const newPageNumber = pageNumber.cloneNode(true);
+                  newPageNumber.textContent = parseInt(pageNumber.textContent) + pageCounter;
                   newPage.appendChild(newPageNumber);
                 }
                 
                 // Insert after current page
                 currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
+                newPages.push(newPage);
                 
+                // Move to new page
                 currentPage = newPage;
+                currentPageContent = newContent;
                 currentHeight = 0;
-                
-                // Move child to new page
-                newPage.querySelector('.page-content').appendChild(child);
-                currentHeight += childHeight;
-              } else {
-                // Add to current page
-                if (!currentPage.querySelector('.page-content')) {
-                  // If page-content doesn't exist, create it
-                  const pageContent = document.createElement('div');
-                  pageContent.className = 'page-content';
-                  currentPage.insertBefore(pageContent, currentPage.firstChild);
-                }
-                if (newPage) {
-                  newPage.querySelector('.page-content').appendChild(child);
-                }
-                currentHeight += childHeight;
+                pageCounter++;
               }
+              
+              // Move child to current page
+              currentPageContent.appendChild(child);
+              currentHeight += childHeight;
             });
             
-            // Clean up - remove empty page-content if we created new pages
-            if (newPage && page.querySelector('.page-content').children.length === 0) {
-              page.querySelector('.page-content').remove();
-            }
+            // Update all pages to have correct heights
+            [page, ...newPages].forEach(p => {
+              p.style.height = '11in';
+              p.style.maxHeight = '11in';
+              const pc = p.querySelector('.page-content');
+              if (pc && p !== pages[pages.length - 1]) {
+                pc.style.maxHeight = MAX_CONTENT_HEIGHT + 'px';
+                pc.style.overflowY = 'hidden';
+              }
+            });
           } else {
-            // Restore original max-height
-            content.style.maxHeight = originalMaxHeight || '9in';
+            // Content fits in one page - restore original settings
+            content.style.maxHeight = originalMaxHeight || (MAX_CONTENT_HEIGHT + 'px');
+            page.style.height = originalHeight || '11in';
           }
         });
       }
