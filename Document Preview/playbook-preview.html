@@ -75,46 +75,96 @@
       .page {
         width: 8.5in;
         min-height: 11in;
+        max-height: 11in;
         padding: 1in;
         margin: 0 auto 20px;
         background: white;
         position: relative;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        overflow: visible;
+        overflow: hidden;
         page-break-inside: auto;
         break-inside: auto;
         page-break-after: always;
         break-after: page;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Page content wrapper that flows to next page when full */
+      .page-content {
+        flex: 1;
+        overflow: visible;
       }
 
-      /* Allow pages to grow beyond 11in when content requires it */
-      .page#toc,
-      .page:not(#cover):not(#toc) {
-        min-height: auto;
-      }
-
-      /* Cover page always on its own page */
+      /* Cover page - exactly letter size */
       .page#cover {
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        overflow: hidden;
         page-break-after: always;
         break-after: page;
       }
 
-      /* TOC can flow across multiple pages if needed */
+      /* TOC page - exactly letter size, allow scrolling if content exceeds */
       .page#toc {
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        overflow-y: auto;
+        overflow-x: hidden;
         page-break-after: always;
         break-after: page;
       }
 
-      /* Content pages flow naturally */
+      /* Content pages - exactly letter size (11in height) */
       .page:not(#cover):not(#toc) {
-        page-break-after: auto;
-        break-after: auto;
+        width: 8.5in;
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        padding: 1in;
+        margin: 0 auto 20px;
+        background: white;
+        position: relative;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
+        page-break-after: always;
+        break-after: page;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Page content wrapper - content area is 9in (11in - 2in padding) */
+      .page-content {
+        flex: 1;
+        min-height: 0;
+        max-height: 9in; /* 11in page - 1in top padding - 1in bottom padding = 9in */
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding-bottom: 0.5in; /* Space for page number at bottom */
       }
 
-      /* Last page should not force a trailing break */
+      /* Last page - can be shorter if content doesn't fill it */
       .page:last-of-type {
-        page-break-after: auto;
-        break-after: auto;
+        min-height: auto;
+        height: auto;
+        max-height: 11in;
+        overflow: visible;
+      }
+      
+      .page:last-of-type .page-content {
+        max-height: none;
+        overflow: visible;
+      }
+      
+      /* Sections (h2) always start on a new page */
+      .page:not(#cover):not(#toc) > .page-content > h2:first-child {
+        page-break-before: always;
+        break-before: page;
+        margin-top: 0;
       }
 
       @media print {
@@ -125,32 +175,36 @@
         .page {
           margin: 0;
           box-shadow: none;
+          width: 8.5in;
+          min-height: 11in;
           height: auto;
-          min-height: auto;
           max-height: none;
+          overflow: visible;
           page-break-after: always;
           break-after: page;
         }
         .page#cover {
           page-break-after: always;
           break-after: page;
+          height: 11in;
         }
         .page#toc {
           page-break-after: always;
           break-after: page;
-          min-height: auto;
           height: auto;
+          min-height: 11in;
         }
         .page:not(#cover):not(#toc) {
           page-break-after: auto;
           break-after: auto;
-          min-height: auto;
           height: auto;
+          min-height: 11in;
           max-height: none;
         }
         .page:last-of-type {
           page-break-after: auto;
           break-after: auto;
+          min-height: auto;
         }
         h2 {
           page-break-before: always;
@@ -2190,6 +2244,92 @@
         });
       };
 
+      // Split long sections into multiple exactly 11in tall pages
+      function splitContentIntoPages() {
+        const pages = document.querySelectorAll(".page:not(#cover):not(#toc)");
+        const PAGE_HEIGHT_PX = 11 * 96; // 11 inches in pixels (96px per inch)
+        const PADDING_PX = 2 * 96; // 2 inches total padding (1in top + 1in bottom)
+        const MAX_CONTENT_HEIGHT = PAGE_HEIGHT_PX - PADDING_PX - 30; // Subtract padding and page number space
+        
+        pages.forEach((page) => {
+          const content = page.querySelector(".page-content");
+          if (!content) return;
+          
+          // Remove max-height restriction for measurement
+          const originalMaxHeight = content.style.maxHeight;
+          content.style.maxHeight = 'none';
+          
+          // Measure actual content height
+          const contentHeight = content.scrollHeight;
+          
+          // If content exceeds max height, we need to split it
+          if (contentHeight > MAX_CONTENT_HEIGHT) {
+            // Split content into multiple pages
+            const children = Array.from(content.children);
+            let currentPage = page;
+            let currentHeight = 0;
+            let newPage = null;
+            
+            children.forEach((child) => {
+              const childHeight = child.offsetHeight;
+              
+              // If adding this child would exceed the limit, start a new page
+              if (currentHeight + childHeight > MAX_CONTENT_HEIGHT && currentHeight > 0) {
+                // Create new page
+                const sectionId = page.id;
+                const sectionNumber = sectionId.replace('section', '');
+                const pageIndex = Array.from(page.parentElement.querySelectorAll(`.page:not(#cover):not(#toc)`)).indexOf(currentPage);
+                
+                newPage = document.createElement('div');
+                newPage.className = 'page';
+                newPage.id = `${sectionId}-page${pageIndex + 1}`;
+                
+                const newContent = document.createElement('div');
+                newContent.className = 'page-content';
+                newPage.appendChild(newContent);
+                
+                // Copy page number
+                const pageNumber = currentPage.querySelector('.page-number');
+                if (pageNumber) {
+                  const newPageNumber = pageNumber.cloneNode(true);
+                  newPage.appendChild(newPageNumber);
+                }
+                
+                // Insert after current page
+                currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
+                
+                currentPage = newPage;
+                currentHeight = 0;
+                
+                // Move child to new page
+                newPage.querySelector('.page-content').appendChild(child);
+                currentHeight += childHeight;
+              } else {
+                // Add to current page
+                if (!currentPage.querySelector('.page-content')) {
+                  // If page-content doesn't exist, create it
+                  const pageContent = document.createElement('div');
+                  pageContent.className = 'page-content';
+                  currentPage.insertBefore(pageContent, currentPage.firstChild);
+                }
+                if (newPage) {
+                  newPage.querySelector('.page-content').appendChild(child);
+                }
+                currentHeight += childHeight;
+              }
+            });
+            
+            // Clean up - remove empty page-content if we created new pages
+            if (newPage && page.querySelector('.page-content').children.length === 0) {
+              page.querySelector('.page-content').remove();
+            }
+          } else {
+            // Restore original max-height
+            content.style.maxHeight = originalMaxHeight || '9in';
+          }
+        });
+      }
+
       // Load dynamic playbook content
       async function loadPlaybookContent() {
         const container = document.getElementById("document-content");
@@ -2198,8 +2338,12 @@
         // If content already injected by server, skip loading
         if (existingContent && !existingContent.id.includes("loading")) {
           console.log("✅ Playbook content already loaded from server");
-          initializeNavigation();
-          initializeSearch();
+          // Split content into pages after a brief delay to ensure rendering
+          setTimeout(() => {
+            splitContentIntoPages();
+            initializeNavigation();
+            initializeSearch();
+          }, 100);
           return;
         }
 
@@ -2246,6 +2390,7 @@
           
           // Initialize navigation and search after content loads
           setTimeout(() => {
+            splitContentIntoPages();
             initializeNavigation();
             initializeSearch();
           }, 100);
