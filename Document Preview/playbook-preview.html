@@ -2493,16 +2493,34 @@
           
           // Final safety check: ensure no pages are empty
           const allPages = [originalPage, ...newPages];
+          let hasEmptyPages = false;
           allPages.forEach((p, idx) => {
             const pc = p.querySelector('.page-content');
             if (pc && pc.children.length === 0) {
               console.log(`  ⚠️ WARNING: Page ${p.id} is empty after splitting!`);
+              hasEmptyPages = true;
             } else {
               console.log(`  ✅ Page ${p.id} has ${pc?.children.length || 0} children`);
             }
           });
           
-          console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
+          // If we have empty pages, something went wrong - restore original content
+          if (hasEmptyPages && childrenData.length > 0) {
+            console.log(`  ⚠️ Empty pages detected, attempting to restore content...`);
+            content.innerHTML = '';
+            childrenData.forEach(childData => {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = childData.html;
+              while (tempDiv.firstChild) {
+                content.appendChild(tempDiv.firstChild);
+              }
+            });
+            // Remove any new pages we created
+            newPages.forEach(np => np.remove());
+            console.log(`  ✅ Content restored to original page`);
+          } else {
+            console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
+          }
         });
         
         console.log('✅ Page splitting complete');
