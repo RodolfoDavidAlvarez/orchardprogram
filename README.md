@@ -225,6 +225,18 @@ npm run preview    # Simple static server on http://localhost:8080
 
 ---
 
+## Dynamic Document System (Developer Guide)
+
+- **Single source of truth:** `Orchards Program Execution Playbook.txt` is parsed by `lib/playbook-parser.js` (sections/subsections via regex, Section 2 skipped, TOC auto-generated, geo-map image injected from `assets/300miradiouspicture.png`).
+- **Render flow:** `server.js` watches the text file → `/api/playbook` returns parsed HTML → `Document Preview/playbook-preview.html` injects it into `<!-- DYNAMIC_CONTENT -->`, then `splitContentIntoPages()` enforces 8.5"×11" pages with fixed page numbers.
+- **Layout guardrails:** Keep `.page` + `.page-content` structure, 11in height, and the page-splitting script intact. Do not re-enable Section 2 or remove the per-page numbering.
+- **PDF export:** Triggered by the download icon; `Document Preview/error-handler.js` captures each rendered page (as seen) with html2canvas + jsPDF. UI is hidden temporarily; pages are captured at letter size with no reflow.
+- **Adding content:** Prefer editing the text file using the existing section pattern (`N. title` with `=========` divider) and bullet styles (`•` or `1.`). Headings move with their first list/paragraph automatically.
+- **Adding images/graphics:** Place assets in `Document Preview/assets/`. Inject via parser or a controlled hook, using `<div class="image-container"><img src="assets/your-file.png" alt="..." /><div class="image-caption">Caption</div></div>`. Avoid editing the injected content blob directly—changes there are overwritten on next parse.
+- **Troubleshooting layout:** If an AI/model changes CSS and pages stretch or lists jump pages, restore 11in page height, keep page splitting enabled, and ensure `page-break-*` rules on h2/h3 remain.
+
+---
+
 ## Notes
 
 - All proprietary information is confidential and intended solely for internal use
