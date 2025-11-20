@@ -7,7 +7,9 @@
     "start": "node server.js",
     "dev": "nodemon server.js",
     "preview": "http-server 'Document Preview' -p 8080 -o",
-    "build": "echo 'No build step required'"
+    "build": "echo 'No build step required'",
+    "deploy": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "keywords": ["orchards", "agriculture", "soil-seed-water", "playbook"],
   "author": "Soil Seed & Water",
