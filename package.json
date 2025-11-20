@@ -4,8 +4,9 @@
   "description": "Orchards Program Execution Playbook - B2B Specialty Farmer Market Segment",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "NODE_ENV=production node server.js",
     "dev": "nodemon server.js",
+    "dev:open": "open http://localhost:8080 && npm run dev",
     "preview": "http-server 'Document Preview' -p 8080 -o",
     "build": "echo 'No build step required'",
     "deploy": "vercel --prod",
@@ -19,7 +20,9 @@
     "cors": "^2.8.5"
   },
   "devDependencies": {
+    "connect-livereload": "^0.6.1",
     "http-server": "^14.1.1",
+    "livereload": "^0.9.3",
     "nodemon": "^3.1.11"
   },
   "engines": {

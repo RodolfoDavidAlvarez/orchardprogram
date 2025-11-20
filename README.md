@@ -123,10 +123,15 @@ Orchards Program/
 open "Document Preview/playbook-preview.html"
 ```
 
-**Option 2: Local Server (Recommended)**
+**Option 2: Live Local Server (Recommended)**
 ```bash
-npm run preview    # Starts server on http://localhost:8080
-npm run dev        # Auto-reload on file changes (uses nodemon)
+npm run dev        # Nodemon + live-reload on http://localhost:8080
+npm run dev:open   # Same as above and opens the browser (macOS)
+```
+
+**Option 3: Static Preview**
+```bash
+npm run preview    # Simple static server on http://localhost:8080
 ```
 
 ### PDF Export
@@ -249,4 +254,3 @@ For questions or updates to this playbook, contact:
 ---
 
 *Last Updated: November 2024*
-

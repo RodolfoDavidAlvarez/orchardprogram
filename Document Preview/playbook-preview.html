@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Orchards Program Execution Playbook - Preview</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="error-handler.js"></script>
     <style>
       * {
@@ -17,8 +19,10 @@
         font-family: "Georgia", "Times New Roman", serif;
         background: #e8e8e8;
         padding: 20px;
-        line-height: 1.6;
+        line-height: 1.7;
         color: #333;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       .pdf-export-btn {
@@ -61,15 +65,24 @@
       .page {
         width: 8.5in;
         min-height: 11in;
-        max-height: 11in;
         padding: 1in;
         margin: 0 auto 20px;
         background: white;
         position: relative;
-        page-break-after: always;
-        page-break-inside: avoid;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
+        overflow: visible;
+      }
+
+      /* Cover page and TOC stay on fixed pages */
+      .page#cover,
+      .page#toc {
+        page-break-after: always;
+      }
+
+      /* Content pages flow naturally */
+      .page:not(#cover):not(#toc) {
+        min-height: auto;
+        page-break-after: auto;
       }
 
       @media print {
@@ -80,7 +93,14 @@
         .page {
           margin: 0;
           box-shadow: none;
+        }
+        .page#cover,
+        .page#toc {
           page-break-after: always;
+        }
+        .page:not(#cover):not(#toc) {
+          page-break-after: auto;
+          min-height: auto;
         }
         .pdf-export-btn,
         .nav-sidebar {
@@ -106,12 +126,22 @@
 
       h2 {
         font-size: 18pt;
-        margin-top: 20pt;
+        margin-top: 0;
         margin-bottom: 12pt;
+        padding-top: 20pt;
         color: #34495e;
         border-bottom: 2px solid #3498db;
         padding-bottom: 5pt;
+        page-break-before: always;
         page-break-after: avoid;
+        orphans: 3;
+        widows: 3;
+      }
+
+      /* First h2 in a page doesn't need page break */
+      .page > h2:first-child {
+        page-break-before: auto;
+        padding-top: 0;
       }
 
       h3 {
@@ -120,6 +150,8 @@
         margin-bottom: 8pt;
         color: #2c3e50;
         page-break-after: avoid;
+        orphans: 3;
+        widows: 3;
       }
 
       h4 {
@@ -128,6 +160,8 @@
         margin-bottom: 6pt;
         color: #34495e;
         page-break-after: avoid;
+        orphans: 3;
+        widows: 3;
       }
 
       .cover-page {
@@ -215,16 +249,21 @@
         font-size: 11pt;
         orphans: 3;
         widows: 3;
+        page-break-inside: auto;
       }
 
       ul {
         margin: 10pt 0;
         margin-left: 30pt;
+        page-break-inside: auto;
+        orphans: 2;
+        widows: 2;
       }
 
       li {
         margin: 5pt 0;
         font-size: 11pt;
+        page-break-inside: auto;
       }
 
       .section-divider {
@@ -238,6 +277,8 @@
         margin: 15pt 0;
         border-left: 4px solid #3498db;
         page-break-inside: avoid;
+        orphans: 3;
+        widows: 3;
       }
 
       .key-points h4 {
@@ -264,6 +305,9 @@
         text-align: center;
         margin: 15pt 0;
         page-break-inside: avoid;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
       }
 
       .image-caption {
@@ -277,49 +321,153 @@
         width: 100%;
         max-width: 100%;
         height: auto;
-        min-height: 200px;
-        margin: 25pt 0;
+        min-height: 500px;
+        margin: 20pt 0;
         page-break-inside: avoid;
         display: block;
-        background: #f8f9fa;
-        padding: 20px;
-        border-radius: 8px;
+        background: linear-gradient(120deg, #f7fbff 0%, #eef2f7 100%);
+        padding: 20pt;
+        border-radius: 12px;
+        border: 2px solid #d9e4f0;
+        box-sizing: border-box;
       }
 
-      .pipeline-stage {
-        fill: #3498db;
-        stroke: #2980b9;
-        stroke-width: 2.5;
-        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+      .pipeline-bg {
+        fill: white;
+        stroke: #dbe7f3;
+        stroke-width: 2;
       }
 
-      .pipeline-text {
+      .pipeline-track {
+        stroke: #d9e5f2;
+        stroke-width: 18;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .pipeline-track-highlight {
+        stroke: url(#pipelineGradient);
+        stroke-width: 18;
+        fill: none;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      .pipeline-arrowhead {
+        fill: #2c3e50;
+      }
+
+      .pipeline-connector {
+        stroke: #c2d4e8;
+        stroke-width: 4;
+      }
+
+      .pipeline-card {
+        fill: white;
+        stroke: #d0deef;
+        stroke-width: 3;
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+      }
+
+      .pipeline-card-title {
         font-family: "Georgia", "Times New Roman", serif;
-        font-size: 12pt;
+        font-size: 18pt;
+        font-weight: bold;
+        fill: #1f2d3d;
+        text-anchor: middle;
+      }
+
+      .pipeline-card-subtitle {
+        font-family: "Georgia", "Times New Roman", serif;
+        font-size: 14pt;
+        fill: #3c6387;
+        text-anchor: middle;
+      }
+
+      .pipeline-node {
+        stroke: #ffffff;
+        stroke-width: 5;
+        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.25));
+      }
+
+      .pipeline-number {
+        font-family: "Georgia", "Times New Roman", serif;
+        font-size: 20pt;
         font-weight: bold;
         fill: white;
         text-anchor: middle;
-        pointer-events: none;
+        dominant-baseline: middle;
       }
 
-      .pipeline-text-subtitle {
+      .pipeline-note {
         font-family: "Georgia", "Times New Roman", serif;
-        font-size: 10pt;
-        font-weight: normal;
-        fill: white;
-        text-anchor: middle;
-        pointer-events: none;
+        font-size: 14pt;
+        fill: #526981;
+        font-weight: 500;
       }
 
-      .pipeline-arrow {
+      .stage-1 {
+        fill: #2e86de;
+      }
+
+      .stage-1-card {
+        fill: #eaf3ff;
+        stroke: #b9d4f5;
+      }
+
+      .stage-2 {
+        fill: #17a589;
+      }
+
+      .stage-2-card {
+        fill: #e8fbf4;
+        stroke: #b9ead8;
+      }
+
+      .stage-3 {
+        fill: #f39c12;
+      }
+
+      .stage-3-card {
+        fill: #fff5e6;
+        stroke: #f2cf9b;
+      }
+
+      .stage-4 {
+        fill: #5c6bc0;
+      }
+
+      .stage-4-card {
+        fill: #eef1ff;
+        stroke: #c3cbe9;
+      }
+
+      .stage-5 {
+        fill: #27ae60;
+      }
+
+      .stage-5-card {
+        fill: #e9f6ec;
+        stroke: #b7e3c5;
+      }
+
+      .stage-6 {
+        fill: #d35400;
+      }
+
+      .stage-6-card {
+        fill: #fff0e6;
+        stroke: #f5c7a8;
+      }
+
+      .stage-7 {
         fill: #34495e;
-        stroke: none;
       }
 
-      .pipeline-line {
-        stroke: #34495e;
-        stroke-width: 4;
-        fill: none;
+      .stage-7-card {
+        fill: #eef1f5;
+        stroke: #c7d0dc;
       }
 
       .nav-sidebar {
@@ -568,65 +716,112 @@
         <h3>VISUAL PIPELINE FLOW</h3>
 
         <div class="image-container">
-          <svg class="pipeline-diagram" viewBox="0 0 1600 160" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-            <!-- Vertical line on the left -->
-            <line class="pipeline-line" x1="30" y1="30" x2="30" y2="130" />
+          <svg class="pipeline-diagram" viewBox="0 -140 1800 900" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="pipelineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#2e86de" />
+                <stop offset="50%" stop-color="#17a589" />
+                <stop offset="100%" stop-color="#27ae60" />
+              </linearGradient>
+            </defs>
 
-            <!-- Stage 1: Lead List -->
-            <rect class="pipeline-stage" x="70" y="60" width="140" height="60" rx="8" />
-            <text class="pipeline-text" x="140" y="95">Lead List</text>
+            <rect class="pipeline-bg" x="30" y="-100" width="1740" height="800" rx="20" />
 
-            <!-- Arrow 1 -->
-            <line class="pipeline-line" x1="210" y1="90" x2="250" y2="90" />
-            <polygon class="pipeline-arrow" points="250,90 238,82 238,98" />
+            <text class="pipeline-note" x="60" y="-65">Flow from first contact to long-term account; CRM automation at each handoff.</text>
 
-            <!-- Stage 2: Initial Outreach -->
-            <rect class="pipeline-stage" x="270" y="60" width="180" height="60" rx="8" />
-            <text class="pipeline-text" x="360" y="85">Initial Outreach</text>
-            <text class="pipeline-text-subtitle" x="360" y="102">(Hook Point)</text>
+            <!-- Pipeline track with U-turns -->
+            <!-- Row 1: Stages 1-3 (left to right) -->
+            <path class="pipeline-track" d="M 180 680 L 480 680 L 880 680 L 1280 680" />
+            <path class="pipeline-track-highlight" d="M 180 680 L 480 680 L 880 680 L 1280 680" />
 
-            <!-- Arrow 2 -->
-            <line class="pipeline-line" x1="450" y1="90" x2="490" y2="90" />
-            <polygon class="pipeline-arrow" points="490,90 478,82 478,98" />
+            <!-- U-turn 1: From stage 3 to stage 4 (down and right) -->
+            <path class="pipeline-track" d="M 1280 680 Q 1280 540 1280 500 L 1280 400" />
+            <path class="pipeline-track-highlight" d="M 1280 680 Q 1280 540 1280 500 L 1280 400" />
 
-            <!-- Stage 3: Nurture -->
-            <rect class="pipeline-stage" x="510" y="60" width="170" height="60" rx="8" />
-            <text class="pipeline-text" x="595" y="85">Nurture</text>
-            <text class="pipeline-text-subtitle" x="595" y="102">(Value Content)</text>
+            <!-- Row 2: Stages 4-5 (right to left) -->
+            <path class="pipeline-track" d="M 1280 400 L 880 400 L 480 400" />
+            <path class="pipeline-track-highlight" d="M 1280 400 L 880 400 L 480 400" />
 
-            <!-- Arrow 3 -->
-            <line class="pipeline-line" x1="680" y1="90" x2="720" y2="90" />
-            <polygon class="pipeline-arrow" points="720,90 708,82 708,98" />
+            <!-- U-turn 2: From stage 5 to stage 6 (down and right) -->
+            <path class="pipeline-track" d="M 480 400 Q 480 260 480 220 L 480 120" />
+            <path class="pipeline-track-highlight" d="M 480 400 Q 480 260 480 220 L 480 120" />
 
-            <!-- Stage 4: Smart Calling -->
-            <rect class="pipeline-stage" x="740" y="60" width="150" height="60" rx="8" />
-            <text class="pipeline-text" x="815" y="95">Smart Calling</text>
+            <!-- Row 3: Stages 6-7 (left to right) -->
+            <path class="pipeline-track" d="M 480 120 L 880 120 L 1280 120" />
+            <path class="pipeline-track-highlight" d="M 480 120 L 880 120 L 1280 120" />
 
-            <!-- Arrow 4 -->
-            <line class="pipeline-line" x1="890" y1="90" x2="930" y2="90" />
-            <polygon class="pipeline-arrow" points="930,90 918,82 918,98" />
+            <!-- Arrowhead at the end -->
+            <polygon class="pipeline-arrowhead" points="1300,120 1280,112 1280,128" />
 
-            <!-- Stage 5: Site Visits -->
-            <rect class="pipeline-stage" x="950" y="60" width="140" height="60" rx="8" />
-            <text class="pipeline-text" x="1020" y="95">Site Visits</text>
+            <!-- Stage 1: Bottom row, left -->
+            <g transform="translate(180,680)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-1-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Lead List</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">All growers tagged in CRM</text>
+              <circle class="pipeline-node stage-1" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">1</text>
+            </g>
 
-            <!-- Arrow 5 -->
-            <line class="pipeline-line" x1="1090" y1="90" x2="1130" y2="90" />
-            <polygon class="pipeline-arrow" points="1130,90 1118,82 1118,98" />
+            <!-- Stage 2: Bottom row, middle -->
+            <g transform="translate(480,680)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-2-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Initial Outreach</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">Hook Point campaign</text>
+              <circle class="pipeline-node stage-2" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">2</text>
+            </g>
 
-            <!-- Stage 6: Trials/Samples -->
-            <rect class="pipeline-stage" x="1150" y="60" width="150" height="60" rx="8" />
-            <text class="pipeline-text" x="1225" y="85">Trials/</text>
-            <text class="pipeline-text" x="1225" y="102">Samples</text>
+            <!-- Stage 3: Bottom row, right -->
+            <g transform="translate(880,680)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-3-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Nurture</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">Value content drip</text>
+              <circle class="pipeline-node stage-3" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">3</text>
+            </g>
 
-            <!-- Arrow 6 -->
-            <line class="pipeline-line" x1="1300" y1="90" x2="1340" y2="90" />
-            <polygon class="pipeline-arrow" points="1340,90 1328,82 1328,98" />
+            <!-- Stage 4: Middle row, right -->
+            <g transform="translate(1280,400)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-4-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Smart Calling</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">Engagement-triggered</text>
+              <circle class="pipeline-node stage-4" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">4</text>
+            </g>
 
-            <!-- Stage 7: Ongoing Accounts -->
-            <rect class="pipeline-stage" x="1360" y="60" width="160" height="60" rx="8" />
-            <text class="pipeline-text" x="1440" y="85">Ongoing</text>
-            <text class="pipeline-text" x="1440" y="102">Accounts</text>
+            <!-- Stage 5: Middle row, left -->
+            <g transform="translate(880,400)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-5-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Site Visits</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">Monthly documented weeks</text>
+              <circle class="pipeline-node stage-5" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">5</text>
+            </g>
+
+            <!-- Stage 6: Top row, left -->
+            <g transform="translate(480,120)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-6-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Trials &amp; Samples</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">9 lb bags + candies</text>
+              <circle class="pipeline-node stage-6" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">6</text>
+            </g>
+
+            <!-- Stage 7: Top row, right -->
+            <g transform="translate(1280,120)">
+              <line class="pipeline-connector" x1="0" y1="0" x2="0" y2="-140" />
+              <rect class="pipeline-card stage-7-card" x="-150" y="-260" width="300" height="120" rx="16" />
+              <text class="pipeline-card-title" x="0" y="-215">Ongoing Accounts</text>
+              <text class="pipeline-card-subtitle" x="0" y="-185">Programs + monitoring</text>
+              <circle class="pipeline-node stage-7" cx="0" cy="0" r="40" />
+              <text class="pipeline-number" x="0" y="8">7</text>
+            </g>
           </svg>
         </div>
 
@@ -719,7 +914,72 @@
 
       <div class="page" id="section3">
         <h2>3. RESEARCH & ELIGIBILITY</h2>
-        <p><em>Content to be added...</em></p>
+
+        <p>
+          Thorough research ensures we focus on the orchards most likely to benefit from Pomona and SSW protocols. Use these criteria to build a
+          targeted list, qualify quickly, and assign priority before outreach begins.
+        </p>
+
+        <h3>3.1 Crop Focus (Expanded)</h3>
+        <ul>
+          <li><strong>Pistachios:</strong> High-value nut crop with strong ROI on soil health and water-efficiency gains.</li>
+          <li><strong>Pome fruits (apples, pears):</strong> Focus on fruit quality, storability, and soil structure improvements.</li>
+          <li><strong>Stone fruits (peach, plum, cherry, apricot, nectarine):</strong> Emphasize fruit set, color, and consistency.</li>
+          <li>
+            <strong>Vineyards (wine/table/raisin grapes):</strong> Quality and yield stability through improved nutrient uptake and soil biology.
+          </li>
+          <li><strong>Avocados:</strong> Water efficiency, salinity management, and root health are primary levers.</li>
+          <li><strong>Citrus (orange, lemon, lime, grapefruit):</strong> Peel quality, brix, and stress mitigation in heat/drought.</li>
+          <li><strong>Other regional high-value orchards:</strong> Add local specialty crops as mapping reveals clusters.</li>
+        </ul>
+
+        <h3>3.2 Geographic Scope</h3>
+        <ul>
+          <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
+          <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
+          <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
+          <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
+        </ul>
+
+        <h3>3.3 Common Crop Challenges</h3>
+        <ul>
+          <li>Low organic matter and weak soil structure</li>
+          <li>Compaction and limited infiltration</li>
+          <li>Water inefficiency and uneven distribution</li>
+          <li>Micronutrient deficiencies and poor nutrient uptake</li>
+          <li>Low water-holding capacity</li>
+          <li>Weed pressure and low microbial activity</li>
+        </ul>
+
+        <h3>3.4 Common Farmer Challenges</h3>
+        <ul>
+          <li>Limited equipment access or downtime for applications</li>
+          <li>Soil biology and nutrient management knowledge gaps</li>
+          <li>Logistics constraints (labor, timing, trucking)</li>
+          <li>Cost management pressures and aversion to input risk</li>
+        </ul>
+
+        <h3>3.5 Suitability Criteria</h3>
+        <ul>
+          <li>Crop compatibility with Pomona + supporting amendments</li>
+          <li>Economic viability (acreage, revenue potential, input cost baseline)</li>
+          <li>Access and logistics feasibility (equipment fit, delivery access)</li>
+          <li>Decision-maker identified and reachable (owner, farm manager, PCA/consultant)</li>
+          <li>Clear agronomic pain points we can solve (water, nutrition, soil structure)</li>
+        </ul>
+
+        <div class="key-points">
+          <h4>DATA TO CAPTURE IN CRM</h4>
+          <ul>
+            <li>Crop type, acreage, orchard age, and block layout</li>
+            <li>Water source and irrigation method (drip, micro-sprinkler, flood)</li>
+            <li>Current fertilizer/soil program and spend (if known)</li>
+            <li>Primary pain points and recent yield/quality trends</li>
+            <li>Equipment available for application and delivery constraints</li>
+            <li>Contact roles (owner, manager, PCA/CCAs) with phone/email preferences</li>
+          </ul>
+        </div>
+
         <div class="page-number">5</div>
       </div>
 

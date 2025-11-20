@@ -15,6 +15,12 @@ To add the Soil Seed & Water logo to the cover page:
 - The PDF will maintain proper formatting, page breaks, and white pages
 - All images (including logo) will be included in the PDF
 
+## Live Preview
+
+- From the project root, run `npm run dev` for a live-reloading server at `http://localhost:8080`
+- On macOS, `npm run dev:open` will start the server and launch your browser automatically
+- Save changes in `playbook-preview.html` and the browser refreshes immediately
+
 ## File Structure
 
 ```
@@ -31,4 +37,3 @@ Document Preview/
 - Pages are white with a colored background for easy distinction
 - Logo will be hidden if file is not found (no errors)
 - PDF export handles images automatically
-
