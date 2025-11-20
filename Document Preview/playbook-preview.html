@@ -2320,12 +2320,15 @@
           console.log(`Page ${originalPage.id}: content height = ${contentHeight}px (${(contentHeight / 96).toFixed(2)}in), max = ${MAX_CONTENT_HEIGHT_PX}px`);
           
           // If content fits in one page, restore styles and move on
-          if (contentHeight <= MAX_CONTENT_HEIGHT_PX) {
+          if (contentHeight <= MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
             console.log(`✅ Page ${originalPage.id} fits in one page`);
             originalPage.style.height = '11in';
             originalPage.style.maxHeight = '11in';
-            content.style.maxHeight = '';
+            content.style.maxHeight = (MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) + 'px';
             content.style.overflow = 'hidden';
+            // Ensure original styles are restored properly
+            originalPage.style.height = '11in';
+            originalPage.style.maxHeight = '11in';
             return;
           }
           
@@ -2381,14 +2384,15 @@
             console.log(`  Child ${childIdx} (${childElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
             
             // Try adding the element to current page
-            const testAppend = currentPageContent.appendChild(childElement);
+            currentPageContent.appendChild(childElement);
             
             // Force reflow to get actual rendered height
             void currentPageContent.offsetHeight;
+            void currentPage.offsetHeight;
             const actualHeight = currentPageContent.scrollHeight;
             
-            // Check if the actual rendered height exceeds the page limit
-            if (actualHeight > MAX_CONTENT_HEIGHT_PX) {
+            // Check if the actual rendered height exceeds the page limit (with buffer)
+            if (actualHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
               console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX}px), creating new page`);
               
               // Remove the element from current page
@@ -2446,16 +2450,24 @@
               pc.style.maxHeight = (MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) + 'px';
               pc.style.overflow = 'hidden';
               
-              // Final check: if content still exceeds, remove last element and move to next page
+                  // Final check: if content still exceeds, remove last element and move to next page
               void pc.offsetHeight;
-              if (pc.scrollHeight > MAX_CONTENT_HEIGHT_PX) {
+              const finalScrollHeight = pc.scrollHeight;
+              if (finalScrollHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
+                console.log(`  ⚠️ Page ${p.id} still exceeds limit (${finalScrollHeight}px), moving last element to next page`);
                 const lastChild = pc.lastElementChild;
-                if (lastChild && idx < newPages.length) {
-                  // Move last child to next page
-                  lastChild.remove();
-                  const nextPageContent = newPages[idx]?.querySelector('.page-content');
-                  if (nextPageContent && nextPageContent.children.length === 0) {
-                    nextPageContent.insertBefore(lastChild, nextPageContent.firstChild);
+                if (lastChild) {
+                  // Try to move to next page if it exists
+                  if (idx < newPages.length && newPages[idx]) {
+                    const nextPageContent = newPages[idx].querySelector('.page-content');
+                    if (nextPageContent) {
+                      lastChild.remove();
+                      nextPageContent.insertBefore(lastChild, nextPageContent.firstChild);
+                      console.log(`  ✅ Moved last element to next page`);
+                    }
+                  } else {
+                    // No next page exists, create one
+                    console.log(`  ⚠️ No next page exists, keeping content but may overflow`);
                   }
                 }
               }
