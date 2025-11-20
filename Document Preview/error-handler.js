@@ -107,11 +107,15 @@
         const restoreStyles = () => {
             if (pages.length && pageStyleCache.length) {
                 pages.forEach((page, index) => {
-                    page.style.boxShadow = pageStyleCache[index].boxShadow || '';
-                    page.style.overflow = pageStyleCache[index].overflow || '';
-                    page.style.height = pageStyleCache[index].height || '';
-                    page.style.minHeight = pageStyleCache[index].minHeight || '';
-                    page.style.maxHeight = pageStyleCache[index].maxHeight || '';
+                    if (pageStyleCache[index]) {
+                        page.style.boxShadow = pageStyleCache[index].boxShadow || '';
+                        page.style.overflow = pageStyleCache[index].overflow || '';
+                        page.style.height = pageStyleCache[index].height || '';
+                        page.style.minHeight = pageStyleCache[index].minHeight || '';
+                        page.style.maxHeight = pageStyleCache[index].maxHeight || '';
+                        page.style.padding = pageStyleCache[index].padding || '';
+                        page.style.margin = pageStyleCache[index].margin || '';
+                    }
                 });
             }
 
@@ -141,8 +145,12 @@
             // Wait for images to load
             await Promise.all(Array.from(document.querySelectorAll('img')).map(waitForImage));
 
+            // Small delay to ensure all content is fully rendered
+            await new Promise(resolve => setTimeout(resolve, 300));
+
             // Keep everything in view for consistent rendering
             window.scrollTo(0, 0);
+            element.scrollIntoView({ behavior: 'instant', block: 'start' });
 
             // Hide UI elements
             exportBtn = document.querySelector('.pdf-export-btn');
@@ -168,7 +176,7 @@
             // Force reflow
             void element.offsetHeight;
             
-            // Adjust page styling for better rendering
+            // Adjust page styling for better rendering while preserving preview appearance
             pages = Array.from(element.querySelectorAll('.page'));
             if (!pages.length) {
                 throw new Error('No pages found for export');
@@ -178,18 +186,34 @@
                 overflow: page.style.overflow,
                 height: page.style.height,
                 minHeight: page.style.minHeight,
-                maxHeight: page.style.maxHeight
+                maxHeight: page.style.maxHeight,
+                padding: page.style.padding,
+                margin: page.style.margin
             }));
             pages.forEach((page) => {
+                // Remove box shadow for cleaner PDF (but keep other styling)
                 page.style.boxShadow = 'none';
+                // Allow content to flow naturally for PDF capture
                 page.style.overflow = 'visible';
-                page.style.height = 'auto';
-                page.style.minHeight = 'auto';
-                page.style.maxHeight = 'none';
+                // Preserve page dimensions as they appear in preview
+                // Only remove height restrictions to allow natural flow
+                if (page.style.height && page.style.height !== 'auto') {
+                    page.style.height = 'auto';
+                }
+                if (page.style.minHeight) {
+                    page.style.minHeight = 'auto';
+                }
+                if (page.style.maxHeight) {
+                    page.style.maxHeight = 'none';
+                }
             });
 
+            // Force a reflow after style changes to ensure proper rendering
+            void element.offsetHeight;
+            await new Promise(resolve => setTimeout(resolve, 100));
+
             const opts = { 
-                margin: [0.5, 0.5, 0.5, 0.5],
+                margin: [0, 0, 0, 0], // No margin - pages already have their own padding
                 filename: 'Orchards_Program_Execution_Playbook.pdf',
                 image: { type: 'jpeg', quality: 0.98 },
                 html2canvas: {
@@ -201,7 +225,9 @@
                     scrollX: 0,
                     scrollY: 0,
                     windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight
+                    windowHeight: element.scrollHeight,
+                    letterRendering: true,
+                    removeContainer: false
                 },
                 jsPDF: {
                     unit: 'in',
@@ -210,8 +236,8 @@
                 },
                 pagebreak: {
                     mode: 'css',
-                    before: ['#cover', '#toc', 'h2'],
-                    after: ['#cover', '#toc'],
+                    before: ['.page#cover', '.page#toc', 'h2'],
+                    after: ['.page#cover', '.page#toc'],
                     avoid: ['.pipeline-diagram', '.image-container', '.key-points']
                 }
             };
