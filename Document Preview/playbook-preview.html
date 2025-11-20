@@ -150,8 +150,8 @@
         overflow: hidden;
         padding-bottom: 0.75in; /* Space for page number at bottom */
         /* Professional typography - prevent orphaned lines */
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       /* Last page - can be shorter if content doesn't fill it */
@@ -229,18 +229,18 @@
         }
         /* Prevent orphaned lines - professional PDF standards */
         p, li {
-          orphans: 3; /* At least 3 lines at bottom of page */
-          widows: 3;  /* At least 3 lines at top of page */
+          orphans: 2; /* Allow lists to stay on current page when space remains */
+          widows: 2;
         }
         /* Allow paragraph breaking but keep related content together */
         p {
           page-break-inside: auto;
           break-inside: auto;
         }
-        /* Keep list items together when possible */
+        /* Allow list items to flow when needed (prevents whole list jumping pages) */
         li {
-          page-break-inside: avoid;
-          break-inside: avoid;
+          page-break-inside: auto;
+          break-inside: auto;
         }
         /* Keep headings with following content */
         h2, h3 {
@@ -284,8 +284,8 @@
         page-break-after: avoid;
         break-before: page;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       /* First h2 in a page doesn't need page break */
@@ -304,8 +304,8 @@
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       h4 {
@@ -317,8 +317,8 @@
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       .cover-page {
@@ -428,8 +428,8 @@
         margin: 10pt 0;
         text-align: justify;
         font-size: 11pt;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       ul {
@@ -442,6 +442,8 @@
       li {
         margin: 5pt 0;
         font-size: 11pt;
+        page-break-inside: auto;
+        break-inside: auto;
       }
 
       .section-divider {
@@ -1107,7 +1109,6 @@
       onclick="enhancedPDFExport()"
       aria-label="Download PDF"
       title="Download PDF"
-      style="display: none;"
     >
       ⬇︎
     </button>
@@ -2305,7 +2306,7 @@
         const PADDING_IN = 1; // 1 inch top padding
         const PADDING_PX = PADDING_IN * 96;
         const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
-        const LINE_HEIGHT_BUFFER_PX = 50; // Buffer for line height to prevent cutoff (about 2-3 lines for professional look)
+        const LINE_HEIGHT_BUFFER_PX = 20; // Smaller buffer so short lists can stay on the current page
         const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
         
         console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
