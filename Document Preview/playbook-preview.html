@@ -149,6 +149,9 @@
         min-height: 0;
         overflow: hidden;
         padding-bottom: 0.75in; /* Space for page number at bottom */
+        /* Prevent orphaned lines - ensure text doesn't get cut off */
+        orphans: 2;
+        widows: 2;
       }
 
       /* Last page - can be shorter if content doesn't fill it */
@@ -223,6 +226,18 @@
         .toc-item {
           page-break-inside: avoid;
           break-inside: avoid;
+        }
+        /* Prevent orphaned lines - ensure at least 2 lines stay together */
+        p, li {
+          orphans: 2;
+          widows: 2;
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        /* For paragraphs, allow breaking but avoid orphans */
+        p {
+          page-break-inside: auto;
+          break-inside: auto;
         }
         .pdf-export-btn,
         .floating-toc,
@@ -2265,7 +2280,8 @@
         const PADDING_IN = 1; // 1 inch top padding
         const PADDING_PX = PADDING_IN * 96;
         const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
-        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX; // Available content height
+        const LINE_HEIGHT_BUFFER_PX = 40; // Buffer for line height to prevent cutoff (about 2 lines)
+        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
         
         console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
         
@@ -2364,9 +2380,19 @@
             
             console.log(`  Child ${childIdx} (${childElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
             
-            // Check if adding this child would exceed the page limit
-            if (currentHeight > 0 && currentHeight + childHeight > MAX_CONTENT_HEIGHT_PX) {
-              console.log(`  ⚠️ Child ${childIdx} exceeds limit, creating new page`);
+            // Try adding the element to current page
+            const testAppend = currentPageContent.appendChild(childElement);
+            
+            // Force reflow to get actual rendered height
+            void currentPageContent.offsetHeight;
+            const actualHeight = currentPageContent.scrollHeight;
+            
+            // Check if the actual rendered height exceeds the page limit
+            if (actualHeight > MAX_CONTENT_HEIGHT_PX) {
+              console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX}px), creating new page`);
+              
+              // Remove the element from current page
+              childElement.remove();
               
               // Create new page
               const newPage = document.createElement('div');
@@ -2391,29 +2417,48 @@
               currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
               newPages.push(newPage);
               
-              // Switch to new page
+              // Switch to new page and add the element
               currentPage = newPage;
               currentPageContent = newContent;
-              currentHeight = 0;
+              currentPageContent.appendChild(childElement);
+              
+              // Update current height based on actual content
+              void currentPageContent.offsetHeight;
+              currentHeight = currentPageContent.scrollHeight;
               pageCounter++;
+            } else {
+              // Element fits, update current height
+              currentHeight = actualHeight;
             }
-            
-            // Move the actual child element from temp container to current page
-            currentPageContent.appendChild(childElement);
-            currentHeight += childHeight;
             
             // Clean up temp container
             document.body.removeChild(tempContainer);
           });
           
           // Ensure all pages have correct height and overflow settings
+          // Also verify no content is cut off at the bottom
           [originalPage, ...newPages].forEach((p, idx) => {
             p.style.height = '11in';
             p.style.maxHeight = '11in';
             const pc = p.querySelector('.page-content');
             if (pc) {
-              pc.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
+              // Set max height with buffer to prevent cutoff
+              pc.style.maxHeight = (MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) + 'px';
               pc.style.overflow = 'hidden';
+              
+              // Final check: if content still exceeds, remove last element and move to next page
+              void pc.offsetHeight;
+              if (pc.scrollHeight > MAX_CONTENT_HEIGHT_PX) {
+                const lastChild = pc.lastElementChild;
+                if (lastChild && idx < newPages.length) {
+                  // Move last child to next page
+                  lastChild.remove();
+                  const nextPageContent = newPages[idx]?.querySelector('.page-content');
+                  if (nextPageContent && nextPageContent.children.length === 0) {
+                    nextPageContent.insertBefore(lastChild, nextPageContent.firstChild);
+                  }
+                }
+              }
             }
           });
           
