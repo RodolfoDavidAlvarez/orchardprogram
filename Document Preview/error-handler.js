@@ -176,11 +176,13 @@
             // Force reflow
             void element.offsetHeight;
             
-            // Adjust page styling for better rendering while preserving preview appearance
+            // Collect pages exactly as rendered (already split/numbered)
             pages = Array.from(element.querySelectorAll('.page'));
             if (!pages.length) {
                 throw new Error('No pages found for export');
             }
+
+            // Cache & smooth temporarily for capture
             pageStyleCache = pages.map((page) => ({
                 boxShadow: page.style.boxShadow,
                 overflow: page.style.overflow,
@@ -191,60 +193,46 @@
                 margin: page.style.margin
             }));
             pages.forEach((page) => {
-                // Remove box shadow for cleaner PDF (but keep other styling)
-                page.style.boxShadow = 'none';
-                // Allow content to flow naturally for PDF capture
-                page.style.overflow = 'visible';
-                // Preserve page dimensions as they appear in preview
-                // Only remove height restrictions to allow natural flow
-                if (page.style.height && page.style.height !== 'auto') {
-                    page.style.height = 'auto';
-                }
-                if (page.style.minHeight) {
-                    page.style.minHeight = 'auto';
-                }
-                if (page.style.maxHeight) {
-                    page.style.maxHeight = 'none';
-                }
+                page.style.boxShadow = 'none'; // remove shadow for clean PDF
+                page.style.overflow = 'hidden'; // lock current layout
+                // keep width/height as-is so PDF matches preview
             });
 
-            // Force a reflow after style changes to ensure proper rendering
-            void element.offsetHeight;
-            await new Promise(resolve => setTimeout(resolve, 100));
+            // Render each page individually to preserve exact layout
+            const jsPDF =
+                (window.jspdf && window.jspdf.jsPDF) ||
+                (window.jsPDF) ||
+                null;
+            if (!jsPDF) throw new Error('jsPDF not available after loading');
+            const pdf = new jsPDF({ unit: 'pt', format: 'letter', orientation: 'portrait', compress: true });
+            const pdfWidth = pdf.internal.pageSize.getWidth();
+            const pdfHeight = pdf.internal.pageSize.getHeight();
 
-            const opts = { 
-                margin: [0, 0, 0, 0], // No margin - pages already have their own padding
-                filename: 'Orchards_Program_Execution_Playbook.pdf',
-                image: { type: 'jpeg', quality: 0.98 },
-                html2canvas: {
+            for (let i = 0; i < pages.length; i++) {
+                btn.textContent = `⏳ Rendering page ${i + 1}/${pages.length}...`;
+
+                // Ensure the page is in view for accurate render
+                pages[i].scrollIntoView({ behavior: 'instant', block: 'start' });
+                await new Promise(resolve => setTimeout(resolve, 50));
+
+                const canvas = await html2canvas(pages[i], {
                     scale: 2,
                     useCORS: true,
                     allowTaint: false,
                     backgroundColor: '#ffffff',
                     logging: false,
-                    scrollX: 0,
-                    scrollY: 0,
-                    windowWidth: element.scrollWidth,
-                    windowHeight: element.scrollHeight,
                     letterRendering: true,
-                    removeContainer: false
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'letter',
-                    orientation: 'portrait'
-                },
-                pagebreak: {
-                    mode: 'css',
-                    before: ['.page#cover', '.page#toc', 'h2'],
-                    after: ['.page#cover', '.page#toc'],
-                    avoid: ['.pipeline-diagram', '.image-container', '.key-points']
-                }
-            };
+                    scrollX: 0,
+                    scrollY: -window.scrollY // neutralize scroll
+                });
 
-            btn.textContent = '⏳ Rendering PDF...';
-            const worker = window.html2pdf().set(opts).from(element);
-            await worker.save();
+                const imgData = canvas.toDataURL('image/jpeg', 0.98);
+                if (i > 0) pdf.addPage('letter', 'portrait');
+                pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+            }
+
+            btn.textContent = '⬇︎ Downloading...';
+            pdf.save('Orchards_Program_Execution_Playbook.pdf');
 
             restoreStyles();
             btn.classList.remove('exporting');
