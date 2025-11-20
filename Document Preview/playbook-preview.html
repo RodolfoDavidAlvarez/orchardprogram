@@ -2308,6 +2308,17 @@
         const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
         const LINE_HEIGHT_BUFFER_PX = 20; // Smaller buffer so short lists can stay on the current page
         const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
+        const isHeadingLike = (el) => {
+          if (!el || !el.tagName) return false;
+          const tag = el.tagName.toUpperCase();
+          if (tag === 'H2' || tag === 'H3' || tag === 'H4') return true;
+          if (tag === 'P') {
+            const text = (el.textContent || '').trim();
+            // Treat short all-caps paragraphs as headings
+            return text && text.length <= 140 && text === text.toUpperCase();
+          }
+          return false;
+        };
         
         console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
         
@@ -2415,6 +2426,9 @@
             
             console.log(`  Child ${childIdx} (${clonedElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
             
+            // Track what was before this element so we can keep headings with their first block
+            const prevBeforeAppend = currentPageContent.lastElementChild;
+
             // Try adding the cloned element to current page
             currentPageContent.appendChild(clonedElement);
             
@@ -2423,10 +2437,17 @@
             void currentPage.offsetHeight;
             const actualHeight = currentPageContent.scrollHeight;
             
-              // Check if the actual rendered height exceeds the page limit (with buffer)
+            // Check if the actual rendered height exceeds the page limit (with buffer)
             if (actualHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
               console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX}px), creating new page`);
               
+              // If the previous element was a heading-like block, move it with this element
+              let headingToMove = null;
+              if (isHeadingLike(prevBeforeAppend) && currentPageContent.contains(prevBeforeAppend)) {
+                headingToMove = prevBeforeAppend;
+                currentPageContent.removeChild(prevBeforeAppend);
+              }
+
               // Remove the cloned element from current page
               clonedElement.remove();
               
@@ -2456,6 +2477,11 @@
               // Switch to new page and add the cloned element
               currentPage = newPage;
               currentPageContent = newContent;
+              
+              // If we moved a heading, place it before the list
+              if (headingToMove) {
+                currentPageContent.appendChild(headingToMove);
+              }
               currentPageContent.appendChild(clonedElement);
               
               // Update current height based on actual content
