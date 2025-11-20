@@ -2250,76 +2250,128 @@
 
       // Split long sections into multiple exactly 11in tall pages
       function splitContentIntoPages() {
+        console.log('🔄 Starting page splitting...');
+        
         const pages = Array.from(document.querySelectorAll(".page:not(#cover):not(#toc)"));
+        console.log(`Found ${pages.length} content pages to process`);
+        
+        if (pages.length === 0) {
+          console.log('⚠️ No pages found to split');
+          return;
+        }
+        
         const PAGE_HEIGHT_IN = 11;
         const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
         const PADDING_IN = 1; // 1 inch top padding
         const PADDING_PX = PADDING_IN * 96;
-        const PAGE_NUMBER_SPACE_PX = 48; // Space for page number (0.5in)
-        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - 10; // Available content height
+        const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
+        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX; // Available content height
         
-        pages.forEach((originalPage) => {
+        console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
+        
+        pages.forEach((originalPage, pageIdx) => {
           const content = originalPage.querySelector(".page-content");
-          if (!content) return;
-          
-          // Temporarily allow content to expand for measurement
-          const originalStyle = {
-            maxHeight: content.style.maxHeight,
-            overflow: content.style.overflow,
-            height: originalPage.style.height
-          };
-          
-          content.style.maxHeight = 'none';
-          content.style.overflow = 'visible';
-          originalPage.style.height = 'auto';
-          
-          // Force reflow
-          void content.offsetHeight;
-          
-          // Check if content exceeds max height
-          if (content.scrollHeight <= MAX_CONTENT_HEIGHT_PX) {
-            // Content fits - restore original styles
-            originalPage.style.height = '11in';
-            originalPage.style.maxHeight = '11in';
-            content.style.maxHeight = originalStyle.maxHeight || '';
-            content.style.overflow = originalStyle.overflow || 'hidden';
+          if (!content) {
+            console.log(`⚠️ Page ${pageIdx} has no .page-content`);
             return;
           }
           
-          // Content exceeds - we need to split it
+          // Save original styles
+          const originalContentStyle = {
+            maxHeight: content.style.maxHeight,
+            overflow: content.style.overflow,
+            height: content.style.height
+          };
+          
+          const originalPageStyle = {
+            height: originalPage.style.height,
+            maxHeight: originalPage.style.maxHeight
+          };
+          
+          // Temporarily remove restrictions for accurate measurement
+          content.style.maxHeight = 'none';
+          content.style.overflow = 'visible';
+          content.style.height = 'auto';
+          originalPage.style.height = 'auto';
+          originalPage.style.maxHeight = 'none';
+          
+          // Force reflow for accurate measurements
+          void originalPage.offsetHeight;
+          void content.offsetHeight;
+          
+          // Measure actual content height
+          const contentHeight = content.scrollHeight;
+          console.log(`Page ${originalPage.id}: content height = ${contentHeight}px (${(contentHeight / 96).toFixed(2)}in), max = ${MAX_CONTENT_HEIGHT_PX}px`);
+          
+          // If content fits in one page, restore styles and move on
+          if (contentHeight <= MAX_CONTENT_HEIGHT_PX) {
+            console.log(`✅ Page ${originalPage.id} fits in one page`);
+            originalPage.style.height = '11in';
+            originalPage.style.maxHeight = '11in';
+            content.style.maxHeight = '';
+            content.style.overflow = 'hidden';
+            return;
+          }
+          
+          // Content exceeds - split it into multiple pages
+          console.log(`✂️ Splitting page ${originalPage.id} (content is ${contentHeight}px, exceeds ${MAX_CONTENT_HEIGHT_PX}px)`);
+          
           const children = Array.from(content.children);
+          if (children.length === 0) {
+            console.log(`⚠️ Page ${originalPage.id} has no children`);
+            return;
+          }
+          
+          // Store children data before manipulation
+          const childrenData = children.map(child => ({
+            element: child,
+            html: child.outerHTML
+          }));
+          
+          // Clear original content
+          content.innerHTML = '';
+          
+          // Get section info
+          const sectionId = originalPage.id.replace(/-page\d+$/, '');
+          const pageNumberEl = originalPage.querySelector('.page-number');
+          let basePageNum = pageNumberEl ? parseInt(pageNumberEl.textContent) : 3;
+          
           const newPages = [];
           let currentPage = originalPage;
           let currentPageContent = content;
           let currentHeight = 0;
-          let pageNumber = 1;
-          const sectionId = originalPage.id.replace(/-page\d+$/, '');
+          let pageCounter = 1;
           
-          // Get base page number from original page
-          const pageNumberEl = originalPage.querySelector('.page-number');
-          let basePageNum = pageNumberEl ? parseInt(pageNumberEl.textContent) : 3;
-          
-          // Clear original content for refilling
-          content.innerHTML = '';
-          
-          children.forEach((child) => {
-            // Temporarily add child to measure it
-            currentPageContent.appendChild(child);
+          // Process each child element
+          childrenData.forEach((childData, childIdx) => {
+            // Create a temporary container to measure the child
+            const tempContainer = document.createElement('div');
+            tempContainer.style.cssText = 'position: absolute; visibility: hidden; width: 7.5in;';
+            tempContainer.innerHTML = childData.html;
+            document.body.appendChild(tempContainer);
             
-            // Force reflow to get accurate height
-            void child.offsetHeight;
+            // Get the actual element from temp container
+            const childElement = tempContainer.firstElementChild;
+            if (!childElement) {
+              document.body.removeChild(tempContainer);
+              return;
+            }
             
-            const childHeight = child.offsetHeight || child.scrollHeight || 50;
+            // Force reflow
+            void childElement.offsetHeight;
             
-            // Check if adding this child exceeds the limit
-            if (currentHeight + childHeight > MAX_CONTENT_HEIGHT_PX && currentHeight > 0) {
-              // Remove child from current page
-              child.remove();
+            const childHeight = childElement.offsetHeight || 100;
+            
+            console.log(`  Child ${childIdx} (${childElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
+            
+            // Check if adding this child would exceed the page limit
+            if (currentHeight > 0 && currentHeight + childHeight > MAX_CONTENT_HEIGHT_PX) {
+              console.log(`  ⚠️ Child ${childIdx} exceeds limit, creating new page`);
               
               // Create new page
               const newPage = document.createElement('div');
               newPage.className = 'page';
-              newPage.id = `${sectionId}-page${pageNumber + 1}`;
+              newPage.id = `${sectionId}-page${pageCounter + 1}`;
               newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
               
               const newContent = document.createElement('div');
@@ -2331,7 +2383,7 @@
               // Add page number
               const newPageNumber = document.createElement('div');
               newPageNumber.className = 'page-number';
-              newPageNumber.textContent = basePageNum + pageNumber;
+              newPageNumber.textContent = basePageNum + pageCounter;
               newPageNumber.style.cssText = 'position: absolute; bottom: 0.75in; right: 1in; font-size: 10pt; color: #666;';
               newPage.appendChild(newPageNumber);
               
@@ -2343,17 +2395,18 @@
               currentPage = newPage;
               currentPageContent = newContent;
               currentHeight = 0;
-              pageNumber++;
+              pageCounter++;
             }
             
-            // Add child to current page
-            if (!child.parentElement) {
-              currentPageContent.appendChild(child);
-              currentHeight += childHeight;
-            }
+            // Move the actual child element from temp container to current page
+            currentPageContent.appendChild(childElement);
+            currentHeight += childHeight;
+            
+            // Clean up temp container
+            document.body.removeChild(tempContainer);
           });
           
-          // Ensure all pages have correct height
+          // Ensure all pages have correct height and overflow settings
           [originalPage, ...newPages].forEach((p, idx) => {
             p.style.height = '11in';
             p.style.maxHeight = '11in';
@@ -2363,7 +2416,11 @@
               pc.style.overflow = 'hidden';
             }
           });
+          
+          console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
         });
+        
+        console.log('✅ Page splitting complete');
       }
 
       // Load dynamic playbook content
@@ -2374,12 +2431,16 @@
         // If content already injected by server, skip loading
         if (existingContent && !existingContent.id.includes("loading")) {
           console.log("✅ Playbook content already loaded from server");
-          // Split content into pages after a brief delay to ensure rendering
+          // Split content into pages after rendering completes
           setTimeout(() => {
             splitContentIntoPages();
-            initializeNavigation();
-            initializeSearch();
-          }, 100);
+            // Re-run after a longer delay to ensure all content is rendered
+            setTimeout(() => {
+              splitContentIntoPages();
+              initializeNavigation();
+              initializeSearch();
+            }, 500);
+          }, 200);
           return;
         }
 
@@ -2390,8 +2451,14 @@
         const existingPages = container.querySelectorAll(".page");
         if (existingPages.length > 0) {
           console.log("✅ Playbook content already loaded from server");
-          initializeNavigation();
-          initializeSearch();
+          setTimeout(() => {
+            splitContentIntoPages();
+            setTimeout(() => {
+              splitContentIntoPages();
+              initializeNavigation();
+              initializeSearch();
+            }, 500);
+          }, 200);
           return;
         }
         
@@ -2425,11 +2492,16 @@
           console.log(`✅ Playbook loaded: ${data.sections} sections`);
           
           // Initialize navigation and search after content loads
+          // Use multiple timeouts to ensure content is fully rendered before splitting
           setTimeout(() => {
             splitContentIntoPages();
-            initializeNavigation();
-            initializeSearch();
-          }, 100);
+            // Re-run after longer delay to catch any late-rendered content
+            setTimeout(() => {
+              splitContentIntoPages();
+              initializeNavigation();
+              initializeSearch();
+            }, 500);
+          }, 300);
         } catch (error) {
           console.error("❌ Error loading playbook:", error);
           const loadingMsg = document.getElementById("loading-message");
