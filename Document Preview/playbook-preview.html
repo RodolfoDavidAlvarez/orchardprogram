@@ -2347,7 +2347,9 @@
             html: child.outerHTML
           }));
           
-          // Clear original content
+          console.log(`  Stored ${childrenData.length} children for processing`);
+          
+          // Clear original content (will rebuild it)
           content.innerHTML = '';
           
           // Get section info
@@ -2372,31 +2374,35 @@
             // Get the actual element from temp container
             const childElement = tempContainer.firstElementChild;
             if (!childElement) {
+              console.log(`  ⚠️ Child ${childIdx} has no element, skipping`);
               document.body.removeChild(tempContainer);
               return;
             }
             
-            // Force reflow
+            // Clone the element to avoid DOM manipulation issues
+            const clonedElement = childElement.cloneNode(true);
+            
+            // Force reflow to measure height
             void childElement.offsetHeight;
             
             const childHeight = childElement.offsetHeight || 100;
             
-            console.log(`  Child ${childIdx} (${childElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
+            console.log(`  Child ${childIdx} (${clonedElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
             
-            // Try adding the element to current page
-            currentPageContent.appendChild(childElement);
+            // Try adding the cloned element to current page
+            currentPageContent.appendChild(clonedElement);
             
             // Force reflow to get actual rendered height
             void currentPageContent.offsetHeight;
             void currentPage.offsetHeight;
             const actualHeight = currentPageContent.scrollHeight;
             
-            // Check if the actual rendered height exceeds the page limit (with buffer)
+              // Check if the actual rendered height exceeds the page limit (with buffer)
             if (actualHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
-              console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX}px), creating new page`);
+              console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX}px), creating new page`);
               
-              // Remove the element from current page
-              childElement.remove();
+              // Remove the cloned element from current page
+              clonedElement.remove();
               
               // Create new page
               const newPage = document.createElement('div');
@@ -2421,10 +2427,10 @@
               currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
               newPages.push(newPage);
               
-              // Switch to new page and add the element
+              // Switch to new page and add the cloned element
               currentPage = newPage;
               currentPageContent = newContent;
-              currentPageContent.appendChild(childElement);
+              currentPageContent.appendChild(clonedElement);
               
               // Update current height based on actual content
               void currentPageContent.offsetHeight;
@@ -2471,6 +2477,17 @@
                   }
                 }
               }
+            }
+          });
+          
+          // Final safety check: ensure no pages are empty
+          const allPages = [originalPage, ...newPages];
+          allPages.forEach((p, idx) => {
+            const pc = p.querySelector('.page-content');
+            if (pc && pc.children.length === 0) {
+              console.log(`  ⚠️ WARNING: Page ${p.id} is empty after splitting!`);
+            } else {
+              console.log(`  ✅ Page ${p.id} has ${pc?.children.length || 0} children`);
             }
           });
           
