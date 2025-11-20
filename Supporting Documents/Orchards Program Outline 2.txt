@@ -1,0 +1,499 @@
+Orchards Program - Business-to-Business (Specialty Farmer) Market Segment
+Execution Playbook
+
+============================================================================
+PURPOSE OF THE DOCUMENT
+============================================================================
+Provide Soil Seed & Water representatives with a clear, standardized roadmap 
+for targeting, engaging, selling, implementing, and supporting specialty 
+orchard/vineyard clients in the Business-to-Business (Specialty Farmer) 
+Market Segment.
+
+This document establishes the full outreach-to-fulfillment system, simplifies 
+field execution, and aligns all teams on how to deliver regenerative orchard 
+programs using Pomona and SSW protocols.
+
+============================================================================
+MARKETING/SALES PIPELINE
+============================================================================
+Visual Pipeline Flow:
+Lead List → Initial Outreach (Hook Point) → Nurture (Value Content) → 
+Smart Calling → Site Visits → Trials/Samples → Ongoing Accounts
+
+Each stage feeds into the next, with CRM tracking and automation at every 
+step.
+
+============================================================================
+1. RESEARCH & ELIGIBILITY
+============================================================================
+
+CROP FOCUS (Expanded):
+• Pistachios
+• Pome fruits (apples, pears)
+• Stone fruits (peaches, plums, cherries, apricots, nectarines)
+• Vineyards (grapes)
+• Avocados
+• Citrus (oranges, lemons, limes, grapefruit)
+• Other high-value orchard/vineyard crops in region (research and list 
+  specifically)
+
+GEOGRAPHIC SCOPE:
+• 300-mile target radius from SSW operations
+• Priority mapping by crop density and market value
+
+COMMON CROP CHALLENGES:
+• Low organic matter (OM)
+• Soil compaction
+• Water inefficiency
+• Micronutrient deficiencies
+• Low water-holding capacity
+• Weed pressure
+• Low microbial activity
+• Poor nutrient uptake
+
+COMMON FARMER CHALLENGES:
+• Limited equipment access
+• Soil knowledge gaps
+• Logistics constraints
+• Cost management pressures
+
+SUITABILITY CRITERIA:
+• Compatibility with Pomona + supporting amendments
+• Economic viability assessment
+• Access and logistics feasibility
+
+============================================================================
+2. VALUE PROPOSITION
+============================================================================
+
+WHAT:
+Long-term orchard health + regeneration through Pomona and supporting 
+protocols
+
+WHY:
+• Extended orchard lifespan
+• Improved soil health
+• Economic gains (yield lift, fertilizer reduction)
+• Reduced input costs over time
+• Enhanced water efficiency
+
+HOW:
+• Orchard-specific treatment protocols
+• Customized supplement blends
+• Seasonal application schedules
+• Ongoing field support and consulting
+
+WHY SSW IS DIFFERENT:
+• True partnership approach (not just product sales)
+• Deep expertise in regenerative agriculture
+• Production capacity and consistency
+• Comprehensive field support
+• Consulting and advisory services
+• Trucking and logistics support
+• Equipment support and coordination
+
+ECONOMIC VALUE DRIVERS:
+• Yield strength and consistency
+• Soil health improvements
+• Fertilizer reduction (cost savings)
+• Long-term ROI
+• Risk mitigation
+
+============================================================================
+3. CRM INTEGRATION - COMPLETE WORKFLOW
+============================================================================
+
+LEAD CAPTURE (Dec 15, 2024):
+• All avocado/citrus/vineyard/pistachio/specialty growers mapped and entered 
+  into CRM
+• Complete profiles: name, farm name, location, crop type, acreage, contact 
+  info, water source
+• Initial tagging and categorization
+
+SEGMENTATION:
+• Tag by crop type (pistachio, citrus, avocado, vineyard, pome, stone fruit)
+• Tag by region/geography
+• Priority level assignment (high/medium/low)
+• Acreage ranges
+• Water source type
+• Buying potential/estimated value
+• Engagement status
+
+AUTOMATIONS:
+
+Hook Point Campaign (Jan 1, 2025):
+• Finalize Hook Point message
+• Load into CRM as outbound campaign
+• Examples: 1-2 sample messages included in Appendix
+• Automated email/text deployment
+
+Value Message Drip (Jan 15, 2025):
+• Short value messages or videos scheduled in CRM
+• Drip content sequence
+• Education → credibility → proposal flow
+• Automated timing and follow-up
+
+TRACKING & ANALYTICS:
+• Open/click rates tracked weekly in CRM
+• Response rates monitored
+• Activity timelines: emails, calls, samples, visits
+• Google Analytics + CRM analytics integration
+• Weekly metric review process
+
+SMART CALLING WORKFLOW (Feb 1, 2025):
+• Call lists pulled from CRM based on engagement (opens, clicks, replies)
+• Priority sorting by engagement level
+• Notes logged after each call: objections, responses, next steps
+• Follow-up tasks automatically created
+• Call outcomes tracked in pipeline stages
+
+FARM VISITS (Monthly):
+• Calendar integration inside CRM for field visit scheduling
+• One week each month dedicated to site visits
+• Photos uploaded directly to CRM records
+• Soil notes documented in farm profiles
+• Product recommendations logged
+• Visit reports generated
+
+DEALS & CONVERSIONS:
+• Pipeline stages: Lead → Engaged → Visit → Trial → Customer
+• Stage progression tracked in CRM
+• Conversion metrics by stage
+• Revenue projections
+
+REPORTING:
+• Weekly dashboards: leads, conversions, response rates, projected revenue
+• Monthly performance reviews
+• Quarterly pipeline analysis
+• CRM screenshots/mock-ups in Appendix
+
+============================================================================
+4. OUTREACH STRATEGY & TACTICS
+============================================================================
+
+PROSPECT IDENTIFICATION:
+• List of prospects and locations (mapped by Dec 15)
+• Contact acquisition process
+• Database building and maintenance
+
+INITIAL OUTREACH - HOOK POINT (Jan 1, 2025):
+• First-touch message (call/email/text)
+• Hook Point campaign examples (see Appendix)
+• Multi-channel approach
+• Personalized where possible
+
+DISCOVERY QUESTIONS:
+• Current soil health practices
+• Fertilizer usage and costs
+• Water management approach
+• Yield goals and challenges
+• Previous regenerative practices
+• Budget and decision-making process
+
+SMART CALLING FRAMEWORK (Feb 1, 2025):
+• Script templates (see Appendix)
+• Objection handling
+• Qualification criteria
+• Call scheduling and follow-up
+
+COMMUNICATION TEMPLATE - SEAN EXAMPLE:
+• Layered, multi-channel communication sequence
+• Successful sequence documented
+• Uploaded into CRM for this segment
+• Template available in Appendix
+
+============================================================================
+5. LEAD NURTURING STRATEGY
+============================================================================
+
+5-EMAIL NURTURE SERIES:
+• Education-focused content
+• Credibility building
+• Value demonstration
+• Proposal preparation
+• Email templates in Appendix
+
+FOLLOW-UP CADENCE:
+• Automated sequences in CRM
+• Response-based triggers
+• Re-engagement campaigns
+
+NEWSLETTERS:
+• Consistent orchard/vineyard-focused newsletters
+• CRM email tools for deployment
+• Monthly or bi-monthly schedule
+• Value content + case studies
+
+SAMPLES AND GIFTS:
+• 9 lb trial bags sent to qualified leads
+• Branded candies included
+• Entered into CRM as activities
+• Follow-up reminders automated
+• Sample tracking and response monitoring
+
+EDUCATION → CREDIBILITY → PROPOSAL FLOW:
+• Progressive value delivery
+• Trust building sequence
+• Natural transition to proposal
+
+============================================================================
+6. SALES PROCESS
+============================================================================
+
+QUALIFICATION STEPS:
+• Budget verification
+• Decision-maker identification
+• Timeline assessment
+• Fit evaluation
+• Pain point validation
+
+SITE VISIT SCHEDULING:
+• Calendar integration in CRM
+• Monthly field visit weeks
+• Preparation checklist
+• Post-visit documentation
+
+PROPOSAL STRUCTURE:
+• Customized to farm needs
+• Soil test results integration
+• Protocol recommendations
+• Pricing breakdown
+• ROI projections
+• Sample proposals in Appendix
+
+PRICING LOGIC:
+• Per acre calculations
+• Per tree calculations (where applicable)
+• Volume discounts
+• Multi-year commitment incentives
+• Payment terms
+
+CLOSING STEPS:
+• Objection handling
+• Trial program options
+• Contract execution
+• Onboarding process
+
+============================================================================
+7. IMPLEMENTATION WORKFLOW
+============================================================================
+
+SOIL TEST & ANALYSIS:
+• Initial soil testing protocol
+• Analysis and interpretation
+• Baseline establishment
+• Documentation in CRM
+
+PROTOCOL SETUP:
+• Customized protocol development
+• Pomona ratios determined
+• Supporting amendments selected
+• Application schedule created
+
+SEASONAL APPLICATIONS:
+• Winter applications
+• Spring applications
+• Leaf-out timing
+• Nut-set/fruit-set applications
+• Post-harvest applications
+• Timing optimization
+
+ON-SITE COORDINATION:
+• Application scheduling
+• Equipment coordination
+• Field access arrangements
+• Weather considerations
+
+EQUIPMENT & LOGISTICS:
+• Equipment requirements
+• Application methods
+• Delivery coordination
+• On-farm placement
+
+============================================================================
+8. ORDER FULFILLMENT
+============================================================================
+
+MATERIAL PREPARATION:
+• Bag packaging (9 lb trial, standard sizes)
+• Tote preparation
+• Bulk orders
+• Truckload coordination
+• Quality control
+
+DELIVERY WORKFLOW:
+• Scheduling and routing
+• Route planner integration
+• Delivery confirmation
+• Tracking in CRM
+
+ON-FARM PLACEMENT:
+• Delivery instructions
+• Storage requirements
+• Handling guidelines
+• Safety protocols
+
+PAPERWORK & BILLING:
+• Order documentation
+• Invoicing process
+• Payment tracking
+• CRM integration
+
+============================================================================
+9. MONITORING PROCESS
+============================================================================
+
+30/60/90-DAY FOLLOW-UPS:
+• Scheduled check-ins
+• CRM reminders
+• Field observations
+• Progress documentation
+
+FIELD OBSERVATIONS:
+• Visual assessments
+• Soil health indicators
+• Crop performance metrics
+• Photo documentation in CRM
+
+ADJUSTMENTS:
+• Ratio modifications
+• Application timing changes
+• Protocol refinements
+• Responsive management
+
+END-OF-SEASON REVIEW:
+• Comprehensive assessment
+• Results documentation
+• Next season planning
+• Renewal discussions
+
+============================================================================
+10. TIMELINE & KPIs
+============================================================================
+
+ANNUAL CALENDAR (Q1-Q4):
+
+DEC 15, 2024:
+• Research and map all avocado, citrus, vineyard, pistachio, and specialty 
+  growers
+• All entered and tagged in CRM with complete profiles
+
+JAN 1, 2025:
+• Finalize Hook Point message
+• Load into CRM as outbound campaign
+• Launch Hook Point email/text campaign
+• Examples: 1-2 sample messages (see Appendix)
+
+JAN 15, 2025:
+• Deploy short "value messages" or videos from CRM
+• Scheduled drip content begins
+• Education sequence starts
+
+WEEKLY (2025):
+• Google Analytics + CRM analytics review
+• Track engagement metrics (opens, clicks, replies)
+• Response rate monitoring
+• Weekly dashboard review
+
+FEB 1, 2025:
+• Begin Smart Calling
+• Pull lists from CRM based on engagement
+• Prioritize by opens, clicks, replies
+• Log all call outcomes
+
+MONTHLY (2025):
+• One week each month dedicated to site visits
+• Use CRM to document: soil issues, conversations, photos, recommendations
+• Field visit reports generated
+• Follow-up tasks created
+
+TRADESHOW CALENDAR (2025):
+• List relevant events
+• Tradeshow protocols
+• Pre-show workflows in CRM
+• Post-show follow-up sequences
+• Lead capture and entry
+
+KEY PERFORMANCE TARGETS:
+• Lead generation goals
+• Conversion rates by stage
+• Response rates
+• Site visit targets
+• Trial conversion rates
+• Customer acquisition goals
+• Revenue projections
+
+============================================================================
+11. TOOLS & PLATFORMS
+============================================================================
+
+CRM:
+• Lead management
+• Pipeline tracking
+• Automation workflows
+• Reporting dashboards
+• Integration capabilities
+
+ROUTE PLANNER:
+• Delivery optimization
+• Site visit routing
+• Efficiency tracking
+
+AI ADVISORS:
+• Support tools
+• Decision assistance
+• Protocol recommendations
+
+============================================================================
+12. APPENDIX
+============================================================================
+
+RESOURCES:
+
+Pomona Spec Sheet
+• Product specifications
+• Application guidelines
+• Technical data
+
+Orchard Protocol
+• Generalized protocol template
+• Crop-specific variations
+• Seasonal timing guide
+
+Smart Calling Script
+• Opening framework
+• Discovery questions
+• Objection handling
+• Closing techniques
+
+Email Templates
+• Hook Point examples (1-2 samples)
+• 5-email nurture series
+• Newsletter templates
+• Follow-up sequences
+• Sean example communication template
+
+Sample Proposals
+• Structure examples
+• Pricing formats
+• ROI calculations
+
+Maps of Target Orchards
+• Geographic distribution
+• Priority zones
+• Route planning
+
+CRM Screenshots/Mock-ups
+• Interface examples
+• Workflow visuals
+• Dashboard layouts
+
+Tradeshow Protocols
+• Pre-show preparation
+• During-show activities
+• Post-show follow-up
+
+Regional Crop Research
+• High-value crops list
+• Market opportunities
+• Competitive landscape
