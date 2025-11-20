@@ -2275,6 +2275,17 @@
           return;
         }
         
+        // Safety check: ensure we have content before attempting to split
+        const hasContent = pages.some(p => {
+          const content = p.querySelector(".page-content");
+          return content && content.children.length > 0;
+        });
+        
+        if (!hasContent) {
+          console.log('⚠️ No content found in pages, skipping split to prevent data loss');
+          return;
+        }
+        
         const PAGE_HEIGHT_IN = 11;
         const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
         const PADDING_IN = 1; // 1 inch top padding
