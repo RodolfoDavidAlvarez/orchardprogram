@@ -2248,28 +2248,121 @@
         });
       };
 
-      // Ensure pages are exactly 11in tall and content flows properly
+      // Split long sections into multiple exactly 11in tall pages
       function splitContentIntoPages() {
-        // For now, just ensure pages have correct height
-        // CSS will handle page breaks for print mode
-        // In screen preview, long content will scroll within page
-        // For true page splitting, a more complex algorithm would be needed
+        const pages = Array.from(document.querySelectorAll(".page:not(#cover):not(#toc)"));
+        const PAGE_HEIGHT_IN = 11;
+        const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
+        const PADDING_IN = 1; // 1 inch top padding
+        const PADDING_PX = PADDING_IN * 96;
+        const PAGE_NUMBER_SPACE_PX = 48; // Space for page number (0.5in)
+        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - 10; // Available content height
         
-        const pages = document.querySelectorAll(".page:not(#cover):not(#toc)");
-        pages.forEach((page) => {
-          // Ensure page height is exactly 11in
-          if (!page.style.height) {
-            page.style.height = '11in';
-            page.style.maxHeight = '11in';
+        pages.forEach((originalPage) => {
+          const content = originalPage.querySelector(".page-content");
+          if (!content) return;
+          
+          // Temporarily allow content to expand for measurement
+          const originalStyle = {
+            maxHeight: content.style.maxHeight,
+            overflow: content.style.overflow,
+            height: originalPage.style.height
+          };
+          
+          content.style.maxHeight = 'none';
+          content.style.overflow = 'visible';
+          originalPage.style.height = 'auto';
+          
+          // Force reflow
+          void content.offsetHeight;
+          
+          // Check if content exceeds max height
+          if (content.scrollHeight <= MAX_CONTENT_HEIGHT_PX) {
+            // Content fits - restore original styles
+            originalPage.style.height = '11in';
+            originalPage.style.maxHeight = '11in';
+            content.style.maxHeight = originalStyle.maxHeight || '';
+            content.style.overflow = originalStyle.overflow || 'hidden';
+            return;
           }
           
-          const content = page.querySelector(".page-content");
-          if (content) {
-            // Ensure content doesn't exceed available space
-            // For screen preview, use overflow handling
-            // CSS will handle natural breaks in print
-            content.style.overflowY = 'hidden';
-          }
+          // Content exceeds - we need to split it
+          const children = Array.from(content.children);
+          const newPages = [];
+          let currentPage = originalPage;
+          let currentPageContent = content;
+          let currentHeight = 0;
+          let pageNumber = 1;
+          const sectionId = originalPage.id.replace(/-page\d+$/, '');
+          
+          // Get base page number from original page
+          const pageNumberEl = originalPage.querySelector('.page-number');
+          let basePageNum = pageNumberEl ? parseInt(pageNumberEl.textContent) : 3;
+          
+          // Clear original content for refilling
+          content.innerHTML = '';
+          
+          children.forEach((child) => {
+            // Temporarily add child to measure it
+            currentPageContent.appendChild(child);
+            
+            // Force reflow to get accurate height
+            void child.offsetHeight;
+            
+            const childHeight = child.offsetHeight || child.scrollHeight || 50;
+            
+            // Check if adding this child exceeds the limit
+            if (currentHeight + childHeight > MAX_CONTENT_HEIGHT_PX && currentHeight > 0) {
+              // Remove child from current page
+              child.remove();
+              
+              // Create new page
+              const newPage = document.createElement('div');
+              newPage.className = 'page';
+              newPage.id = `${sectionId}-page${pageNumber + 1}`;
+              newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
+              
+              const newContent = document.createElement('div');
+              newContent.className = 'page-content';
+              newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.75in;';
+              
+              newPage.appendChild(newContent);
+              
+              // Add page number
+              const newPageNumber = document.createElement('div');
+              newPageNumber.className = 'page-number';
+              newPageNumber.textContent = basePageNum + pageNumber;
+              newPageNumber.style.cssText = 'position: absolute; bottom: 0.75in; right: 1in; font-size: 10pt; color: #666;';
+              newPage.appendChild(newPageNumber);
+              
+              // Insert after current page
+              currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
+              newPages.push(newPage);
+              
+              // Switch to new page
+              currentPage = newPage;
+              currentPageContent = newContent;
+              currentHeight = 0;
+              pageNumber++;
+            }
+            
+            // Add child to current page
+            if (!child.parentElement) {
+              currentPageContent.appendChild(child);
+              currentHeight += childHeight;
+            }
+          });
+          
+          // Ensure all pages have correct height
+          [originalPage, ...newPages].forEach((p, idx) => {
+            p.style.height = '11in';
+            p.style.maxHeight = '11in';
+            const pc = p.querySelector('.page-content');
+            if (pc) {
+              pc.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
+              pc.style.overflow = 'hidden';
+            }
+          });
         });
       }
 
