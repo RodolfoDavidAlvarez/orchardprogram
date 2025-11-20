@@ -2,11 +2,18 @@ const express = require('express');
 const path = require('path');
 const cors = require('cors');
 const net = require('net');
+const fs = require('fs');
+const PlaybookParser = require('./lib/playbook-parser');
 
 const app = express();
 const PORT = process.env.PORT || 8080;
 const isDev = process.env.NODE_ENV !== 'production';
 const liveReloadPort = Number(process.env.LIVERELOAD_PORT) || 35730;
+
+// Playbook parsing
+const playbookPath = path.join(__dirname, 'Orchards Program Execution Playbook.txt');
+let playbookCache = null;
+let playbookLastModified = null;
 
 // Helper function to check if a port is available
 function isPortAvailable(port) {
@@ -34,6 +41,68 @@ async function findAvailablePort(startPort, maxAttempts = 10) {
 
 // Enable CORS for all routes
 app.use(cors());
+
+// Parse playbook function
+function parsePlaybook() {
+  try {
+    const stats = fs.statSync(playbookPath);
+    const currentModified = stats.mtime.getTime();
+    
+    // Only re-parse if file has changed
+    if (playbookCache && currentModified === playbookLastModified) {
+      return playbookCache;
+    }
+
+    console.log('📖 Parsing playbook text file...');
+    const parser = new PlaybookParser(playbookPath);
+    const parsed = parser.parse();
+    const html = parser.toHTML(parsed);
+    
+    playbookCache = {
+      parsed: parsed,
+      html: html,
+      timestamp: new Date().toISOString()
+    };
+    playbookLastModified = currentModified;
+    
+    console.log(`✅ Playbook parsed successfully (${parsed.sections.length} sections, ${parsed.toc.length} TOC items)`);
+    return playbookCache;
+  } catch (error) {
+    console.error('❌ Error parsing playbook:', error);
+    return null;
+  }
+}
+
+// Initial parse
+parsePlaybook();
+
+// Watch for file changes in development
+if (isDev) {
+  try {
+    fs.watchFile(playbookPath, { interval: 1000 }, (curr, prev) => {
+      if (curr.mtime.getTime() !== prev.mtime.getTime()) {
+        console.log('🔄 Playbook file changed, re-parsing...');
+        parsePlaybook();
+      }
+    });
+    console.log('👀 Watching playbook file for changes...');
+  } catch (error) {
+    console.warn('⚠️  Could not set up file watching:', error.message);
+  }
+}
+
+// API endpoint for playbook content
+app.get('/api/playbook', (req, res) => {
+  const cached = parsePlaybook();
+  if (!cached) {
+    return res.status(500).json({ error: 'Failed to parse playbook' });
+  }
+  res.json({
+    html: cached.html,
+    sections: cached.parsed.sections.length,
+    timestamp: cached.timestamp
+  });
+});
 
 // Inject live-reload script and watcher in development
 if (isDev) {
@@ -97,9 +166,25 @@ if (isDev) {
 // Serve static files from Document Preview directory
 app.use(express.static(path.join(__dirname, 'Document Preview')));
 
-// Serve the main HTML file
+// Serve the main HTML file with dynamic content
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'Document Preview', 'playbook-preview.html'));
+    const htmlPath = path.join(__dirname, 'Document Preview', 'playbook-preview.html');
+    let htmlContent = fs.readFileSync(htmlPath, 'utf-8');
+    
+    // In development, inject playbook content directly for faster initial load
+    if (isDev && playbookCache) {
+      // Find the content container and replace marker with parsed content
+      const contentMarker = '<!-- DYNAMIC_CONTENT -->';
+      if (htmlContent.includes(contentMarker)) {
+        // Replace marker and everything after it (until closing container div) with content
+        htmlContent = htmlContent.replace(
+          /<!-- DYNAMIC_CONTENT -->[\s\S]*?<\/div>\s*<script>/,
+          contentMarker + '\n' + playbookCache.html + '\n    </div>\n\n    <script>'
+        );
+      }
+    }
+    
+    res.send(htmlContent);
 });
 
 // Health check endpoint

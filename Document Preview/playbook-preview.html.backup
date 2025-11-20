@@ -1071,8 +1071,11 @@
 
     <div class="container" id="document-content">
       <!-- DYNAMIC_CONTENT -->
-
-    <script>
+          <div class="logo-container">
+            <img src="assets/logo/ssw-logo.png" alt="Soil Seed & Water Logo" class="logo" id="ssw-logo" style="display: none" />
+          </div>
+          <div style="font-size: 16pt; margin-bottom: 20pt; color: #7f8c8d">SOIL SEED & WATER</div>
+          <div class="cover-title">
             A specialty farmer.<br />
             Program execution.<br />
             Playbook.
@@ -2205,26 +2208,14 @@
 
         // Show loading message
         const loadingHtml = '<div id="loading-message" style="text-align: center; padding: 40px; color: #666;"><p>Loading playbook content...</p></div>';
-        // Content will be injected by server or loaded via API
-        // Check if content is already loaded (injected by server)
-        const existingPages = container.querySelectorAll(".page");
-        if (existingPages.length > 0) {
-          console.log("✅ Playbook content already loaded from server");
-          initializeNavigation();
-          initializeSearch();
-          return;
+        const marker = container.querySelector("!-- DYNAMIC_CONTENT --");
+        if (marker && marker.nextSibling) {
+          // Replace everything after marker
+          while (marker.nextSibling) {
+            marker.nextSibling.remove();
+          }
         }
-        
-        // Show loading message
-        const marker = container.innerHTML.match(/<!-- DYNAMIC_CONTENT -->/);
-        if (marker) {
-          container.innerHTML = container.innerHTML.replace(
-            /<!-- DYNAMIC_CONTENT -->[\s\S]*/,
-            loadingHtml
-          );
-        } else {
-          container.insertAdjacentHTML("beforeend", loadingHtml);
-        }
+        container.insertAdjacentHTML("beforeend", loadingHtml);
 
         try {
           const response = await fetch("/api/playbook");
@@ -2233,14 +2224,12 @@
           }
           const data = await response.json();
           
-          // Replace loading message with content
+          // Remove loading message
           const loadingMsg = document.getElementById("loading-message");
-          if (loadingMsg) {
-            loadingMsg.outerHTML = data.html;
-          } else {
-            // If no loading message, insert content
-            container.innerHTML = '<!-- DYNAMIC_CONTENT -->' + data.html + '</div>';
-          }
+          if (loadingMsg) loadingMsg.remove();
+          
+          // Insert parsed HTML
+          container.insertAdjacentHTML("beforeend", data.html);
           
           console.log(`✅ Playbook loaded: ${data.sections} sections`);
           

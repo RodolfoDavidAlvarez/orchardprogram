@@ -1,8 +1,8 @@
-# Orchards Program - Execution Playbook
+# A specialty farmer. Program execution. Playbook.
 
-**Business-to-Business (Specialty Farmer) Market Segment**
+**Business-to-Business Market Segment**
 
-Complete guide for targeting, engaging, selling, implementing, and supporting specialty orchard/vineyard clients using Pomona and SSW protocols.
+Complete guide for targeting, engaging, selling, implementing, and supporting specialty orchard, vineyard, and avocado clients using Pomona and SSW protocols.
 
 ---
 
@@ -13,7 +13,7 @@ This project creates a comprehensive, standardized execution playbook for Soil S
 ### Purpose
 
 Provide SSW representatives with a clear, standardized roadmap for:
-- Targeting specialty orchard/vineyard clients
+- Targeting specialty orchard, vineyard, and avocado clients
 - Engaging prospects through multi-channel outreach
 - Selling regenerative orchard programs
 - Implementing Pomona and supporting protocols
@@ -30,7 +30,7 @@ Provide SSW representatives with a clear, standardized roadmap for:
 - Vineyards (grapes)
 - Avocados
 - Citrus (oranges, lemons, limes, grapefruit)
-- Other high-value orchard/vineyard crops in region
+- Other high-value orchard, vineyard, and avocado crops in region
 
 **Geographic Scope:** 300-mile target radius from SSW operations
 
@@ -155,7 +155,7 @@ npm run preview    # Simple static server on http://localhost:8080
 - Provide clear, actionable steps from lead generation to customer success
 - Integrate CRM workflows at every stage of the sales process
 - Establish measurable KPIs and timelines for program execution
-- Create a repeatable system for scaling orchard/vineyard client acquisition
+- Create a repeatable system for scaling orchard, vineyard, and avocado client acquisition
 
 ---
 
