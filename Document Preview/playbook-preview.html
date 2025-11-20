@@ -149,9 +149,9 @@
         min-height: 0;
         overflow: hidden;
         padding-bottom: 0.75in; /* Space for page number at bottom */
-        /* Prevent orphaned lines - ensure text doesn't get cut off */
-        orphans: 2;
-        widows: 2;
+        /* Professional typography - prevent orphaned lines */
+        orphans: 3;
+        widows: 3;
       }
 
       /* Last page - can be shorter if content doesn't fill it */
@@ -227,17 +227,25 @@
           page-break-inside: avoid;
           break-inside: avoid;
         }
-        /* Prevent orphaned lines - ensure at least 2 lines stay together */
+        /* Prevent orphaned lines - professional PDF standards */
         p, li {
-          orphans: 2;
-          widows: 2;
-          page-break-inside: avoid;
-          break-inside: avoid;
+          orphans: 3; /* At least 3 lines at bottom of page */
+          widows: 3;  /* At least 3 lines at top of page */
         }
-        /* For paragraphs, allow breaking but avoid orphans */
+        /* Allow paragraph breaking but keep related content together */
         p {
           page-break-inside: auto;
           break-inside: auto;
+        }
+        /* Keep list items together when possible */
+        li {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
+        /* Keep headings with following content */
+        h2, h3 {
+          page-break-after: avoid;
+          break-after: avoid;
         }
         .pdf-export-btn,
         .floating-toc,
@@ -2286,12 +2294,18 @@
           return;
         }
         
+        // Hide pages during splitting to prevent flash (polish)
+        pages.forEach(page => {
+          page.style.opacity = '0';
+          page.style.transition = 'opacity 0.3s ease-in';
+        });
+        
         const PAGE_HEIGHT_IN = 11;
         const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
         const PADDING_IN = 1; // 1 inch top padding
         const PADDING_PX = PADDING_IN * 96;
         const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
-        const LINE_HEIGHT_BUFFER_PX = 40; // Buffer for line height to prevent cutoff (about 2 lines)
+        const LINE_HEIGHT_BUFFER_PX = 50; // Buffer for line height to prevent cutoff (about 2-3 lines for professional look)
         const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
         
         console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
@@ -2521,6 +2535,17 @@
           } else {
             console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
           }
+          
+          // Show page after splitting is complete (polish)
+          allPages.forEach(p => {
+            p.style.opacity = '1';
+          });
+        });
+        
+        // Show all pages after splitting is complete (polish)
+        const allProcessedPages = Array.from(document.querySelectorAll(".page:not(#cover):not(#toc)"));
+        allProcessedPages.forEach(page => {
+          page.style.opacity = '1';
         });
         
         console.log('✅ Page splitting complete');
