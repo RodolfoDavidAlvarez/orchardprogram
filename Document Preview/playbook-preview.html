@@ -24,7 +24,7 @@
 
       body {
         font-family: "Georgia", "Times New Roman", serif;
-        background: #e8e8e8;
+        background: radial-gradient(circle at 15% 20%, #f1f7ff 0%, #e8eef7 28%, transparent 45%), radial-gradient(circle at 80% 10%, #fef6e8 0%, #f8eedd 25%, transparent 45%), #e3e8f1;
         padding: 20px;
         line-height: 1.7;
         color: #333;
@@ -85,9 +85,9 @@
         max-height: 11in;
         padding: 1in;
         margin: 0 auto 20px;
-        background: white;
+        background: linear-gradient(160deg, #ffffff 0%, #fdfefe 60%, #f5f8fc 100%);
         position: relative;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.14);
         overflow: hidden;
         page-break-inside: auto;
         break-inside: auto;
@@ -159,6 +159,15 @@
         /* Professional typography - prevent orphaned lines */
         orphans: 2;
         widows: 2;
+        background: linear-gradient(135deg, rgba(244, 247, 252, 0.9) 0%, rgba(255, 255, 255, 0.95) 70%);
+        border-radius: 10pt;
+        padding: 18pt 18pt 32pt 18pt;
+        box-shadow: inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.03);
+      }
+
+      /* Subtle section dividers */
+      .page-content > * + * {
+        margin-top: 10pt;
       }
 
       /* Last page - can be shorter if content doesn't fill it */
@@ -626,18 +635,30 @@
         widows: 2;
       }
 
-      ul {
-        margin: 10pt 0;
-        margin-left: 30pt;
+      ul, ol {
+        margin: 12pt 0;
+        padding: 12pt 18pt 12pt 26pt;
+        background: linear-gradient(120deg, rgba(52, 152, 219, 0.05) 0%, rgba(46, 204, 113, 0.04) 40%, rgba(255, 255, 255, 0.96) 100%);
+        border-left: 4pt solid #3498db;
+        border-radius: 9pt;
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
         orphans: 2;
         widows: 2;
       }
 
       li {
-        margin: 5pt 0;
+        margin: 6pt 0;
         font-size: 11pt;
         page-break-inside: auto;
         break-inside: auto;
+        position: relative;
+        padding-left: 4pt;
+      }
+
+      ul li::marker,
+      ol li::marker {
+        color: #3498db;
+        font-weight: 700;
       }
 
       .section-divider {
