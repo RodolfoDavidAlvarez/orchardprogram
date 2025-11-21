@@ -139,7 +139,7 @@
       
       /* Ensure page content respects page boundaries */
       .page:not(#cover):not(#toc) .page-content {
-        max-height: 9in; /* 11in page - 1in top padding - 0.75in bottom space - 0.25in buffer = ~9in */
+        max-height: 9.5in; /* 11in page - 1in top padding - 0.5in bottom space - 0.1in buffer = ~9.5in */
         overflow: hidden;
       }
       
@@ -148,7 +148,7 @@
         flex: 1;
         min-height: 0;
         overflow: hidden;
-        padding-bottom: 0.75in; /* Space for page number at bottom */
+        padding-bottom: 0.5in; /* Space for page number at bottom */
         /* Professional typography - prevent orphaned lines */
         orphans: 2;
         widows: 2;
@@ -258,7 +258,7 @@
 
       .page-number {
         position: absolute;
-        bottom: 0.75in;
+        bottom: 0.5in;
         right: 1in;
         font-size: 10pt;
         color: #666;
@@ -2347,8 +2347,8 @@
         const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
         const PADDING_IN = 1; // 1 inch top padding
         const PADDING_PX = PADDING_IN * 96;
-        const PAGE_NUMBER_SPACE_PX = 60; // Space for page number (0.625in)
-        const LINE_HEIGHT_BUFFER_PX = 20; // Smaller buffer so short lists can stay on the current page
+        const PAGE_NUMBER_SPACE_PX = 40; // Space for page number (0.42in) - reduced to allow more content
+        const LINE_HEIGHT_BUFFER_PX = 10; // Smaller buffer so short lists can stay on the current page - reduced to allow more content
         const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
         const isHeadingLike = (el) => {
           if (!el || !el.tagName) return false;
@@ -2501,7 +2501,7 @@
               
               const newContent = document.createElement('div');
               newContent.className = 'page-content';
-              newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.75in;';
+              newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.5in;';
               
               newPage.appendChild(newContent);
               
@@ -2509,7 +2509,7 @@
               const newPageNumber = document.createElement('div');
               newPageNumber.className = 'page-number';
               newPageNumber.textContent = basePageNum + pageCounter;
-              newPageNumber.style.cssText = 'position: absolute; bottom: 0.75in; right: 1in; font-size: 10pt; color: #666;';
+              newPageNumber.style.cssText = 'position: absolute; bottom: 0.5in; right: 1in; font-size: 10pt; color: #666;';
               newPage.appendChild(newPageNumber);
               
               // Insert after current page
