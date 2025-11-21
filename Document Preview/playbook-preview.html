@@ -360,10 +360,17 @@
       }
 
       .section-header-with-icon i {
-        font-size: 22pt;
-        margin-right: 2pt;
-        vertical-align: middle;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        font-size: 16pt;
+        width: 34pt;
+        height: 34pt;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 4pt;
+        background: linear-gradient(145deg, #3498db 0%, #9b59b6 80%);
+        color: #fff;
+        box-shadow: 0 6px 14px rgba(0,0,0,0.18), inset 0 1px 2px rgba(255,255,255,0.25);
       }
 
       .section-header-with-icon span {
@@ -436,9 +443,17 @@
       }
 
       .subsection-header-with-icon i {
-        font-size: 16pt;
+        font-size: 13pt;
+        width: 26pt;
+        height: 26pt;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         vertical-align: middle;
-        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        background: linear-gradient(135deg, #2ecc71 0%, #3498db 85%);
+        color: #fff;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.14);
         flex-shrink: 0;
       }
 
@@ -661,20 +676,53 @@
         font-weight: 700;
       }
 
+      /* Custom bullet accent */
+      ul li::before {
+        content: '';
+        position: absolute;
+        left: -14pt;
+        top: 10pt;
+        width: 7pt;
+        height: 7pt;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3498db 0%, #9b59b6 100%);
+        box-shadow: 0 0 0 3pt rgba(52, 152, 219, 0.16);
+      }
+
       .section-divider {
         border-top: 1px solid #ecf0f1;
         margin: 20pt 0;
       }
 
       .key-points {
-        background: #f8f9fa;
-        padding: 15pt;
+        background: linear-gradient(140deg, #ffffff 0%, #f5f8fc 55%, #eef3fb 100%);
+        padding: 18pt;
         margin: 15pt 0;
-        border-left: 4px solid #3498db;
+        border-left: 6px solid #3498db;
+        border-radius: 10pt;
+        box-shadow: 0 10px 24px rgba(0,0,0,0.12);
       }
 
       .key-points h4 {
         margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 10pt;
+      }
+
+      .key-points h4::before {
+        content: '✓';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 26pt;
+        height: 26pt;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #3498db 0%, #2ecc71 100%);
+        color: #fff;
+        font-weight: 700;
+        box-shadow: 0 4px 10px rgba(52,152,219,0.35);
+        flex-shrink: 0;
       }
 
       code {
