@@ -4,6 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A specialty farmer. Program execution. Playbook. - Preview</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -265,21 +272,43 @@
       }
 
       h1 {
-        font-size: 24pt;
+        font-size: 28pt;
         text-align: center;
-        margin-bottom: 10pt;
-        color: #2c3e50;
+        margin: 28pt 0 18pt 0;
+        color: #1a252f;
+        font-weight: 700;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        position: relative;
         page-break-after: avoid;
       }
 
+      h1::after {
+        content: '';
+        position: absolute;
+        bottom: -6pt;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90pt;
+        height: 3px;
+        background: linear-gradient(90deg, transparent, #3498db, transparent);
+      }
+
       h2 {
-        font-size: 18pt;
+        font-size: 20pt;
         margin-top: 0;
-        margin-bottom: 12pt;
-        padding-top: 20pt;
-        color: #34495e;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 5pt;
+        margin-bottom: 16pt;
+        padding-top: 18pt;
+        color: #2c3e50;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        border-bottom: 3px solid #3498db;
+        padding-bottom: 8pt;
+        position: relative;
         page-break-before: always;
         page-break-after: avoid;
         break-before: page;
@@ -288,18 +317,107 @@
         widows: 2;
       }
 
+      h2::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 60pt;
+        height: 3px;
+        background: #e74c3c;
+      }
+
+      /* Section headers with icons */
+      .section-header-with-icon {
+        display: flex;
+        align-items: center;
+        gap: 10pt;
+        font-size: 20pt;
+        margin-top: 0;
+        margin-bottom: 16pt;
+        padding: 18pt 14pt 10pt 14pt;
+        color: #2c3e50;
+        border-bottom: 3px solid #3498db;
+        background: linear-gradient(135deg, #f7fafc 0%, #ffffff 40%, #f0f4f8 100%);
+        border-left: 6pt solid #3498db;
+        border-radius: 6pt;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        page-break-before: always;
+        page-break-after: avoid;
+        break-before: page;
+        break-after: avoid;
+        orphans: 2;
+        widows: 2;
+      }
+
+      .section-header-with-icon i {
+        font-size: 22pt;
+        margin-right: 2pt;
+        vertical-align: middle;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+      }
+
+      .section-header-with-icon span {
+        flex: 1;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+      }
+
       /* First h2 in a page doesn't need page break */
-      .page > h2:first-child {
+      .page > h2:first-child,
+      .page > .section-header-with-icon:first-child {
         page-break-before: auto;
         break-before: auto;
         padding-top: 0;
       }
 
       h3 {
-        font-size: 14pt;
-        margin-top: 15pt;
-        margin-bottom: 8pt;
-        color: #2c3e50;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 12pt;
+        color: #34495e;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        padding: 10pt 14pt;
+        background: linear-gradient(to right, rgba(52, 152, 219, 0.08) 0%, transparent 100%);
+        border-left: 5pt solid #3498db;
+        border-radius: 4pt;
+        page-break-before: avoid;
+        page-break-after: avoid;
+        break-before: avoid;
+        break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        position: relative;
+        padding-left: 18pt;
+      }
+
+      h3::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 5pt;
+        background: linear-gradient(180deg, #3498db 0%, #2980b9 100%);
+        border-radius: 4pt 0 0 4pt;
+      }
+
+      /* Subsection headers with icons */
+      .subsection-header-with-icon {
+        display: flex;
+        align-items: center;
+        gap: 8pt;
+        font-size: 16pt;
+        margin-top: 20pt;
+        margin-bottom: 12pt;
+        color: #34495e;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        padding: 10pt 14pt;
+        background: linear-gradient(to right, rgba(52, 152, 219, 0.08) 0%, transparent 100%);
+        border-left: 5pt solid #3498db;
+        border-radius: 4pt;
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
@@ -308,17 +426,93 @@
         widows: 2;
       }
 
+      .subsection-header-with-icon i {
+        font-size: 16pt;
+        vertical-align: middle;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+        flex-shrink: 0;
+      }
+
+      .subsection-header-with-icon span {
+        flex: 1;
+      }
+
       h4 {
         font-size: 12pt;
         margin-top: 12pt;
-        margin-bottom: 6pt;
-        color: #34495e;
+        margin-bottom: 8pt;
+        color: #2c3e50;
+        font-weight: 600;
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
         orphans: 2;
         widows: 2;
+      }
+
+      /* Enhanced h4 headers with icons */
+      .h4-with-icon {
+        display: flex;
+        align-items: center;
+        gap: 10pt;
+        font-size: 12.5pt;
+        margin-top: 14pt;
+        margin-bottom: 10pt;
+        padding: 10pt 14pt;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #f0f4f8 100%);
+        border-left: 5pt solid #3498db;
+        border-radius: 6pt;
+        color: #2c3e50;
+        font-weight: 700;
+        letter-spacing: 0.4px;
+        text-transform: uppercase;
+        page-break-before: avoid;
+        page-break-after: avoid;
+        break-before: avoid;
+        break-after: avoid;
+        orphans: 2;
+        widows: 2;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .h4-with-icon::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 5pt;
+        height: 100%;
+        background: linear-gradient(180deg, #3498db 0%, #2980b9 50%, #e74c3c 100%);
+        border-radius: 6pt 0 0 6pt;
+      }
+
+      .h4-with-icon .h4-icon {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 30pt;
+        height: 30pt;
+        background: linear-gradient(135deg, rgba(52, 152, 219, 0.15) 0%, rgba(52, 152, 219, 0.05) 100%);
+        border-radius: 6pt;
+        padding: 6pt;
+        border: 2px solid rgba(52, 152, 219, 0.2);
+        position: relative;
+        z-index: 1;
+      }
+
+      .h4-with-icon .h4-icon i {
+        font-size: 16pt;
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.15));
+      }
+
+      .h4-with-icon span:last-child {
+        flex: 1;
+        position: relative;
+        z-index: 1;
       }
 
       .cover-page {
@@ -1186,775 +1380,23 @@
       </div>
     </div>
 
-    <div class="container" id="document-content">
+        <div class="container" id="document-content">
       <!-- DYNAMIC_CONTENT -->
-
-    <script>
-            A specialty farmer.<br />
-            Program execution.<br />
-            Playbook.
-          </div>
-          <div class="cover-subtitle">Business-to-Business Market Segment</div>
-          <div style="font-size: 12pt; margin-top: 30pt; color: #7f8c8d">
-            Complete Guide for Targeting, Engaging, Selling,<br />
-            Implementing, and Supporting Specialty Orchard, Vineyard, and Avocado Clients
-          </div>
-          <div class="cover-info">
-            <br /><br />
-            Version 2.0<br />
-            Updated: November 2024
-          </div>
-          <div class="cover-info" style="margin-top: 18pt; font-size: 11pt; color: #7f8c8d">
-            Prepared by: Rodolfo Alvarez
-          </div>
-          <div style="margin-top: 60pt; font-size: 10pt; color: #95a5a6; max-width: 6in; margin-left: auto; margin-right: auto">
-            This document provides Soil Seed & Water representatives with a clear, standardized roadmap for delivering regenerative programs for orchards, vineyards, and avocados
-            using Pomona and SSW protocols.<br /><br />
-            All proprietary information contained herein is confidential and intended solely for internal use by Soil Seed & Water representatives.
-          </div>
-        </div>
-        <div class="page-number">1</div>
+      <div id="loading-message" style="text-align: center; padding: 40px; color: #666;">
+        <p>Loading playbook content...</p>
       </div>
-
-      <!-- Table of Contents - Dynamically flows across multiple pages if content is too long -->
-      <div class="page" id="toc">
-        <h1>TABLE OF CONTENTS</h1>
-        <div class="toc">
-          <div class="toc-item">
-            <a href="#section1">1. PURPOSE OF THE DOCUMENT <span>Page 3</span></a>
-          </div>
-          <div class="toc-item">
-            <a href="#section2">2. RESEARCH & ELIGIBILITY <span>Page 4</span></a>
-            <div class="toc-subitem"><a href="#section2">2.1 Crop Focus (Expanded)</a></div>
-            <div class="toc-subitem"><a href="#section2">2.2 Geographic Scope</a></div>
-            <div class="toc-subitem"><a href="#section2">2.3 Common Crop Challenges</a></div>
-            <div class="toc-subitem"><a href="#section2">2.4 Common Farmer Challenges</a></div>
-            <div class="toc-subitem"><a href="#section2">2.5 Suitability Criteria</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section3">4. VALUE PROPOSITION <span>Page 5</span></a>
-            <div class="toc-subitem"><a href="#section3">4.1 What We Offer</a></div>
-            <div class="toc-subitem"><a href="#section3">4.2 Why It Matters</a></div>
-            <div class="toc-subitem"><a href="#section3">4.3 How We Deliver</a></div>
-            <div class="toc-subitem"><a href="#section3">4.4 Why SSW Is Different</a></div>
-            <div class="toc-subitem"><a href="#section3">4.5 Economic Value Drivers</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section4">5. CRM INTEGRATION - COMPLETE WORKFLOW <span>Page 6</span></a>
-            <div class="toc-subitem"><a href="#section4">5.1 Lead Capture</a></div>
-            <div class="toc-subitem"><a href="#section4">5.2 Segmentation</a></div>
-            <div class="toc-subitem"><a href="#section4">5.3 Automations</a></div>
-            <div class="toc-subitem"><a href="#section4">5.4 Tracking & Analytics</a></div>
-            <div class="toc-subitem"><a href="#section4">5.5 Smart Calling Workflow</a></div>
-            <div class="toc-subitem"><a href="#section4">5.6 Farm Visits</a></div>
-            <div class="toc-subitem"><a href="#section4">5.7 Deals & Conversions</a></div>
-            <div class="toc-subitem"><a href="#section4">5.8 Reporting</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section5">6. OUTREACH STRATEGY & TACTICS <span>Page 7</span></a>
-            <div class="toc-subitem"><a href="#section5">6.1 Prospect Identification</a></div>
-            <div class="toc-subitem"><a href="#section5">6.2 Initial Outreach - Hook Point</a></div>
-            <div class="toc-subitem"><a href="#section5">6.3 Discovery Questions</a></div>
-            <div class="toc-subitem"><a href="#section5">6.4 Smart Calling Framework</a></div>
-            <div class="toc-subitem"><a href="#section5">6.5 Communication Template - Sean Example</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section6">7. LEAD NURTURING STRATEGY <span>Page 8</span></a>
-            <div class="toc-subitem"><a href="#section6">7.1 5-Email Nurture Series</a></div>
-            <div class="toc-subitem"><a href="#section6">7.2 Follow-Up Cadence</a></div>
-            <div class="toc-subitem"><a href="#section6">7.3 Newsletters</a></div>
-            <div class="toc-subitem"><a href="#section6">7.4 Samples and Gifts</a></div>
-            <div class="toc-subitem"><a href="#section6">7.5 Education → Credibility → Proposal Flow</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section7">8. SALES PROCESS <span>Page 9</span></a>
-            <div class="toc-subitem"><a href="#section7">8.1 Qualification Steps</a></div>
-            <div class="toc-subitem"><a href="#section7">8.2 Site Visit Scheduling</a></div>
-            <div class="toc-subitem"><a href="#section7">8.3 Proposal Structure</a></div>
-            <div class="toc-subitem"><a href="#section7">8.4 Pricing Logic</a></div>
-            <div class="toc-subitem"><a href="#section7">8.5 Closing Steps</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section8">9. IMPLEMENTATION <span>Page 10</span></a>
-            <div class="toc-subitem"><a href="#section8">9.1 Soil Test & Protocol Setup</a></div>
-            <div class="toc-subitem"><a href="#section8">9.2 Order Fulfillment & Delivery</a></div>
-            <div class="toc-subitem"><a href="#section8">9.3 Monitoring & Follow-Up</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section9">10. TIMELINE & KPIs <span>Page 11</span></a>
-            <div class="toc-subitem"><a href="#section9">10.1 Annual Calendar (Q1-Q4)</a></div>
-            <div class="toc-subitem"><a href="#section9">10.2 Key Performance Targets</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section10">11. TOOLS & PLATFORMS <span>Page 12</span></a>
-            <div class="toc-subitem"><a href="#section10">11.1 CRM</a></div>
-            <div class="toc-subitem"><a href="#section10">11.2 Route Planner</a></div>
-            <div class="toc-subitem"><a href="#section10">11.3 AI Advisors</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section11">12. APPENDIX <span>Page 13</span></a>
-            <div class="toc-subitem"><a href="#section11">12.1 Pomona Blend Spec Sheet</a></div>
-            <div class="toc-subitem"><a href="#section11">12.2 Seriokai's Secret Blend Spec Sheet</a></div>
-            <div class="toc-subitem"><a href="#section11">12.3 Bucchas Blend Spec Sheet (Vines)</a></div>
-            <div class="toc-subitem"><a href="#section11">12.4 Orchard Protocol</a></div>
-            <div class="toc-subitem"><a href="#section11">12.5 Smart Calling Script</a></div>
-            <div class="toc-subitem"><a href="#section11">12.6 Email Templates</a></div>
-            <div class="toc-subitem"><a href="#section11">12.7 Sample Proposals</a></div>
-            <div class="toc-subitem"><a href="#section11">12.8 Maps of Target Orchards</a></div>
-            <div class="toc-subitem"><a href="#section11">12.9 CRM Screenshots/Mock-ups</a></div>
-            <div class="toc-subitem"><a href="#section11">12.10 Tradeshow Protocols</a></div>
-            <div class="toc-subitem"><a href="#section11">12.11 Regional Crop Research</a></div>
-          </div>
-        </div>
-        <div class="page-number">2</div>
-      </div>
-
-      <!-- Section 1: Purpose of the Document -->
-      <div class="page" id="section1">
-        <h2>1. PURPOSE OF THE DOCUMENT</h2>
-
-        <p>
-          This document provides Soil Seed & Water representatives with a clear, standardized roadmap for targeting, engaging, selling, implementing,
-          and supporting specialty orchard, vineyard, and avocado clients in the Business-to-Business Market Segment.
-        </p>
-
-        <p>
-          This playbook establishes the complete outreach-to-fulfillment system, simplifies field execution, and aligns all teams on how to deliver
-          regenerative programs for orchards, vineyards, and avocados using Pomona and SSW protocols.
-        </p>
-
-        <div class="key-points">
-          <h4>KEY OBJECTIVES:</h4>
-          <ul>
-            <li>Standardize the sales approach across all representatives</li>
-            <li>Provide clear, actionable steps from lead generation to customer success</li>
-            <li>Integrate CRM workflows at every stage of the sales process</li>
-            <li>Establish measurable KPIs and timelines for program execution</li>
-            <li>Create a repeatable system for scaling orchard, vineyard, and avocado client acquisition</li>
-          </ul>
-        </div>
-
-        <h3>WHO THIS DOCUMENT IS FOR:</h3>
-        <ul>
-          <li>Sales representatives targeting specialty farmers</li>
-          <li>Field representatives conducting site visits</li>
-          <li>Marketing team developing campaigns and content</li>
-          <li>Management tracking performance and pipeline metrics</li>
-          <li>Operations team coordinating fulfillment and delivery</li>
-        </ul>
-
-        <h3>HOW TO USE THIS PLAYBOOK:</h3>
-        <p>
-          This document is designed as a step-by-step execution guide. Each section builds upon the previous one, creating a complete sales and
-          implementation system. Use the table of contents to navigate directly to specific sections as needed, but we recommend reviewing the entire
-          document to understand the full process flow.
-        </p>
-
-        <div class="page-number">3</div>
-      </div>
-
-      <div class="page" id="section2">
-        <h2>2. RESEARCH & ELIGIBILITY</h2>
-
-        <p>
-          Thorough research ensures we focus on the orchards most likely to benefit from Pomona and SSW protocols. Use these criteria to build a
-          targeted list, qualify quickly, and assign priority before outreach begins.
-        </p>
-
-        <h3>2.1 Crop Focus (Expanded)</h3>
-        <ul>
-          <li><strong>Pistachios:</strong> High-value nut crop with strong ROI on soil health and water-efficiency gains.</li>
-          <li><strong>Pome fruits (apples, pears):</strong> Focus on fruit quality, storability, and soil structure improvements.</li>
-          <li><strong>Stone fruits (peach, plum, cherry, apricot, nectarine):</strong> Emphasize fruit set, color, and consistency.</li>
-          <li>
-            <strong>Vineyards (wine/table/raisin grapes):</strong> Quality and yield stability through improved nutrient uptake and soil biology.
-          </li>
-          <li><strong>Avocados:</strong> Water efficiency, salinity management, and root health are primary levers.</li>
-          <li><strong>Citrus (orange, lemon, lime, grapefruit):</strong> Peel quality, brix, and stress mitigation in heat/drought.</li>
-          <li><strong>Other regional high-value orchards:</strong> Add local specialty crops as mapping reveals clusters.</li>
-        </ul>
-
-        <h3>2.2 Geographic Scope</h3>
-        <ul>
-          <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
-          <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
-          <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
-          <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
-        </ul>
-        <div class="image-container">
-          <img src="assets/300miradiouspicture.png" alt="300-mile target radius from SSW operations" />
-          <div class="image-caption">300-mile priority radius from SSW operations</div>
-        </div>
-
-        <h3>2.3 Common Crop Challenges</h3>
-        <ul>
-          <li>Low organic matter and weak soil structure</li>
-          <li>Compaction and limited infiltration</li>
-          <li>Water inefficiency and uneven distribution</li>
-          <li>Micronutrient deficiencies and poor nutrient uptake</li>
-          <li>Low water-holding capacity</li>
-          <li>Weed pressure and low microbial activity</li>
-        </ul>
-
-        <h3>2.4 Common Farmer Challenges</h3>
-        <ul>
-          <li>Limited equipment access or downtime for applications</li>
-          <li>Soil biology and nutrient management knowledge gaps</li>
-          <li>Logistics constraints (labor, timing, trucking)</li>
-          <li>Cost management pressures and aversion to input risk</li>
-        </ul>
-
-        <h3>2.5 Suitability Criteria</h3>
-        <ul>
-          <li>Crop compatibility with Pomona + supporting amendments</li>
-          <li>Economic viability (acreage, revenue potential, input cost baseline)</li>
-          <li>Access and logistics feasibility (equipment fit, delivery access)</li>
-          <li>Decision-maker identified and reachable (owner, farm manager, PCA/consultant)</li>
-          <li>Clear agronomic pain points we can solve (water, nutrition, soil structure)</li>
-        </ul>
-
-        <div class="key-points">
-          <h4>DATA TO CAPTURE IN CRM</h4>
-          <ul>
-            <li>Crop type, acreage, orchard age, and block layout</li>
-            <li>Water source and irrigation method (drip, micro-sprinkler, flood)</li>
-            <li>Current fertilizer/soil program and spend (if known)</li>
-            <li>Primary pain points and recent yield/quality trends</li>
-            <li>Equipment available for application and delivery constraints</li>
-            <li>Contact roles (owner, manager, PCA/CCAs) with phone/email preferences</li>
-          </ul>
-        </div>
-
-        <div class="page-number">4</div>
-      </div>
-
-      <div class="page" id="section3">
-        <h2>4. VALUE PROPOSITION</h2>
-        <p>
-          The value proposition is the foundation of every conversation with specialty orchard, vineyard, and avocado growers. This section provides the core messaging
-          that differentiates SSW from commodity suppliers and positions us as regenerative agriculture partners.
-        </p>
-
-        <h3>4.1 What We Offer</h3>
-        <p>
-          We deliver long-term orchard, vineyard, and avocado health and regeneration through our specialized crop blends and supporting SSW protocols. This is not a single-product sale—it's a comprehensive
-          regenerative soil health program designed to transform degraded soils into productive, resilient ecosystems.
-        </p>
-
-        <h4>CORE OFFERING:</h4>
-        <ul>
-          <li>Regenerative soil health programs tailored to specialty orchards, vineyards, and avocados</li>
-          <li>Crop-specific blends: Pomona (orchards), Seriokai's Secret (avocados/citrus), and Bucchas (vineyards)</li>
-          <li>Supporting protocols: Compost blends, compost tea extracts (drench), clean wood fiber, and mycorrhizal treatments</li>
-          <li>Customized application schedules aligned with crop phenology and seasonal needs</li>
-          <li>Ongoing field support, soil testing, and protocol adjustments</li>
-          <li>Complete logistics coordination: delivery, equipment support, and application guidance</li>
-        </ul>
-
-        <h4>SPECIALTY CROP BLENDS:</h4>
-
-        <p><strong>1. POMONA BLEND - For Orchards (Stone Fruits, Pome Fruits, Pistachios)</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Pomona Blend is a granular, OMRI-listed plant food blend specifically formulated for pome and stone fruit trees. This blend provides targeted micronutrient support during critical growth phases to promote vigorous growth, abundant yields, and optimal fruit quality.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Granular formulation</li>
-          <li>OMRI Listed for organic use</li>
-          <li>Made in USA</li>
-          <li>Best for: Pome and Stone Fruit Trees</li>
-        </ul>
-
-        <p><strong>INGREDIENTS & PURPOSE:</strong></p>
-        <ul>
-          <li><strong>WORM CASTINGS:</strong> Enhance soil structure, water retention, and aeration; provide slow-release nutrients (NPK); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
-          <li><strong>MAGNESIUM SULFATE:</strong> Supplies essential magnesium and sulfur for chlorophyll production, photosynthesis, and protein synthesis, supporting vigorous plant growth.</li>
-          <li><strong>ZINC SULFATE:</strong> Provides zinc to promote enzyme activation, protein synthesis, robust root and shoot development, and increased flowering and fruiting.</li>
-          <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, enriches with nutrients, boosts microbial activity, and enhances water retention for sustainable, healthy plant growth.</li>
-        </ul>
-
-        <p><strong>APPLICATION:</strong></p>
-        <p><strong>FOR NEW PLANTINGS:</strong></p>
-        <ul>
-          <li>Mix 1 part Pomona Blend with 4 parts existing soil</li>
-        </ul>
-        <p><strong>FOR ESTABLISHED TREES:</strong></p>
-        <ul>
-          <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
-          <li>Water thoroughly after application</li>
-          <li>Timing: Post leaf-out (typically April–May)</li>
-          <li>Applied within tree drip lines for maximum root zone efficiency</li>
-        </ul>
-
-        <p><strong>KEY BENEFITS:</strong></p>
-        <ul>
-          <li>Specially formulated for pome and stone fruit trees to promote vigorous growth and abundant yields</li>
-          <li>Enriches soil with essential nutrients and beneficial microbes for healthier roots and disease resistance</li>
-          <li>Improves soil structure, aeration, and water retention for optimal fruit tree development</li>
-          <li>Supports robust photosynthesis and nutrient uptake with magnesium and zinc for stronger, more productive trees</li>
-        </ul>
-
-        <p><strong>PACKAGING SIZES:</strong></p>
-        <ul>
-          <li>9 LB bags</li>
-          <li>1 CF (Cubic Foot) bags</li>
-          <li>2.2 CY TOTE (Cubic Yard Tote)</li>
-          <li>BULK (TONS/CY)</li>
-          <li>TRUCKLOAD BULK (22-24 TONS)</li>
-        </ul>
-
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Pistachios</li>
-          <li>Stone fruits (peach, plum, cherry, apricot, nectarine)</li>
-          <li>Pome fruits (apple, pear)</li>
-          <li>Other high-value orchard crops</li>
-        </ul>
-
-        <p><strong>2. SERIKAI'S SECRET BLEND - For Avocados and Citrus Trees</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Seriokai's Secret Blend is a granular, OMRI-listed plant food blend specially formulated for avocado and citrus trees. This blend combines premium organic ingredients to boost root strength, fruit yield, and disease resistance while improving soil structure and water retention.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Granular formulation</li>
-          <li>OMRI Listed for organic use</li>
-          <li>Made in USA</li>
-          <li>Best for: Avocado and Citrus Trees</li>
-        </ul>
-
-        <p><strong>INGREDIENTS & PURPOSE:</strong></p>
-        <ul>
-          <li><strong>WORM CASTINGS:</strong> Enhance soil structure, aeration, and water retention; provide balanced, slow-release nutrients (N, P, K); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
-          <li><strong>ZINC SULFATE:</strong> Supplies essential zinc to correct deficiencies, supporting enzyme activation, protein synthesis, and robust root development.</li>
-          <li><strong>POTASSIUM SULFATE:</strong> Delivers potassium and sulfur to boost water retention, photosynthesis, protein synthesis, and plant resilience.</li>
-          <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, nutrient content, and microbial activity for better water retention and sustainable plant growth.</li>
-        </ul>
-
-        <p><strong>APPLICATION:</strong></p>
-        <p><strong>FOR NEW PLANTINGS:</strong></p>
-        <ul>
-          <li>Mix 1 part Blend with 4 parts existing soil</li>
-        </ul>
-        <p><strong>FOR ESTABLISHED TREES:</strong></p>
-        <ul>
-          <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
-          <li>Water thoroughly after application</li>
-          <li>Apply within drip line for maximum effectiveness</li>
-        </ul>
-
-        <p><strong>KEY BENEFITS:</strong></p>
-        <ul>
-          <li>Specially formulated for avocado and citrus trees to boost root strength, fruit yield, and disease resistance</li>
-          <li>Enriches soil with essential nutrients and beneficial microbes for sustained, balanced growth</li>
-          <li>Improves soil structure, water retention, and aeration for healthier, more resilient trees</li>
-          <li>Supports organic gardening with premium, natural ingredients for long-term soil vitality</li>
-        </ul>
-
-        <p><strong>PACKAGING SIZES:</strong></p>
-        <ul>
-          <li>9 LB bags</li>
-          <li>1 CF (Cubic Foot) bags</li>
-          <li>2.2 CY TOTE (Cubic Yard Tote)</li>
-          <li>BULK (TONS/CY)</li>
-          <li>TRUCKLOAD BULK (22-24 TONS)</li>
-        </ul>
-
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Avocados</li>
-          <li>Citrus (oranges, lemons, limes, grapefruit)</li>
-          <li>Other subtropical tree crops</li>
-        </ul>
-
-        <p><strong>3. BUCCHAS BLEND (VINES) - For Vineyards</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Bucchas Blend is specifically formulated for vineyard applications, designed to support grape vine health, fruit quality, and yield stability through improved nutrient uptake and soil biology. This blend addresses the unique needs of grape production systems.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Formulated for vine crops</li>
-          <li>Optimized for grape production systems</li>
-          <li>Supports quality and yield stability</li>
-        </ul>
-
-        <p><strong>APPLICATION:</strong></p>
-        <ul>
-          <li>Timing: Based on vine phenology and seasonal growth patterns</li>
-          <li>Method: Applied within vine rows or under vine canopies</li>
-          <li>Purpose: Supports nutrient uptake and soil biology for grape production</li>
-        </ul>
-
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Wine grapes</li>
-          <li>Table grapes</li>
-          <li>Raisin grapes</li>
-          <li>Other vine crops</li>
-        </ul>
-
-        <p><strong>WHY BUCCHAS FOR VINEYARDS:</strong></p>
-        <p>Vineyards have distinct nutritional and soil health requirements compared to tree crops. Grape vines benefit from specific nutrient profiles and soil conditions that support quality fruit development, sugar accumulation (brix), and overall vine health. Bucchas Blend is formulated to address these vineyard-specific needs.</p>
-        
-        <p><strong>NOTE:</strong> Complete spec sheet information for Bucchas Blend will be added when available.</p>
-
-        <h4>SUPPORTING PROTOCOL COMPONENTS:</h4>
-
-        <p><strong>4. Orchard/Vineyard Compost Blend</strong></p>
-        <ul>
-          <li>High-quality dairy compost applied under tree canopies</li>
-          <li>Builds organic matter, improves structure, creates microbial habitat</li>
-          <li>Year 1: 10 tons/canopy acre; maintenance: 5 tons/canopy acre annually</li>
-        </ul>
-
-        <p><strong>5. Compost Tea Extract (Drench)</strong></p>
-        <ul>
-          <li>Living microbial inoculant applied via water wagon or sprayer</li>
-          <li>Pre-bud break application (February–March) activates soil biology</li>
-          <li>Second application before nut set (June–July) supports nutrient cycling</li>
-          <li>Super cost-effective biological activation</li>
-        </ul>
-
-        <p><strong>6. Clean Wood Fiber</strong></p>
-        <ul>
-          <li>Mulch application between orchard rows</li>
-          <li>Erosion control, moisture retention, temperature regulation, weed suppression</li>
-          <li>Improves water infiltration by 50% and prevents topsoil loss</li>
-        </ul>
-
-        <p><strong>7. Mycorrhizal Backfill Mix</strong></p>
-        <ul>
-          <li>Specialized fungal blend for new plantings and tree replacement</li>
-          <li>One-time application establishes drought-tolerant root networks</li>
-          <li>10x more cost-effective than treating mature trees</li>
-        </ul>
-
-        <h3>4.2 Why It Matters</h3>
-        <p>
-          Specialty orchard farmers face mounting pressure: declining soil health, water scarcity, rising input costs, and the need to maintain or increase yields. Our
-          program addresses these challenges systematically, delivering measurable results that compound over time.
-        </p>
-
-        <h4>EXTENDED ORCHARD LIFESPAN:</h4>
-        <ul>
-          <li>Healthy soils support productive trees for 25–75+ years (vs. 15–20 years with degraded soils)</li>
-          <li>Reduced tree mortality through improved root health and stress tolerance</li>
-          <li>Legacy value: orchards become generational assets, not short-term investments</li>
-        </ul>
-
-        <h4>IMPROVED SOIL HEALTH:</h4>
-        <ul>
-          <li>Increased organic matter builds water-holding capacity and nutrient retention</li>
-          <li>Enhanced microbial activity improves nutrient cycling and reduces fertilizer dependency</li>
-          <li>Better soil structure prevents compaction and improves infiltration</li>
-          <li>Biological diversity creates resilient ecosystems that adapt to stress</li>
-        </ul>
-
-        <h4>ECONOMIC GAINS:</h4>
-        <ul>
-          <li>Yield lift: Improved nutrient availability and water efficiency directly increase production</li>
-          <li>Fertilizer reduction: Biological nutrient cycling reduces synthetic fertilizer needs by 20–40% over time</li>
-          <li>Cost savings: Reduced water usage (up to 40% in some cases) and lower input costs improve margins</li>
-          <li>Quality improvements: Better fruit/nut quality commands premium pricing</li>
-        </ul>
-
-        <h4>REDUCED INPUT COSTS OVER TIME:</h4>
-        <ul>
-          <li>Year 1: Foundation building (higher initial investment)</li>
-          <li>Years 2–3: Maintenance applications (reduced tonnage, lower costs)</li>
-          <li>Years 4+: Self-sustaining soil biology reduces dependency on external inputs</li>
-          <li>Long-term ROI improves each year as soil health compounds</li>
-        </ul>
-
-        <h4>ENHANCED WATER EFFICIENCY:</h4>
-        <ul>
-          <li>Improved infiltration reduces runoff and increases retention</li>
-          <li>Better root development accesses deeper water reserves</li>
-          <li>Reduced irrigation needs lower operational costs and improve drought resilience</li>
-          <li>Critical advantage in water-restricted regions</li>
-        </ul>
-
-        <h3>4.3 How We Deliver</h3>
-        <p>
-          SSW doesn't just sell products—we deliver complete regenerative programs with hands-on support at every stage. Our delivery model ensures proper
-          implementation, optimal timing, and continuous improvement.
-        </p>
-
-        <h4>ORCHARD-SPECIFIC TREATMENT PROTOCOLS:</h4>
-        <ul>
-          <li>Initial soil test and analysis to establish baseline and identify specific needs</li>
-          <li>Customized protocol development based on crop type, soil conditions, and farmer goals</li>
-          <li>Crop-specific timing: pistachio nut-set differs from citrus bloom, and protocols reflect this</li>
-          <li>Block-by-block adjustments for soil variations within the same orchard</li>
-        </ul>
-
-        <h4>CUSTOMIZED SUPPLEMENT BLENDS:</h4>
-        <ul>
-          <li>Pomona ratios determined by crop needs and soil test results</li>
-          <li>Supporting amendments selected based on deficiencies and goals</li>
-          <li>Blend adjustments over time as soil health improves and needs change</li>
-          <li>Volume pricing and multi-year commitment incentives</li>
-        </ul>
-
-        <h4>SEASONAL APPLICATION SCHEDULES:</h4>
-        <ul>
-          <li>Winter (Phase 1): Compost and wood fiber application for foundation building</li>
-          <li>Pre-bud break (Phase 2): First drench application to activate soil biology</li>
-          <li>Post leaf-out (Phase 3): Pomona blend application for nutrient support</li>
-          <li>Pre nut-set/fruit-set: Second drench application for peak demand support</li>
-          <li>Post-harvest: Maintenance applications and soil health monitoring</li>
-        </ul>
-
-        <h4>ONGOING FIELD SUPPORT AND CONSULTING:</h4>
-        <ul>
-          <li>Site visits: Monthly field visit weeks with on-site assessments</li>
-          <li>Soil monitoring: Regular testing to track improvements and adjust protocols</li>
-          <li>Photo documentation: Visual progress tracking in CRM</li>
-          <li>Problem-solving: Rapid response to issues with protocol adjustments</li>
-          <li>Education: Farmer training on regenerative principles and application methods</li>
-        </ul>
-
-        <h4>LOGISTICS AND EQUIPMENT SUPPORT:</h4>
-        <ul>
-          <li>Delivery coordination: Route planning and scheduling for efficient delivery</li>
-          <li>Equipment support: Guidance on application equipment and methods</li>
-          <li>Trucking coordination: Direct delivery or coordination with local trucking</li>
-          <li>On-farm placement: Instructions for storage, handling, and application timing</li>
-        </ul>
-
-        <h3>4.4 Why SSW Is Different</h3>
-        <p>
-          Most suppliers sell products. SSW delivers partnerships. This fundamental difference creates long-term value that commodity suppliers cannot match.
-        </p>
-
-        <h4>TRUE PARTNERSHIP APPROACH (NOT JUST PRODUCT SALES):</h4>
-        <ul>
-          <li>We invest in your success: Our revenue depends on your results, not just product volume</li>
-          <li>Long-term commitment: Multi-year programs with ongoing support, not transactional sales</li>
-          <li>Shared risk: Trial programs and performance-based pricing align our interests</li>
-          <li>Relationship focus: We know your operation, your challenges, and your goals</li>
-        </ul>
-
-        <h4>DEEP EXPERTISE IN REGENERATIVE AGRICULTURE:</h4>
-        <ul>
-          <li>Specialized knowledge: Years of experience with tree crops and regenerative protocols</li>
-          <li>Proven results: Case studies and field data from successful implementations</li>
-          <li>Continuous learning: We stay current with latest research and adapt protocols</li>
-          <li>Problem-solving capability: We diagnose issues and adjust, not just sell more product</li>
-        </ul>
-
-        <h4>PRODUCTION CAPACITY AND CONSISTENCY:</h4>
-        <ul>
-          <li>Own production facilities: Dairy compost, worm castings, and Pomona blend manufactured in-house</li>
-          <li>Quality control: Consistent product quality you can depend on season after season</li>
-          <li>Scalability: Capacity to support large operations without supply constraints</li>
-          <li>Reliability: You won't face product shortages or quality variations</li>
-        </ul>
-
-        <h4>COMPREHENSIVE FIELD SUPPORT:</h4>
-        <ul>
-          <li>Field representatives: Experienced agronomists who understand your operation</li>
-          <li>Site visits: Regular on-farm assessments, not just phone calls</li>
-          <li>Documentation: Photos, soil notes, and recommendations logged in CRM</li>
-          <li>Responsive service: Quick answers and rapid problem-solving when issues arise</li>
-        </ul>
-
-        <h4>CONSULTING AND ADVISORY SERVICES:</h4>
-        <ul>
-          <li>Soil health consulting: Beyond product recommendations to system-level thinking</li>
-          <li>Protocol development: Customized programs, not one-size-fits-all solutions</li>
-          <li>Education and training: Help you understand the "why" behind the "what"</li>
-          <li>Strategic planning: Multi-year roadmaps for soil regeneration and yield improvement</li>
-        </ul>
-
-        <h4>TRUCKING AND LOGISTICS SUPPORT:</h4>
-        <ul>
-          <li>Delivery coordination: We handle the logistics, you focus on farming</li>
-          <li>Route optimization: Efficient delivery reduces your time and costs</li>
-          <li>Flexible scheduling: Work around your harvest and application windows</li>
-          <li>On-farm placement: Direct delivery to where you need it, when you need it</li>
-        </ul>
-
-        <h4>EQUIPMENT SUPPORT AND COORDINATION:</h4>
-        <ul>
-          <li>Application guidance: Recommendations on equipment and methods</li>
-          <li>Equipment coordination: Help connect you with applicators if needed</li>
-          <li>Method optimization: Ensure you're applying products correctly for maximum effectiveness</li>
-          <li>Cost-effective solutions: Find the most efficient application methods for your operation</li>
-        </ul>
-
-        <h3>4.5 Economic Value Drivers</h3>
-        <p>
-          The economic case for SSW programs is built on multiple value drivers that compound over time. Understanding these drivers helps you communicate ROI and
-          justify investment to cost-conscious farmers.
-        </p>
-
-        <h4>YIELD STRENGTH AND CONSISTENCY:</h4>
-        <ul>
-          <li>Increased production: 10–30% yield improvements are common as soil health improves</li>
-          <li>Consistency: Reduced year-to-year variability creates predictable revenue</li>
-          <li>Quality improvements: Better fruit/nut quality commands premium pricing</li>
-          <li>Risk reduction: Healthy soils buffer against weather stress and disease</li>
-        </ul>
-
-        <h4>SOIL HEALTH IMPROVEMENTS:</h4>
-        <ul>
-          <li>Organic matter increase: Each 1% increase in OM holds 20,000+ gallons of water per acre</li>
-          <li>Water infiltration: 50%+ improvement reduces runoff and increases retention</li>
-          <li>Nutrient retention: Healthy soils hold nutrients, reducing leaching and waste</li>
-          <li>Biological activity: Active soil biology cycles nutrients more efficiently</li>
-        </ul>
-
-        <h4>FERTILIZER REDUCTION (COST SAVINGS):</h4>
-        <ul>
-          <li>Year 1: Baseline fertilizer program continues while soil health builds</li>
-          <li>Year 2–3: 20–30% reduction in synthetic fertilizer needs as biology takes over</li>
-          <li>Year 4+: 30–40% reduction possible as soil becomes self-sustaining</li>
-          <li>Cost savings: $50–$200+ per acre annually in reduced fertilizer costs</li>
-        </ul>
-
-        <h4>LONG-TERM ROI:</h4>
-        <ul>
-          <li>Year 1: Foundation investment (higher cost, building the system)</li>
-          <li>Years 2–3: Maintenance phase (reduced costs, increasing benefits)</li>
-          <li>Years 4+: Compound returns (lower costs, higher yields, better quality)</li>
-          <li>5-year ROI: Typically 2–4x return on investment when all factors considered</li>
-          <li>Extended lifespan: 25–75+ year productive lifespan vs. 15–20 years = generational value</li>
-        </ul>
-
-        <h4>RISK MITIGATION:</h4>
-        <ul>
-          <li>Drought resilience: Better water efficiency reduces irrigation dependency</li>
-          <li>Disease resistance: Healthy soils and trees resist pathogens naturally</li>
-          <li>Market volatility: Quality improvements provide pricing flexibility</li>
-          <li>Regulatory compliance: Regenerative practices align with sustainability requirements</li>
-          <li>Succession planning: Healthy orchards become valuable legacy assets</li>
-        </ul>
-
-        <div class="key-points">
-          <h4>ECONOMIC CALCULATION FRAMEWORK:</h4>
-          <p>When presenting economic value, use this framework:</p>
-          <p><strong>1. Current State Baseline</strong></p>
-          <ul>
-            <li>Current yield (tons/acre or lbs/tree)</li>
-            <li>Current fertilizer costs per acre</li>
-            <li>Current water usage and costs</li>
-            <li>Current quality metrics and pricing</li>
-          </ul>
-          <p><strong>2. Projected Improvements (Year 3–5)</strong></p>
-          <ul>
-            <li>Yield increase: 10–30% (conservative estimate)</li>
-            <li>Fertilizer reduction: 20–40% (as biology takes over)</li>
-            <li>Water efficiency: 20–40% reduction in irrigation needs</li>
-            <li>Quality premium: 5–15% price improvement (if applicable)</li>
-          </ul>
-          <p><strong>3. Investment vs. Return</strong></p>
-          <ul>
-            <li>Program cost per acre (Year 1, Year 2–3, Year 4+)</li>
-            <li>Cost savings: Fertilizer + water reduction</li>
-            <li>Revenue increase: Yield lift × price</li>
-            <li>Net improvement: Revenue increase + cost savings - program cost</li>
-            <li>ROI timeline: When does cumulative benefit exceed cumulative cost?</li>
-          </ul>
-          <p><strong>4. Long-Term Value</strong></p>
-          <ul>
-            <li>Extended orchard lifespan: 10–50+ additional productive years</li>
-            <li>Legacy value: Asset appreciation and generational transfer</li>
-            <li>Risk reduction: Insurance value of resilient operation</li>
-          </ul>
-        </div>
-
-        <div class="key-points">
-          <h4>KEY MESSAGING POINTS:</h4>
-          <ul>
-            <li>"This is a capital investment in soil assets, not an expense"</li>
-            <li>"Your orchard can thrive for 75+ years with proper soil health"</li>
-            <li>"We're building a system that pays you back every year"</li>
-            <li>"The longer you wait, the more expensive regeneration becomes"</li>
-            <li>"Healthy soils are the foundation of profitable, sustainable farming"</li>
-          </ul>
-        </div>
-
-        <div class="page-number">5</div>
-      </div>
-
-      <div class="page" id="section4">
-        <h2>5. CRM INTEGRATION - COMPLETE WORKFLOW</h2>
-        <p>
-          Effective CRM integration is the backbone of successful orchard, vineyard, and avocado program execution. This section provides a complete workflow for capturing, managing, nurturing, and converting leads through every stage of the sales pipeline. All activities must be tracked in the CRM to ensure visibility, accountability, and data-driven decision-making.
-        </p>
-        <p><strong>CRM PLATFORM:</strong> [Which CRM platform is being used? (e.g., HubSpot, Salesforce, Pipedrive, Monday.com, custom solution)]</p>
-        <h4>INTEGRATION REQUIREMENTS:</h4>
-        <ul>
-          <li>[What third-party integrations are needed? (e.g., email marketing platform, route planning software, calendar systems, payment processing)]</li>
-          <li>[What API connections are required?]</li>
-          <li>[What data synchronization needs exist?]</li>
-        </ul>
-        <div class="key-points">
-          <h4>NOTE:</h4>
-          <p>The complete CRM Integration section (5.1 through 5.8) with detailed workflows, field requirements, automation specifications, and reporting structures is available in the main playbook text file. This section includes:</p>
-          <ul>
-            <li>5.1 Lead Capture - Complete lead entry requirements and workflows</li>
-            <li>5.2 Segmentation - Multi-dimensional segmentation strategies</li>
-            <li>5.3 Automations - Email sequences, task automation, lead scoring</li>
-            <li>5.4 Tracking & Analytics - Comprehensive metrics and reporting</li>
-            <li>5.5 Smart Calling Workflow - Prioritized calling strategies</li>
-            <li>5.6 Farm Visits - Visit scheduling and documentation</li>
-            <li>5.7 Deals & Conversions - Deal management and pipeline tracking</li>
-            <li>5.8 Reporting - Executive, team, and custom reporting</li>
-          </ul>
-          <p>All sections use square brackets [ ] to indicate questions about needed information that should be filled in based on your specific CRM setup.</p>
-        </div>
-        <div class="page-number">6</div>
-      </div>
-
-      <div class="page" id="section5">
-        <h2>6. OUTREACH STRATEGY & TACTICS</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">7</div>
-      </div>
-
-      <div class="page" id="section6">
-        <h2>7. LEAD NURTURING STRATEGY</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">8</div>
-      </div>
-
-      <div class="page" id="section7">
-        <h2>8. SALES PROCESS</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">9</div>
-      </div>
-
-      <div class="page" id="section8">
-        <h2>9. IMPLEMENTATION</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">10</div>
-      </div>
-
-      <div class="page" id="section9">
-        <h2>10. TIMELINE & KPIs</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">11</div>
-      </div>
-
-      <div class="page" id="section10">
-        <h2>11. TOOLS & PLATFORMS</h2>
-        <p><em>Content to be added...</em></p>
-        <div class="page-number">12</div>
-      </div>
-
     </div>
 
-    <script>
+<script>
       const tocState = {
         observer: null,
         mutationObserver: null,
         rebuildTimer: null,
       };
+      const SCROLL_STORAGE_KEY = "playbook-scroll-position";
+      const ACTIVE_SECTION_KEY = "playbook-active-section";
+      let scrollSaveTimer = null;
+      let lastActiveSection = null;
 
       const smoothScrollToId = (targetId) => {
         const target = document.getElementById(targetId);
@@ -1980,6 +1422,15 @@
           const section = sectionHeader.closest(".toc-section");
           if (section) {
             section.classList.add("toc-item-active", "open");
+          }
+        }
+
+        if (activeId) {
+          lastActiveSection = activeId;
+          try {
+            localStorage.setItem(ACTIVE_SECTION_KEY, activeId);
+          } catch (err) {
+            console.warn("Unable to persist active section", err);
           }
         }
       };
@@ -2127,6 +1578,51 @@
           event.preventDefault();
           smoothScrollToId(targetId);
         });
+      };
+
+      const saveScrollPosition = () => {
+        try {
+          localStorage.setItem(SCROLL_STORAGE_KEY, String(window.scrollY));
+          if (lastActiveSection) {
+            localStorage.setItem(ACTIVE_SECTION_KEY, lastActiveSection);
+          }
+        } catch (err) {
+          console.warn("Unable to persist scroll position", err);
+        }
+      };
+
+      const restoreScrollPosition = () => {
+        let targetY = null;
+        let targetId = null;
+
+        try {
+          const storedY = localStorage.getItem(SCROLL_STORAGE_KEY);
+          targetId = localStorage.getItem(ACTIVE_SECTION_KEY);
+          if (storedY !== null) {
+            const parsed = parseFloat(storedY);
+            if (Number.isFinite(parsed)) {
+              targetY = parsed;
+            }
+          }
+        } catch (err) {
+          console.warn("Unable to read saved position", err);
+        }
+
+        const scrollNow = () => {
+          if (targetId) {
+            const el = document.getElementById(targetId);
+            if (el) {
+              el.scrollIntoView({ behavior: "auto", block: "start" });
+              return;
+            }
+          }
+          if (targetY !== null) {
+            window.scrollTo({ top: targetY, behavior: "auto" });
+          }
+        };
+
+        setTimeout(scrollNow, 120);
+        setTimeout(scrollNow, 450);
       };
 
       const initializeNavigation = () => {
@@ -2640,7 +2136,7 @@
             loadingMsg.outerHTML = data.html;
           } else {
             // If no loading message, insert content
-            container.innerHTML = '<!-- DYNAMIC_CONTENT -->' + data.html + '</div>';
+            container.innerHTML = '<!-- DYNAMIC_CONTENT -->' + data.html;
           }
           
           console.log(`✅ Playbook loaded: ${data.sections} sections`);
@@ -2654,6 +2150,7 @@
               splitContentIntoPages();
               initializeNavigation();
               initializeSearch();
+              restoreScrollPosition();
             }, 500);
           }, 300);
         } catch (error) {
@@ -2672,6 +2169,14 @@
 
       document.addEventListener("DOMContentLoaded", () => {
         loadPlaybookContent();
+
+        const onScroll = () => {
+          if (scrollSaveTimer) clearTimeout(scrollSaveTimer);
+          scrollSaveTimer = setTimeout(saveScrollPosition, 150);
+        };
+
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("beforeunload", saveScrollPosition);
       });
 
       // PDF Export Function
