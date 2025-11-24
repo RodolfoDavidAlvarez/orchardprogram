@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A specialty farmer. Program execution. Playbook. - Preview</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -269,6 +271,32 @@
         .search-toggle {
           display: none;
         }
+
+        /* Print-safe styling for enhanced elements */
+        h2::before,
+        h3::before,
+        .key-points::before,
+        .prospect-table th::before {
+          -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+        }
+
+        h2 {
+          -webkit-text-fill-color: #34495e !important;
+          color: #34495e !important;
+        }
+
+        .prospect-table thead,
+        table:not(.prospect-table) thead {
+          -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+        }
+
+        .prospect-table tbody tr:nth-child(even),
+        table:not(.prospect-table) tbody tr:nth-child(even) {
+          -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+        }
       }
 
       .page-number {
@@ -285,23 +313,78 @@
         margin-bottom: 10pt;
         color: #2c3e50;
         page-break-after: avoid;
+        position: relative;
+        padding: 15pt 0;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border-radius: 8pt;
+        border: 2px solid #e8ecf0;
+        box-shadow: 0 2pt 8pt rgba(0,0,0,0.08);
+      }
+
+      h1::before {
+        content: "\f0f6";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #3498db;
+        font-size: 20pt;
+        margin-right: 8pt;
+        vertical-align: middle;
       }
 
       h2 {
         font-size: 18pt;
         margin-top: 0;
-        margin-bottom: 12pt;
+        margin-bottom: 15pt;
         padding-top: 20pt;
+        padding-left: 45pt;
+        padding-bottom: 8pt;
         color: #34495e;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 5pt;
+        background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        border-bottom: 3px solid transparent;
+        border-image: linear-gradient(90deg, #3498db 0%, #2980b9 70%, transparent 100%) 1;
+        position: relative;
         page-break-before: always;
         page-break-after: avoid;
         break-before: page;
         break-after: avoid;
         orphans: 2;
         widows: 2;
+        font-weight: 700;
       }
+
+      h2::before {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        color: #3498db;
+        font-size: 16pt;
+        width: 35pt;
+        text-align: center;
+        background: rgba(52, 152, 219, 0.1);
+        border-radius: 50%;
+        height: 35pt;
+        line-height: 35pt;
+        box-shadow: 0 2pt 6pt rgba(52, 152, 219, 0.2);
+      }
+
+      /* Section-specific icons */
+      h2:nth-of-type(1)::before { content: "\f05a"; } /* Purpose - info */
+      h2:nth-of-type(2)::before { content: "\f1e6"; } /* Research - search */
+      h2:nth-of-type(3)::before { content: "\f0eb"; } /* Value Prop - lightbulb */
+      h2:nth-of-type(4)::before { content: "\f233"; } /* CRM - database */
+      h2:nth-of-type(5)::before { content: "\f0e0"; } /* Outreach - envelope */
+      h2:nth-of-type(6)::before { content: "\f4c4"; } /* Nurturing - seedling */
+      h2:nth-of-type(7)::before { content: "\f0d6"; } /* Sales - money-bill */
+      h2:nth-of-type(8)::before { content: "\f085"; } /* Implementation - cogs */
+      h2:nth-of-type(9)::before { content: "\f073"; } /* Timeline - calendar */
+      h2:nth-of-type(10)::before { content: "\f0ad"; } /* Tools - wrench */
+      h2:nth-of-type(11)::before { content: "\f0c6"; } /* Appendix - paperclip */
 
       /* First h2 in a page doesn't need page break */
       .page > h2:first-child {
@@ -312,18 +395,40 @@
 
       h3 {
         font-size: 14pt;
-        margin-top: 15pt;
-        margin-bottom: 8pt;
+        margin-top: 18pt;
+        margin-bottom: 10pt;
+        padding-left: 30pt;
         color: #2c3e50;
         font-weight: 600;
-        border-bottom: 1px solid #bdc3c7;
-        padding-bottom: 4pt;
+        border-bottom: 2px solid transparent;
+        border-image: linear-gradient(90deg, #27ae60 0%, #2ecc71 50%, transparent 100%) 1;
+        padding-bottom: 6pt;
+        position: relative;
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
         orphans: 2;
         widows: 2;
+      }
+
+      h3::before {
+        content: "\f138";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #27ae60;
+        font-size: 12pt;
+        width: 24pt;
+        height: 24pt;
+        line-height: 24pt;
+        text-align: center;
+        background: rgba(39, 174, 96, 0.1);
+        border-radius: 4pt;
+        box-shadow: 0 1pt 3pt rgba(39, 174, 96, 0.2);
       }
 
       h4 {
@@ -342,40 +447,114 @@
         widows: 2;
       }
 
-      /* Prospect Table Styling */
+      /* Enhanced Table Styling */
       .prospect-table-container {
-        margin: 15pt 0;
+        margin: 20pt 0;
         overflow-x: auto;
         page-break-inside: avoid;
+        border-radius: 8pt;
+        box-shadow: 0 4pt 12pt rgba(0, 0, 0, 0.1);
+        background: white;
       }
 
       .prospect-table {
         width: 100%;
         border-collapse: collapse;
         font-size: 9pt;
-        margin: 10pt 0;
+        margin: 0;
         page-break-inside: auto;
+        border-radius: 8pt;
+        overflow: hidden;
       }
 
       .prospect-table thead {
-        background-color: #34495e;
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
         color: white;
+        position: relative;
+      }
+
+      .prospect-table thead::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 3pt;
+        background: linear-gradient(90deg, #3498db 0%, #2980b9 50%, #27ae60 100%);
       }
 
       .prospect-table th {
-        padding: 8pt 6pt;
+        padding: 12pt 8pt;
         text-align: left;
-        font-weight: 600;
+        font-weight: 700;
         font-size: 9pt;
-        border: 1px solid #2c3e50;
+        border: none;
         white-space: nowrap;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
+        position: relative;
+      }
+
+      .prospect-table th:first-child::before {
+        content: "\f0cb";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #3498db;
+      }
+
+      .prospect-table th:nth-child(2)::before {
+        content: "\f1ad";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #e74c3c;
+      }
+
+      .prospect-table th:nth-child(3)::before {
+        content: "\f3c5";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #f39c12;
+      }
+
+      .prospect-table th:nth-child(4)::before {
+        content: "\f095";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #27ae60;
+      }
+
+      .prospect-table th:nth-child(5)::before {
+        content: "\f0e0";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #9b59b6;
+      }
+
+      .prospect-table th:nth-child(6)::before {
+        content: "\f0ac";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        margin-right: 4pt;
+        color: #1abc9c;
       }
 
       .prospect-table td {
-        padding: 6pt;
-        border: 1px solid #ddd;
+        padding: 10pt 8pt;
+        border: none;
+        border-bottom: 1px solid #ecf0f1;
         vertical-align: top;
         word-wrap: break-word;
+        transition: background-color 0.2s ease;
+      }
+
+      .prospect-table tbody tr {
+        background-color: white;
+        transition: all 0.2s ease;
       }
 
       .prospect-table tbody tr:nth-child(even) {
@@ -383,7 +562,9 @@
       }
 
       .prospect-table tbody tr:hover {
-        background-color: #e8f4f8;
+        background-color: #e8f6ff;
+        transform: translateY(-1px);
+        box-shadow: 0 2pt 8pt rgba(52, 152, 219, 0.1);
       }
 
       .prospect-table td:first-child {
@@ -418,6 +599,101 @@
 
       .prospect-table a:hover {
         text-decoration: underline;
+      }
+
+      /* General Table Styling for All Tables */
+      table:not(.prospect-table) {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 15pt 0;
+        font-size: 10pt;
+        page-break-inside: auto;
+        border-radius: 6pt;
+        overflow: hidden;
+        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.08);
+      }
+
+      table:not(.prospect-table) thead {
+        background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        color: white;
+      }
+
+      table:not(.prospect-table) th {
+        padding: 10pt 8pt;
+        text-align: left;
+        font-weight: 600;
+        font-size: 10pt;
+        border: none;
+        text-transform: uppercase;
+        letter-spacing: 0.3pt;
+      }
+
+      table:not(.prospect-table) td {
+        padding: 8pt;
+        border-bottom: 1px solid #ecf0f1;
+        vertical-align: top;
+      }
+
+      table:not(.prospect-table) tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      table:not(.prospect-table) tbody tr:hover {
+        background-color: #e8f4f8;
+      }
+
+      /* Enhanced List Styling */
+      ul, ol {
+        margin: 8pt 0 12pt 0;
+        padding-left: 18pt;
+        line-height: 1.5;
+      }
+
+      li {
+        margin-bottom: 4pt;
+        position: relative;
+      }
+
+      ul li::marker {
+        color: #3498db;
+        font-weight: bold;
+      }
+
+      ol li::marker {
+        color: #27ae60;
+        font-weight: bold;
+      }
+
+      /* Key Points Box Enhancement */
+      .key-points {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border-left: 4pt solid #3498db;
+        padding: 15pt;
+        margin: 15pt 0;
+        border-radius: 0 6pt 6pt 0;
+        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      .key-points::before {
+        content: "\f0eb";
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        position: absolute;
+        top: 15pt;
+        left: -12pt;
+        color: #3498db;
+        background: white;
+        padding: 6pt;
+        border-radius: 50%;
+        font-size: 10pt;
+        box-shadow: 0 2pt 6pt rgba(0, 0, 0, 0.1);
+      }
+
+      .key-points h4 {
+        color: #2c3e50;
+        margin-bottom: 8pt;
+        font-size: 11pt;
       }
 
       .cover-page {
