@@ -84,38 +84,32 @@ TABLE OF CONTENTS
    8.4 Pricing Logic & Calculations
    8.5 Closing Steps & Contract Execution
 
-9. IMPLEMENTATION .................................................. Page 9
-   9.1 Soil Test & Analysis
-   9.2 Protocol Setup & Customization
-   9.3 Seasonal Applications & Timing
-   9.4 On-Site Coordination & Equipment
-   9.5 Order Fulfillment & Delivery
-   9.6 Monitoring & Follow-Up Protocols
+9. TIMELINE & KPIs ................................................ Page 9
+   9.1 Annual Calendar (Q1-Q4)
+   9.2 Tradeshow Calendar
+   9.3 Key Performance Targets & Metrics
 
-10. TIMELINE & KPIs ................................................ Page 10
-    10.1 Annual Calendar (Q1-Q4)
-    10.2 Tradeshow Calendar
-    10.3 Key Performance Targets & Metrics
+10. RESOURCES, TOOLS & SYSTEMS ................................... Page 10
+   10.1 Sales Tools
+   10.2 Marketing Tools
+   10.3 Operations Tools
+   10.4 Administration Tools
+   10.5 Security & Access Control Protocols
 
-11. TOOLS & PLATFORMS .............................................. Page 11
-    11.1 CRM Platform & Features
-    11.2 Route Planner & Optimization
-    11.3 AI Advisors & Support Tools
-
-12. APPENDIX ....................................................... Page 12
-    12.1 Pomona Blend Spec Sheet
-    12.2 Seriokai's Secret Blend Spec Sheet
-    12.3 Bucchas Blend Spec Sheet (Vines)
-    12.4 Orchard Protocol Templates
-    12.5 Smart Calling Script & Framework
-    12.6 Email Templates (Hook Point, Nurture Series, Follow-ups)
-    12.7 Actual Email Campaign Examples - Ready to Send
-    12.8 Sample Proposals & ROI Calculations
-    12.9 Maps of Target Orchards & Geographic Distribution
-    12.10 CRM Screenshots/Mock-ups & Workflow Visuals
-    12.11 Tradeshow Protocols & Lead Capture
-    12.12 Regional Crop Research & Market Opportunities
-    12.13 Prospect Database - Categorized List
+11. APPENDIX ....................................................... Page 11
+    11.1 Pomona Blend Spec Sheet
+    11.2 Seriokai's Secret Blend Spec Sheet
+    11.3 Bucchas Blend Spec Sheet (Vines)
+    11.4 Orchard Protocol Templates
+    11.5 Smart Calling Script & Framework
+    11.6 Email Templates (Hook Point, Nurture Series, Follow-ups)
+    11.7 Actual Email Campaign Examples - Ready to Send
+    11.8 Sample Proposals & ROI Calculations
+    11.9 Maps of Target Orchards & Geographic Distribution
+    11.10 CRM Screenshots/Mock-ups & Workflow Visuals
+    11.11 Tradeshow Protocols & Lead Capture
+    11.12 Regional Crop Research & Market Opportunities
+    11.13 Prospect Database - Categorized List
 
 ================================================================================
 
@@ -1587,39 +1581,602 @@ Track progression through stages:
 8. SALES PROCESS
 ================================================================================
 
-[Content to be added - see detailed sections in subsequent subsections]
+The sales process transforms qualified leads into customers through a systematic approach that builds trust, demonstrates value, and addresses concerns. This section outlines each step from initial qualification through contract execution.
+
+8.1 QUALIFICATION STEPS & CRITERIA
+================================================================================
+
+QUALIFICATION FRAMEWORK (BANT + Fit):
+
+BUDGET:
+• Can they afford the program? (Estimate: $X per acre based on crop type and acreage)
+• Current fertilizer/input spending range
+• Budget decision-making authority
+• Payment terms flexibility
+• Multi-year commitment potential
+
+AUTHORITY:
+• Are they the decision-maker or can they influence the decision?
+• Who else is involved in the decision? (Owner, farm manager, consultant, board)
+• Decision-making process and timeline
+• Approval requirements and stakeholders
+
+NEED:
+• Do they have pain points we can solve?
+  - Soil health challenges (compaction, low OM, poor structure)
+  - Water efficiency issues
+  - Fertilizer cost concerns
+  - Yield or quality problems
+  - Nutrient deficiencies
+• Current program satisfaction level
+• Desire to improve or change current approach
+
+TIMELINE:
+• When would they consider making a change?
+• Seasonal timing considerations
+• Budget cycle and planning periods
+• Urgency indicators (current problems, upcoming decisions)
+
+FIT:
+• Crop type suitability (pistachio, pome, stone fruit, avocado, citrus, vineyard)
+• Acreage size (minimum viable: 20+ acres, ideal: 50+ acres)
+• Geographic accessibility (within 300-mile radius)
+• Operation type and management style
+• Alignment with SSW regenerative approach
+
+QUALIFICATION SCORING:
+• High Priority (Score 8-10): Meets all BANT criteria + strong fit
+• Medium Priority (Score 5-7): Meets most criteria, some gaps
+• Low Priority (Score 1-4): Missing key criteria, poor fit
+
+DISQUALIFICATION CRITERIA:
+• No budget or authority
+• Unrealistic timeline (beyond 12 months)
+• Poor crop/geographic fit
+• Not interested in regenerative approach
+• Current program satisfaction with no desire to change
+
+8.2 SITE VISIT SCHEDULING & PREPARATION
+================================================================================
+
+SCHEDULING PROCESS:
+• Schedule site visits during monthly field visit weeks
+• Use CRM calendar integration for scheduling
+• Confirm visit 48 hours in advance
+• Send preparation email with agenda and what to expect
+• Coordinate with farm manager/owner availability
+• Group visits geographically for route efficiency
+
+PRE-VISIT PREPARATION:
+• Review CRM profile and all previous interactions
+• Research farm: crop type, acreage, known challenges
+• Prepare discovery questions specific to their operation
+• Bring relevant case studies or examples
+• Prepare sample products (9 lb trial bags)
+• Review their current program (if known)
+• Check weather conditions and dress appropriately
+
+VISIT AGENDA:
+1. Farm tour and visual assessment (15-20 minutes)
+2. Discovery conversation (20-30 minutes)
+3. Soil observation and discussion (10-15 minutes)
+4. Value proposition discussion (15-20 minutes)
+5. Next steps and follow-up plan (5-10 minutes)
+
+ON-SITE ASSESSMENT CHECKLIST:
+• Visual crop health observations
+• Soil structure and compaction signs
+• Irrigation system type and condition
+• Current fertilizer/amendment storage
+• Equipment availability
+• Access and logistics considerations
+• Photos: crop condition, soil, infrastructure
+• Notes: specific challenges observed, farmer concerns
+
+POST-VISIT DOCUMENTATION:
+• Log visit in CRM immediately (same day)
+• Upload photos to CRM record
+• Document key findings and observations
+• Record pain points and opportunities
+• Note decision-maker insights
+• Update qualification score
+• Set follow-up tasks and timeline
+• Move to appropriate pipeline stage
+
+8.3 PROPOSAL STRUCTURE & DEVELOPMENT
+================================================================================
+
+PROPOSAL TIMING:
+• Send proposal within 48 hours of site visit
+• Follow up with call within 24 hours of sending
+• Customize based on specific farm needs and discoveries
+• Include ROI calculations relevant to their operation
+
+PROPOSAL COMPONENTS:
+
+1. EXECUTIVE SUMMARY:
+   • Farm name and operation overview
+   • Key challenges identified
+   • Proposed solution overview
+   • Expected outcomes and benefits
+
+2. CURRENT SITUATION ANALYSIS:
+   • Soil test results (if available)
+   • Current program assessment
+   • Identified pain points and opportunities
+   • Visual documentation (photos from visit)
+
+3. RECOMMENDED PROTOCOL:
+   • Product blend selection (Pomona/Seriokai/Bacchus)
+   • Application rates and timing
+   • Supporting amendments
+   • Seasonal application schedule
+   • Year 1 vs. multi-year program
+
+4. EXPECTED OUTCOMES:
+   • Soil health improvements
+   • Water efficiency gains
+   • Fertilizer reduction potential
+   • Yield and quality improvements
+   • Long-term orchard health benefits
+
+5. ROI CALCULATIONS:
+   • Current input costs (fertilizer, amendments)
+   • Program investment
+   • Expected savings (fertilizer reduction)
+   • Yield improvement value
+   • Net ROI and payback period
+   • Multi-year cumulative benefits
+
+6. IMPLEMENTATION PLAN:
+   • Timeline and seasonal schedule
+   • Application methods and equipment
+   • Delivery and logistics
+   • On-site coordination
+   • Monitoring and follow-up
+
+7. PRICING BREAKDOWN:
+   • Per-acre or per-tree pricing
+   • Product costs
+   • Application/service fees (if applicable)
+   • Volume discounts
+   • Multi-year commitment incentives
+   • Payment terms and options
+
+8. NEXT STEPS:
+   • Decision timeline
+   • Trial program option (if applicable)
+   • Contract execution process
+   • Implementation start date
+
+PROPOSAL CUSTOMIZATION:
+• Reference specific conversations and discoveries
+• Use farm name and contact name throughout
+• Include relevant case studies from similar operations
+• Address specific concerns raised during visit
+• Show understanding of their unique situation
+
+8.4 PRICING LOGIC & CALCULATIONS
+================================================================================
+
+PRICING STRUCTURE:
+
+PER-ACRE PRICING (Primary Method):
+• Base rate per acre for product blend
+• Varies by crop type and application rate
+• Example: $X per acre for Pomona blend
+• Minimum acreage requirements (typically 20+ acres)
+
+PER-TREE PRICING (Alternative):
+• Used for smaller operations or specific crops
+• Based on tree count and spacing
+• Useful for high-value crops with lower tree density
+
+VOLUME DISCOUNTS:
+• Tier 1: 20-50 acres (standard pricing)
+• Tier 2: 51-100 acres (5% discount)
+• Tier 3: 101-200 acres (10% discount)
+• Tier 4: 200+ acres (15% discount)
+
+MULTI-YEAR COMMITMENTS:
+• Year 1: Standard pricing
+• Year 2: 5% discount for commitment
+• Year 3+: 10% discount for extended commitment
+• Lock in pricing for contract duration
+
+PAYMENT TERMS:
+• Standard: Net 30 days
+• Options: Net 15 (2% discount), Net 60 (standard)
+• Seasonal payment plans available
+• Pre-payment discounts (5% for full payment upfront)
+
+ROI CALCULATION FRAMEWORK:
+
+CURRENT COSTS:
+• Annual fertilizer spending per acre
+• Amendment costs
+• Application costs
+• Total current input investment
+
+PROGRAM INVESTMENT:
+• Product costs per acre
+• Application/service fees
+• Total program cost
+
+EXPECTED SAVINGS:
+• Fertilizer reduction (typically 20-40%)
+• Water efficiency improvements
+• Reduced application frequency
+
+EXPECTED GAINS:
+• Yield improvement value (5-15% typical)
+• Quality premium potential
+• Long-term soil health value
+
+NET ROI:
+• (Savings + Gains) - Program Investment
+• Payback period calculation
+• Multi-year cumulative ROI
+
+PRICING NEGOTIATION GUIDELINES:
+• Start with standard pricing
+• Use volume and commitment discounts as negotiation tools
+• Never discount without getting something in return (larger acreage, multi-year, referral)
+• Focus on value and ROI, not just price
+• Trial programs at standard pricing (no discount on trials)
+
+8.5 CLOSING STEPS & CONTRACT EXECUTION
+================================================================================
+
+CLOSING FRAMEWORK (Based on "Never Split the Difference" & "Start with No"):
+
+NEGOTIATION PRINCIPLES:
+
+1. ACTIVE LISTENING & LABELING:
+   • Listen for underlying concerns, not just stated objections
+   • Use labeling: "It sounds like...", "It seems like...", "I'm hearing that..."
+   • Validate their perspective before responding
+   • Example: "It sounds like you're concerned about the upfront investment"
+
+2. CALIBRATED QUESTIONS:
+   • Ask "How" and "What" questions to understand their position
+   • Avoid "Why" questions (can sound accusatory)
+   • Examples:
+     - "How would this program need to work for you to move forward?"
+     - "What would need to happen for this to make sense?"
+     - "How can we structure this to address your concerns?"
+
+3. AVOID SPLITTING THE DIFFERENCE:
+   • Don't automatically meet in the middle
+   • Understand what they really need vs. what they're asking for
+   • Trade value, not just price
+   • Get something in return for any concessions
+
+4. START WITH "NO":
+   • "No" is not rejection, it's the start of a conversation
+   • "No" means "not right now" or "not in this way"
+   • Use "No" to uncover real objections
+   • Example: "If the answer was no, what would need to change?"
+
+5. ANCHORING & FRAMING:
+   • Anchor with value and ROI, not price
+   • Frame in terms of their goals and outcomes
+   • Use loss aversion: "What happens if you don't address these soil issues?"
+   • Compare to current costs, not to zero
+
+CLOSING PROCESS:
+
+STEP 1: IDENTIFY READINESS SIGNALS:
+• Asking specific questions about implementation
+• Discussing timeline and start dates
+• Talking about budget or payment terms
+• Requesting references or case studies
+• Comparing to other options
+• Involving other decision-makers in conversation
+
+STEP 2: HANDLE FINAL OBJECTIONS:
+• Listen completely before responding
+• Label the concern: "It sounds like you're worried about..."
+• Ask calibrated questions to understand the real issue
+• Address with specific information or alternatives
+• Confirm understanding: "Does that address your concern?"
+
+COMMON FINAL OBJECTIONS & RESPONSES:
+
+"We need to think about it":
+• "I understand. What specifically do you need to think about?"
+• "What information would help you make a decision?"
+• "What concerns do you have that we haven't addressed?"
+
+"The price is too high":
+• "I understand price is a consideration. What would make this worth the investment?"
+• "Compared to your current fertilizer costs, how does this compare?"
+• "What ROI would you need to see to make this worthwhile?"
+
+"We want to try a smaller area first":
+• "That makes sense. What size trial would you be comfortable with?"
+• "How would we measure success in the trial?"
+• "What would need to happen in the trial for you to expand?"
+
+"We need to talk to our consultant/partner":
+• "Absolutely. Who else is involved in this decision?"
+• "What questions do you think they'll have?"
+• "Would it help if I spoke with them directly?"
+
+STEP 3: PROPOSE NEXT STEP:
+• Be specific: "I'd like to propose we move forward with..."
+• Set timeline: "If we can get started by [date], we can..."
+• Create urgency (if genuine): "To hit the optimal application window..."
+• Offer trial option: "Would you like to start with a trial on X acres?"
+
+STEP 4: HANDLE NEGOTIATION:
+• If they ask for discount: "I understand. What would make this work for you?"
+• Trade value: "If you commit to [larger acreage/multi-year], I can..."
+• Never give something without getting something
+• Focus on total value, not just price
+
+STEP 5: CLOSE THE DEAL:
+• Summarize agreement: "So we're agreed on..."
+• Confirm details: pricing, acreage, timeline, terms
+• Set contract execution timeline
+• Schedule next steps: contract delivery, implementation planning
+
+CONTRACT EXECUTION:
+
+CONTRACT COMPONENTS:
+• Farm/company information
+• Program details (products, rates, acreage)
+• Pricing and payment terms
+• Implementation timeline and schedule
+• Delivery and logistics
+• Terms and conditions
+• Signatures and dates
+
+CONTRACT DELIVERY:
+• Send contract within 24 hours of verbal agreement
+• Follow up within 48 hours if not returned
+• Offer to review contract together (call or in-person)
+• Address any questions or concerns promptly
+
+POST-CONTRACT:
+• Welcome email/call
+• Implementation planning meeting
+• Schedule soil test (if not done)
+• Coordinate delivery and application
+• Set up monitoring and follow-up schedule
+• Move to "Customer" stage in CRM
+
+DEAL STALLED? RE-ENGAGEMENT STRATEGY:
+• If no response after proposal: Wait 7 days, then send value content
+• If no response after contract: Wait 5 days, then call with calibrated question
+• If objection raised: Use labeling and calibrated questions
+• If timeline extended: Stay engaged with value content, check in monthly
+• If lost to competitor: Ask what would have made the difference (learning opportunity)
 
 ================================================================================
 
 
-9. IMPLEMENTATION
+9. TIMELINE & KPIs
 ================================================================================
 
-[Content to be added - see detailed sections in subsequent subsections]
+This section outlines key performance indicators (KPIs) to track throughout the Orchards Program execution. These metrics help measure progress, identify bottlenecks, and optimize the sales process.
+
+9.3 KEY PERFORMANCE TARGETS & METRICS
+================================================================================
+
+LEAD GENERATION KPIs:
+• Total prospects in CRM database
+• Target: 500+ qualified prospects by December 15, 2024
+• Prospects added per week
+• Data completeness rate (complete profiles vs. incomplete)
+• Geographic coverage (prospects within 300-mile radius)
+• Crop type distribution (pistachio, citrus, avocado, vineyard, etc.)
+
+OUTREACH & ENGAGEMENT KPIs:
+• Hook Point email open rate (target: 25%+)
+• Hook Point email click rate (target: 5%+)
+• Hook Point reply rate (target: 3%+)
+• Nurture email open rate (target: 30%+)
+• Nurture email click rate (target: 8%+)
+• Total email responses received
+• Engagement score (combination of opens, clicks, replies)
+
+SMART CALLING KPIs:
+• Calls made per week (target: 50+ calls/week per rep)
+• Call connection rate (target: 30%+)
+• Calls with decision maker (target: 20%+ of total calls)
+• Voicemails left
+• Call-to-meeting conversion rate
+• Average calls per prospect before engagement
+
+SITE VISIT KPIs:
+• Site visits scheduled per month (target: 8-12 visits/month per rep)
+• Site visits completed per month
+• Visit-to-proposal conversion rate (target: 60%+)
+• Average days from visit to proposal
+• Photos and documentation completion rate
+
+PIPELINE HEALTH KPIs:
+• Total leads in pipeline
+• Leads by stage:
+  - Lead (new entry)
+  - Engaged (opened/clicked/replied)
+  - Visit Scheduled
+  - Visit Completed
+  - Proposal Sent
+  - Trial/Sample
+  - Customer
+• Average time in each pipeline stage
+• Pipeline velocity (days from lead to customer)
+• Stalled deals (no activity in 30+ days)
+
+CONVERSION KPIs:
+• Lead-to-engaged conversion rate (target: 15%+)
+• Engaged-to-visit conversion rate (target: 25%+)
+• Visit-to-proposal conversion rate (target: 60%+)
+• Proposal-to-customer conversion rate (target: 30%+)
+• Overall lead-to-customer conversion rate (target: 2-3%)
+• Trial-to-customer conversion rate (target: 40%+)
+
+SALES ACTIVITY KPIs:
+• Emails sent per week
+• Calls made per week
+• Site visits per month
+• Proposals sent per month
+• Follow-up activities logged
+• CRM activity completion rate
+
+REVENUE KPIs:
+• Total deals closed
+• Average deal size
+• Revenue per customer
+• Revenue per acre
+• Customer lifetime value
+• Pipeline value (weighted by stage probability)
+
+CUSTOMER SUCCESS KPIs:
+• Customer retention rate
+• Repeat order rate
+• Customer satisfaction score
+• Referrals generated
+• Testimonials collected
+• Case studies completed
+
+REPORTING FREQUENCY:
+• Daily: Personal activity tracking (calls, emails, tasks)
+• Weekly: Team dashboard review (pipeline, activities, conversions)
+• Monthly: Comprehensive review (KPIs, trends, adjustments)
+• Quarterly: Strategic review (goals, targets, process optimization)
 
 ================================================================================
 
 
-10. TIMELINE & KPIs
+10. RESOURCES, TOOLS & SYSTEMS
 ================================================================================
 
-[Content to be added - see detailed sections in subsequent subsections]
+This section outlines all tools, platforms, and systems used throughout the Orchards Program execution. These resources support sales, marketing, operations, and administration functions.
+
+10.1 SALES TOOLS
+================================================================================
+
+PIPEDRIVE (CRM TRACKING):
+• Primary CRM platform for lead management and pipeline tracking
+• Contact and company database management
+• Deal pipeline visualization and forecasting
+• Activity logging and call tracking
+• Email integration and template storage
+• Reporting and analytics dashboard
+• Custom fields for crop type, acreage, and farm characteristics
+• Tagging system for segmentation and filtering
+
+KIXIE (INTEGRATED CALLING & TEXT SYSTEM):
+• Integrated calling system connected to Pipedrive CRM
+• Click-to-call functionality from CRM records
+• Automatic call logging and recording
+• SMS/text messaging capabilities
+• Call analytics and performance tracking
+• Local presence dialing for better answer rates
+• Voicemail drop features for efficiency
+
+10.2 MARKETING TOOLS
+================================================================================
+
+CHATGPT – CONTENT CREATION:
+• Email template development and refinement
+• Hook point messaging creation
+• Value proposition articulation
+• Objection handling scripts
+• Social media content generation
+• Blog post and newsletter content
+• Personalized outreach message customization
+
+PERPLEXITY – RESEARCH AUTOMATION:
+• Prospect research and background information gathering
+• Industry trend analysis and market research
+• Competitive intelligence gathering
+• Crop-specific research and best practices
+• Regional agricultural news and updates
+• Company and decision-maker research
+
+MIDJOURNEY / ADOBE STOCK – VISUAL ASSETS:
+• Custom image creation for marketing materials
+• Email header and visual asset design
+• Social media graphics and infographics
+• Presentation slide visuals
+• Product photography and editing
+• Brand-consistent visual content library
+
+10.3 OPERATIONS TOOLS
+================================================================================
+
+GMAPS EXTRACTOR – LEAD SCRAPING:
+• Geographic lead identification and extraction
+• Farm and orchard location mapping
+• Contact information gathering
+• Business listing data collection
+• Territory mapping and coverage analysis
+
+OPTIMO – ROUTE OPTIMIZATION:
+• Multi-stop route planning for farm visits
+• Travel time and distance optimization
+• Fuel cost calculation and efficiency tracking
+• Visit scheduling and calendar integration
+• Territory coverage optimization
+
+MYMAPS – SALES TERRITORY VISUALIZATION:
+• Visual mapping of target prospects
+• Geographic territory boundaries
+• Crop type distribution visualization
+• Priority account mapping
+• Route planning and territory analysis
+• Shareable maps for team coordination
+
+10.4 ADMINISTRATION TOOLS
+================================================================================
+
+AIRTABLE – DATABASE & INVENTORY TRACKING:
+• Inventory management and tracking
+• Product blend database
+• Order fulfillment tracking
+• Customer database backup and analysis
+• Custom reporting and data visualization
+• Integration with other tools via API
+
+GOOGLE DRIVE – DOCUMENT STORAGE & ACCESS:
+• Centralized document repository
+• Playbook and template storage
+• Shared access for team collaboration
+• Version control and document history
+• Mobile access for field representatives
+• Secure file sharing and permissions
+
+GOOGLE DOCS / SHEETS / GMAIL – COLLABORATION SUITE:
+• Document creation and editing (Google Docs)
+• Spreadsheet analysis and tracking (Google Sheets)
+• Email communication (Gmail)
+• Real-time collaboration features
+• Template library and shared resources
+• Calendar integration for scheduling
+
+10.5 SECURITY & ACCESS CONTROL PROTOCOLS
+================================================================================
+
+• Role-based access control for all platforms
+• Secure password management and sharing protocols
+• Two-factor authentication requirements
+• Data backup and recovery procedures
+• Confidential customer information protection
+• Regular security audits and access reviews
+• Team member onboarding and offboarding procedures
+• Document retention and archiving policies
 
 ================================================================================
 
 
-11. TOOLS & PLATFORMS
+11. APPENDIX
 ================================================================================
 
-[Content to be added - see detailed sections in subsequent subsections]
-
-================================================================================
-
-
-12. APPENDIX
-================================================================================
-
-12.6 EMAIL TEMPLATES - 5-EMAIL NURTURE SERIES EXAMPLES
+11.6 EMAIL TEMPLATES - 5-EMAIL NURTURE SERIES EXAMPLES
 ================================================================================
 
 This section provides complete, ready-to-use email examples for the 5-Email 
@@ -2071,7 +2628,7 @@ CRM INTEGRATION:
 
 ================================================================================
 
-12.7 ACTUAL EMAIL CAMPAIGN EXAMPLES - READY TO SEND
+11.7 ACTUAL EMAIL CAMPAIGN EXAMPLES - READY TO SEND
 ================================================================================
 
 This section provides five complete, realistic email examples that can be sent 
@@ -2469,7 +3026,7 @@ These emails are ready to send but should be customized based on:
 
 ================================================================================
 
-12.13 PROSPECT DATABASE - CATEGORIZED LIST
+11.13 PROSPECT DATABASE - CATEGORIZED LIST
 
 This section contains a comprehensive list of all identified prospects,
 cleaned and categorized by crop type. This database should be entered

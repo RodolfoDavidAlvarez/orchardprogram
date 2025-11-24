@@ -26,7 +26,7 @@
         font-family: "Georgia", "Times New Roman", serif;
         background: #e8e8e8;
         padding: 20px;
-        line-height: 1.7;
+        line-height: 1.5;
         color: #333;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
@@ -115,12 +115,15 @@
         height: 100%;
         z-index: 10;
         background: white;
+        display: block;
       }
 
       .full-page-image-container img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        display: block;
+        position: relative;
       }
 
       .page-number {
@@ -135,9 +138,9 @@
       h1 {
         font-size: 28pt;
         font-weight: 700;
-        margin-bottom: 24pt;
+        margin-bottom: 16pt;
         border-bottom: 3px solid #333;
-        padding-bottom: 12pt;
+        padding-bottom: 8pt;
         letter-spacing: -0.5px;
         color: #2c3e50;
         text-transform: uppercase;
@@ -146,11 +149,11 @@
       h2 {
         font-size: 20pt;
         font-weight: 600;
-        margin-top: 24pt;
-        margin-bottom: 12pt;
+        margin-top: 16pt;
+        margin-bottom: 8pt;
         color: #2c3e50;
         border-bottom: 2px solid #ecf0f1;
-        padding-bottom: 6pt;
+        padding-bottom: 4pt;
         display: flex;
         align-items: center;
         page-break-after: avoid;
@@ -172,8 +175,8 @@
       h3 {
         font-size: 14pt;
         font-weight: 600;
-        margin-top: 18pt;
-        margin-bottom: 8pt;
+        margin-top: 12pt;
+        margin-bottom: 6pt;
         color: #34495e;
         page-break-after: avoid;
         break-after: avoid;
@@ -184,8 +187,8 @@
       h4 {
         font-size: 11pt;
         font-weight: 700;
-        margin-top: 12pt;
-        margin-bottom: 4pt;
+        margin-top: 8pt;
+        margin-bottom: 3pt;
         color: #2c3e50;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -194,7 +197,7 @@
       }
 
       p {
-        margin-bottom: 10pt;
+        margin-bottom: 6pt;
         text-align: justify;
         font-size: 10.5pt;
         color: #444;
@@ -202,13 +205,13 @@
 
       ul,
       ol {
-        margin-bottom: 12pt;
+        margin-bottom: 8pt;
         margin-left: 18pt;
         font-size: 10.5pt;
       }
 
       li {
-        margin-bottom: 4pt;
+        margin-bottom: 2pt;
         padding-left: 4pt;
       }
 
@@ -228,9 +231,12 @@
 
       /* Image styling */
       .image-container {
-        margin: 15pt 0;
+        margin: 8pt 0;
         text-align: center;
         page-break-inside: avoid;
+        display: block;
+        position: relative;
+        clear: both;
       }
 
       .image-container img {
@@ -239,12 +245,15 @@
         border-radius: 4px;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         border: 1px solid #eee;
+        display: block;
+        margin: 0 auto;
+        position: relative;
       }
 
       .image-caption {
         font-size: 9pt;
         color: #7f8c8d;
-        margin-top: 6pt;
+        margin-top: 4pt;
         font-style: italic;
       }
 
@@ -252,22 +261,25 @@
       .product-section {
         background: #f8f9fa;
         border: 1px solid #e9ecef;
-        padding: 15pt;
-        margin: 15pt 0;
+        padding: 10pt;
+        margin: 10pt 0;
         border-radius: 8px;
         break-inside: avoid;
         display: flex;
         flex-direction: column;
         align-items: center;
+        position: relative;
       }
 
       .product-section .image-container {
         margin-top: 0;
+        margin-bottom: 8pt;
       }
 
       .product-section .image-container img {
         max-height: 250px;
         width: auto;
+        display: block;
       }
 
       /* Cover page styling */
@@ -319,11 +331,11 @@
 
       /* TOC styling */
       .toc {
-        margin-top: 20pt;
+        margin-top: 12pt;
       }
 
       .toc-item {
-        margin-bottom: 12pt;
+        margin-bottom: 8pt;
         border-bottom: 1px dotted #bdc3c7;
         padding-bottom: 2pt;
         display: block;
@@ -339,7 +351,7 @@
 
       .toc-subitem {
         margin-left: 20pt;
-        margin-top: 4pt;
+        margin-top: 2pt;
         font-size: 10pt;
       }
 
@@ -350,8 +362,10 @@
 
       /* Table styling */
       .prospect-table-container {
-        margin: 15pt 0;
+        margin: 8pt 0;
         overflow-x: auto;
+        position: relative;
+        display: block;
       }
 
       .prospect-table {
@@ -384,9 +398,11 @@
       .key-points {
         background: #fff;
         border-left: 4px solid #3498db;
-        padding: 15pt;
-        margin: 15pt 0;
+        padding: 10pt;
+        margin: 8pt 0;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        position: relative;
+        display: block;
       }
 
       .example-box {
@@ -409,10 +425,12 @@
         background: #fff;
         border: 1px solid #ddd;
         border-radius: 4px;
-        margin: 15pt 0;
+        margin: 8pt 0;
         font-family: Arial, sans-serif;
         font-size: 10pt;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        position: relative;
+        display: block;
       }
 
       .email-header {
@@ -439,7 +457,7 @@
         font-size: 12pt;
         font-weight: 700;
         color: #c0392b;
-        margin: 15pt 0 5pt;
+        margin: 8pt 0 3pt;
         text-transform: uppercase;
         letter-spacing: 0.5px;
         border-bottom: 1px solid #e74c3c;
@@ -449,7 +467,9 @@
       /* Geographic Scope map styling */
       .geo-scope {
         text-align: center;
-        margin: 20pt 0;
+        margin: 10pt 0;
+        display: block;
+        position: relative;
       }
 
       .geo-scope img {
@@ -457,12 +477,23 @@
         max-height: 500px;
         border: 1px solid #ddd;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        display: block;
+        margin: 0 auto;
+        position: relative;
       }
 
       /* Crop Challenges map styling */
+      .crop-challenges-image {
+        display: block;
+        position: relative;
+      }
+
       .crop-challenges-image img {
         max-width: 100%;
         max-height: 400px;
+        display: block;
+        margin: 0 auto;
+        position: relative;
       }
     </style>
   </head>
@@ -496,23 +527,27 @@
         }
 
         // Wait for images to load before pagination
-        setTimeout(paginateContent, 1000);
+        // Use a longer delay to ensure all layout is settled
+        setTimeout(paginateContent, 1500);
       }
 
-      // Pagination Logic
+      // Pagination Logic - Only split pages if content significantly overflows
       function paginateContent() {
         console.log("Starting pagination...");
-        // Using Array.from to snapshot the initial list of pages
-        // We only want to process the ORIGINAL pages generated by the server
-        // New pages created during pagination shouldn't be re-processed in the main loop
-        const originalPages = Array.from(document.querySelectorAll(".page"));
+        // Wait a bit more for all images and layout to settle
+        setTimeout(() => {
+          // Using Array.from to snapshot the initial list of pages
+          // We only want to process the ORIGINAL pages generated by the server
+          // New pages created during pagination shouldn't be re-processed in the main loop
+          const originalPages = Array.from(document.querySelectorAll(".page"));
 
-        originalPages.forEach((page) => {
-          // Skip cover page and TOC
-          if (page.id === "cover" || page.id === "toc") return;
+          originalPages.forEach((page) => {
+            // Skip cover page and TOC
+            if (page.id === "cover" || page.id === "toc") return;
 
-          paginateSinglePage(page);
-        });
+            paginateSinglePage(page);
+          });
+        }, 500);
       }
 
       function paginateSinglePage(page) {
@@ -522,16 +557,21 @@
         // Content area height: 11in - 2in = 9in = 864px
         // Content starts at 96px (padding-top)
         // Safe bottom limit: 1056px - 96px (padding-bottom) = 960px
-        // We use slightly less to be safe: 950px
+        // Use a more conservative limit to avoid unnecessary splits
         const PAGE_HEIGHT_PX = 1056;
-        const SAFE_BOTTOM_LIMIT = 950;
+        const SAFE_BOTTOM_LIMIT = 1000; // More conservative - only split if really overflowing
         const CONTENT_START_TOP = 96;
 
-        // Check if page actually overflows
-        // scrollHeight includes padding
-        if (page.scrollHeight <= PAGE_HEIGHT_PX) return;
+        // Check if page actually overflows significantly
+        // Only split if content is clearly too much (more than 100px overflow)
+        // This prevents unnecessary page splits that create white space
+        const overflow = page.scrollHeight - PAGE_HEIGHT_PX;
+        if (overflow < 100) {
+          console.log(`Page ${page.id} has small overflow (${overflow}px), not splitting to avoid white space.`);
+          return; // Don't split for small overflows
+        }
 
-        console.log(`Page ${page.id} overflows (${page.scrollHeight}px). Splitting...`);
+        console.log(`Page ${page.id} overflows significantly (${page.scrollHeight}px, ${overflow}px overflow). Splitting...`);
 
         // Create a new page for overflow content
         const newPage = document.createElement("div");
@@ -562,6 +602,7 @@
 
         const children = Array.from(contentDiv.children);
         let moving = false;
+        let firstMovedIndex = -1;
 
         for (let i = 0; i < children.length; i++) {
           const child = children[i];
@@ -572,31 +613,44 @@
             continue;
           }
 
-          // Calculate child position relative to the PAGE (not contentDiv)
-          // child.offsetTop is relative to contentDiv (which is at top: 0 inside page padding?)
-          // .page has padding: 1in. .page-content is inside.
-          // Let's rely on getBoundingClientRect for absolute precision relative to viewport,
-          // but simple offset calculation is safer if page is not scrolled.
+          // Calculate child position relative to the PAGE
+          // Use getBoundingClientRect for more accurate positioning
+          const pageRect = page.getBoundingClientRect();
+          const childRect = child.getBoundingClientRect();
 
-          // contentDiv offsetTop should be 96px (1in padding)
-          // child.offsetTop is relative to contentDiv
-          const childBottom = 96 + child.offsetTop + child.offsetHeight;
+          // Calculate position relative to page top (accounting for padding)
+          const childTopRelativeToPage = childRect.top - pageRect.top;
+          const childBottom = childTopRelativeToPage + child.offsetHeight;
 
+          // Only move if element would clearly overflow
           if (childBottom > SAFE_BOTTOM_LIMIT) {
-            console.log(`Element causes overflow (bottom: ${childBottom}). Moving to next page.`);
+            // Don't move if it's the first element (would create empty page)
+            if (i === 0 && children.length > 1) {
+              continue;
+            }
+            console.log(`Element ${i} causes overflow (bottom: ${childBottom}). Moving to next page.`);
             moving = true;
+            firstMovedIndex = i;
             newPageContent.appendChild(child);
           }
         }
 
-        // If the new page ALSO overflows, recursively paginate it
-        // Use setTimeout to allow DOM to update/reflow
-        if (newPage.scrollHeight > PAGE_HEIGHT_PX) {
-          setTimeout(() => paginateSinglePage(newPage), 10);
+        // If we didn't move anything, remove the new page
+        if (firstMovedIndex === -1 || newPageContent.children.length === 0) {
+          newPage.remove();
+          return;
         }
 
+        // If the new page ALSO overflows significantly, recursively paginate it
+        // Use setTimeout to allow DOM to update/reflow
+        setTimeout(() => {
+          const newOverflow = newPage.scrollHeight - PAGE_HEIGHT_PX;
+          if (newOverflow > 100) {
+            paginateSinglePage(newPage);
+          }
+        }, 50);
+
         // Check if original page is now empty (unlikely but possible if first element was huge)
-        // If contentDiv is empty, we might want to remove the page or warn
         if (contentDiv.children.length === 0) {
           console.warn(`Page ${page.id} became empty after pagination!`);
         }
