@@ -297,6 +297,25 @@
           -webkit-print-color-adjust: exact;
           color-adjust: exact;
         }
+
+        /* Print-safe styling for all enhanced elements */
+        .emphasis-title,
+        .hook-point-box,
+        .email-example,
+        .example-box,
+        .cta-box,
+        .key-points {
+          -webkit-print-color-adjust: exact;
+          color-adjust: exact;
+        }
+        
+        /* Ensure proper page breaks for special content */
+        .email-example,
+        .hook-point-box,
+        .example-box {
+          page-break-inside: avoid;
+          break-inside: avoid;
+        }
       }
 
       .page-number {
@@ -322,11 +341,8 @@
       }
 
       h1::before {
-        content: "\f0f6";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        color: #3498db;
-        font-size: 20pt;
+        content: "📋";
+        font-size: 18pt;
         margin-right: 8pt;
         vertical-align: middle;
       }
@@ -360,31 +376,28 @@
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        color: #3498db;
         font-size: 16pt;
         width: 35pt;
+        height: 35pt;
         text-align: center;
+        line-height: 35pt;
         background: rgba(52, 152, 219, 0.1);
         border-radius: 50%;
-        height: 35pt;
-        line-height: 35pt;
         box-shadow: 0 2pt 6pt rgba(52, 152, 219, 0.2);
       }
 
-      /* Section-specific icons */
-      h2:nth-of-type(1)::before { content: "\f05a"; } /* Purpose - info */
-      h2:nth-of-type(2)::before { content: "\f1e6"; } /* Research - search */
-      h2:nth-of-type(3)::before { content: "\f0eb"; } /* Value Prop - lightbulb */
-      h2:nth-of-type(4)::before { content: "\f233"; } /* CRM - database */
-      h2:nth-of-type(5)::before { content: "\f0e0"; } /* Outreach - envelope */
-      h2:nth-of-type(6)::before { content: "\f4c4"; } /* Nurturing - seedling */
-      h2:nth-of-type(7)::before { content: "\f0d6"; } /* Sales - money-bill */
-      h2:nth-of-type(8)::before { content: "\f085"; } /* Implementation - cogs */
-      h2:nth-of-type(9)::before { content: "\f073"; } /* Timeline - calendar */
-      h2:nth-of-type(10)::before { content: "\f0ad"; } /* Tools - wrench */
-      h2:nth-of-type(11)::before { content: "\f0c6"; } /* Appendix - paperclip */
+      /* Section-specific emoji icons */
+      h2:nth-of-type(1)::before { content: "ℹ️"; } /* Purpose - info */
+      h2:nth-of-type(2)::before { content: "🔍"; } /* Research - search */
+      h2:nth-of-type(3)::before { content: "💡"; } /* Value Prop - lightbulb */
+      h2:nth-of-type(4)::before { content: "🗄️"; } /* CRM - database */
+      h2:nth-of-type(5)::before { content: "📧"; } /* Outreach - envelope */
+      h2:nth-of-type(6)::before { content: "🌱"; } /* Nurturing - seedling */
+      h2:nth-of-type(7)::before { content: "💰"; } /* Sales - money */
+      h2:nth-of-type(8)::before { content: "⚙️"; } /* Implementation - gear */
+      h2:nth-of-type(9)::before { content: "📅"; } /* Timeline - calendar */
+      h2:nth-of-type(10)::before { content: "🔧"; } /* Tools - wrench */
+      h2:nth-of-type(11)::before { content: "📎"; } /* Appendix - paperclip */
 
       /* First h2 in a page doesn't need page break */
       .page > h2:first-child {
@@ -413,9 +426,7 @@
       }
 
       h3::before {
-        content: "\f138";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
+        content: "✓";
         position: absolute;
         left: 0;
         top: 50%;
@@ -429,6 +440,7 @@
         background: rgba(39, 174, 96, 0.1);
         border-radius: 4pt;
         box-shadow: 0 1pt 3pt rgba(39, 174, 96, 0.2);
+        font-weight: bold;
       }
 
       h4 {
@@ -447,124 +459,47 @@
         widows: 2;
       }
 
-      /* Enhanced Table Styling */
+      /* Compact PDF-Appropriate Table Styling */
       .prospect-table-container {
-        margin: 20pt 0;
-        overflow-x: auto;
+        margin: 8pt 0;
         page-break-inside: avoid;
-        border-radius: 8pt;
-        box-shadow: 0 4pt 12pt rgba(0, 0, 0, 0.1);
-        background: white;
       }
 
       .prospect-table {
         width: 100%;
         border-collapse: collapse;
-        font-size: 9pt;
+        font-size: 8pt;
         margin: 0;
         page-break-inside: auto;
-        border-radius: 8pt;
-        overflow: hidden;
+        border: 1pt solid #bdc3c7;
       }
 
       .prospect-table thead {
-        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        background: #34495e;
         color: white;
-        position: relative;
-      }
-
-      .prospect-table thead::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 3pt;
-        background: linear-gradient(90deg, #3498db 0%, #2980b9 50%, #27ae60 100%);
       }
 
       .prospect-table th {
-        padding: 12pt 8pt;
+        padding: 4pt 3pt;
         text-align: left;
-        font-weight: 700;
-        font-size: 9pt;
-        border: none;
+        font-weight: 600;
+        font-size: 8pt;
+        border: 1pt solid #2c3e50;
         white-space: nowrap;
         text-transform: uppercase;
-        letter-spacing: 0.5pt;
-        position: relative;
-      }
-
-      .prospect-table th:first-child::before {
-        content: "\f0cb";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #3498db;
-      }
-
-      .prospect-table th:nth-child(2)::before {
-        content: "\f1ad";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #e74c3c;
-      }
-
-      .prospect-table th:nth-child(3)::before {
-        content: "\f3c5";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #f39c12;
-      }
-
-      .prospect-table th:nth-child(4)::before {
-        content: "\f095";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #27ae60;
-      }
-
-      .prospect-table th:nth-child(5)::before {
-        content: "\f0e0";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #9b59b6;
-      }
-
-      .prospect-table th:nth-child(6)::before {
-        content: "\f0ac";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        margin-right: 4pt;
-        color: #1abc9c;
+        letter-spacing: 0.2pt;
       }
 
       .prospect-table td {
-        padding: 10pt 8pt;
-        border: none;
-        border-bottom: 1px solid #ecf0f1;
+        padding: 3pt 2pt;
+        border: 0.5pt solid #ddd;
         vertical-align: top;
         word-wrap: break-word;
-        transition: background-color 0.2s ease;
-      }
-
-      .prospect-table tbody tr {
-        background-color: white;
-        transition: all 0.2s ease;
+        line-height: 1.2;
       }
 
       .prospect-table tbody tr:nth-child(even) {
         background-color: #f8f9fa;
-      }
-
-      .prospect-table tbody tr:hover {
-        background-color: #e8f6ff;
-        transform: translateY(-1px);
-        box-shadow: 0 2pt 8pt rgba(52, 152, 219, 0.1);
       }
 
       .prospect-table td:first-child {
@@ -601,45 +536,40 @@
         text-decoration: underline;
       }
 
-      /* General Table Styling for All Tables */
+      /* Compact General Table Styling */
       table:not(.prospect-table) {
         width: 100%;
         border-collapse: collapse;
-        margin: 15pt 0;
-        font-size: 10pt;
+        margin: 8pt 0;
+        font-size: 9pt;
         page-break-inside: auto;
-        border-radius: 6pt;
-        overflow: hidden;
-        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.08);
+        border: 1pt solid #bdc3c7;
       }
 
       table:not(.prospect-table) thead {
-        background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        background: #34495e;
         color: white;
       }
 
       table:not(.prospect-table) th {
-        padding: 10pt 8pt;
+        padding: 4pt 3pt;
         text-align: left;
         font-weight: 600;
-        font-size: 10pt;
-        border: none;
+        font-size: 9pt;
+        border: 1pt solid #2c3e50;
         text-transform: uppercase;
-        letter-spacing: 0.3pt;
+        letter-spacing: 0.2pt;
       }
 
       table:not(.prospect-table) td {
-        padding: 8pt;
-        border-bottom: 1px solid #ecf0f1;
+        padding: 3pt;
+        border: 0.5pt solid #ddd;
         vertical-align: top;
+        line-height: 1.2;
       }
 
       table:not(.prospect-table) tbody tr:nth-child(even) {
         background-color: #f8f9fa;
-      }
-
-      table:not(.prospect-table) tbody tr:hover {
-        background-color: #e8f4f8;
       }
 
       /* Enhanced List Styling */
@@ -694,6 +624,192 @@
         color: #2c3e50;
         margin-bottom: 8pt;
         font-size: 11pt;
+      }
+
+      /* Enhanced Heading Hierarchy */
+      .emphasis-title {
+        font-size: 16pt;
+        font-weight: 700;
+        color: #e74c3c;
+        text-transform: uppercase;
+        letter-spacing: 1pt;
+        margin: 15pt 0 8pt 0;
+        text-align: center;
+        background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+        padding: 10pt;
+        border: 2pt solid #e74c3c;
+        border-radius: 6pt;
+        box-shadow: 0 2pt 8pt rgba(231, 76, 60, 0.1);
+      }
+
+      .emphasis-title::before {
+        content: "⚡";
+        margin-right: 8pt;
+        font-size: 14pt;
+      }
+
+      .hook-point-title {
+        font-size: 14pt;
+        font-weight: 600;
+        color: #f39c12;
+        margin: 12pt 0 6pt 0;
+        padding-left: 25pt;
+        position: relative;
+        border-left: 3pt solid #f39c12;
+        padding-left: 15pt;
+      }
+
+      .hook-point-title::before {
+        content: "🎯";
+        position: absolute;
+        left: -12pt;
+        top: 50%;
+        transform: translateY(-50%);
+        background: white;
+        padding: 3pt;
+        border-radius: 50%;
+        box-shadow: 0 1pt 4pt rgba(243, 156, 18, 0.2);
+      }
+
+      /* Email Content Box */
+      .email-example {
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        border: 1pt solid #bdc3c7;
+        border-radius: 6pt;
+        padding: 12pt;
+        margin: 12pt 0;
+        font-family: "Courier New", monospace;
+        font-size: 9pt;
+        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.05);
+        position: relative;
+      }
+
+      .email-example::before {
+        content: "📧 EMAIL TEMPLATE";
+        position: absolute;
+        top: -6pt;
+        left: 12pt;
+        background: white;
+        padding: 0 8pt;
+        font-size: 7pt;
+        font-weight: 600;
+        color: #7f8c8d;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
+        font-family: "Georgia", "Times New Roman", serif;
+      }
+
+      .email-header {
+        border-bottom: 1pt solid #ecf0f1;
+        padding-bottom: 8pt;
+        margin-bottom: 8pt;
+        font-size: 8pt;
+      }
+
+      .email-header .field {
+        margin-bottom: 2pt;
+      }
+
+      .email-header .field-label {
+        font-weight: 600;
+        color: #34495e;
+        display: inline-block;
+        width: 60pt;
+      }
+
+      .email-body {
+        line-height: 1.4;
+        color: #2c3e50;
+      }
+
+      /* Example/Case Study Box */
+      .example-box {
+        background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%);
+        border: 1pt solid #3498db;
+        border-left: 4pt solid #3498db;
+        border-radius: 0 6pt 6pt 0;
+        padding: 12pt;
+        margin: 12pt 0;
+        font-size: 9pt;
+        position: relative;
+      }
+
+      .example-box::before {
+        content: "💼 EXAMPLE";
+        position: absolute;
+        top: -6pt;
+        left: 12pt;
+        background: white;
+        padding: 0 8pt;
+        font-size: 7pt;
+        font-weight: 600;
+        color: #3498db;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
+      }
+
+      /* Hook Point Emphasis Box */
+      .hook-point-box {
+        background: linear-gradient(135deg, #fff8dc 0%, #ffffff 100%);
+        border: 2pt solid #f39c12;
+        border-radius: 8pt;
+        padding: 15pt;
+        margin: 15pt 0;
+        text-align: center;
+        position: relative;
+        box-shadow: 0 3pt 12pt rgba(243, 156, 18, 0.1);
+      }
+
+      .hook-point-box::before {
+        content: "🎯 HOOK POINT";
+        position: absolute;
+        top: -8pt;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 2pt 12pt;
+        font-size: 8pt;
+        font-weight: 700;
+        color: #f39c12;
+        text-transform: uppercase;
+        letter-spacing: 0.8pt;
+        border-radius: 12pt;
+        border: 2pt solid #f39c12;
+      }
+
+      .hook-point-content {
+        font-size: 11pt;
+        font-weight: 600;
+        color: #d68910;
+        font-style: italic;
+      }
+
+      /* Call-to-Action Box */
+      .cta-box {
+        background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
+        border: 2pt solid #27ae60;
+        border-radius: 6pt;
+        padding: 12pt;
+        margin: 12pt 0;
+        text-align: center;
+        font-weight: 600;
+        color: #27ae60;
+        position: relative;
+      }
+
+      .cta-box::before {
+        content: "🚀 ACTION REQUIRED";
+        position: absolute;
+        top: -6pt;
+        left: 50%;
+        transform: translateX(-50%);
+        background: white;
+        padding: 0 8pt;
+        font-size: 7pt;
+        font-weight: 600;
+        color: #27ae60;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
       }
 
       .cover-page {
@@ -754,6 +870,63 @@
         font-size: 12pt;
         margin-top: 40pt;
         color: #7f8c8d;
+      }
+
+      /* Enhanced Paragraph and Content Styling */
+      p {
+        text-align: justify;
+        line-height: 1.6;
+        margin-bottom: 8pt;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -moz-hyphens: auto;
+        text-rendering: optimizeLegibility;
+      }
+
+      /* Professional emphasis styling */
+      strong {
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      em {
+        font-style: italic;
+        color: #34495e;
+      }
+
+      /* Professional blockquote styling */
+      blockquote {
+        border-left: 4pt solid #3498db;
+        padding-left: 15pt;
+        margin: 12pt 0;
+        font-style: italic;
+        color: #5d6d7e;
+        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        padding: 10pt 15pt;
+        border-radius: 0 6pt 6pt 0;
+      }
+
+      /* Enhanced link styling */
+      a {
+        color: #3498db;
+        text-decoration: none;
+        border-bottom: 1pt solid transparent;
+        transition: all 0.2s ease;
+      }
+
+      a:hover {
+        color: #2980b9;
+        border-bottom-color: #2980b9;
+      }
+
+      /* Professional code/monospace styling */
+      code {
+        font-family: "Courier New", Consolas, monospace;
+        background: #f8f9fa;
+        padding: 2pt 4pt;
+        border-radius: 2pt;
+        font-size: 9pt;
+        border: 1pt solid #ecf0f1;
       }
 
       .toc {
