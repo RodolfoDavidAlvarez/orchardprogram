@@ -85,9 +85,10 @@ TABLE OF CONTENTS
    8.5 Closing Steps & Contract Execution
 
 9. TIMELINE & KPIs ................................................ Page 9
-   9.1 Annual Calendar (Q1-Q4)
-   9.2 Tradeshow Calendar
-   9.3 Key Performance Targets & Metrics
+   9.1 Getting Started Schedule for New Representatives
+   9.2 Annual Calendar (Q1-Q4)
+   9.3 Tradeshow Calendar
+   9.4 Key Performance Targets & Metrics
 
 10. RESOURCES, TOOLS & SYSTEMS ................................... Page 10
    10.1 Sales Tools
@@ -1959,9 +1960,150 @@ DEAL STALLED? RE-ENGAGEMENT STRATEGY:
 9. TIMELINE & KPIs
 ================================================================================
 
-This section outlines key performance indicators (KPIs) to track throughout the Orchards Program execution. These metrics help measure progress, identify bottlenecks, and optimize the sales process.
+This section provides schedules, timelines, and key performance indicators (KPIs) to track throughout the Orchards Program execution. These tools help new representatives get started and measure progress.
 
-9.3 KEY PERFORMANCE TARGETS & METRICS
+9.1 GETTING STARTED SCHEDULE FOR NEW REPRESENTATIVES
+================================================================================
+
+This schedule provides a day-by-day, week-by-week roadmap for new representatives to get up to speed and start generating results quickly.
+
+FIRST WEEK - FOUNDATION & SETUP:
+
+DAY 1 (Monday):
+• Complete CRM access setup (Pipedrive login, permissions)
+• Review complete playbook document (sections 1-8)
+• Set up Kixie calling system integration
+• Familiarize yourself with product blends (Pomona, Seriokai, Bacchus)
+• Review sample email templates and calling scripts in Appendix
+• Set up Google Drive access and locate shared resources
+• Schedule 1:1 with manager to discuss territory and goals
+
+DAY 2 (Tuesday):
+• Review CRM database and existing prospects in your territory
+• Study geographic scope map (300-mile radius from SSW operations)
+• Review crop focus areas (pistachio, pome, stone fruit, avocado, citrus, vineyard)
+• Practice using CRM filters and tags for segmentation
+• Review Smart Calling framework and practice scripts
+• Set up email templates in CRM
+• Review sample proposals and ROI calculations
+
+DAY 3 (Wednesday):
+• Begin prospect research in your territory (use Gmaps Extractor, county records)
+• Start entering prospects into CRM (target: 10-15 prospects today)
+• Complete prospect profiles with all required fields:
+  - Farm name, contact info, crop type, acreage
+  - Geographic location, priority level, tags
+• Review Hook Point campaign examples
+• Practice discovery questions framework
+• Shadow experienced rep on 2-3 calls (if available)
+
+DAY 4 (Thursday):
+• Continue prospect entry (target: 10-15 more prospects)
+• Review objection handling strategies
+• Study value proposition and economic drivers
+• Review site visit preparation checklist
+• Practice proposal structure and pricing logic
+• Review negotiation principles (Never Split the Difference, Start with No)
+• Set up MyMaps for territory visualization
+
+DAY 5 (Friday):
+• Complete prospect entry for the week (target: 50+ prospects total)
+• Review weekly goals and KPIs with manager
+• Plan next week's activities
+• Review CRM reporting and dashboard setup
+• Practice full sales cycle: qualification → visit → proposal → close
+• Set up calendar for site visits and follow-ups
+
+WEEKS 2-4 - BUILDING MOMENTUM:
+
+WEEK 2 FOCUS: Outreach & Engagement
+• Monday: Review Hook Point campaign, send first batch of emails (20-30)
+• Tuesday-Thursday: Make Smart Calls (target: 50 calls for the week)
+• Friday: Review engagement metrics, plan follow-ups
+• Daily: Enter 5-10 new prospects into CRM
+• Daily: Log all activities and outcomes in CRM
+
+WEEK 3 FOCUS: Smart Calling & Qualification
+• Monday: Pull call list from CRM based on engagement (opens, clicks, replies)
+• Tuesday-Friday: Make Smart Calls (target: 60+ calls for the week)
+• Focus on discovery questions and qualification
+• Schedule first site visits for qualified prospects
+• Follow up on all email responses within 24 hours
+• Daily: Continue prospect entry (5-10 per day)
+
+WEEK 4 FOCUS: Site Visits & Proposals
+• Schedule and complete first site visits (target: 2-3 visits)
+• Document visits thoroughly in CRM (photos, notes, observations)
+• Send first proposals within 48 hours of visits
+• Follow up on proposals with calls
+• Continue Smart Calling to build pipeline
+• Review pipeline health and conversion metrics
+
+MONTHLY ROUTINE - ONGOING ACTIVITIES:
+
+DAILY ACTIVITIES (Monday-Friday):
+• Morning (9-11 AM): Smart Calling block (20-30 calls)
+• Mid-Morning (11 AM-12 PM): Email follow-ups and responses
+• Afternoon (1-3 PM): Prospect research and CRM entry (5-10 new prospects)
+• Late Afternoon (3-5 PM): Proposal development, site visit prep, admin tasks
+• End of Day: Log all activities in CRM, update pipeline stages, plan tomorrow
+
+WEEKLY ACTIVITIES:
+• Monday: Review previous week's metrics, plan week's priorities
+• Tuesday-Thursday: Focus on Smart Calling and outreach
+• Friday: Site visits (if scheduled), proposal follow-ups, week review
+• Weekly Goal: 50+ calls, 25+ new prospects entered, 2-3 site visits scheduled
+• Weekly Review: Pipeline health, conversion rates, activity levels
+
+MONTHLY ACTIVITIES:
+• Week 1: Focus on Smart Calling and building pipeline
+• Week 2: Site visits and proposal development
+• Week 3: Follow-ups, negotiations, closing deals
+• Week 4: Pipeline review, planning, and admin catch-up
+• Monthly Goal: 8-12 site visits, 4-6 proposals sent, 1-2 deals closed
+
+QUARTERLY ACTIVITIES:
+• Review annual calendar and seasonal timing
+• Plan tradeshow attendance and preparation
+• Review territory coverage and geographic gaps
+• Analyze conversion rates and pipeline health
+• Set quarterly goals and adjust strategies
+
+KEY SUCCESS HABITS:
+
+1. CRM FIRST: Log everything in CRM immediately - calls, emails, visits, notes
+2. FOLLOW-UP FAST: Respond to emails and calls within 24 hours
+3. QUALITY OVER QUANTITY: Better to have 30 well-qualified prospects than 100 unqualified
+4. CONSISTENT ACTIVITY: Daily calling and prospecting, even on slow days
+5. VALUE-FIRST APPROACH: Always lead with education and value, not sales pitch
+6. DOCUMENTATION: Take photos, write detailed notes, update CRM in real-time
+7. CONTINUOUS LEARNING: Review playbook sections regularly, study successful deals
+8. PIPELINE MANAGEMENT: Review pipeline weekly, identify stalled deals, re-engage
+
+COMMON PITFALLS TO AVOID:
+
+• Don't skip CRM logging - it's your memory and reporting tool
+• Don't make calls without preparation - review CRM profile first
+• Don't send generic emails - personalize every message
+• Don't forget to follow up - set reminders for all commitments
+• Don't neglect pipeline - review and update stages regularly
+• Don't skip site visit documentation - photos and notes are critical
+• Don't give up after one "no" - use calibrated questions to understand concerns
+• Don't discount without getting something in return - trade value, not price
+
+MEASURING SUCCESS:
+
+Track these metrics from day one:
+• Prospects entered per week (target: 25+)
+• Calls made per week (target: 50+)
+• Site visits per month (target: 8-12)
+• Proposals sent per month (target: 4-6)
+• Conversion rates at each stage
+• Pipeline value and health
+
+Adjust your schedule based on what's working, but maintain consistent daily activity.
+
+9.4 KEY PERFORMANCE TARGETS & METRICS
 ================================================================================
 
 LEAD GENERATION KPIs:
