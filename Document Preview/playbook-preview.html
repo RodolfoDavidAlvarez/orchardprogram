@@ -315,6 +315,9 @@
         margin-top: 15pt;
         margin-bottom: 8pt;
         color: #2c3e50;
+        font-weight: 600;
+        border-bottom: 1px solid #bdc3c7;
+        padding-bottom: 4pt;
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
@@ -328,12 +331,93 @@
         margin-top: 12pt;
         margin-bottom: 6pt;
         color: #34495e;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5pt;
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
         orphans: 2;
         widows: 2;
+      }
+
+      /* Prospect Table Styling */
+      .prospect-table-container {
+        margin: 15pt 0;
+        overflow-x: auto;
+        page-break-inside: avoid;
+      }
+
+      .prospect-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+        margin: 10pt 0;
+        page-break-inside: auto;
+      }
+
+      .prospect-table thead {
+        background-color: #34495e;
+        color: white;
+      }
+
+      .prospect-table th {
+        padding: 8pt 6pt;
+        text-align: left;
+        font-weight: 600;
+        font-size: 9pt;
+        border: 1px solid #2c3e50;
+        white-space: nowrap;
+      }
+
+      .prospect-table td {
+        padding: 6pt;
+        border: 1px solid #ddd;
+        vertical-align: top;
+        word-wrap: break-word;
+      }
+
+      .prospect-table tbody tr:nth-child(even) {
+        background-color: #f8f9fa;
+      }
+
+      .prospect-table tbody tr:hover {
+        background-color: #e8f4f8;
+      }
+
+      .prospect-table td:first-child {
+        font-weight: 600;
+        text-align: center;
+        width: 3%;
+      }
+
+      .prospect-table td:nth-child(2) {
+        font-weight: 600;
+        width: 18%;
+      }
+
+      .prospect-table td:nth-child(3) {
+        width: 25%;
+      }
+
+      .prospect-table td:nth-child(4),
+      .prospect-table td:nth-child(5) {
+        width: 12%;
+      }
+
+      .prospect-table td:last-child {
+        width: 18%;
+      }
+
+      .prospect-table a {
+        color: #3498db;
+        text-decoration: none;
+        word-break: break-all;
+      }
+
+      .prospect-table a:hover {
+        text-decoration: underline;
       }
 
       .cover-page {
@@ -470,7 +554,7 @@
       }
 
       li {
-        margin: 5pt 0;
+        margin: 3pt 0;
         font-size: 11pt;
         page-break-inside: auto;
         break-inside: auto;
@@ -1826,7 +1910,7 @@
         </p>
 
         <h3>2.1 Crop Focus (Expanded)</h3>
-        <ul>
+        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
           <li><strong>Pistachios:</strong> High-value nut crop with strong ROI on soil health and water-efficiency gains.</li>
           <li><strong>Pome fruits (apples, pears):</strong> Focus on fruit quality, storability, and soil structure improvements.</li>
           <li><strong>Stone fruits (peach, plum, cherry, apricot, nectarine):</strong> Emphasize fruit set, color, and consistency.</li>
@@ -1837,28 +1921,28 @@
           <li><strong>Citrus (orange, lemon, lime, grapefruit):</strong> Peel quality, brix, and stress mitigation in heat/drought.</li>
           <li><strong>Other regional high-value orchards:</strong> Add local specialty crops as mapping reveals clusters.</li>
         </ul>
-        <div class="image-container crop-focus-image">
+        <div class="image-container crop-focus-image" style="margin-top: 0;">
           <img src="assets/Crop focus.png" alt="Crop Focus" />
           <div class="image-caption">Crop Focus</div>
         </div>
 
         <h3>2.2 Geographic Scope</h3>
         <div class="geo-scope-wrap">
-          <ul>
+          <ul style="margin-bottom: 5pt; margin-top: 5pt;">
             <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
             <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
             <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
             <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
           </ul>
-          <div class="image-container geo-scope">
-            <img src="assets/300miradiouspicture.png" alt="300-mile target radius from SSW operations" />
-            <div class="image-caption">300-mile priority radius from SSW operations</div>
+          <div class="image-container geo-scope" style="margin-top: 0;">
+            <img src="assets/300miradiouspicture.png" alt="Geographic Scope" />
+            <div class="image-caption">Geographic Scope - 300-mile Radius</div>
           </div>
         </div>
 
         <h3>2.3 Common Crop Challenges</h3>
         <div class="crop-challenges-wrap">
-          <ul>
+          <ul style="margin-bottom: 5pt; margin-top: 5pt;">
             <li>Low organic matter and weak soil structure</li>
             <li>Compaction and limited infiltration</li>
             <li>Water inefficiency and uneven distribution</li>
@@ -1866,14 +1950,14 @@
             <li>Low water-holding capacity</li>
             <li>Weed pressure and low microbial activity</li>
           </ul>
-          <div class="image-container crop-challenges-image">
+          <div class="image-container crop-challenges-image" style="margin-top: 0;">
             <img src="assets/orchard soil compaction.png" alt="Orchard soil compaction" />
             <div class="image-caption">Orchard soil compaction</div>
           </div>
         </div>
 
         <h3>2.4 Common Farmer Challenges</h3>
-        <ul>
+        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
           <li>Limited equipment access or downtime for applications</li>
           <li>Soil biology and nutrient management knowledge gaps</li>
           <li>Logistics constraints (labor, timing, trucking)</li>
@@ -1881,7 +1965,7 @@
         </ul>
 
         <h3>2.5 Suitability Criteria</h3>
-        <ul>
+        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
           <li>Crop compatibility with Pomona + supporting amendments</li>
           <li>Economic viability (acreage, revenue potential, input cost baseline)</li>
           <li>Access and logistics feasibility (equipment fit, delivery access)</li>
@@ -1902,6 +1986,16 @@
         </div>
         </div>
         <div class="page-number">4</div>
+      </div>
+
+      <div class="page" id="map-page">
+        <div class="page-content" style="display: flex; flex-direction: column; height: 100%;">
+          <h2>Target Orchards Map</h2>
+          <div class="image-container" style="flex: 1; display: flex; flex-direction: column; margin-top: 20px; height: 100%;">
+            <img src="assets/Map of prospects.png" alt="Target Orchards Map" style="width: 100%; height: 100%; object-fit: contain; flex: 1;">
+            <div class="image-caption">Target Orchards Map</div>
+          </div>
+        </div>
       </div>
 
       <div class="page" id="section3">
@@ -2284,7 +2378,241 @@
       <div class="page" id="section6">
         <div class="page-content">
           <h2>7. LEAD NURTURING STRATEGY</h2>
-        <p><em>Content to be added...</em></p>
+          <p>Lead nurturing is the systematic process of building relationships with prospects through consistent, value-driven communication. This strategy transforms cold leads into warm prospects and ultimately into engaged customers by providing education, establishing credibility, and maintaining top-of-mind awareness.</p>
+          <p>The nurturing strategy combines automated email sequences with personalized touchpoints, creating a "I am automation" approach where automation handles routine communication while representatives focus on high-value personal interactions.</p>
+          <h4>KEY PRINCIPLES:</h4>
+          <ul>
+            <li>Value First: Every communication must provide genuine value before asking for anything</li>
+            <li>Consistency: Regular touchpoints maintain relationship momentum</li>
+            <li>Personalization: Automation feels personal through segmentation and customization</li>
+            <li>Education-Focused: Build trust through knowledge sharing, not selling</li>
+            <li>Multi-Channel: Email automation supplemented with personal calls, texts, and visits</li>
+            <li>Progressive Engagement: Move from awareness to interest to action systematically</li>
+          </ul>
+          <h4>STRATEGIC FOUNDATION:</h4>
+          <p>This nurturing strategy is built on proven methodologies from:</p>
+          <ul>
+            <li>Hook Point (Brendan Kane): Attention-grabbing messaging that cuts through noise</li>
+            <li>Smart Calling (Art Sobczak): Strategic, value-focused communication</li>
+            <li>SPIN Selling (Neil Rackham): Situation, Problem, Implication, Need-payoff questioning</li>
+            <li>Made to Stick (Chip & Dan Heath): Memorable, valuable content that resonates</li>
+            <li>Stories That Stick (Kindra Hall): Storytelling that builds connection and credibility</li>
+          </ul>
+          <h3>7.1 5-Email Nurture Series</h3>
+          <p>The 5-Email Nurture Series is an automated sequence that runs every 14 days, delivering value-focused content to prospects who have been contacted but haven't yet engaged or converted. This series builds trust, educates prospects, and positions SSW as a knowledgeable partner.</p>
+          <h4>SERIES OVERVIEW:</h4>
+          <ul>
+            <li>Frequency: One email every 14 days (2 weeks)</li>
+            <li>Total Duration: 10 weeks (70 days)</li>
+            <li>Goal: Progressive education and relationship building</li>
+            <li>Automation: Fully automated in CRM with personalization tokens</li>
+            <li>Exit Triggers: Engagement (reply, click, call) moves prospect to personal follow-up</li>
+          </ul>
+          <h4>EMAIL 1: THE HOOK POINT (Day 0 - Initial Contact)</h4>
+          <p><strong>OBJECTIVE:</strong> Capture attention and establish relevance</p>
+          <h4>SUBJECT LINE OPTIONS:</h4>
+          <ul>
+            <li>"[Crop Type] Farmers: One Soil Health Insight That Changes Everything"</li>
+            <li>"Why [Farm Name]'s [Crop] Operation Needs This Soil Strategy"</li>
+            <li>"The [Crop] Challenge Most Farmers Don't See Coming"</li>
+          </ul>
+          <p><strong>OPENING HOOK (First 2 sentences):</strong></p>
+          <ul>
+            <li>Reference their specific crop type and geographic region</li>
+            <li>Pose a thought-provoking question or share a surprising insight</li>
+            <li>Example: "If you're growing [crop] in [region], you're likely facing [specific challenge]. Most farmers don't realize this challenge is actually a soil health opportunity."</li>
+          </ul>
+          <h4>BODY STRUCTURE:</h4>
+          <ul>
+            <li>Problem identification (their challenge)</li>
+            <li>Insight or education (valuable information)</li>
+            <li>Soft value proposition (how SSW addresses this)</li>
+            <li>No hard sell - invitation to learn more</li>
+          </ul>
+          <h4>CALL-TO-ACTION:</h4>
+          <ul>
+            <li>"Reply with your biggest soil challenge - I'll send you a free resource"</li>
+            <li>"Click here to download our [Crop] Soil Health Guide"</li>
+            <li>"Would a 15-minute call make sense to discuss your operation?"</li>
+          </ul>
+          <h4>EMAIL 2: EDUCATIONAL VALUE (Day 14)</h4>
+          <p><strong>OBJECTIVE:</strong> Provide actionable education that demonstrates expertise</p>
+          <h4>SUBJECT LINE OPTIONS:</h4>
+          <ul>
+            <li>"The [Crop] Soil Health Factor Most Farmers Overlook"</li>
+            <li>"3 Soil Health Insights for [Crop] Operations Like Yours"</li>
+            <li>"Why [Crop] Quality Starts Below the Surface"</li>
+          </ul>
+          <h4>CONTENT FOCUS:</h4>
+          <ul>
+            <li>Deep dive into one specific soil health topic relevant to their crop</li>
+            <li>Share case study or example (anonymized if needed)</li>
+            <li>Provide actionable insights they can implement</li>
+            <li>Reference SSW methodology without heavy selling</li>
+          </ul>
+          <h4>CALL-TO-ACTION:</h4>
+          <ul>
+            <li>"Want to see how this applies to your specific operation?"</li>
+            <li>"Reply with questions - happy to help"</li>
+            <li>"Download our free [Crop] Protocol Guide"</li>
+          </ul>
+          <h4>EMAIL 3: SOCIAL PROOF & STORIES (Day 28)</h4>
+          <p><strong>OBJECTIVE:</strong> Build credibility through success stories and social proof</p>
+          <h4>SUBJECT LINE OPTIONS:</h4>
+          <ul>
+            <li>"How [Similar Farm] Increased [Crop] Quality by [X]%"</li>
+            <li>"The [Crop] Farmer Who Cut Fertilizer Costs by [X]%"</li>
+            <li>"Real Results: [Crop] Operations Using Regenerative Practices"</li>
+          </ul>
+          <h4>CONTENT FOCUS:</h4>
+          <ul>
+            <li>Success story from similar operation (same crop type, similar size)</li>
+            <li>Specific results and outcomes (yield, quality, cost savings)</li>
+            <li>Challenges overcome and solutions implemented</li>
+            <li>Testimonial or quote from satisfied customer</li>
+          </ul>
+          <h4>CALL-TO-ACTION:</h4>
+          <ul>
+            <li>"Want to see if this approach could work for [Farm Name]?"</li>
+            <li>"Schedule a 20-minute call to discuss your situation"</li>
+            <li>"Reply to learn more about our [Crop] programs"</li>
+          </ul>
+          <h4>EMAIL 4: PROBLEM-SOLUTION FRAMING (Day 42)</h4>
+          <p><strong>OBJECTIVE:</strong> Connect their challenges to SSW solutions through SPIN methodology</p>
+          <h4>SUBJECT LINE OPTIONS:</h4>
+          <ul>
+            <li>"The Hidden Cost of [Common Challenge] in [Crop] Operations"</li>
+            <li>"Why [Crop] Farmers Are Switching to Regenerative Practices"</li>
+            <li>"The [Crop] Challenge That's Costing You More Than You Think"</li>
+          </ul>
+          <p><strong>CONTENT STRUCTURE (SPIN Framework):</strong></p>
+          <ul>
+            <li>SITUATION: Acknowledge their current situation/challenges</li>
+            <li>PROBLEM: Identify specific problems they're likely facing</li>
+            <li>IMPLICATION: Show the cost/impact of not addressing these problems</li>
+            <li>NEED-PAYOFF: Present how addressing these creates value</li>
+          </ul>
+          <h4>CALL-TO-ACTION:</h4>
+          <ul>
+            <li>"Want to see how much [specific problem] is costing your operation?"</li>
+            <li>"Let's discuss your [crop] challenges - no pressure, just insights"</li>
+            <li>"Schedule a free soil health assessment"</li>
+          </ul>
+          <h4>EMAIL 5: INVITATION TO ENGAGE (Day 56)</h4>
+          <p><strong>OBJECTIVE:</strong> Create urgency and invite direct engagement</p>
+          <h4>SUBJECT LINE OPTIONS:</h4>
+          <ul>
+            <li>"Final Thought: Why [Crop] Operations Like Yours Need This Now"</li>
+            <li>"One Last Thing About [Farm Name]'s Soil Health"</li>
+            <li>"Before You Delete This: One [Crop] Insight Worth Your Time"</li>
+          </ul>
+          <h4>CALL-TO-ACTION:</h4>
+          <ul>
+            <li>"Ready to discuss how this applies to [Farm Name]?"</li>
+            <li>"Let's schedule a 15-minute call - I'll bring specific insights for your operation"</li>
+            <li>"Reply 'yes' if you'd like to learn more - no obligation"</li>
+          </ul>
+          <h4>POST-SERIES AUTOMATION:</h4>
+          <p>After Email 5, prospects enter one of three paths:</p>
+          <ol>
+            <li><strong>ENGAGED PROSPECTS</strong> (replied, clicked, called): Moved to personal follow-up queue, representative receives notification, personal outreach scheduled within 48 hours</li>
+            <li><strong>WARM BUT NOT ENGAGED:</strong> Enter monthly newsletter sequence, continue receiving value content, periodic re-engagement campaigns</li>
+            <li><strong>COLD/UNRESPONSIVE:</strong> Moved to quarterly re-engagement campaigns, lower priority in CRM, can be re-activated with new hook point</li>
+          </ol>
+          <h3>7.2 Follow-Up Cadence & Automation</h3>
+          <p>The follow-up cadence defines when and how to personally connect with prospects beyond automated emails. This "I am automation" approach ensures automation handles routine touchpoints while representatives focus on high-value personal interactions.</p>
+          <h4>AUTOMATION TOUCHPOINTS (Handled by CRM):</h4>
+          <ul>
+            <li>Email nurture sequence (every 14 days)</li>
+            <li>Newsletter delivery (monthly)</li>
+            <li>Birthday/holiday greetings</li>
+            <li>Seasonal content delivery</li>
+            <li>Re-engagement campaigns</li>
+            <li>Thank you messages after interactions</li>
+          </ul>
+          <h4>PERSONAL TOUCHPOINTS (Representative Action Required):</h4>
+          <ul>
+            <li>Initial hook point call (within 48 hours of first email)</li>
+            <li>Follow-up calls after email engagement (opens, clicks, replies)</li>
+            <li>Post-nurture series call (after Email 5)</li>
+            <li>Site visit follow-ups (within 24 hours)</li>
+            <li>Proposal delivery calls</li>
+            <li>Trial/sample follow-ups (7 days after delivery)</li>
+          </ul>
+          <h4>SMART CALLING INTEGRATION:</h4>
+          <p>Based on "Smart Calling" methodology, personal calls are strategic and value-focused:</p>
+          <h4>CALL TIMING:</h4>
+          <ul>
+            <li>After email opens/clicks: Within 48 hours</li>
+            <li>After email replies: Within 24 hours</li>
+            <li>After nurture series completion: Within 1 week</li>
+            <li>After site visit: Within 24 hours</li>
+            <li>After proposal delivery: Within 48 hours</li>
+          </ul>
+          <h4>PERSONAL FOLLOW-UP REQUIREMENTS:</h4>
+          <p>Representatives must personally follow up when:</p>
+          <ul>
+            <li>Prospect replies to any email (within 24 hours)</li>
+            <li>Prospect clicks link in email (within 48 hours)</li>
+            <li>Prospect requests information or sample (within 24 hours)</li>
+            <li>High engagement score reached (within 1 week)</li>
+            <li>Nurture series completed (within 1 week)</li>
+            <li>Site visit conducted (within 24 hours)</li>
+            <li>Proposal delivered (within 48 hours)</li>
+          </ul>
+          <h3>7.3 Newsletters & Value Content</h3>
+          <p>Monthly newsletters provide ongoing value to prospects and customers, maintaining top-of-mind awareness while delivering educational content. These newsletters reinforce SSW expertise and keep prospects engaged between major touchpoints.</p>
+          <h4>NEWSLETTER STRATEGY:</h4>
+          <ul>
+            <li>Frequency: Monthly (first week of each month)</li>
+            <li>Audience: All prospects and customers in CRM</li>
+            <li>Goal: Provide value, maintain relationship, drive engagement</li>
+            <li>Format: Educational content with soft calls-to-action</li>
+          </ul>
+          <h4>CONTENT STRUCTURE:</h4>
+          <p>Each newsletter includes:</p>
+          <ol>
+            <li><strong>SEASONAL INSIGHT (Hook Point):</strong> Relevant to current season/agricultural calendar, actionable insight for their crop type, attention-grabbing opening</li>
+            <li><strong>EDUCATIONAL CONTENT:</strong> Deep dive into one soil health topic, case study or success story, practical tips they can implement</li>
+            <li><strong>SSW UPDATES:</strong> Company news or updates (brief), new resources or tools available, upcoming events or webinars</li>
+            <li><strong>CALL-TO-ACTION:</strong> Soft invitation to engage, link to download resource, invitation to schedule call</li>
+          </ol>
+          <h3>7.4 Samples and Gifts Program</h3>
+          <p>The samples and gifts program provides tangible value to qualified prospects, demonstrating product quality and building goodwill. This program creates opportunities for hands-on experience and follow-up conversations.</p>
+          <h4>SAMPLE PROGRAM OVERVIEW:</h4>
+          <ul>
+            <li>Product: 9 lb trial bag of appropriate blend (Pomona, Seriokai's Secret, or Bucchas)</li>
+            <li>Qualification: Prospect must meet minimum criteria (acreage, crop fit, engagement)</li>
+            <li>Delivery: Branded packaging with educational materials</li>
+            <li>Follow-up: Automated and personal follow-up sequence</li>
+          </ul>
+          <h3>7.5 Education → Credibility → Proposal Flow</h3>
+          <p>The nurturing strategy follows a progressive flow that moves prospects from awareness to action through education, credibility building, and ultimately proposal delivery. This flow ensures prospects are well-informed and ready before receiving a formal proposal.</p>
+          <h4>PROGRESSIVE ENGAGEMENT FLOW:</h4>
+          <p><strong>STAGE 1: EDUCATION (Weeks 1-4)</strong></p>
+          <ul>
+            <li>Goal: Provide value and build awareness</li>
+            <li>Tactics: Hook point email, educational content, newsletters</li>
+            <li>Outcome: Prospect recognizes SSW as knowledgeable resource</li>
+          </ul>
+          <p><strong>STAGE 2: CREDIBILITY (Weeks 5-8)</strong></p>
+          <ul>
+            <li>Goal: Build trust through social proof and expertise</li>
+            <li>Tactics: Case studies, success stories, personal interactions</li>
+            <li>Outcome: Prospect trusts SSW as credible partner</li>
+          </ul>
+          <p><strong>STAGE 3: ENGAGEMENT (Weeks 9-12)</strong></p>
+          <ul>
+            <li>Goal: Create interest and desire to learn more</li>
+            <li>Tactics: Discovery calls, site visits, samples, personal follow-ups</li>
+            <li>Outcome: Prospect actively engages and wants to explore solutions</li>
+          </ul>
+          <p><strong>STAGE 4: PROPOSAL (Weeks 13+)</strong></p>
+          <ul>
+            <li>Goal: Present formal solution and close</li>
+            <li>Tactics: Customized proposal, ROI calculations, contract discussion</li>
+            <li>Outcome: Prospect becomes customer</li>
+          </ul>
         </div>
         <div class="page-number">12</div>
       </div>

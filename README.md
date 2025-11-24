@@ -114,38 +114,43 @@ Orchards Program/
 
 ---
 
-## Development & Usage
+## Quick Start (non-developer)
 
-### Viewing the Document
+1) View the doc  
+`open "Document Preview/playbook-preview.html"`  
+or run `npm run preview` and go to http://localhost:8080 (no live reload; best for stable layout).
 
-**Option 1: Direct HTML Preview**
-```bash
-open "Document Preview/playbook-preview.html"
-```
+2) Edit text  
+Open `Document Preview/playbook-preview.html` and change the words you want. Headings already start on new pages.
 
-**Option 2: Live Local Server (Recommended)**
-```bash
-npm run dev        # Nodemon + live-reload on http://localhost:8080
-npm run dev:open   # Same as above and opens the browser (macOS)
-```
+3) Add/move photos  
+- Put the image file in `Document Preview/assets/`.  
+- Find the spot you want and drop in:
+  ```html
+  <div class="image-container">
+    <img src="assets/YourFile.jpg" alt="Alt text" />
+    <div class="image-caption">Caption</div>
+  </div>
+  ```
+- For the three product bags, there is an auto-insert right after the paragraph that starts “All blends are granular formulations…”. If you want them somewhere else, move that paragraph or paste the block above where you want it.
 
-**Option 3: Static Preview**
-```bash
-npm run preview    # Simple static server on http://localhost:8080
-```
+4) Refresh to see changes  
+Use Cmd+Shift+R (hard refresh) in the browser so the page splitter reruns and the layout settles.
 
-### PDF Export
+5) Export to PDF  
+Click the download button (top-left) in the preview. It keeps the current layout and page breaks.
 
-1. Open the HTML preview in browser
-2. Click "📄 Export to PDF" button (top-left)
-3. PDF will be generated with proper formatting, page breaks, and white pages
+## Development & Usage (advanced)
 
-### Adding Content
+- `npm run preview` — static server on http://localhost:8080 (recommended to preserve layout).  
+- `npm run dev` / `npm run dev:open` — live reload; only use if you need it. The app now skips re-fetching content when static pages are present to avoid duplicate TOC/pages.
 
-- Edit `Document Preview/playbook-preview.html` directly
-- Content is organized by sections with proper page breaks
-- Images can be added using the `.image-container` class
-- Logo automatically loads from `assets/logo/ssw-logo.png`
+## Simple rules to avoid layout issues
+
+- Do not add a second Table of Contents. The existing one at the top flows across pages automatically.
+- Keep headings as they are; page splitting already starts new sections on a fresh page.
+- After any edit, hard refresh to let the splitter rebalance pages.
+- Leave CSS alone unless you intend to change the overall look.
 
 ---
 

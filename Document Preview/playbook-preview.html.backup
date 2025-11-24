@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A specialty farmer. Program execution. Playbook. - Preview</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -75,46 +76,117 @@
       .page {
         width: 8.5in;
         min-height: 11in;
+        max-height: 11in;
         padding: 1in;
         margin: 0 auto 20px;
         background: white;
         position: relative;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        overflow: visible;
+        overflow: hidden;
         page-break-inside: auto;
         break-inside: auto;
         page-break-after: always;
         break-after: page;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Page content wrapper that flows to next page when full */
+      .page-content {
+        flex: 1;
+        min-height: 0;
       }
 
-      /* Allow pages to grow beyond 11in when content requires it */
-      .page#toc,
-      .page:not(#cover):not(#toc) {
-        min-height: auto;
-      }
-
-      /* Cover page always on its own page */
+      /* Cover page - exactly letter size */
       .page#cover {
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        overflow: hidden;
         page-break-after: always;
         break-after: page;
       }
 
-      /* TOC can flow across multiple pages if needed */
+      /* TOC page - can flow across multiple pages */
       .page#toc {
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        overflow: hidden;
+        page-break-after: auto;
+        break-after: auto;
+      }
+      
+      /* TOC content can flow to next page - same as other content pages */
+      .page#toc .page-content {
+        max-height: 9.5in;
+        overflow: hidden;
+        padding-bottom: 0.5in;
+        orphans: 2;
+        widows: 2;
+      }
+      
+      /* TOC title should stay with first items */
+      .page#toc h1 {
+        page-break-after: avoid;
+        break-after: avoid;
+        margin-bottom: 15pt;
+      }
+
+      /* Content pages - fixed letter size; JS splitter manages overflow */
+      .page:not(#cover):not(#toc) {
+        width: 8.5in;
+        height: 11in;
+        min-height: 11in;
+        max-height: 11in;
+        padding: 1in;
+        margin: 0 auto 20px;
+        background: white;
+        position: relative;
+        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
+        overflow: hidden;
         page-break-after: always;
         break-after: page;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Content area fits within page; splitter will break into more pages */
+      .page:not(#cover):not(#toc) .page-content {
+        max-height: 9.5in; /* 11in page minus margins/page number buffer */
+        overflow: hidden;
+        padding-bottom: 0.5in; /* Space for page number at bottom */
+        /* Professional typography - prevent orphaned lines */
+        orphans: 2;
+        widows: 2;
       }
 
-      /* Content pages flow naturally */
-      .page:not(#cover):not(#toc) {
-        page-break-after: auto;
-        break-after: auto;
-      }
-
-      /* Last page should not force a trailing break */
+      /* Last page - can be shorter if content doesn't fill it */
       .page:last-of-type {
-        page-break-after: auto;
-        break-after: auto;
+        min-height: auto;
+        height: auto;
+        max-height: 11in;
+        overflow: visible;
+      }
+      
+      .page:last-of-type .page-content {
+        max-height: none;
+        overflow: visible;
+      }
+      
+      /* Sections (h2) always start on a new page */
+      .page:not(#cover):not(#toc) > .page-content > h2:first-child {
+        page-break-before: always;
+        break-before: page;
+        margin-top: 0;
+      }
+      
+      /* Ensure section1 starts on new page after TOC */
+      .page#section1 {
+        page-break-before: always;
+        break-before: page;
       }
 
       @media print {
@@ -125,32 +197,36 @@
         .page {
           margin: 0;
           box-shadow: none;
+          width: 8.5in;
+          min-height: 11in;
           height: auto;
-          min-height: auto;
           max-height: none;
+          overflow: visible;
           page-break-after: always;
           break-after: page;
         }
         .page#cover {
           page-break-after: always;
           break-after: page;
+          height: 11in;
         }
         .page#toc {
           page-break-after: always;
           break-after: page;
-          min-height: auto;
           height: auto;
+          min-height: 11in;
         }
         .page:not(#cover):not(#toc) {
           page-break-after: auto;
           break-after: auto;
-          min-height: auto;
           height: auto;
+          min-height: 11in;
           max-height: none;
         }
         .page:last-of-type {
           page-break-after: auto;
           break-after: auto;
+          min-height: auto;
         }
         h2 {
           page-break-before: always;
@@ -166,6 +242,26 @@
           page-break-inside: avoid;
           break-inside: avoid;
         }
+        /* Prevent orphaned lines - professional PDF standards */
+        p, li {
+          orphans: 2; /* Allow lists to stay on current page when space remains */
+          widows: 2;
+        }
+        /* Allow paragraph breaking but keep related content together */
+        p {
+          page-break-inside: auto;
+          break-inside: auto;
+        }
+        /* Allow list items to flow when needed (prevents whole list jumping pages) */
+        li {
+          page-break-inside: auto;
+          break-inside: auto;
+        }
+        /* Keep headings with following content */
+        h2, h3 {
+          page-break-after: avoid;
+          break-after: avoid;
+        }
         .pdf-export-btn,
         .floating-toc,
         .search-toolbar,
@@ -177,7 +273,7 @@
 
       .page-number {
         position: absolute;
-        bottom: 0.75in;
+        bottom: 0.5in;
         right: 1in;
         font-size: 10pt;
         color: #666;
@@ -203,8 +299,8 @@
         page-break-after: avoid;
         break-before: page;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       /* First h2 in a page doesn't need page break */
@@ -223,8 +319,8 @@
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       h4 {
@@ -236,8 +332,8 @@
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       .cover-page {
@@ -307,9 +403,18 @@
       }
 
       .toc-item {
-        margin: 5pt 0;
+        margin: 6pt 0;
         font-size: 10pt;
-        line-height: 1.4;
+        line-height: 1.5;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        /* Allow TOC items to flow to next page if needed */
+        page-break-after: auto;
+        break-after: auto;
+      }
+      
+      /* Keep main item with its subitems together */
+      .toc-item:has(.toc-subitem) {
         page-break-inside: avoid;
         break-inside: avoid;
       }
@@ -332,11 +437,17 @@
 
       .toc-subitem {
         margin-left: 15pt;
-        margin-top: 2pt;
+        margin-top: 3pt;
+        margin-bottom: 2pt;
         font-size: 9pt;
-        line-height: 1.3;
+        line-height: 1.4;
         page-break-inside: avoid;
         break-inside: avoid;
+      }
+      
+      /* Prevent orphaned subitems */
+      .toc-subitem:first-child {
+        margin-top: 4pt;
       }
 
       .toc-subitem a {
@@ -347,8 +458,8 @@
         margin: 10pt 0;
         text-align: justify;
         font-size: 11pt;
-        orphans: 3;
-        widows: 3;
+        orphans: 2;
+        widows: 2;
       }
 
       ul {
@@ -361,6 +472,8 @@
       li {
         margin: 5pt 0;
         font-size: 11pt;
+        page-break-inside: auto;
+        break-inside: auto;
       }
 
       .section-divider {
@@ -377,6 +490,204 @@
 
       .key-points h4 {
         margin-top: 0;
+      }
+
+      /* Enhanced formatting styles */
+      .workflow-step {
+        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+        border: 2px solid #e1e8ed;
+        border-radius: 8px;
+        padding: 12pt 15pt;
+        margin: 12pt 0;
+        position: relative;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .workflow-step::before {
+        content: counter(step-counter);
+        counter-increment: step-counter;
+        position: absolute;
+        left: -15px;
+        top: 12pt;
+        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+        color: white;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 12pt;
+        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
+      }
+
+      .workflow-container {
+        counter-reset: step-counter;
+        margin: 20pt 0;
+      }
+
+      .crop-type-card {
+        background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
+        border: 2px solid #d6e9f5;
+        border-radius: 10px;
+        padding: 15pt;
+        margin: 12pt 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+
+      .crop-type-card h4 {
+        margin-top: 0;
+        margin-bottom: 10pt;
+        color: #2c3e50;
+        font-size: 13pt;
+        display: flex;
+        align-items: center;
+        gap: 10pt;
+      }
+
+      .crop-type-card .crop-icon {
+        font-size: 20pt;
+        color: #3498db;
+        width: 32pt;
+        height: 32pt;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #ebf5fb 0%, #d6eaf8 100%);
+        border-radius: 8px;
+        border: 1px solid #aed6f1;
+      }
+
+      .crop-type-card ul {
+        margin-left: 42pt;
+        margin-top: 8pt;
+      }
+
+      .info-box {
+        background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
+        border-left: 4px solid #f39c12;
+        border-radius: 6px;
+        padding: 12pt 15pt;
+        margin: 15pt 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: 0 2px 6px rgba(243, 156, 18, 0.1);
+      }
+
+      .info-box.primary {
+        background: linear-gradient(135deg, #ebf5fb 0%, #d6eaf8 100%);
+        border-left-color: #3498db;
+        box-shadow: 0 2px 6px rgba(52, 152, 219, 0.1);
+      }
+
+      .info-box.success {
+        background: linear-gradient(135deg, #eafaf1 0%, #d5f4e6 100%);
+        border-left-color: #27ae60;
+        box-shadow: 0 2px 6px rgba(39, 174, 96, 0.1);
+      }
+
+      .section-box {
+        background: #ffffff;
+        border: 2px solid #e1e8ed;
+        border-radius: 10px;
+        padding: 18pt;
+        margin: 20pt 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      }
+
+      .section-box h3 {
+        margin-top: 0;
+        color: #2c3e50;
+        border-bottom: 2px solid #3498db;
+        padding-bottom: 8pt;
+        margin-bottom: 15pt;
+      }
+
+      .section-box h4 {
+        color: #34495e;
+        margin-top: 15pt;
+        margin-bottom: 10pt;
+      }
+
+      .highlight-text {
+        background: linear-gradient(120deg, #fff9c4 0%, #fffde7 100%);
+        padding: 2pt 6pt;
+        border-radius: 4px;
+        font-weight: 600;
+        color: #856404;
+      }
+
+      .lead-source-item {
+        background: #f8f9fa;
+        border-left: 3px solid #3498db;
+        padding: 10pt 12pt;
+        margin: 8pt 0;
+        border-radius: 4px;
+        page-break-inside: avoid;
+      }
+
+      .lead-source-item strong {
+        color: #2c3e50;
+        display: block;
+        margin-bottom: 4pt;
+        font-size: 11.5pt;
+      }
+
+      .lead-source-item ul {
+        margin-left: 20pt;
+        margin-top: 6pt;
+      }
+
+      /* Enhanced list styling */
+      ul.enhanced-list {
+        list-style: none;
+        margin-left: 0;
+        padding-left: 0;
+      }
+
+      ul.enhanced-list li {
+        padding-left: 25pt;
+        position: relative;
+        margin: 8pt 0;
+      }
+
+      ul.enhanced-list li::before {
+        content: "▸";
+        position: absolute;
+        left: 8pt;
+        color: #3498db;
+        font-weight: bold;
+        font-size: 14pt;
+      }
+
+      /* Visual separator */
+      .visual-separator {
+        height: 2px;
+        background: linear-gradient(90deg, transparent 0%, #3498db 50%, transparent 100%);
+        margin: 20pt 0;
+        border: none;
+      }
+
+      /* Bold section headers */
+      h3 strong, h4 strong {
+        color: #2c3e50;
+        font-weight: 700;
+      }
+
+      /* Enhanced paragraph styling for important text */
+      p.important {
+        background: #f8f9fa;
+        padding: 12pt;
+        border-left: 4px solid #3498db;
+        border-radius: 4px;
+        margin: 15pt 0;
+        font-weight: 500;
       }
 
       code {
@@ -399,13 +710,194 @@
         text-align: center;
         margin: 15pt 0;
         page-break-inside: avoid;
+        break-inside: avoid;
         width: 100%;
         max-width: 100%;
         box-sizing: border-box;
+      }
+      
+      /* Full-page images don't need background/border */
+      .image-container.full-page-image {
+        background: transparent;
+        border: none;
+        border-radius: 0;
+        padding: 0;
+      }
+      
+      /* Regular image containers get subtle styling */
+      .image-container:not(.full-page-image) {
         background: #f7f9fc;
         border: 1px solid #e1e8f2;
-        border-radius: 12px;
-        padding: 3pt;
+        border-radius: 8px;
+        padding: 8pt;
+      }
+      
+      .image-container img {
+        display: block;
+        margin: 0 auto;
+      }
+
+      .crop-focus-image {
+        max-width: 65%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .crop-focus-image img {
+        width: 100%;
+        height: auto;
+      }
+
+      .product-image {
+        max-width: 100%;
+        margin: 0;
+        display: block;
+        text-align: center;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .product-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e1e8ed;
+        display: block;
+      }
+      
+      .product-image .image-caption {
+        margin-top: 6pt;
+        font-size: 8.5pt;
+        color: #7f8c8d;
+        line-height: 1.3;
+      }
+
+      .product-section {
+        display: flex;
+        align-items: flex-start;
+        gap: 18pt;
+        margin-bottom: 25pt;
+        margin-top: 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        overflow: visible;
+      }
+      
+      .product-image-left {
+        flex: 0 0 200px;
+        max-width: 200px;
+        min-width: 180px;
+        align-self: flex-start;
+      }
+      
+      .product-text-right {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding-top: 0;
+      }
+      
+      .product-text-right p {
+        margin-top: 6pt;
+        margin-bottom: 6pt;
+        line-height: 1.6;
+      }
+      
+      .product-text-right p:first-child {
+        margin-top: 0;
+        margin-bottom: 8pt;
+        font-size: 11.5pt;
+      }
+      
+      .product-text-right ul {
+        margin-top: 6pt;
+        margin-bottom: 8pt;
+      }
+      
+      .product-text-right p strong {
+        font-weight: 600;
+      }
+      
+      .product-image-left .product-image {
+        margin: 0;
+        max-width: 100%;
+      }
+      
+      .product-image-left .image-container {
+        padding: 6pt;
+        background: #fafbfc;
+        border: 1px solid #e8ecf0;
+        border-radius: 6px;
+      }
+      
+      /* Keep product sections together when possible */
+      .product-section:not(:last-child) {
+        margin-bottom: 28pt;
+      }
+      
+      /* Reduce spacing after SPECIALTY CROP BLENDS heading */
+      h4 + .product-section {
+        margin-top: 8pt;
+      }
+      
+      @media (max-width: 720px) {
+        .product-section {
+          flex-direction: column;
+        }
+        .product-image-left {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+      }
+
+      .screenshot-gallery {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15pt;
+        justify-content: center;
+        align-items: flex-start;
+        margin: 20pt 0;
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+
+      .gallery-item {
+        flex: 1 1 150px;
+        max-width: 190px;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+
+      .full-page-image {
+        max-width: 7.5in;
+        margin: 15pt auto 10pt;
+        page-break-inside: avoid;
+        break-inside: avoid;
+        text-align: center;
+      }
+
+      .full-page-image img {
+        width: 100%;
+        height: auto;
+        max-height: 8.5in;
+        object-fit: contain;
+        border: 1px solid #e1e8ed;
+        border-radius: 4px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
+      
+      /* Ensure cheat sheet gets its own page when needed */
+      h3:has(+ .full-page-image) {
+        page-break-after: avoid;
+      }
+      
+      .full-page-image {
+        page-break-before: auto;
+        page-break-after: auto;
       }
 
       .image-caption {
@@ -413,6 +905,22 @@
         color: #7f8c8d;
         margin-top: 5pt;
         font-style: italic;
+      }
+
+      .geo-scope-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 14pt;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .geo-scope-wrap ul {
+        flex: 1 1 280px;
+        margin-top: 0;
       }
 
       .pipeline-diagram {
@@ -992,6 +1500,71 @@
         }
       }
 
+      /* Geographic scope image sizing */
+      .geo-scope {
+        flex: 0 0 42%;
+        max-width: 42%;
+        min-width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .geo-scope img,
+      .crop-challenges-image img {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 1;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+
+      .geo-scope-wrap,
+      .crop-challenges-wrap {
+        display: flex;
+        align-items: flex-start;
+        gap: 14pt;
+        flex-wrap: wrap;
+        flex-direction: row-reverse;
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10pt;
+        margin-bottom: 15pt;
+      }
+
+      .geo-scope-wrap ul,
+      .crop-challenges-wrap ul {
+        flex: 1 1 280px;
+        margin-top: 0;
+      }
+
+      .geo-scope,
+      .crop-challenges-image {
+        flex: 0 0 42%;
+        max-width: 42%;
+        min-width: 220px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      @media (max-width: 720px) {
+        .geo-scope-wrap,
+        .crop-challenges-wrap {
+          flex-direction: column;
+        }
+        .geo-scope,
+        .crop-challenges-image {
+          flex: 1 1 100%;
+          max-width: 100%;
+        }
+        .product-image {
+          float: none;
+          max-width: 100%;
+          margin: 10pt auto;
+          display: block;
+        }
+      }
+
       @media (max-width: 1400px) {
         .search-shell {
           right: 16px;
@@ -1026,7 +1599,6 @@
       onclick="enhancedPDFExport()"
       aria-label="Download PDF"
       title="Download PDF"
-      style="display: none;"
     >
       ⬇︎
     </button>
@@ -1071,6 +1643,8 @@
 
     <div class="container" id="document-content">
       <!-- DYNAMIC_CONTENT -->
+      <div class="page" id="cover">
+        <div class="page-content">
           <div class="logo-container">
             <img src="assets/logo/ssw-logo.png" alt="Soil Seed & Water Logo" class="logo" id="ssw-logo" style="display: none" />
           </div>
@@ -1090,6 +1664,9 @@
             Version 2.0<br />
             Updated: November 2024
           </div>
+          <div class="cover-info" style="margin-top: 18pt; font-size: 11pt; color: #7f8c8d">
+            Prepared by: Rodolfo Alvarez
+          </div>
           <div style="margin-top: 60pt; font-size: 10pt; color: #95a5a6; max-width: 6in; margin-left: auto; margin-right: auto">
             This document provides Soil Seed & Water representatives with a clear, standardized roadmap for delivering regenerative programs for orchards, vineyards, and avocados
             using Pomona and SSW protocols.<br /><br />
@@ -1101,8 +1678,9 @@
 
       <!-- Table of Contents - Dynamically flows across multiple pages if content is too long -->
       <div class="page" id="toc">
-        <h1>TABLE OF CONTENTS</h1>
-        <div class="toc">
+        <div class="page-content">
+          <h1>TABLE OF CONTENTS</h1>
+          <div class="toc">
           <div class="toc-item">
             <a href="#section1">1. PURPOSE OF THE DOCUMENT <span>Page 3</span></a>
           </div>
@@ -1189,12 +1767,14 @@
             <div class="toc-subitem"><a href="#section11">12.11 Regional Crop Research</a></div>
           </div>
         </div>
+        </div>
         <div class="page-number">2</div>
       </div>
 
       <!-- Section 1: Purpose of the Document -->
       <div class="page" id="section1">
-        <h2>1. PURPOSE OF THE DOCUMENT</h2>
+        <div class="page-content">
+          <h2>1. PURPOSE OF THE DOCUMENT</h2>
 
         <p>
           This document provides Soil Seed & Water representatives with a clear, standardized roadmap for targeting, engaging, selling, implementing,
@@ -1232,12 +1812,13 @@
           implementation system. Use the table of contents to navigate directly to specific sections as needed, but we recommend reviewing the entire
           document to understand the full process flow.
         </p>
-
+        </div>
         <div class="page-number">3</div>
       </div>
 
       <div class="page" id="section2">
-        <h2>2. RESEARCH & ELIGIBILITY</h2>
+        <div class="page-content">
+          <h2>2. RESEARCH & ELIGIBILITY</h2>
 
         <p>
           Thorough research ensures we focus on the orchards most likely to benefit from Pomona and SSW protocols. Use these criteria to build a
@@ -1256,24 +1837,40 @@
           <li><strong>Citrus (orange, lemon, lime, grapefruit):</strong> Peel quality, brix, and stress mitigation in heat/drought.</li>
           <li><strong>Other regional high-value orchards:</strong> Add local specialty crops as mapping reveals clusters.</li>
         </ul>
+        <div class="image-container crop-focus-image">
+          <img src="assets/Crop focus.png" alt="Crop Focus" />
+          <div class="image-caption">Crop Focus</div>
+        </div>
 
         <h3>2.2 Geographic Scope</h3>
-        <ul>
-          <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
-          <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
-          <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
-          <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
-        </ul>
+        <div class="geo-scope-wrap">
+          <ul>
+            <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
+            <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
+            <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
+            <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
+          </ul>
+          <div class="image-container geo-scope">
+            <img src="assets/300miradiouspicture.png" alt="300-mile target radius from SSW operations" />
+            <div class="image-caption">300-mile priority radius from SSW operations</div>
+          </div>
+        </div>
 
         <h3>2.3 Common Crop Challenges</h3>
-        <ul>
-          <li>Low organic matter and weak soil structure</li>
-          <li>Compaction and limited infiltration</li>
-          <li>Water inefficiency and uneven distribution</li>
-          <li>Micronutrient deficiencies and poor nutrient uptake</li>
-          <li>Low water-holding capacity</li>
-          <li>Weed pressure and low microbial activity</li>
-        </ul>
+        <div class="crop-challenges-wrap">
+          <ul>
+            <li>Low organic matter and weak soil structure</li>
+            <li>Compaction and limited infiltration</li>
+            <li>Water inefficiency and uneven distribution</li>
+            <li>Micronutrient deficiencies and poor nutrient uptake</li>
+            <li>Low water-holding capacity</li>
+            <li>Weed pressure and low microbial activity</li>
+          </ul>
+          <div class="image-container crop-challenges-image">
+            <img src="assets/orchard soil compaction.png" alt="Orchard soil compaction" />
+            <div class="image-caption">Orchard soil compaction</div>
+          </div>
+        </div>
 
         <h3>2.4 Common Farmer Challenges</h3>
         <ul>
@@ -1303,12 +1900,13 @@
             <li>Contact roles (owner, manager, PCA/CCAs) with phone/email preferences</li>
           </ul>
         </div>
-
+        </div>
         <div class="page-number">4</div>
       </div>
 
       <div class="page" id="section3">
-        <h2>4. VALUE PROPOSITION</h2>
+        <div class="page-content">
+          <h2>4. VALUE PROPOSITION</h2>
         <p>
           The value proposition is the foundation of every conversation with specialty orchard, vineyard, and avocado growers. This section provides the core messaging
           that differentiates SSW from commodity suppliers and positions us as regenerative agriculture partners.
@@ -1323,164 +1921,193 @@
         <h4>CORE OFFERING:</h4>
         <ul>
           <li>Regenerative soil health programs tailored to specialty orchards, vineyards, and avocados</li>
-          <li>Crop-specific blends: Pomona (orchards), Seriokai's Secret (avocados/citrus), and Bucchas (vineyards)</li>
+          <li>Crop-specific blends: <strong>Pomona</strong> (orchards), <strong>Seriokai's Secret</strong> (avocados/citrus), and <strong>Bucchas</strong> (vineyards)</li>
           <li>Supporting protocols: Compost blends, compost tea extracts (drench), clean wood fiber, and mycorrhizal treatments</li>
           <li>Customized application schedules aligned with crop phenology and seasonal needs</li>
           <li>Ongoing field support, soil testing, and protocol adjustments</li>
           <li>Complete logistics coordination: delivery, equipment support, and application guidance</li>
         </ul>
 
-        <h4>SPECIALTY CROP BLENDS:</h4>
+        <h4 style="margin-bottom: 8pt; margin-top: 15pt;">SPECIALTY CROP BLENDS:</h4>
 
-        <p><strong>1. POMONA BLEND - For Orchards (Stone Fruits, Pome Fruits, Pistachios)</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Pomona Blend is a granular, OMRI-listed plant food blend specifically formulated for pome and stone fruit trees. This blend provides targeted micronutrient support during critical growth phases to promote vigorous growth, abundant yields, and optimal fruit quality.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Granular formulation</li>
-          <li>OMRI Listed for organic use</li>
-          <li>Made in USA</li>
-          <li>Best for: Pome and Stone Fruit Trees</li>
-        </ul>
+        <div class="product-section">
+          <div class="product-image-left">
+            <div class="image-container product-image">
+              <img src="assets/Pomona10lbs.jpg" alt="Pomona Blend - 9 lb bag" />
+              <div class="image-caption">Pomona Blend - 9 lb bag</div>
+            </div>
+          </div>
+          <div class="product-text-right">
+            <p><strong>1. POMONA BLEND</strong> - For Orchards (Stone Fruits, Pome Fruits, Pistachios)</p>
+            
+            <p><strong>DESCRIPTION:</strong></p>
+            <p>Pomona Blend is a granular, OMRI-listed plant food blend specifically formulated for pome and stone fruit trees. This blend provides targeted micronutrient support during critical growth phases to promote vigorous growth, abundant yields, and optimal fruit quality.</p>
+            
+            <p><strong>KEY CHARACTERISTICS:</strong></p>
+            <ul>
+              <li>Granular formulation</li>
+              <li>OMRI Listed for organic use</li>
+              <li>Made in USA</li>
+              <li>Best for: Pome and Stone Fruit Trees</li>
+            </ul>
 
-        <p><strong>INGREDIENTS & PURPOSE:</strong></p>
-        <ul>
-          <li><strong>WORM CASTINGS:</strong> Enhance soil structure, water retention, and aeration; provide slow-release nutrients (NPK); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
-          <li><strong>MAGNESIUM SULFATE:</strong> Supplies essential magnesium and sulfur for chlorophyll production, photosynthesis, and protein synthesis, supporting vigorous plant growth.</li>
-          <li><strong>ZINC SULFATE:</strong> Provides zinc to promote enzyme activation, protein synthesis, robust root and shoot development, and increased flowering and fruiting.</li>
-          <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, enriches with nutrients, boosts microbial activity, and enhances water retention for sustainable, healthy plant growth.</li>
-        </ul>
+            <p><strong>INGREDIENTS & PURPOSE:</strong></p>
+            <ul>
+              <li><strong>WORM CASTINGS:</strong> Enhance soil structure, water retention, and aeration; provide slow-release nutrients (NPK); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
+              <li><strong>MAGNESIUM SULFATE:</strong> Supplies essential magnesium and sulfur for chlorophyll production, photosynthesis, and protein synthesis, supporting vigorous plant growth.</li>
+              <li><strong>ZINC SULFATE:</strong> Provides zinc to promote enzyme activation, protein synthesis, robust root and shoot development, and increased flowering and fruiting.</li>
+              <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, enriches with nutrients, boosts microbial activity, and enhances water retention for sustainable, healthy plant growth.</li>
+            </ul>
 
-        <p><strong>APPLICATION:</strong></p>
-        <p><strong>FOR NEW PLANTINGS:</strong></p>
-        <ul>
-          <li>Mix 1 part Pomona Blend with 4 parts existing soil</li>
-        </ul>
-        <p><strong>FOR ESTABLISHED TREES:</strong></p>
-        <ul>
-          <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
-          <li>Water thoroughly after application</li>
-          <li>Timing: Post leaf-out (typically April–May)</li>
-          <li>Applied within tree drip lines for maximum root zone efficiency</li>
-        </ul>
+            <p><strong>APPLICATION:</strong></p>
+            <p><strong>FOR NEW PLANTINGS:</strong></p>
+            <ul>
+              <li>Mix 1 part Pomona Blend with 4 parts existing soil</li>
+            </ul>
+            <p><strong>FOR ESTABLISHED TREES:</strong></p>
+            <ul>
+              <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
+              <li>Water thoroughly after application</li>
+              <li>Timing: Post leaf-out (typically April–May)</li>
+              <li>Applied within tree drip lines for maximum root zone efficiency</li>
+            </ul>
 
-        <p><strong>KEY BENEFITS:</strong></p>
-        <ul>
-          <li>Specially formulated for pome and stone fruit trees to promote vigorous growth and abundant yields</li>
-          <li>Enriches soil with essential nutrients and beneficial microbes for healthier roots and disease resistance</li>
-          <li>Improves soil structure, aeration, and water retention for optimal fruit tree development</li>
-          <li>Supports robust photosynthesis and nutrient uptake with magnesium and zinc for stronger, more productive trees</li>
-        </ul>
+            <p><strong>KEY BENEFITS:</strong></p>
+            <ul>
+              <li>Specially formulated for pome and stone fruit trees to promote vigorous growth and abundant yields</li>
+              <li>Enriches soil with essential nutrients and beneficial microbes for healthier roots and disease resistance</li>
+              <li>Improves soil structure, aeration, and water retention for optimal fruit tree development</li>
+              <li>Supports robust photosynthesis and nutrient uptake with magnesium and zinc for stronger, more productive trees</li>
+            </ul>
 
-        <p><strong>PACKAGING SIZES:</strong></p>
-        <ul>
-          <li>9 LB bags</li>
-          <li>1 CF (Cubic Foot) bags</li>
-          <li>2.2 CY TOTE (Cubic Yard Tote)</li>
-          <li>BULK (TONS/CY)</li>
-          <li>TRUCKLOAD BULK (22-24 TONS)</li>
-        </ul>
+            <p><strong>PACKAGING SIZES:</strong></p>
+            <ul>
+              <li>9 LB bags</li>
+              <li>1 CF (Cubic Foot) bags</li>
+              <li>2.2 CY TOTE (Cubic Yard Tote)</li>
+              <li>BULK (TONS/CY)</li>
+              <li>TRUCKLOAD BULK (22-24 TONS)</li>
+            </ul>
 
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Pistachios</li>
-          <li>Stone fruits (peach, plum, cherry, apricot, nectarine)</li>
-          <li>Pome fruits (apple, pear)</li>
-          <li>Other high-value orchard crops</li>
-        </ul>
+            <p><strong>TARGET CROPS:</strong></p>
+            <ul>
+              <li>Pistachios</li>
+              <li>Stone fruits (peach, plum, cherry, apricot, nectarine)</li>
+              <li>Pome fruits (apple, pear)</li>
+              <li>Other high-value orchard crops</li>
+            </ul>
+          </div>
+        </div>
 
-        <p><strong>2. SERIKAI'S SECRET BLEND - For Avocados and Citrus Trees</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Seriokai's Secret Blend is a granular, OMRI-listed plant food blend specially formulated for avocado and citrus trees. This blend combines premium organic ingredients to boost root strength, fruit yield, and disease resistance while improving soil structure and water retention.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Granular formulation</li>
-          <li>OMRI Listed for organic use</li>
-          <li>Made in USA</li>
-          <li>Best for: Avocado and Citrus Trees</li>
-        </ul>
+        <div class="product-section">
+          <div class="product-image-left">
+            <div class="image-container product-image">
+              <img src="assets/Seriokai10lbs.jpg" alt="Seriokai's Secret Blend - 9 lb bag" />
+              <div class="image-caption">Seriokai's Secret Blend - 9 lb bag</div>
+            </div>
+          </div>
+          <div class="product-text-right">
+            <p><strong>2. SERIKAI'S SECRET BLEND</strong> - For Avocados and Citrus Trees</p>
+            
+            <p><strong>DESCRIPTION:</strong></p>
+            <p>Seriokai's Secret Blend is a granular, OMRI-listed plant food blend specially formulated for avocado and citrus trees. This blend combines premium organic ingredients to boost root strength, fruit yield, and disease resistance while improving soil structure and water retention.</p>
+            
+            <p><strong>KEY CHARACTERISTICS:</strong></p>
+            <ul>
+              <li>Granular formulation</li>
+              <li>OMRI Listed for organic use</li>
+              <li>Made in USA</li>
+              <li>Best for: Avocado and Citrus Trees</li>
+            </ul>
 
-        <p><strong>INGREDIENTS & PURPOSE:</strong></p>
-        <ul>
-          <li><strong>WORM CASTINGS:</strong> Enhance soil structure, aeration, and water retention; provide balanced, slow-release nutrients (N, P, K); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
-          <li><strong>ZINC SULFATE:</strong> Supplies essential zinc to correct deficiencies, supporting enzyme activation, protein synthesis, and robust root development.</li>
-          <li><strong>POTASSIUM SULFATE:</strong> Delivers potassium and sulfur to boost water retention, photosynthesis, protein synthesis, and plant resilience.</li>
-          <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, nutrient content, and microbial activity for better water retention and sustainable plant growth.</li>
-        </ul>
+            <p><strong>INGREDIENTS & PURPOSE:</strong></p>
+            <ul>
+              <li><strong>WORM CASTINGS:</strong> Enhance soil structure, aeration, and water retention; provide balanced, slow-release nutrients (N, P, K); introduce beneficial microorganisms for improved soil health and disease suppression.</li>
+              <li><strong>ZINC SULFATE:</strong> Supplies essential zinc to correct deficiencies, supporting enzyme activation, protein synthesis, and robust root development.</li>
+              <li><strong>POTASSIUM SULFATE:</strong> Delivers potassium and sulfur to boost water retention, photosynthesis, protein synthesis, and plant resilience.</li>
+              <li><strong>ORGANIC DAIRY COMPOST:</strong> Improves soil structure, nutrient content, and microbial activity for better water retention and sustainable plant growth.</li>
+            </ul>
 
-        <p><strong>APPLICATION:</strong></p>
-        <p><strong>FOR NEW PLANTINGS:</strong></p>
-        <ul>
-          <li>Mix 1 part Blend with 4 parts existing soil</li>
-        </ul>
-        <p><strong>FOR ESTABLISHED TREES:</strong></p>
-        <ul>
-          <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
-          <li>Water thoroughly after application</li>
-          <li>Apply within drip line for maximum effectiveness</li>
-        </ul>
+            <p><strong>APPLICATION:</strong></p>
+            <p><strong>FOR NEW PLANTINGS:</strong></p>
+            <ul>
+              <li>Mix 1 part Blend with 4 parts existing soil</li>
+            </ul>
+            <p><strong>FOR ESTABLISHED TREES:</strong></p>
+            <ul>
+              <li>Top-dress with a 1/2" layer and gently work into the soil surface</li>
+              <li>Water thoroughly after application</li>
+              <li>Apply within drip line for maximum effectiveness</li>
+            </ul>
 
-        <p><strong>KEY BENEFITS:</strong></p>
-        <ul>
-          <li>Specially formulated for avocado and citrus trees to boost root strength, fruit yield, and disease resistance</li>
-          <li>Enriches soil with essential nutrients and beneficial microbes for sustained, balanced growth</li>
-          <li>Improves soil structure, water retention, and aeration for healthier, more resilient trees</li>
-          <li>Supports organic gardening with premium, natural ingredients for long-term soil vitality</li>
-        </ul>
+            <p><strong>KEY BENEFITS:</strong></p>
+            <ul>
+              <li>Specially formulated for avocado and citrus trees to boost root strength, fruit yield, and disease resistance</li>
+              <li>Enriches soil with essential nutrients and beneficial microbes for sustained, balanced growth</li>
+              <li>Improves soil structure, water retention, and aeration for healthier, more resilient trees</li>
+              <li>Supports organic gardening with premium, natural ingredients for long-term soil vitality</li>
+            </ul>
 
-        <p><strong>PACKAGING SIZES:</strong></p>
-        <ul>
-          <li>9 LB bags</li>
-          <li>1 CF (Cubic Foot) bags</li>
-          <li>2.2 CY TOTE (Cubic Yard Tote)</li>
-          <li>BULK (TONS/CY)</li>
-          <li>TRUCKLOAD BULK (22-24 TONS)</li>
-        </ul>
+            <p><strong>PACKAGING SIZES:</strong></p>
+            <ul>
+              <li>9 LB bags</li>
+              <li>1 CF (Cubic Foot) bags</li>
+              <li>2.2 CY TOTE (Cubic Yard Tote)</li>
+              <li>BULK (TONS/CY)</li>
+              <li>TRUCKLOAD BULK (22-24 TONS)</li>
+            </ul>
 
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Avocados</li>
-          <li>Citrus (oranges, lemons, limes, grapefruit)</li>
-          <li>Other subtropical tree crops</li>
-        </ul>
+            <p><strong>TARGET CROPS:</strong></p>
+            <ul>
+              <li>Avocados</li>
+              <li>Citrus (oranges, lemons, limes, grapefruit)</li>
+              <li>Other subtropical tree crops</li>
+            </ul>
+          </div>
 
-        <p><strong>3. BUCCHAS BLEND (VINES) - For Vineyards</strong></p>
-        
-        <p><strong>DESCRIPTION:</strong></p>
-        <p>Bucchas Blend is specifically formulated for vineyard applications, designed to support grape vine health, fruit quality, and yield stability through improved nutrient uptake and soil biology. This blend addresses the unique needs of grape production systems.</p>
-        
-        <p><strong>KEY CHARACTERISTICS:</strong></p>
-        <ul>
-          <li>Formulated for vine crops</li>
-          <li>Optimized for grape production systems</li>
-          <li>Supports quality and yield stability</li>
-        </ul>
+        <div class="product-section">
+          <div class="product-image-left">
+            <div class="image-container product-image">
+              <img src="assets/Bacchus1CF.jpg" alt="Bacchus Blend - 1 CF bag" />
+              <div class="image-caption">Bacchus Blend - 1 CF bag</div>
+            </div>
+          </div>
+          <div class="product-text-right">
+            <p><strong>3. BUCCHAS BLEND</strong> (VINES) - For Vineyards</p>
+            
+            <p><strong>DESCRIPTION:</strong></p>
+            <p>Bucchas Blend is specifically formulated for vineyard applications, designed to support grape vine health, fruit quality, and yield stability through improved nutrient uptake and soil biology. This blend addresses the unique needs of grape production systems.</p>
+            
+            <p><strong>KEY CHARACTERISTICS:</strong></p>
+            <ul>
+              <li>Formulated for vine crops</li>
+              <li>Optimized for grape production systems</li>
+              <li>Supports quality and yield stability</li>
+            </ul>
 
-        <p><strong>APPLICATION:</strong></p>
-        <ul>
-          <li>Timing: Based on vine phenology and seasonal growth patterns</li>
-          <li>Method: Applied within vine rows or under vine canopies</li>
-          <li>Purpose: Supports nutrient uptake and soil biology for grape production</li>
-        </ul>
+            <p><strong>APPLICATION:</strong></p>
+            <ul>
+              <li>Timing: Based on vine phenology and seasonal growth patterns</li>
+              <li>Method: Applied within vine rows or under vine canopies</li>
+              <li>Purpose: Supports nutrient uptake and soil biology for grape production</li>
+            </ul>
 
-        <p><strong>TARGET CROPS:</strong></p>
-        <ul>
-          <li>Wine grapes</li>
-          <li>Table grapes</li>
-          <li>Raisin grapes</li>
-          <li>Other vine crops</li>
-        </ul>
+            <p><strong>TARGET CROPS:</strong></p>
+            <ul>
+              <li>Wine grapes</li>
+              <li>Table grapes</li>
+              <li>Raisin grapes</li>
+              <li>Other vine crops</li>
+            </ul>
 
-        <p><strong>WHY BUCCHAS FOR VINEYARDS:</strong></p>
-        <p>Vineyards have distinct nutritional and soil health requirements compared to tree crops. Grape vines benefit from specific nutrient profiles and soil conditions that support quality fruit development, sugar accumulation (brix), and overall vine health. Bucchas Blend is formulated to address these vineyard-specific needs.</p>
-        
-        <p><strong>NOTE:</strong> Complete spec sheet information for Bucchas Blend will be added when available.</p>
+            <p><strong>WHY BUCCHAS FOR VINEYARDS:</strong></p>
+            <p>Vineyards have distinct nutritional and soil health requirements compared to tree crops. Grape vines benefit from specific nutrient profiles and soil conditions that support quality fruit development, sugar accumulation (brix), and overall vine health. Bucchas Blend is formulated to address these vineyard-specific needs.</p>
+            
+            <p><strong>NOTE:</strong> Complete spec sheet information for Bucchas Blend will be added when available.</p>
+          </div>
+        </div>
 
-        <h4>SUPPORTING PROTOCOL COMPONENTS:</h4>
+        <h4 style="margin-top: 20pt;">SUPPORTING PROTOCOL COMPONENTS:</h4>
 
         <p><strong>4. Orchard/Vineyard Compost Blend</strong></p>
         <ul>
@@ -1756,12 +2383,13 @@
             <li>"Healthy soils are the foundation of profitable, sustainable farming"</li>
           </ul>
         </div>
-
+        </div>
         <div class="page-number">5</div>
       </div>
 
       <div class="page" id="section4">
-        <h2>5. CRM INTEGRATION - COMPLETE WORKFLOW</h2>
+        <div class="page-content">
+          <h2>5. CRM INTEGRATION - COMPLETE WORKFLOW</h2>
         <p>
           Effective CRM integration is the backbone of successful orchard, vineyard, and avocado program execution. This section provides a complete workflow for capturing, managing, nurturing, and converting leads through every stage of the sales pipeline. All activities must be tracked in the CRM to ensure visibility, accountability, and data-driven decision-making.
         </p>
@@ -1787,43 +2415,97 @@
           </ul>
           <p>All sections use square brackets [ ] to indicate questions about needed information that should be filled in based on your specific CRM setup.</p>
         </div>
+        </div>
         <div class="page-number">6</div>
       </div>
 
       <div class="page" id="section5">
-        <h2>6. OUTREACH STRATEGY & TACTICS</h2>
-        <p><em>Content to be added...</em></p>
+        <div class="page-content">
+          <h2>6. OUTREACH STRATEGY & TACTICS</h2>
+        <p>
+          Priority is fast, targeted outreach with clear hooks, clean lists, and disciplined call blocks. Keep messaging specific to orchards/vines, tie to pain
+          points, and log everything in CRM.
+        </p>
+
+        <h3>6.1 Smart Calling Focus</h3>
+        <ul>
+          <li>Target blocks with known pain (compaction, water limits, nutrient gaps) and clear economic upside.</li>
+          <li>Lead with a tight hook: “reduce water and fertilizer 20–40% while lifting yield and brix.”</li>
+          <li>Use short call blocks (60–90 minutes) with prebuilt lists and voicemails ready; log every attempt.</li>
+        </ul>
+
+        <h3>6.2 Smart Calling Cheat Sheet</h3>
+        <p style="margin-bottom: 12pt; color: #7f8c8d; font-style: italic;">Reference guide for effective calling strategies and conversation flows.</p>
+        <div class="image-container full-page-image">
+          <img src="assets/Smart Calling Cheat Sheet.png" alt="Smart Calling Cheat Sheet" />
+          <div class="image-caption">Smart Calling Cheat Sheet - Quick Reference Guide</div>
+        </div>
+        </div>
         <div class="page-number">7</div>
       </div>
 
       <div class="page" id="section6">
-        <h2>7. LEAD NURTURING STRATEGY</h2>
+        <div class="page-content">
+          <h2>7. LEAD NURTURING STRATEGY</h2>
         <p><em>Content to be added...</em></p>
+        </div>
         <div class="page-number">8</div>
       </div>
 
       <div class="page" id="section7">
-        <h2>8. SALES PROCESS</h2>
+        <div class="page-content">
+          <h2>8. SALES PROCESS</h2>
         <p><em>Content to be added...</em></p>
+        </div>
         <div class="page-number">9</div>
       </div>
 
       <div class="page" id="section8">
-        <h2>9. IMPLEMENTATION</h2>
+        <div class="page-content">
+          <h2>9. IMPLEMENTATION</h2>
         <p><em>Content to be added...</em></p>
+        </div>
         <div class="page-number">10</div>
       </div>
 
       <div class="page" id="section9">
-        <h2>10. TIMELINE & KPIs</h2>
+        <div class="page-content">
+          <h2>10. TIMELINE & KPIs</h2>
         <p><em>Content to be added...</em></p>
+        </div>
         <div class="page-number">11</div>
       </div>
 
       <div class="page" id="section10">
-        <h2>11. TOOLS & PLATFORMS</h2>
+        <div class="page-content">
+          <h2>11. TOOLS & PLATFORMS</h2>
         <p><em>Content to be added...</em></p>
+        </div>
         <div class="page-number">12</div>
+      </div>
+
+      <div class="page" id="section11">
+        <div class="page-content">
+          <h2>12. APPENDIX</h2>
+
+        <h3>12.9 CRM Screenshots/Mock-ups</h3>
+        <p>Quick-reference visuals for the three specialty blends.</p>
+        <div class="screenshot-gallery">
+          <div class="image-container gallery-item">
+            <img src="assets/Pomona10lbs.jpg" alt="Pomona Blend - 10 lb bag" />
+            <div class="image-caption">Pomona Blend - 10 lb bag</div>
+          </div>
+          <div class="image-container gallery-item">
+            <img src="assets/Seriokai10lbs.jpg" alt="Seriokai's Secret Blend - 10 lb bag" />
+            <div class="image-caption">Seriokai's Secret Blend - 10 lb bag</div>
+          </div>
+          <div class="image-container gallery-item">
+            <img src="assets/Bacchus1CF.jpg" alt="Bacchus Blend - 1 CF bag" />
+            <div class="image-caption">Bacchus Blend - 1 CF bag</div>
+          </div>
+        </div>
+        </div>
+        <div class="page-number">13</div>
       </div>
 
     </div>
@@ -2193,29 +2875,414 @@
         });
       };
 
+      // Split long sections into multiple exactly 11in tall pages
+      function splitContentIntoPages() {
+        console.log('🔄 Starting page splitting...');
+        
+        // Include TOC in pages to split (it can now flow across pages)
+        const pages = Array.from(document.querySelectorAll(".page:not(#cover)"));
+        console.log(`Found ${pages.length} content pages to process`);
+        
+        if (pages.length === 0) {
+          console.log('⚠️ No pages found to split');
+          return;
+        }
+        
+        // Safety check: ensure we have content before attempting to split
+        const hasContent = pages.some(p => {
+          const content = p.querySelector(".page-content");
+          return content && content.children.length > 0;
+        });
+        
+        if (!hasContent) {
+          console.log('⚠️ No content found in pages, skipping split to prevent data loss');
+          return;
+        }
+        
+        // Hide pages during splitting to prevent flash (polish)
+        pages.forEach(page => {
+          page.style.opacity = '0';
+          page.style.transition = 'opacity 0.3s ease-in';
+        });
+        
+        const PAGE_HEIGHT_IN = 11;
+        const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
+        const PADDING_IN = 1; // 1 inch top padding
+        const PADDING_PX = PADDING_IN * 96;
+        const PAGE_NUMBER_SPACE_PX = 40; // Space for page number (0.42in) - reduced to allow more content
+        const LINE_HEIGHT_BUFFER_PX = 10; // Smaller buffer so short lists can stay on the current page - reduced to allow more content
+        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
+        const isHeadingLike = (el) => {
+          if (!el || !el.tagName) return false;
+          const tag = el.tagName.toUpperCase();
+          if (tag === 'H2' || tag === 'H3' || tag === 'H4') return true;
+          if (tag === 'P') {
+            const text = (el.textContent || '').trim();
+            // Treat short all-caps paragraphs as headings
+            return text && text.length <= 140 && text === text.toUpperCase();
+          }
+          return false;
+        };
+        
+        console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
+        
+        pages.forEach((originalPage, pageIdx) => {
+          const content = originalPage.querySelector(".page-content");
+          if (!content) {
+            console.log(`⚠️ Page ${pageIdx} has no .page-content`);
+            return;
+          }
+          
+          // Save original styles
+          const originalContentStyle = {
+            maxHeight: content.style.maxHeight,
+            overflow: content.style.overflow,
+            height: content.style.height
+          };
+          
+          const originalPageStyle = {
+            height: originalPage.style.height,
+            maxHeight: originalPage.style.maxHeight
+          };
+          
+          // Temporarily remove restrictions for accurate measurement
+          content.style.maxHeight = 'none';
+          content.style.overflow = 'visible';
+          content.style.height = 'auto';
+          originalPage.style.height = 'auto';
+          originalPage.style.maxHeight = 'none';
+          
+          // Force reflow for accurate measurements
+          void originalPage.offsetHeight;
+          void content.offsetHeight;
+          
+          // Measure actual content height
+          const contentHeight = content.scrollHeight;
+          console.log(`Page ${originalPage.id}: content height = ${contentHeight}px (${(contentHeight / 96).toFixed(2)}in), max = ${MAX_CONTENT_HEIGHT_PX}px`);
+          
+          // Restore styles before checking
+          originalPage.style.height = '11in';
+          originalPage.style.maxHeight = '11in';
+          content.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
+          content.style.overflow = 'hidden';
+          
+          // Force reflow to get accurate measurement with restrictions
+          void originalPage.offsetHeight;
+          void content.offsetHeight;
+          
+          // Re-measure with restrictions applied
+          const restrictedHeight = content.scrollHeight;
+          
+          // If content fits in one page, we're done
+          if (restrictedHeight <= MAX_CONTENT_HEIGHT_PX) {
+            console.log(`✅ Page ${originalPage.id} fits in one page (${restrictedHeight}px <= ${MAX_CONTENT_HEIGHT_PX}px)`);
+            return;
+          }
+          
+          // Content exceeds - need to split
+          console.log(`✂️ Page ${originalPage.id} needs splitting (${restrictedHeight}px > ${MAX_CONTENT_HEIGHT_PX}px)`);
+          
+          // Temporarily remove restrictions again for splitting
+          content.style.maxHeight = 'none';
+          content.style.overflow = 'visible';
+          originalPage.style.height = 'auto';
+          originalPage.style.maxHeight = 'none';
+          
+          // Content exceeds - split it into multiple pages
+          console.log(`✂️ Splitting page ${originalPage.id} (content is ${contentHeight}px, exceeds ${MAX_CONTENT_HEIGHT_PX}px)`);
+          
+          const children = Array.from(content.children);
+          if (children.length === 0) {
+            console.log(`⚠️ Page ${originalPage.id} has no children`);
+            return;
+          }
+          
+          // Store children data before manipulation
+          const childrenData = children.map(child => ({
+            element: child,
+            html: child.outerHTML
+          }));
+          
+          console.log(`  Stored ${childrenData.length} children for processing`);
+          
+          // Clear original content (will rebuild it)
+          content.innerHTML = '';
+          
+          // Get section info
+          const sectionId = originalPage.id.replace(/-page\d+$/, '');
+          const pageNumberEl = originalPage.querySelector('.page-number');
+          let basePageNum = pageNumberEl ? parseInt(pageNumberEl.textContent) : 3;
+          
+          const newPages = [];
+          let currentPage = originalPage;
+          let currentPageContent = content;
+          let currentHeight = 0;
+          let pageCounter = 1;
+          
+          // Process each child element
+          childrenData.forEach((childData, childIdx) => {
+            // Create a temporary container to measure the child
+            const tempContainer = document.createElement('div');
+            tempContainer.style.cssText = 'position: absolute; visibility: hidden; width: 7.5in;';
+            tempContainer.innerHTML = childData.html;
+            document.body.appendChild(tempContainer);
+            
+            // Get the actual element from temp container
+            const childElement = tempContainer.firstElementChild;
+            if (!childElement) {
+              console.log(`  ⚠️ Child ${childIdx} has no element, skipping`);
+              document.body.removeChild(tempContainer);
+              return;
+            }
+            
+            // Clone the element to avoid DOM manipulation issues
+            const clonedElement = childElement.cloneNode(true);
+            
+            // Force reflow to measure height
+            void childElement.offsetHeight;
+            
+            const childHeight = childElement.offsetHeight || 100;
+            
+            console.log(`  Child ${childIdx} (${clonedElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
+            
+            // Track what was before this element so we can keep headings with their first block
+            const prevBeforeAppend = currentPageContent.lastElementChild;
+
+            // Try adding the cloned element to current page
+            currentPageContent.appendChild(clonedElement);
+            
+            // Force reflow to get actual rendered height
+            void currentPageContent.offsetHeight;
+            void currentPage.offsetHeight;
+            const actualHeight = currentPageContent.scrollHeight;
+            
+            // Check if the actual rendered height exceeds the page limit (with buffer)
+            if (actualHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
+              console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX}px), creating new page`);
+              
+              // If the previous element was a heading-like block, move it with this element
+              let headingToMove = null;
+              if (isHeadingLike(prevBeforeAppend) && currentPageContent.contains(prevBeforeAppend)) {
+                headingToMove = prevBeforeAppend;
+                currentPageContent.removeChild(prevBeforeAppend);
+              }
+
+              // Remove the cloned element from current page
+              clonedElement.remove();
+              
+              // Create new page
+              const newPage = document.createElement('div');
+              newPage.className = 'page';
+              newPage.id = `${sectionId}-page${pageCounter + 1}`;
+              newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
+              
+              const newContent = document.createElement('div');
+              newContent.className = 'page-content';
+              newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.5in;';
+              
+              newPage.appendChild(newContent);
+              
+              // Add page number
+              const newPageNumber = document.createElement('div');
+              newPageNumber.className = 'page-number';
+              newPageNumber.textContent = basePageNum + pageCounter;
+              newPageNumber.style.cssText = 'position: absolute; bottom: 0.5in; right: 1in; font-size: 10pt; color: #666;';
+              newPage.appendChild(newPageNumber);
+              
+              // Insert after current page
+              currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
+              newPages.push(newPage);
+              
+              // Switch to new page and add the cloned element
+              currentPage = newPage;
+              currentPageContent = newContent;
+              
+              // If we moved a heading, place it before the list
+              if (headingToMove) {
+                currentPageContent.appendChild(headingToMove);
+              }
+              currentPageContent.appendChild(clonedElement);
+              
+              // Update current height based on actual content
+              void currentPageContent.offsetHeight;
+              currentHeight = currentPageContent.scrollHeight;
+              pageCounter++;
+            } else {
+              // Element fits, update current height
+              currentHeight = actualHeight;
+            }
+            
+            // Clean up temp container
+            document.body.removeChild(tempContainer);
+          });
+          
+          // Ensure all pages have correct height and overflow settings
+          // Also verify no content is cut off at the bottom
+          [originalPage, ...newPages].forEach((p, idx) => {
+            p.style.height = '11in';
+            p.style.maxHeight = '11in';
+            const pc = p.querySelector('.page-content');
+            if (pc) {
+              // Set max height to prevent overflow
+              pc.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
+              pc.style.overflow = 'hidden';
+              
+              // Final check: if content still exceeds, move last element to next page
+              void pc.offsetHeight;
+              const finalScrollHeight = pc.scrollHeight;
+              if (finalScrollHeight > MAX_CONTENT_HEIGHT_PX) {
+                console.log(`  ⚠️ Page ${p.id} still exceeds limit (${finalScrollHeight}px > ${MAX_CONTENT_HEIGHT_PX}px), moving overflow to next page`);
+                const lastChild = pc.lastElementChild;
+                if (lastChild && idx < newPages.length) {
+                  const nextPageContent = newPages[idx].querySelector('.page-content');
+                  if (nextPageContent) {
+                    lastChild.remove();
+                    nextPageContent.insertBefore(lastChild, nextPageContent.firstChild);
+                    console.log(`  ✅ Moved last element to next page`);
+                    // Re-check after moving
+                    void pc.offsetHeight;
+                    const newScrollHeight = pc.scrollHeight;
+                    if (newScrollHeight > MAX_CONTENT_HEIGHT_PX) {
+                      console.log(`  ⚠️ Page ${p.id} still exceeds after move, may need further splitting`);
+                    }
+                  }
+                } else if (lastChild && idx === newPages.length) {
+                  // Last page - create a new one if needed
+                  console.log(`  ⚠️ Last page exceeds, creating additional page`);
+                  const newPage = document.createElement('div');
+                  newPage.className = 'page';
+                  newPage.id = `${p.id}-continuation`;
+                  newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
+                  
+                  const newContent = document.createElement('div');
+                  newContent.className = 'page-content';
+                  newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.5in; max-height: ' + MAX_CONTENT_HEIGHT_PX + 'px;';
+                  
+                  const newPageNumber = document.createElement('div');
+                  newPageNumber.className = 'page-number';
+                  const pageNumEl = p.querySelector('.page-number');
+                  newPageNumber.textContent = pageNumEl ? parseInt(pageNumEl.textContent) + 1 : '?';
+                  newPageNumber.style.cssText = 'position: absolute; bottom: 0.5in; right: 1in; font-size: 10pt; color: #666;';
+                  
+                  newPage.appendChild(newContent);
+                  newPage.appendChild(newPageNumber);
+                  p.parentElement.insertBefore(newPage, p.nextSibling);
+                  
+                  lastChild.remove();
+                  newContent.appendChild(lastChild);
+                  newPages.push(newPage);
+                }
+              }
+            }
+          });
+          
+          // Final safety check: ensure no pages are empty
+          const allPages = [originalPage, ...newPages];
+          let hasEmptyPages = false;
+          allPages.forEach((p, idx) => {
+            const pc = p.querySelector('.page-content');
+            if (pc && pc.children.length === 0) {
+              console.log(`  ⚠️ WARNING: Page ${p.id} is empty after splitting!`);
+              hasEmptyPages = true;
+            } else {
+              console.log(`  ✅ Page ${p.id} has ${pc?.children.length || 0} children`);
+            }
+          });
+          
+          // If we have empty pages, something went wrong - restore original content
+          if (hasEmptyPages && childrenData.length > 0) {
+            console.log(`  ⚠️ Empty pages detected, attempting to restore content...`);
+            content.innerHTML = '';
+            childrenData.forEach(childData => {
+              const tempDiv = document.createElement('div');
+              tempDiv.innerHTML = childData.html;
+              while (tempDiv.firstChild) {
+                content.appendChild(tempDiv.firstChild);
+              }
+            });
+            // Remove any new pages we created
+            newPages.forEach(np => np.remove());
+            console.log(`  ✅ Content restored to original page`);
+          } else {
+            console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
+          }
+          
+          // Show page after splitting is complete (polish)
+          allPages.forEach(p => {
+            p.style.opacity = '1';
+          });
+        });
+        
+        // Show all pages after splitting is complete (polish)
+        const allProcessedPages = Array.from(document.querySelectorAll(".page:not(#cover):not(#toc)"));
+        allProcessedPages.forEach(page => {
+          page.style.opacity = '1';
+        });
+        
+        // Ensure product section styles are maintained after splitting
+        restoreProductSectionStyles();
+        
+        console.log('✅ Page splitting complete');
+      }
+      
+      // Restore product section styles that might have been lost during splitting
+      function restoreProductSectionStyles() {
+        const productSections = document.querySelectorAll('.product-section');
+        productSections.forEach(section => {
+          // Ensure flex layout is maintained
+          if (!section.style.display || section.style.display === 'none') {
+            section.style.display = 'flex';
+          }
+          section.style.alignItems = 'flex-start';
+          section.style.gap = '18pt';
+          section.style.marginBottom = '25pt';
+          section.style.marginTop = '0';
+          
+          // Ensure image containers maintain their structure
+          const imageLefts = section.querySelectorAll('.product-image-left');
+          imageLefts.forEach(imgLeft => {
+            imgLeft.style.flex = '0 0 200px';
+            imgLeft.style.maxWidth = '200px';
+            imgLeft.style.minWidth = '180px';
+          });
+          
+          // Ensure text containers maintain their structure
+          const textRights = section.querySelectorAll('.product-text-right');
+          textRights.forEach(textRight => {
+            textRight.style.flex = '1 1 auto';
+            textRight.style.minWidth = '0';
+            textRight.style.paddingTop = '0';
+          });
+        });
+      }
+
+
       // Load dynamic playbook content
       async function loadPlaybookContent() {
         const container = document.getElementById("document-content");
-        const existingContent = container.querySelector(".page");
-        
-        // If content already injected by server, skip loading
-        if (existingContent && !existingContent.id.includes("loading")) {
-          console.log("✅ Playbook content already loaded from server");
-          initializeNavigation();
-          initializeSearch();
+        const existingPages = container.querySelectorAll(".page");
+
+        // If the static content is already present, use it as-is to avoid duplicate TOC/pages; still run splitter to enforce paging
+        if (existingPages.length > 0) {
+          console.log("✅ Static playbook content already present; skipping fetch");
+          // Run splitting/navigation/search to ensure paging is applied
+          // Use longer timeout to ensure DOM is ready
+          setTimeout(() => {
+            splitContentIntoPages();
+            // Re-run splitter after a delay to catch any layout changes
+            setTimeout(() => {
+              splitContentIntoPages();
+              restoreProductSectionStyles();
+              initializeNavigation();
+              initializeSearch();
+            }, 200);
+          }, 100);
           return;
         }
 
-        // Show loading message
         const loadingHtml = '<div id="loading-message" style="text-align: center; padding: 40px; color: #666;"><p>Loading playbook content...</p></div>';
-        const marker = container.querySelector("!-- DYNAMIC_CONTENT --");
-        if (marker && marker.nextSibling) {
-          // Replace everything after marker
-          while (marker.nextSibling) {
-            marker.nextSibling.remove();
-          }
-        }
-        container.insertAdjacentHTML("beforeend", loadingHtml);
+        // Always reset container to a clean loading state
+        container.innerHTML = `<!-- DYNAMIC_CONTENT -->${loadingHtml}`;
 
         try {
           const response = await fetch("/api/playbook");
@@ -2224,20 +3291,29 @@
           }
           const data = await response.json();
           
-          // Remove loading message
+          // Replace loading message with content
           const loadingMsg = document.getElementById("loading-message");
-          if (loadingMsg) loadingMsg.remove();
-          
-          // Insert parsed HTML
-          container.insertAdjacentHTML("beforeend", data.html);
+          if (loadingMsg) {
+            loadingMsg.outerHTML = data.html;
+          } else {
+            // If no loading message, insert content
+            container.innerHTML = '<!-- DYNAMIC_CONTENT -->' + data.html + '</div>';
+          }
           
           console.log(`✅ Playbook loaded: ${data.sections} sections`);
           
           // Initialize navigation and search after content loads
+          // Use multiple timeouts to ensure content is fully rendered before splitting
           setTimeout(() => {
-            initializeNavigation();
-            initializeSearch();
-          }, 100);
+            splitContentIntoPages();
+            // Re-run after longer delay to catch any late-rendered content
+            setTimeout(() => {
+              splitContentIntoPages();
+              restoreProductSectionStyles();
+              initializeNavigation();
+              initializeSearch();
+            }, 500);
+          }, 300);
         } catch (error) {
           console.error("❌ Error loading playbook:", error);
           const loadingMsg = document.getElementById("loading-message");

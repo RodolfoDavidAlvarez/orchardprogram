@@ -51,59 +51,71 @@ TABLE OF CONTENTS
    4.5 Economic Value Drivers
 
 5. CRM INTEGRATION - COMPLETE WORKFLOW ............................. Page 5
-   5.1 Lead Capture
-   5.2 Automations
-   5.3 Smart Calling & Farm Visits
-   5.4 Pipeline & Conversions
-   5.5 Tracking & Reporting
+   5.1 Workflow Overview
+   5.2 Lead Capture & Entry
+   5.3 Segmentation & Tagging
+   5.4 Smart Calling & Decision Maker ID
+   5.5 Automations & Lead Nurturing
+   5.6 Farm Visits & Documentation
+   5.7 Deals & Conversions
+   5.8 Reporting, Tracking & Analytics
 
 6. OUTREACH STRATEGY & TACTICS ..................................... Page 6
-   6.1 Prospect Identification
-   6.2 Initial Outreach - Hook Point
-   6.3 Discovery Questions
-   6.4 Smart Calling Framework
-   6.5 Communication Template - Sean Example
+   6.1 Prospect Identification & Research Methods
+   6.2 Geographic Mapping & Contact Information Gathering
+   6.3 Database Structure & Prioritization Criteria
+   6.4 Initial Outreach - Hook Point Campaign
+   6.5 Discovery Questions Framework
+   6.6 Smart Calling Framework & Scripts
+   6.7 Objection Handling & Qualification
+   6.8 Communication Template - Sean Example
 
 7. LEAD NURTURING STRATEGY .......................................... Page 7
    7.1 5-Email Nurture Series
-   7.2 Follow-Up Cadence
-   7.3 Newsletters
-   7.4 Samples and Gifts
+   7.2 Follow-Up Cadence & Automation
+   7.3 Newsletters & Value Content
+   7.4 Samples and Gifts Program
    7.5 Education → Credibility → Proposal Flow
 
 8. SALES PROCESS ................................................... Page 8
-   8.1 Qualification Steps
-   8.2 Site Visit Scheduling
-   8.3 Proposal Structure
-   8.4 Pricing Logic
-   8.5 Closing Steps
+   8.1 Qualification Steps & Criteria
+   8.2 Site Visit Scheduling & Preparation
+   8.3 Proposal Structure & Development
+   8.4 Pricing Logic & Calculations
+   8.5 Closing Steps & Contract Execution
 
 9. IMPLEMENTATION .................................................. Page 9
-   9.1 Soil Test & Protocol Setup
-   9.2 Order Fulfillment & Delivery
-   9.3 Monitoring & Follow-Up
+   9.1 Soil Test & Analysis
+   9.2 Protocol Setup & Customization
+   9.3 Seasonal Applications & Timing
+   9.4 On-Site Coordination & Equipment
+   9.5 Order Fulfillment & Delivery
+   9.6 Monitoring & Follow-Up Protocols
 
 10. TIMELINE & KPIs ................................................ Page 10
     10.1 Annual Calendar (Q1-Q4)
-    10.2 Key Performance Targets
+    10.2 Tradeshow Calendar
+    10.3 Key Performance Targets & Metrics
 
 11. TOOLS & PLATFORMS .............................................. Page 11
-    11.1 CRM
-    11.2 Route Planner
-    11.3 AI Advisors
+    11.1 CRM Platform & Features
+    11.2 Route Planner & Optimization
+    11.3 AI Advisors & Support Tools
 
 12. APPENDIX ....................................................... Page 12
     12.1 Pomona Blend Spec Sheet
     12.2 Seriokai's Secret Blend Spec Sheet
     12.3 Bucchas Blend Spec Sheet (Vines)
-    12.4 Orchard Protocol
-    12.5 Smart Calling Script
-    12.6 Email Templates
-    12.7 Sample Proposals
-    12.8 Maps of Target Orchards
-    12.9 CRM Screenshots/Mock-ups
-    12.10 Tradeshow Protocols
-    12.11 Regional Crop Research
+    12.4 Orchard Protocol Templates
+    12.5 Smart Calling Script & Framework
+    12.6 Email Templates (Hook Point, Nurture Series, Follow-ups)
+    12.7 Actual Email Campaign Examples - Ready to Send
+    12.8 Sample Proposals & ROI Calculations
+    12.9 Maps of Target Orchards & Geographic Distribution
+    12.10 CRM Screenshots/Mock-ups & Workflow Visuals
+    12.11 Tradeshow Protocols & Lead Capture
+    12.12 Regional Crop Research & Market Opportunities
+    12.13 Prospect Database - Categorized List
 
 ================================================================================
 
@@ -304,7 +316,11 @@ DATA TO CAPTURE IN CRM:
 • Crop type, acreage, orchard age, and block layout
 • Water source and irrigation method (drip, micro-sprinkler, flood)
 • Current fertilizer/soil program and spend (if known)
-• Primary pain points and recent yield/quality trends
+• Soil test results (if available) - capture test data and analysis
+• Water test results (if available) - water quality and composition data
+• Orchard history - years in business, years of operation, historical context
+• Pain points from the person - direct feedback on challenges, concerns, and needs
+• Recent yield/quality trends
 • Equipment available for application and delivery constraints
 • Contact roles (owner, manager, PCA/CCAs) with phone/email preferences
 
@@ -341,166 +357,39 @@ CORE OFFERING:
 
 SPECIALTY CROP BLENDS:
 
-1. POMONA BLEND - For Orchards (Stone Fruits, Pome Fruits, Pistachios)
-   
-   DESCRIPTION:
-   Pomona Blend is a granular, OMRI-listed plant food blend specifically 
-   formulated for pome and stone fruit trees. This blend provides targeted 
-   micronutrient support during critical growth phases to promote vigorous 
-   growth, abundant yields, and optimal fruit quality.
-   
-   KEY CHARACTERISTICS:
-   • Granular formulation
-   • OMRI Listed for organic use
-   • Made in USA
-   • Best for: Pome and Stone Fruit Trees
-   
-   INGREDIENTS & PURPOSE:
-   
-   • WORM CASTINGS: Enhance soil structure, water retention, and aeration; 
-     provide slow-release nutrients (NPK); introduce beneficial microorganisms 
-     for improved soil health and disease suppression.
-   
-   • MAGNESIUM SULFATE: Supplies essential magnesium and sulfur for chlorophyll 
-     production, photosynthesis, and protein synthesis, supporting vigorous 
-     plant growth.
-   
-   • ZINC SULFATE: Provides zinc to promote enzyme activation, protein 
-     synthesis, robust root and shoot development, and increased flowering and 
-     fruiting.
-   
-   • ORGANIC DAIRY COMPOST: Improves soil structure, enriches with nutrients, 
-     boosts microbial activity, and enhances water retention for sustainable, 
-     healthy plant growth.
-   
-   APPLICATION:
-   
-   FOR NEW PLANTINGS:
-   • Mix 1 part Pomona Blend with 4 parts existing soil
-   
-   FOR ESTABLISHED TREES:
-   • Top-dress with a 1/2" layer and gently work into the soil surface
-   • Water thoroughly after application
-   • Timing: Post leaf-out (typically April–May)
-   • Applied within tree drip lines for maximum root zone efficiency
-   
-   KEY BENEFITS:
-   • Specially formulated for pome and stone fruit trees to promote vigorous 
-     growth and abundant yields
-   • Enriches soil with essential nutrients and beneficial microbes for 
-     healthier roots and disease resistance
-   • Improves soil structure, aeration, and water retention for optimal fruit 
-     tree development
-   • Supports robust photosynthesis and nutrient uptake with magnesium and 
-     zinc for stronger, more productive trees
-   
-   PACKAGING SIZES:
-   • 9 LB bags
-   • 1 CF (Cubic Foot) bags
-   • 2.2 CY TOTE (Cubic Yard Tote)
-   • BULK (TONS/CY)
-   • TRUCKLOAD BULK (22-24 TONS)
-   
-   TARGET CROPS:
-   • Pistachios
-   • Stone fruits (peach, plum, cherry, apricot, nectarine)
-   • Pome fruits (apple, pear)
-   • Other high-value orchard crops
+SSW offers three specialized crop blends designed for specific crop types and 
+their unique nutritional needs. Each blend is OMRI-listed for organic use and 
+formulated to address the distinct requirements of different specialty crops.
 
-2. SERIKAI'S SECRET BLEND - For Avocados and Citrus Trees
-   
-   DESCRIPTION:
-   Seriokai's Secret Blend is a granular, OMRI-listed plant food blend 
-   specially formulated for avocado and citrus trees. This blend combines 
-   premium organic ingredients to boost root strength, fruit yield, and 
-     disease resistance while improving soil structure and water retention.
-   
-   KEY CHARACTERISTICS:
-   • Granular formulation
-   • OMRI Listed for organic use
-   • Made in USA
-   • Best for: Avocado and Citrus Trees
-   
-   INGREDIENTS & PURPOSE:
-   
-   • WORM CASTINGS: Enhance soil structure, aeration, and water retention; 
-     provide balanced, slow-release nutrients (N, P, K); introduce beneficial 
-     microorganisms for improved soil health and disease suppression.
-   
-   • ZINC SULFATE: Supplies essential zinc to correct deficiencies, supporting 
-     enzyme activation, protein synthesis, and robust root development.
-   
-   • POTASSIUM SULFATE: Delivers potassium and sulfur to boost water retention, 
-     photosynthesis, protein synthesis, and plant resilience.
-   
-   • ORGANIC DAIRY COMPOST: Improves soil structure, nutrient content, and 
-     microbial activity for better water retention and sustainable plant growth.
-   
-   APPLICATION:
-   
-   FOR NEW PLANTINGS:
-   • Mix 1 part Blend with 4 parts existing soil
-   
-   FOR ESTABLISHED TREES:
-   • Top-dress with a 1/2" layer and gently work into the soil surface
-   • Water thoroughly after application
-   • Apply within drip line for maximum effectiveness
-   
-   KEY BENEFITS:
-   • Specially formulated for avocado and citrus trees to boost root strength, 
-     fruit yield, and disease resistance
-   • Enriches soil with essential nutrients and beneficial microbes for 
-     sustained, balanced growth
-   • Improves soil structure, water retention, and aeration for healthier, more 
-     resilient trees
-   • Supports organic gardening with premium, natural ingredients for long-term 
-     soil vitality
-   
-   PACKAGING SIZES:
-   • 9 LB bags
-   • 1 CF (Cubic Foot) bags
-   • 2.2 CY TOTE (Cubic Yard Tote)
-   • BULK (TONS/CY)
-   • TRUCKLOAD BULK (22-24 TONS)
-   
-   TARGET CROPS:
-   • Avocados
-   • Citrus (oranges, lemons, limes, grapefruit)
-   • Other subtropical tree crops
+1. POMONA BLEND - For Orchards
 
-3. BUCCHAS BLEND (VINES) - For Vineyards
+   Primary Use: Stone fruits (peach, plum, cherry, apricot, nectarine), pome 
+   fruits (apple, pear), pistachios, and other high-value orchard crops.
    
-   DESCRIPTION:
-   Bucchas Blend is specifically formulated for vineyard applications, designed 
-   to support grape vine health, fruit quality, and yield stability through 
-   improved nutrient uptake and soil biology. This blend addresses the unique 
-   needs of grape production systems.
+   Key Benefits: Promotes vigorous growth, abundant yields, and optimal fruit 
+   quality through targeted micronutrient support and improved soil health.
+
+2. SERIKAI'S SECRET BLEND - For Avocados and Citrus
+
+   Primary Use: Avocados, citrus (oranges, lemons, limes, grapefruit), and 
+   other subtropical tree crops.
    
-   KEY CHARACTERISTICS:
-   • Formulated for vine crops
-   • Optimized for grape production systems
-   • Supports quality and yield stability
+   Key Benefits: Boosts root strength, fruit yield, and disease resistance while 
+   improving soil structure and water retention.
+
+3. BUCCHAS BLEND - For Vineyards
+
+   Primary Use: Wine grapes, table grapes, raisin grapes, and other vine crops.
    
-   APPLICATION:
-   • Timing: Based on vine phenology and seasonal growth patterns
-   • Method: Applied within vine rows or under vine canopies
-   • Purpose: Supports nutrient uptake and soil biology for grape production
-   
-   TARGET CROPS:
-   • Wine grapes
-   • Table grapes
-   • Raisin grapes
-   • Other vine crops
-   
-   WHY BUCCHAS FOR VINEYARDS:
-   Vineyards have distinct nutritional and soil health requirements compared to 
-   tree crops. Grape vines benefit from specific nutrient profiles and soil 
-   conditions that support quality fruit development, sugar accumulation (brix), 
-   and overall vine health. Bucchas Blend is formulated to address these 
-   vineyard-specific needs.
-   
-   NOTE: Complete spec sheet information for Bucchas Blend will be added when 
-   available.
+   Key Benefits: Supports grape vine health, fruit quality, and yield stability 
+   through improved nutrient uptake and soil biology. Addresses the unique 
+   nutritional requirements of grape production systems, including sugar 
+   accumulation (brix) and overall vine health.
+
+All blends are granular formulations that integrate with our comprehensive 
+regenerative soil health protocols. Application rates and timing are customized 
+based on crop type, soil conditions, and seasonal needs as part of our 
+tailored program approach.
 
 SUPPORTING PROTOCOL COMPONENTS:
 
@@ -772,39 +661,2535 @@ KEY MESSAGING POINTS:
 5. CRM INTEGRATION - COMPLETE WORKFLOW
 ================================================================================
 
-CRM integration is the backbone of the orchard/vineyard program. The workflows stay lean and focused: capture clean data, trigger automations, prioritize calls/visits, and keep pipeline movement visible every week.
+Effective CRM integration is the backbone of successful orchard, vineyard, and 
+specialty crop program execution. This section provides a quick overview of the 
+complete workflow for capturing, segmenting, engaging, and converting leads 
+through every stage of the sales pipeline. All activities are tracked in the 
+CRM to ensure visibility, accountability, and data-driven decision-making.
 
-WORKFLOW SUMMARY:
-Lead Capture → Automations → Smart Calling & Visits → Pipeline & Conversions → Reporting
+Note: Detailed sales tactics, scripts, communication templates, and step-by-step 
+procedures are covered in subsequent sections (Outreach Strategy & Tactics, Lead 
+Nurturing Strategy, Sales Process). This section focuses on the CRM workflow 
+structure and automation framework to provide context for the detailed processes 
+that follow.
 
-5.1 Lead Capture (Dec 15, 2024)
+5.1 Workflow Overview
 ================================================================================
-• All target growers entered with complete profiles (name, farm, location, crop, acreage, contacts, water source)
-• Standard tags on entry: crop type, region, priority (H/M/L), acreage band, engagement status, and source
-• Ownership and next task set at entry; weekly dedupe and data hygiene to keep lists clean
 
-5.2 Automations
-================================================================================
-• Hook Point Campaign (Jan 1, 2025): Preloaded email/text, track opens/clicks/replies, auto-create follow-up tasks
-• Value Message Drip (Jan 15, 2025): Short value emails/videos scheduled; stops when they reply or book a call
-• Engagement tags update automatically based on opens, clicks, and replies
+The complete CRM workflow follows this progression:
 
-5.3 Smart Calling & Farm Visits
-================================================================================
-• Smart Calling (Feb 1, 2025): Call lists filtered by engagement; objections, next steps, and decision-maker status logged on every call
-• Farm Visits (Monthly): Calendar integration; visit notes/photos added to the record; recommendations and follow-up tasks auto-created
-• Samples/Trials: Tasks created with reminders; outcomes logged in CRM to track trial-to-close
+Lead Capture → Segmentation → Smart Calling (Decision Maker ID) → Farm Visits → 
+Deals & Conversions → Reporting, Tracking & Analytics
 
-5.4 Pipeline & Conversions
-================================================================================
-• Stages: Lead → Engaged → Visit → Trial → Proposal → Customer
-• Stage moves require next step + value estimate; conversion and velocity tracked by stage
-• Revenue projections pulled from weighted pipeline and updated weekly
+Each stage is supported by automated workflows that ensure consistent execution 
+and prevent leads from falling through the cracks. The CRM serves as the central 
+hub for all sales activities, providing real-time visibility into pipeline health 
+and team performance.
 
-5.5 Tracking & Reporting
+5.2 Lead Capture & Entry
 ================================================================================
-• Weekly: opens/clicks/replies, call outcomes, visit completion, stage movement
-• Monthly: pipeline value, win rate, source attribution, and samples→close rate
-• Dashboards refreshed weekly; exports enabled for route planning and campaign analysis
+
+Lead capture is the entry point for all prospects entering the SSW system. 
+Leads are captured through multiple channels: Google Maps scraping, trade shows, 
+website forms, referrals, and cold outreach responses. Every lead must be 
+properly entered into the CRM with complete information (contact details, farm 
+information, crop type, acreage, geographic data) to enable effective 
+segmentation, automation, and follow-up.
+
+Upon entry, the system automatically assigns leads to representatives, applies 
+segmentation tags, calculates initial lead scores, and triggers welcome email 
+sequences. Entry deadline: December 15, 2024 for initial lead list.
+
+5.3 Segmentation & Tagging
+================================================================================
+
+Leads are segmented primarily by crop type to ensure the right product message 
+(Pomona, Seriokai's Secret, or Bucchas) reaches the right prospect. Additional 
+segmentation dimensions include geographic zones, operation size, engagement 
+level, sales stage, and decision timeline. Automatic segmentation workflows 
+apply tags upon entry and update dynamically as leads progress through the 
+pipeline.
+
+5.4 Smart Calling & Decision Maker ID
+================================================================================
+
+Smart calling prioritizes outreach based on engagement data (email opens, 
+clicks, replies) and focuses on identifying and connecting with decision makers. 
+Call lists are generated from CRM engagement metrics, with priority given to 
+hot leads who haven't been called recently. All call outcomes are logged in CRM 
+with detailed notes, and automated follow-up tasks are created based on results.
+
+5.5 Automations & Lead Nurturing
+================================================================================
+
+Automation reduces manual work and ensures consistency. Core automations include: 
+(1) Lead nurturing sequences that send crop-specific value content every 14 days, 
+(2) Stage-based follow-up sequences (post-visit, post-sample, post-proposal), 
+(3) Automatic task creation based on activities, (4) Lead scoring that updates 
+based on engagement, and (5) Stage progression automation that moves leads 
+through the pipeline based on activity and scores.
+
+5.6 Farm Visits & Documentation
+================================================================================
+
+Farm visits are scheduled monthly during dedicated field visit weeks, with route 
+optimization to maximize efficiency. Qualified leads (score 30+, decision maker 
+identified) are scheduled for visits. All visit activities, photos, notes, and 
+recommendations are logged in CRM within 24 hours. Automated thank-you emails 
+and follow-up sequences are triggered post-visit.
+
+5.7 Deals & Conversions
+================================================================================
+
+Deals are created when qualified leads show serious interest and move through 
+pipeline stages: Opportunity Identified → Proposal Sent → Proposal Under Review 
+→ Negotiating → Contract Sent → Closed-Won/Closed-Lost. Deal values are 
+calculated based on acreage, blend type, and application rates. Probability 
+tracking provides weighted pipeline value. All deal activities are logged in CRM 
+for complete visibility.
+
+5.8 Reporting, Tracking & Analytics
+================================================================================
+
+Essential tracking includes email metrics (sent, opened, clicked, replied), call 
+tracking (outcomes, connection rates), visit tracking (scheduled, completed, 
+conversion rates), and deal tracking (proposals, stages, win/loss). Weekly and 
+monthly dashboards provide pipeline health, activity metrics, and revenue 
+projections. All data exports support route planning and targeted outreach.
 
 ================================================================================
+
+
+6. OUTREACH STRATEGY & TACTICS
+================================================================================
+
+6.1 RECOMMENDED RESOURCES & BOOKS
+================================================================================
+
+The following books provide essential frameworks and strategies for effective outreach, 
+pitching, sales, closing, and negotiation. These resources form the foundation of the 
+outreach and sales methodology used throughout this playbook.
+
+SALES:
+--------------------------------------------------------------------------------
+
+• Smart Calling (Art Sobczak)
+  Strategic, value-focused communication and outreach techniques
+
+• SPIN Selling (Neil Rackham)
+  Situation, Problem, Implication, Need-payoff questioning framework
+
+• Pitch Anything (Oren Klaff)
+  Frameworks for presenting and pitching effectively
+
+• Flip the Script
+  Alternative approaches to sales conversations
+
+NEGOTIATION:
+--------------------------------------------------------------------------------
+
+• Never Split the Difference (Chris Voss)
+  Tactical empathy and negotiation strategies
+
+• Start with No (Jim Camp)
+  Negotiation framework that focuses on decision-making
+
+MARKETING / BRAND / POSITIONING:
+--------------------------------------------------------------------------------
+
+• Blue Ocean Strategy (W. Chan Kim & Renée Mauborgne)
+  Creating uncontested market space
+
+• Made to Stick (Chip & Dan Heath)
+  Creating memorable, valuable content that resonates
+
+• The Tipping Point (Malcolm Gladwell)
+  Understanding how ideas spread and gain momentum
+
+• Stories That Stick (Kindra Hall)
+  Storytelling that builds connection and credibility
+
+• Hook Point (Brendan Kane)
+  Attention-grabbing messaging that cuts through noise
+
+• Building a StoryBrand (Donald Miller)
+  Clarifying your message so customers understand
+
+COMMUNICATION / LEADERSHIP:
+--------------------------------------------------------------------------------
+
+• Conversational Capacity
+  Building communication skills for difficult conversations
+
+• MAGIC (Customer Service Mindset)
+  Customer service excellence framework
+
+STORYTELLING:
+--------------------------------------------------------------------------------
+
+• Stories That Stick (Kindra Hall)
+  Storytelling that builds connection and credibility
+
+• Made to Stick (Chip & Dan Heath)
+  Creating memorable, valuable content that resonates
+
+• Hook Point (Brendan Kane)
+  Attention-grabbing messaging that cuts through noise
+
+• The Tipping Point (Malcolm Gladwell)
+  Understanding how ideas spread and gain momentum
+
+================================================================================
+
+
+7. LEAD NURTURING STRATEGY
+================================================================================
+
+Lead nurturing is the systematic process of building relationships with prospects 
+through consistent, value-driven communication. This strategy transforms cold 
+leads into warm prospects and ultimately into engaged customers by providing 
+education, establishing credibility, and maintaining top-of-mind awareness.
+
+The nurturing strategy combines automated email sequences with personalized 
+touchpoints, creating a "I am automation" approach where automation handles 
+routine communication while representatives focus on high-value personal 
+interactions.
+
+KEY PRINCIPLES:
+
+• Value First: Every communication must provide genuine value before asking for anything
+• Consistency: Regular touchpoints maintain relationship momentum
+• Personalization: Automation feels personal through segmentation and customization
+• Education-Focused: Build trust through knowledge sharing, not selling
+• Multi-Channel: Email automation supplemented with personal calls, texts, and visits
+• Progressive Engagement: Move from awareness to interest to action systematically
+
+STRATEGIC FOUNDATION:
+
+This nurturing strategy is built on proven methodologies from:
+• Hook Point (Brendan Kane): Attention-grabbing messaging that cuts through noise
+• Smart Calling (Art Sobczak): Strategic, value-focused communication
+• SPIN Selling (Neil Rackham): Situation, Problem, Implication, Need-payoff questioning
+• Made to Stick (Chip & Dan Heath): Memorable, valuable content that resonates
+• Stories That Stick (Kindra Hall): Storytelling that builds connection and credibility
+
+================================================================================
+
+7.1 5-Email Nurture Series
+================================================================================
+
+The 5-Email Nurture Series is an automated sequence that runs every 14 days, 
+delivering value-focused content to prospects who have been contacted but haven't 
+yet engaged or converted. This series builds trust, educates prospects, and 
+positions SSW as a knowledgeable partner.
+
+SERIES OVERVIEW:
+
+• Frequency: One email every 14 days (2 weeks)
+• Total Duration: 10 weeks (70 days)
+• Goal: Progressive education and relationship building
+• Automation: Fully automated in CRM with personalization tokens
+• Exit Triggers: Engagement (reply, click, call) moves prospect to personal follow-up
+
+EMAIL 1: THE HOOK POINT (Day 0 - Initial Contact)
+--------------------------------------------------------------------------------
+
+OBJECTIVE: Capture attention and establish relevance
+
+SUBJECT LINE OPTIONS:
+• "[Crop Type] Farmers: One Soil Health Insight That Changes Everything"
+• "Why [Farm Name]'s [Crop] Operation Needs This Soil Strategy"
+• "The [Crop] Challenge Most Farmers Don't See Coming"
+
+OPENING HOOK (First 2 sentences):
+• Reference their specific crop type and geographic region
+• Pose a thought-provoking question or share a surprising insight
+• Example: "If you're growing [crop] in [region], you're likely facing [specific challenge]. 
+  Most farmers don't realize this challenge is actually a soil health opportunity."
+
+BODY STRUCTURE:
+• Problem identification (their challenge)
+• Insight or education (valuable information)
+• Soft value proposition (how SSW addresses this)
+• No hard sell - invitation to learn more
+
+CALL-TO-ACTION:
+• "Reply with your biggest soil challenge - I'll send you a free resource"
+• "Click here to download our [Crop] Soil Health Guide"
+• "Would a 15-minute call make sense to discuss your operation?"
+
+EMAIL 2: EDUCATIONAL VALUE (Day 14)
+--------------------------------------------------------------------------------
+
+OBJECTIVE: Provide actionable education that demonstrates expertise
+
+SUBJECT LINE OPTIONS:
+• "The [Crop] Soil Health Factor Most Farmers Overlook"
+• "3 Soil Health Insights for [Crop] Operations Like Yours"
+• "Why [Crop] Quality Starts Below the Surface"
+
+CONTENT FOCUS:
+• Deep dive into one specific soil health topic relevant to their crop
+• Share case study or example (anonymized if needed)
+• Provide actionable insights they can implement
+• Reference SSW methodology without heavy selling
+
+VALUE DELIVERY:
+• Educational content that positions SSW as expert
+• Practical tips they can use immediately
+• Builds credibility through knowledge sharing
+
+CALL-TO-ACTION:
+• "Want to see how this applies to your specific operation?"
+• "Reply with questions - happy to help"
+• "Download our free [Crop] Protocol Guide"
+
+EMAIL 3: SOCIAL PROOF & STORIES (Day 28)
+--------------------------------------------------------------------------------
+
+OBJECTIVE: Build credibility through success stories and social proof
+
+SUBJECT LINE OPTIONS:
+• "How [Similar Farm] Increased [Crop] Quality by [X]%"
+• "The [Crop] Farmer Who Cut Fertilizer Costs by [X]%"
+• "Real Results: [Crop] Operations Using Regenerative Practices"
+
+CONTENT FOCUS:
+• Success story from similar operation (same crop type, similar size)
+• Specific results and outcomes (yield, quality, cost savings)
+• Challenges overcome and solutions implemented
+• Testimonial or quote from satisfied customer
+
+STORYTELLING ELEMENTS:
+• Problem → Solution → Results structure
+• Specific details that resonate with their situation
+• Authentic, relatable narrative
+
+CALL-TO-ACTION:
+• "Want to see if this approach could work for [Farm Name]?"
+• "Schedule a 20-minute call to discuss your situation"
+• "Reply to learn more about our [Crop] programs"
+
+EMAIL 4: PROBLEM-SOLUTION FRAMING (Day 42)
+--------------------------------------------------------------------------------
+
+OBJECTIVE: Connect their challenges to SSW solutions through SPIN methodology
+
+SUBJECT LINE OPTIONS:
+• "The Hidden Cost of [Common Challenge] in [Crop] Operations"
+• "Why [Crop] Farmers Are Switching to Regenerative Practices"
+• "The [Crop] Challenge That's Costing You More Than You Think"
+
+CONTENT STRUCTURE (SPIN Framework):
+• SITUATION: Acknowledge their current situation/challenges
+• PROBLEM: Identify specific problems they're likely facing
+• IMPLICATION: Show the cost/impact of not addressing these problems
+• NEED-PAYOFF: Present how addressing these creates value
+
+VALUE PROPOSITION:
+• Connect problems to solutions
+• Quantify the cost of inaction
+• Present SSW approach as logical solution
+
+CALL-TO-ACTION:
+• "Want to see how much [specific problem] is costing your operation?"
+• "Let's discuss your [crop] challenges - no pressure, just insights"
+• "Schedule a free soil health assessment"
+
+EMAIL 5: INVITATION TO ENGAGE (Day 56)
+--------------------------------------------------------------------------------
+
+OBJECTIVE: Create urgency and invite direct engagement
+
+SUBJECT LINE OPTIONS:
+• "Final Thought: Why [Crop] Operations Like Yours Need This Now"
+• "One Last Thing About [Farm Name]'s Soil Health"
+• "Before You Delete This: One [Crop] Insight Worth Your Time"
+
+CONTENT FOCUS:
+• Recap key value delivered in previous emails
+• Reinforce main value proposition
+• Create gentle urgency (seasonal timing, opportunity cost)
+• Personal invitation to connect
+
+TONE:
+• Conversational and personal
+• Respectful of their time
+• Clear but not pushy
+
+CALL-TO-ACTION:
+• "Ready to discuss how this applies to [Farm Name]?"
+• "Let's schedule a 15-minute call - I'll bring specific insights for your operation"
+• "Reply 'yes' if you'd like to learn more - no obligation"
+
+POST-SERIES AUTOMATION:
+--------------------------------------------------------------------------------
+
+After Email 5, prospects enter one of three paths:
+
+1. ENGAGED PROSPECTS (replied, clicked, called):
+   • Moved to personal follow-up queue
+   • Representative receives notification
+   • Personal outreach scheduled within 48 hours
+
+2. WARM BUT NOT ENGAGED:
+   • Enter monthly newsletter sequence
+   • Continue receiving value content
+   • Periodic re-engagement campaigns
+
+3. COLD/UNRESPONSIVE:
+   • Moved to quarterly re-engagement campaigns
+   • Lower priority in CRM
+   • Can be re-activated with new hook point
+
+================================================================================
+
+7.2 Follow-Up Cadence & Automation
+================================================================================
+
+The follow-up cadence defines when and how to personally connect with prospects 
+beyond automated emails. This "I am automation" approach ensures automation 
+handles routine touchpoints while representatives focus on high-value personal 
+interactions.
+
+AUTOMATION TOUCHPOINTS (Handled by CRM):
+--------------------------------------------------------------------------------
+
+• Email nurture sequence (every 14 days)
+• Newsletter delivery (monthly)
+• Birthday/holiday greetings
+• Seasonal content delivery
+• Re-engagement campaigns
+• Thank you messages after interactions
+
+PERSONAL TOUCHPOINTS (Representative Action Required):
+--------------------------------------------------------------------------------
+
+• Initial hook point call (within 48 hours of first email)
+• Follow-up calls after email engagement (opens, clicks, replies)
+• Post-nurture series call (after Email 5)
+• Site visit follow-ups (within 24 hours)
+• Proposal delivery calls
+• Trial/sample follow-ups (7 days after delivery)
+
+SMART CALLING INTEGRATION:
+--------------------------------------------------------------------------------
+
+Based on "Smart Calling" methodology, personal calls are strategic and value-focused:
+
+CALL TIMING:
+• After email opens/clicks: Within 48 hours
+• After email replies: Within 24 hours
+• After nurture series completion: Within 1 week
+• After site visit: Within 24 hours
+• After proposal delivery: Within 48 hours
+
+CALL PREPARATION:
+• Review CRM notes and email engagement history
+• Prepare specific value points relevant to their situation
+• Have relevant resources ready to share
+• Know their crop type, acreage, and challenges
+
+CALL STRUCTURE:
+• Opening: Reference recent email or interaction
+• Value delivery: Share specific insight or resource
+• Discovery: Ask open-ended questions about their operation
+• Next steps: Agree on logical next action (not hard sell)
+
+FOLLOW-UP AUTOMATION RULES:
+--------------------------------------------------------------------------------
+
+CRM automatically creates tasks for representatives based on:
+
+• Email engagement triggers (opens, clicks, replies)
+• Time-based triggers (14 days since last contact)
+• Event-based triggers (site visit, proposal delivery)
+• Score-based triggers (high engagement score = priority call)
+
+AUTOMATION WORKFLOW EXAMPLE:
+--------------------------------------------------------------------------------
+
+Day 0: Hook point email sent
+Day 1: Email opened → CRM creates task: "Call [Prospect] - Email opened"
+Day 2: Representative calls → Logs outcome in CRM
+Day 14: Email 2 sent automatically
+Day 15: Email 2 clicked → CRM creates task: "Follow up with [Prospect] - High engagement"
+Day 16: Representative calls → Logs outcome, schedules site visit
+Day 28: Email 3 sent automatically
+...continues through series
+
+PERSONAL FOLLOW-UP REQUIREMENTS:
+--------------------------------------------------------------------------------
+
+Representatives must personally follow up when:
+
+• Prospect replies to any email (within 24 hours)
+• Prospect clicks link in email (within 48 hours)
+• Prospect requests information or sample (within 24 hours)
+• High engagement score reached (within 1 week)
+• Nurture series completed (within 1 week)
+• Site visit conducted (within 24 hours)
+• Proposal delivered (within 48 hours)
+
+FOLLOW-UP QUALITY STANDARDS:
+--------------------------------------------------------------------------------
+
+Every personal follow-up must:
+
+• Reference specific interaction (email, call, visit)
+• Provide additional value beyond what was already shared
+• Ask discovery questions to understand their situation better
+• Respect their time and preferences
+• Log allogate logical next step (not push for sale)
+• Log all outcomes in CRM for future automation
+
+MULTI-CHANNEL TOUCHPOINT STRATEGY:
+--------------------------------------------------------------------------------
+
+Combine automated emails with personal touchpoints across channels:
+
+EMAIL (Automated):
+• Nurture sequence
+• Newsletters
+• Value content delivery
+
+PHONE (Personal):
+• Strategic follow-up calls
+• Discovery conversations
+• Relationship building
+
+TEXT/SMS (Personal):
+• Quick check-ins
+• Meeting confirmations
+• Value delivery (links, resources)
+
+LINKEDIN (Personal):
+• Connection requests
+• Content sharing
+• Professional relationship building
+
+IN-PERSON (Personal):
+• Site visits
+• Tradeshow meetings
+• Farm visits
+
+================================================================================
+
+7.3 Newsletters & Value Content
+================================================================================
+
+Monthly newsletters provide ongoing value to prospects and customers, maintaining 
+top-of-mind awareness while delivering educational content. These newsletters 
+reinforce SSW expertise and keep prospects engaged between major touchpoints.
+
+NEWSLETTER STRATEGY:
+--------------------------------------------------------------------------------
+
+• Frequency: Monthly (first week of each month)
+• Audience: All prospects and customers in CRM
+• Goal: Provide value, maintain relationship, drive engagement
+• Format: Educational content with soft calls-to-action
+
+CONTENT STRUCTURE:
+--------------------------------------------------------------------------------
+
+Each newsletter includes:
+
+1. SEASONAL INSIGHT (Hook Point):
+   • Relevant to current season/agricultural calendar
+   • Actionable insight for their crop type
+   • Attention-grabbing opening
+
+2. EDUCATIONAL CONTENT:
+   • Deep dive into one soil health topic
+   • Case study or success story
+   • Practical tips they can implement
+
+3. SSW UPDATES:
+   • Company news or updates (brief)
+   • New resources or tools available
+   • Upcoming events or webinars
+
+4. CALL-TO-ACTION:
+   • Soft invitation to engage
+   • Link to download resource
+   • Invitation to schedule call
+
+SEGMENTATION:
+--------------------------------------------------------------------------------
+
+Newsletters are segmented by:
+
+• Crop Type: Different content for orchards, vineyards, avocados, citrus
+• Engagement Level: Different messaging for engaged vs. cold prospects
+• Customer Status: Different content for prospects vs. customers
+• Geographic Region: Regional-specific insights and timing
+
+CONTENT THEMES (Rotating Monthly):
+--------------------------------------------------------------------------------
+
+• Soil Health Fundamentals
+• Crop-Specific Best Practices
+• Water Management Strategies
+• Nutrient Management Insights
+• Regenerative Agriculture Principles
+• Case Studies & Success Stories
+• Seasonal Application Timing
+• Economic Value Drivers
+
+VALUE CONTENT LIBRARY:
+--------------------------------------------------------------------------------
+
+Build and maintain a library of value content:
+
+• Educational guides (PDF downloads)
+• Case studies (anonymized)
+• Video content (short, educational)
+• Infographics (visual learning)
+• Checklists and worksheets
+• Webinar recordings
+• Research summaries
+
+CONTENT DISTRIBUTION:
+--------------------------------------------------------------------------------
+
+• Newsletter: Monthly to all contacts
+• Email nurture: Integrated into sequences
+• Website: Available for download
+• Social media: Shared content
+• Sales calls: Resources to share
+
+MEASUREMENT:
+--------------------------------------------------------------------------------
+
+Track newsletter performance:
+
+• Open rates (target: 25%+)
+• Click-through rates (target: 5%+)
+• Engagement scores
+• Unsubscribe rates
+• Conversion to calls/meetings
+
+================================================================================
+
+7.4 Samples and Gifts Program
+================================================================================
+
+The samples and gifts program provides tangible value to qualified prospects, 
+demonstrating product quality and building goodwill. This program creates 
+opportunities for hands-on experience and follow-up conversations.
+
+SAMPLE PROGRAM OVERVIEW:
+--------------------------------------------------------------------------------
+
+• Product: 9 lb trial bag of appropriate blend (Pomona, Seriokai's Secret, or Bucchas)
+• Qualification: Prospect must meet minimum criteria (acreage, crop fit, engagement)
+• Delivery: Branded packaging with educational materials
+• Follow-up: Automated and personal follow-up sequence
+
+QUALIFICATION CRITERIA:
+--------------------------------------------------------------------------------
+
+Prospects qualify for samples when they:
+
+• Have 50+ acres of target crop
+• Show engagement (email opens, clicks, replies)
+• Express interest in learning more
+• Are within service radius
+• Have completed discovery conversation
+
+SAMPLE DELIVERY PROCESS:
+--------------------------------------------------------------------------------
+
+1. QUALIFICATION:
+   • Representative identifies qualified prospect
+   • Confirms sample eligibility in CRM
+   • Selects appropriate blend based on crop type
+
+2. PREPARATION:
+   • CRM creates sample order
+   • Branded packaging prepared
+   • Educational materials included
+   • Personal note from representative
+
+3. DELIVERY:
+   • Sample shipped or delivered in person
+   • Delivery confirmation logged in CRM
+   • Automated thank you email sent
+
+4. FOLLOW-UP:
+   • Day 3: Automated email checking on delivery
+   • Day 7: Representative personal call
+   • Day 14: Follow-up email with application guidance
+   • Day 30: Results check-in call
+
+BRANDED GIFTS PROGRAM:
+--------------------------------------------------------------------------------
+
+Additional branded gifts for high-value prospects:
+
+• Branded merchandise (hats, shirts, tools)
+• Educational books or resources
+• Soil testing kits
+• Customized farm signage
+• Holiday gifts (seasonal)
+
+GIFT TIMING:
+--------------------------------------------------------------------------------
+
+• After site visit
+• After proposal delivery
+• After trial period completion
+• Holiday season (Thanksgiving, Christmas)
+• Customer anniversary
+• Referral thank you
+
+FOLLOW-UP AUTOMATION:
+--------------------------------------------------------------------------------
+
+CRM automatically triggers follow-up sequence:
+
+• Delivery confirmation email
+• Application guidance email
+• Results check-in email
+• Personal call task for representative
+
+MEASUREMENT:
+--------------------------------------------------------------------------------
+
+Track sample program effectiveness:
+
+• Sample-to-trial conversion rate
+• Trial-to-customer conversion rate
+• Time from sample to purchase
+• ROI of sample program
+
+================================================================================
+
+7.5 Education → Credibility → Proposal Flow
+================================================================================
+
+The nurturing strategy follows a progressive flow that moves prospects from 
+awareness to action through education, credibility building, and ultimately 
+proposal delivery. This flow ensures prospects are well-informed and ready 
+before receiving a formal proposal.
+
+PROGRESSIVE ENGAGEMENT FLOW:
+--------------------------------------------------------------------------------
+
+STAGE 1: EDUCATION (Weeks 1-4)
+• Goal: Provide value and build awareness
+• Tactics: Hook point email, educational content, newsletters
+• Outcome: Prospect recognizes SSW as knowledgeable resource
+
+STAGE 2: CREDIBILITY (Weeks 5-8)
+• Goal: Build trust through social proof and expertise
+• Tactics: Case studies, success stories, personal interactions
+• Outcome: Prospect trusts SSW as credible partner
+
+STAGE 3: ENGAGEMENT (Weeks 9-12)
+• Goal: Create interest and desire to learn more
+• Tactics: Discovery calls, site visits, samples, personal follow-ups
+• Outcome: Prospect actively engages and wants to explore solutions
+
+STAGE 4: PROPOSAL (Weeks 13+)
+• Goal: Present formal solution and close
+• Tactics: Customized proposal, ROI calculations, contract discussion
+• Outcome: Prospect becomes customer
+
+EDUCATION PHASE TACTICS:
+--------------------------------------------------------------------------------
+
+• Deliver valuable content consistently
+• Answer questions thoroughly
+• Provide resources and guides
+• Share insights and best practices
+• Position as educator, not seller
+
+CREDIBILITY PHASE TACTICS:
+--------------------------------------------------------------------------------
+
+• Share success stories and case studies
+• Provide testimonials and references
+• Demonstrate expertise through content
+• Show results and outcomes
+• Build personal relationship
+
+ENGAGEMENT PHASE TACTICS:
+--------------------------------------------------------------------------------
+
+• Conduct discovery conversations
+• Schedule site visits
+• Provide samples and trials
+• Personal follow-up calls
+• Address specific challenges
+
+PROPOSAL PHASE TACTICS:
+--------------------------------------------------------------------------------
+
+• Customize proposal to their situation
+• Present ROI calculations
+• Address objections proactively
+• Provide clear next steps
+• Facilitate decision-making
+
+TRANSITION SIGNALS:
+--------------------------------------------------------------------------------
+
+Move to next stage when:
+
+EDUCATION → CREDIBILITY:
+• Prospect engages with content
+• Prospect asks questions
+• Prospect shows interest in learning more
+
+CREDIBILITY → ENGAGEMENT:
+• Prospect requests information
+• Prospect agrees to call or meeting
+• Prospect expresses specific challenges
+
+ENGAGEMENT → PROPOSAL:
+• Prospect requests proposal
+• Prospect is qualified (acreage, budget, authority)
+• Prospect shows buying signals
+
+PROPOSAL → CLOSE:
+• Prospect reviews proposal
+• Prospect asks closing questions
+• Prospect is ready to decide
+
+CRM TRACKING:
+--------------------------------------------------------------------------------
+
+Each stage is tracked in CRM:
+
+• Stage assignment based on engagement
+• Automated workflows for each stage
+• Representative tasks and follow-ups
+• Progress metrics and reporting
+
+MEASUREMENT:
+--------------------------------------------------------------------------------
+
+Track progression through stages:
+
+• Time in each stage
+• Conversion rates between stages
+• Drop-off points
+• Average time to proposal
+• Average time to close
+
+================================================================================
+
+
+8. SALES PROCESS
+================================================================================
+
+[Content to be added - see detailed sections in subsequent subsections]
+
+================================================================================
+
+
+9. IMPLEMENTATION
+================================================================================
+
+[Content to be added - see detailed sections in subsequent subsections]
+
+================================================================================
+
+
+10. TIMELINE & KPIs
+================================================================================
+
+[Content to be added - see detailed sections in subsequent subsections]
+
+================================================================================
+
+
+11. TOOLS & PLATFORMS
+================================================================================
+
+[Content to be added - see detailed sections in subsequent subsections]
+
+================================================================================
+
+
+12. APPENDIX
+================================================================================
+
+12.6 EMAIL TEMPLATES - 5-EMAIL NURTURE SERIES EXAMPLES
+================================================================================
+
+This section provides complete, ready-to-use email examples for the 5-Email 
+Nurture Series. These emails demonstrate proper formatting, hook point 
+implementation, value delivery, and call-to-action placement. Each email 
+includes image placeholders and is formatted to look like an actual email 
+campaign.
+
+All emails use personalization tokens: [Farm Name], [Crop Type], [First Name], 
+[Region], [Representative Name], [Phone], [Email]. Replace these with actual 
+data when deploying in CRM.
+
+================================================================================
+
+EMAIL 1: THE HOOK POINT
+================================================================================
+
+Subject: [Crop Type] Farmers: One Soil Health Insight That Changes Everything
+
+[IMAGE: assets/email-header-soil-health.jpg]
+
+Hi [First Name],
+
+If you're growing [Crop Type] in [Region], you're likely facing the same 
+challenge most specialty farmers don't see coming: declining soil health that 
+silently impacts your bottom line.
+
+Most farmers don't realize this challenge is actually a soil health opportunity.
+
+Here's what I mean: When soil organic matter drops below 2%, your [Crop Type] 
+trees start showing stress—even if you're applying the right fertilizers. The 
+problem isn't what you're putting on; it's what's happening below the surface.
+
+[IMAGE: assets/soil-compaction-diagram.png]
+
+The Hidden Cost:
+
+• Reduced water infiltration (more runoff, less efficiency)
+• Declining microbial activity (nutrients not cycling properly)
+• Increased fertilizer dependency (costs keep rising)
+• Lower quality fruit (affecting your premium pricing)
+
+The Opportunity:
+
+Specialty [Crop Type] operations in [Region] are seeing 15-25% improvements 
+in soil health within the first year by focusing on regenerative soil practices. 
+This isn't theory—it's happening on farms like yours right now.
+
+[IMAGE: assets/before-after-soil-health.jpg]
+
+I'd love to share a free resource with you: "The [Crop Type] Soil Health Guide" 
+that shows exactly how this applies to operations like [Farm Name].
+
+Would a 15-minute call make sense to discuss your specific situation? No 
+pressure—just insights that could help.
+
+Reply with your biggest soil challenge, and I'll send you the guide plus 
+specific recommendations for your operation.
+
+Best regards,
+
+[Representative Name]
+Soil Seed & Water
+[Phone] | [Email]
+
+P.S. If you're seeing any of these signs—compacted soil, declining yields, or 
+rising input costs—this guide will show you exactly what's happening and how 
+to address it.
+
+---
+[Unsubscribe] | [Update Preferences] | [View in Browser]
+
+================================================================================
+
+EMAIL 2: EDUCATIONAL VALUE
+================================================================================
+
+Subject: The [Crop Type] Soil Health Factor Most Farmers Overlook
+
+[IMAGE: assets/email-header-educational.jpg]
+
+Hi [First Name],
+
+Two weeks ago, I mentioned how soil health impacts [Crop Type] operations. 
+Today, I want to share something specific that most farmers overlook.
+
+It's called the "microbial bridge"—and it's the difference between fertilizer 
+that works and fertilizer that doesn't.
+
+[IMAGE: assets/microbial-activity-diagram.png]
+
+Here's What's Happening:
+
+Your [Crop Type] trees need nutrients, but they can't access them directly from 
+fertilizer. They need soil microbes to "bridge" those nutrients into forms the 
+roots can absorb.
+
+When soil health declines:
+• Microbial populations drop
+• The bridge breaks down
+• Your fertilizer dollars go to waste
+• Trees show deficiencies despite applications
+
+The Solution:
+
+Building soil organic matter creates the habitat microbes need. When you 
+increase organic matter from 1.5% to 3%, you're not just improving soil 
+structure—you're rebuilding that microbial bridge.
+
+[IMAGE: assets/soil-microbe-illustration.jpg]
+
+Real Results from [Region]:
+
+A [Crop Type] operation in [Region] increased soil organic matter from 1.8% to 
+2.9% over 18 months. Their results:
+
+• 30% reduction in fertilizer costs
+• 15% improvement in fruit quality
+• Better water retention (less irrigation needed)
+• Healthier trees showing less stress
+
+The key? They focused on building soil health first, then optimized their 
+fertilizer program.
+
+[IMAGE: assets/case-study-results-chart.png]
+
+Want to see how this applies to your specific operation?
+
+I've put together a free guide: "The [Crop Type] Protocol Guide" that shows 
+exactly how to rebuild soil health on [Crop Type] operations.
+
+Reply with questions—I'm happy to help.
+
+Or download the guide here: [Link to Guide]
+
+Best regards,
+
+[Representative Name]
+Soil Seed & Water
+[Phone] | [Email]
+
+P.S. The microbial bridge isn't just theory. It's measurable. If you want to 
+see how your soil health measures up, I can help you understand your soil test 
+results.
+
+---
+[Unsubscribe] | [Update Preferences] | [View in Browser]
+
+================================================================================
+
+EMAIL 3: SOCIAL PROOF & STORIES
+================================================================================
+
+Subject: How [Similar Farm] Increased [Crop Type] Quality by 22%
+
+[IMAGE: assets/email-header-success-story.jpg]
+
+Hi [First Name],
+
+I want to share a story that might resonate with you.
+
+Last year, I worked with a [Crop Type] operation in [Region]—let's call them 
+"Valley View Orchards." They were facing the same challenges you might be 
+experiencing:
+
+• Declining fruit quality despite good management
+• Rising fertilizer costs with diminishing returns
+• Soil compaction issues affecting water efficiency
+• Concerned about long-term sustainability
+
+[IMAGE: assets/farm-before-photo.jpg]
+
+The Challenge:
+
+Valley View had been farming [Crop Type] for 15 years. Their soil organic 
+matter had dropped to 1.6%. They were spending more on inputs but seeing 
+declining quality. They knew something had to change.
+
+The Solution:
+
+We implemented a regenerative soil health program focused on:
+• Building soil organic matter through specialized blends
+• Restoring microbial activity
+• Improving soil structure and water infiltration
+• Reducing dependency on synthetic inputs
+
+[IMAGE: assets/farm-during-application.jpg]
+
+The Results (18 Months Later):
+
+• Soil organic matter increased from 1.6% to 2.8%
+• Fruit quality improved by 22% (premium pricing increased)
+• Fertilizer costs reduced by 28%
+• Water efficiency improved by 35%
+• Trees showing healthier growth and less stress
+
+[IMAGE: assets/farm-after-results.jpg]
+
+What the Farmer Said:
+
+"At first, I was skeptical. But after seeing the soil test improvements and 
+the quality of our fruit, I'm a believer. We're spending less on inputs and 
+getting better results. That's a win-win."
+
+[IMAGE: assets/testimonial-quote-graphic.png]
+
+Why This Matters for [Farm Name]:
+
+Like Valley View, you're running a quality-focused [Crop Type] operation. The 
+same principles that worked for them can work for you.
+
+The key difference? Starting with soil health, not just adding more inputs.
+
+Want to see if this approach could work for [Farm Name]?
+
+I'd love to schedule a 20-minute call to discuss your situation. No pressure— 
+just an honest conversation about whether this makes sense for your operation.
+
+Reply to this email or call me at [Phone].
+
+Best regards,
+
+[Representative Name]
+Soil Seed & Water
+[Phone] | [Email]
+
+P.S. Valley View isn't unique. I've seen similar results across [Region] with 
+[Crop Type] operations. The common factor? Focusing on soil health first.
+
+---
+[Unsubscribe] | [Update Preferences] | [View in Browser]
+
+================================================================================
+
+EMAIL 4: PROBLEM-SOLUTION FRAMING (SPIN METHODOLOGY)
+================================================================================
+
+Subject: The Hidden Cost of Soil Compaction in [Crop Type] Operations
+
+[IMAGE: assets/email-header-problem-solution.jpg]
+
+Hi [First Name],
+
+Let me ask you something: How much is soil compaction costing your [Crop Type] 
+operation?
+
+Most farmers don't realize the true cost because it's hidden in:
+• Reduced water efficiency (more irrigation needed)
+• Lower fertilizer effectiveness (nutrients not reaching roots)
+• Declining tree health (stress from poor root development)
+• Lost yield potential (trees not reaching full capacity)
+
+[IMAGE: assets/soil-compaction-cost-chart.png]
+
+The Situation:
+
+If you're like most [Crop Type] farmers in [Region], you're probably dealing 
+with some level of soil compaction. It happens gradually—from equipment traffic, 
+irrigation, and natural settling.
+
+The Problem:
+
+Compacted soil means:
+• Water runs off instead of infiltrating (waste)
+• Roots can't penetrate deeply (limited access to nutrients)
+• Microbial activity decreases (nutrient cycling slows)
+• Trees show stress even with good management
+
+The Implication:
+
+Here's what this costs you:
+• 20-30% more irrigation water needed
+• 15-25% of fertilizer not reaching roots
+• 10-15% yield reduction from stressed trees
+• Premium pricing at risk from quality issues
+
+For a [Crop Type] operation your size, that could mean $[X,XXX] in lost revenue 
+annually.
+
+[IMAGE: assets/cost-calculation-example.png]
+
+The Need-Payoff:
+
+The good news? This is fixable. Operations addressing soil compaction see:
+• 30-40% improvement in water infiltration
+• Better fertilizer efficiency (less waste)
+• Healthier trees with deeper root systems
+• Improved fruit quality and yield
+
+The solution isn't complicated—it's about rebuilding soil structure and 
+restoring natural processes.
+
+[IMAGE: assets/solution-diagram.png]
+
+Want to see how much soil compaction is costing your operation?
+
+I've created a simple calculator that shows the real cost based on your 
+acreage and current practices. It takes 2 minutes and gives you specific 
+numbers for [Farm Name].
+
+Let's discuss your [Crop Type] challenges—no pressure, just insights.
+
+Schedule a free soil health assessment: [Link to Schedule]
+
+Or reply to this email and I'll send you the cost calculator.
+
+Best regards,
+
+[Representative Name]
+Soil Seed & Water
+[Phone] | [Email]
+
+P.S. The cost of inaction is real. But so is the opportunity. Operations that 
+address soil health see ROI within the first year. Want to see if that applies 
+to [Farm Name]?
+
+---
+[Unsubscribe] | [Update Preferences] | [View in Browser]
+
+================================================================================
+
+EMAIL 5: INVITATION TO ENGAGE
+================================================================================
+
+Subject: Final Thought: Why [Crop Type] Operations Like Yours Need This Now
+
+[IMAGE: assets/email-header-final-invitation.jpg]
+
+Hi [First Name],
+
+Over the past 10 weeks, I've shared insights about:
+• How soil health impacts [Crop Type] operations
+• The microbial bridge and nutrient cycling
+• Real results from farms like yours
+• The hidden costs of soil compaction
+
+[IMAGE: assets/email-series-recap-graphic.png]
+
+Here's what I want you to know:
+
+If you're running a [Crop Type] operation in [Region], soil health isn't 
+optional—it's essential for long-term success.
+
+The farmers seeing the best results aren't doing anything complicated. They're 
+simply focusing on building soil health first, then optimizing everything else.
+
+[IMAGE: assets/success-principles-diagram.jpg]
+
+The Opportunity:
+
+Right now, you have a choice:
+• Continue with the status quo (rising costs, declining efficiency)
+• Take action to rebuild soil health (better results, lower costs)
+
+The window for action? It's now. Soil health improvements take time, but they 
+compound. Every season you wait is a season of lost opportunity.
+
+[IMAGE: assets/seasonal-timing-chart.png]
+
+Ready to Discuss How This Applies to [Farm Name]?
+
+I'd love to schedule a 15-minute call where I'll bring specific insights for 
+your operation. No sales pitch—just an honest conversation about:
+
+• Your current soil health situation
+• What's possible for [Farm Name]
+• Whether this approach makes sense for you
+
+Here's what you'll get:
+• Free soil health assessment
+• Customized recommendations for your operation
+• No obligation—just valuable insights
+
+[IMAGE: assets/call-benefits-graphic.png]
+
+Let's schedule that call: [Link to Schedule]
+
+Or simply reply "yes" to this email and I'll reach out within 24 hours.
+
+I'm here to help, [First Name]. Whether that's answering questions, sharing 
+resources, or discussing your specific situation.
+
+Best regards,
+
+[Representative Name]
+Soil Seed & Water
+[Phone] | [Email]
+
+P.S. I know your time is valuable. That's why I keep these emails short and 
+focused on value. If you're ready to explore how soil health can improve 
+[Farm Name]'s results, let's talk. No pressure—just insights.
+
+---
+[Unsubscribe] | [Update Preferences] | [View in Browser]
+
+================================================================================
+
+EMAIL DESIGN NOTES & BEST PRACTICES
+================================================================================
+
+IMAGERY GUIDELINES:
+
+• Use high-quality, relevant images (1200px width minimum)
+• Include alt text for all images
+• Keep file sizes optimized (under 200KB per image)
+• Use consistent branding across all emails
+• Include visual hierarchy (header, body, footer)
+
+PERSONALIZATION:
+
+• Always use [First Name] in greeting
+• Reference [Farm Name] and [Crop Type] throughout
+• Include [Region] for geographic relevance
+• Use [Representative Name] in signature
+• Personalize examples and case studies when possible
+
+CALL-TO-ACTION PLACEMENT:
+
+• Primary CTA: Above the fold (visible without scrolling)
+• Secondary CTA: Mid-email for engaged readers
+• Final CTA: Before signature
+• Make CTAs clear and action-oriented
+• Use buttons for links (better click rates)
+
+TIMING & SEQUENCING:
+
+• Email 1: Day 0 (Initial contact)
+• Email 2: Day 14 (2 weeks later)
+• Email 3: Day 28 (4 weeks later)
+• Email 4: Day 42 (6 weeks later)
+• Email 5: Day 56 (8 weeks later)
+• Total series: 10 weeks
+
+A/B TESTING RECOMMENDATIONS:
+
+• Test subject lines (curiosity vs. benefit-focused)
+• Test CTA placement (top vs. bottom)
+• Test image usage (with vs. without)
+• Test email length (short vs. detailed)
+• Track opens, clicks, and replies
+
+CRM INTEGRATION:
+
+• Set up automation triggers based on engagement
+• Pause sequence if prospect replies or calls
+• Move engaged prospects to personal follow-up
+• Track all metrics in CRM for optimization
+• Update templates based on performance data
+
+================================================================================
+
+12.7 ACTUAL EMAIL CAMPAIGN EXAMPLES - READY TO SEND
+================================================================================
+
+This section provides five complete, realistic email examples that can be sent 
+directly to prospects. These emails use actual farm names, crop types, and 
+regions from our prospect database, with Rodolfo Alvarez as the sender. Each 
+email demonstrates professional formatting, value-focused messaging, and clear 
+calls-to-action.
+
+These examples show how the email templates from Section 12.6 look when 
+personalized with real prospect information. Use these as reference when 
+customizing emails for your prospects.
+
+================================================================================
+
+EXAMPLE EMAIL 1: PISTACHIO GROWER - HOOK POINT EMAIL
+================================================================================
+
+Subject: Pistachio Farmers: One Soil Health Insight That Changes Everything
+
+Hi David,
+
+If you're growing pistachios in the San Simon/Willcox region, you're likely 
+facing the same challenge most specialty farmers don't see coming: declining soil 
+health that silently impacts your bottom line.
+
+Most farmers don't realize this challenge is actually a soil health opportunity.
+
+Here's what I mean: When soil organic matter drops below 2%, your pistachio 
+trees start showing stress—even if you're applying the right fertilizers. The 
+problem isn't what you're putting on; it's what's happening below the surface.
+
+The Hidden Cost:
+
+• Reduced water infiltration (more runoff, less efficiency)
+• Declining microbial activity (nutrients not cycling properly)
+• Increased fertilizer dependency (costs keep rising)
+• Lower quality nuts (affecting your premium pricing)
+
+The Opportunity:
+
+Specialty pistachio operations in the Willcox region are seeing 15-25% 
+improvements in soil health within the first year by focusing on regenerative 
+soil practices. This isn't theory—it's happening on farms like yours right now.
+
+I'd love to share a free resource with you: "The Pistachio Soil Health Guide" 
+that shows exactly how this applies to operations like David's Agrigold Farms.
+
+Would a 15-minute call make sense to discuss your specific situation? No 
+pressure—just insights that could help.
+
+Reply with your biggest soil challenge, and I'll send you the guide plus 
+specific recommendations for your operation.
+
+Best regards,
+
+Rodolfo Alvarez
+Soil Seed & Water
+(520) 555-0123 | rodolfo@soilseedandwater.com
+
+P.S. If you're seeing any of these signs—compacted soil, declining yields, or 
+rising input costs—this guide will show you exactly what's happening and how 
+to address it.
+
+---
+Unsubscribe | Update Preferences | View in Browser
+
+================================================================================
+
+EXAMPLE EMAIL 2: VINEYARD OWNER - EDUCATIONAL VALUE EMAIL
+================================================================================
+
+Subject: The Vineyard Soil Health Factor Most Farmers Overlook
+
+Hi Chad,
+
+Two weeks ago, I mentioned how soil health impacts vineyard operations. Today, 
+I want to share something specific that most farmers overlook.
+
+It's called the "microbial bridge"—and it's the difference between fertilizer 
+that works and fertilizer that doesn't.
+
+Here's What's Happening:
+
+Your grapevines need nutrients, but they can't access them directly from 
+fertilizer. They need soil microbes to "bridge" those nutrients into forms the 
+roots can absorb.
+
+When soil health declines:
+• Microbial populations drop
+• The bridge breaks down
+• Your fertilizer dollars go to waste
+• Vines show deficiencies despite applications
+
+The Solution:
+
+Building soil organic matter creates the habitat microbes need. When you 
+increase organic matter from 1.5% to 3%, you're not just improving soil 
+structure—you're rebuilding that microbial bridge.
+
+Real Results from Willcox:
+
+A vineyard operation in Willcox increased soil organic matter from 1.8% to 
+2.9% over 18 months. Their results:
+
+• 30% reduction in fertilizer costs
+• 15% improvement in grape quality and brix levels
+• Better water retention (less irrigation needed)
+• Healthier vines showing less stress
+
+The key? They focused on building soil health first, then optimized their 
+fertilizer program.
+
+Want to see how this applies to your specific operation at Birds and Barrels 
+Vineyard?
+
+I've put together a free guide: "The Vineyard Protocol Guide" that shows 
+exactly how to rebuild soil health on vineyard operations.
+
+Reply with questions—I'm happy to help.
+
+Or download the guide here: [Link to Guide]
+
+Best regards,
+
+Rodolfo Alvarez
+Soil Seed & Water
+(520) 555-0123 | rodolfo@soilseedandwater.com
+
+P.S. The microbial bridge isn't just theory. It's measurable. If you want to 
+see how your soil health measures up, I can help you understand your soil test 
+results.
+
+---
+Unsubscribe | Update Preferences | View in Browser
+
+================================================================================
+
+EXAMPLE EMAIL 3: AVOCADO FARM - SOCIAL PROOF & STORIES EMAIL
+================================================================================
+
+Subject: How a Fallbrook Avocado Operation Increased Quality by 22%
+
+Hi John,
+
+I want to share a story that might resonate with you.
+
+Last year, I worked with an avocado operation in Fallbrook—let's call them 
+"Valley View Avocados." They were facing the same challenges you might be 
+experiencing:
+
+• Declining fruit quality despite good management
+• Rising fertilizer costs with diminishing returns
+• Soil compaction issues affecting water efficiency
+• Concerned about long-term sustainability
+
+The Challenge:
+
+Valley View had been farming avocados for 15 years. Their soil organic matter 
+had dropped to 1.6%. They were spending more on inputs but seeing declining 
+quality. They knew something had to change.
+
+The Solution:
+
+We implemented a regenerative soil health program focused on:
+• Building soil organic matter through Seriokai's Secret blend
+• Restoring microbial activity
+• Improving soil structure and water infiltration
+• Reducing dependency on synthetic inputs
+
+The Results (18 Months Later):
+
+• Soil organic matter increased from 1.6% to 2.8%
+• Fruit quality improved by 22% (premium pricing increased)
+• Fertilizer costs reduced by 28%
+• Water efficiency improved by 35%
+• Trees showing healthier growth and less stress
+
+What the Farmer Said:
+
+"At first, I was skeptical. But after seeing the soil test improvements and 
+the quality of our avocados, I'm a believer. We're spending less on inputs and 
+getting better results. That's a win-win."
+
+Why This Matters for Bantle Avocado Farm:
+
+Like Valley View, you're running a quality-focused avocado operation. The 
+same principles that worked for them can work for you.
+
+The key difference? Starting with soil health, not just adding more inputs.
+
+Want to see if this approach could work for Bantle Avocado Farm?
+
+I'd love to schedule a 20-minute call to discuss your situation. No pressure— 
+just an honest conversation about whether this makes sense for your operation.
+
+Reply to this email or call me at (520) 555-0123.
+
+Best regards,
+
+Rodolfo Alvarez
+Soil Seed & Water
+(520) 555-0123 | rodolfo@soilseedandwater.com
+
+P.S. Valley View isn't unique. I've seen similar results across Fallbrook with 
+avocado operations. The common factor? Focusing on soil health first.
+
+---
+Unsubscribe | Update Preferences | View in Browser
+
+================================================================================
+
+EXAMPLE EMAIL 4: STONE FRUIT ORCHARD - PROBLEM-SOLUTION FRAMING EMAIL
+================================================================================
+
+Subject: The Hidden Cost of Soil Compaction in Peach Operations
+
+Hi Mark,
+
+Let me ask you something: How much is soil compaction costing your peach 
+operation?
+
+Most farmers don't realize the true cost because it's hidden in:
+• Reduced water efficiency (more irrigation needed)
+• Lower fertilizer effectiveness (nutrients not reaching roots)
+• Declining tree health (stress from poor root development)
+• Lost yield potential (trees not reaching full capacity)
+
+The Situation:
+
+If you're like most stone fruit farmers in the Willcox region, you're probably 
+dealing with some level of soil compaction. It happens gradually—from equipment 
+traffic, irrigation, and natural settling.
+
+The Problem:
+
+Compacted soil means:
+• Water runs off instead of infiltrating (waste)
+• Roots can't penetrate deeply (limited access to nutrients)
+• Microbial activity decreases (nutrient cycling slows)
+• Trees show stress even with good management
+
+The Implication:
+
+Here's what this costs you:
+• 20-30% more irrigation water needed
+• 15-25% of fertilizer not reaching roots
+• 10-15% yield reduction from stressed trees
+• Premium pricing at risk from quality issues
+
+For a peach operation your size at Apple Annie's Orchard, that could mean 
+$15,000-$25,000 in lost revenue annually.
+
+The Need-Payoff:
+
+The good news? This is fixable. Operations addressing soil compaction see:
+• 30-40% improvement in water infiltration
+• Better fertilizer efficiency (less waste)
+• Healthier trees with deeper root systems
+• Improved fruit quality and yield
+
+The solution isn't complicated—it's about rebuilding soil structure and 
+restoring natural processes.
+
+Want to see how much soil compaction is costing your operation?
+
+I've created a simple calculator that shows the real cost based on your 
+acreage and current practices. It takes 2 minutes and gives you specific 
+numbers for Apple Annie's Orchard.
+
+Let's discuss your peach operation challenges—no pressure, just insights.
+
+Schedule a free soil health assessment: [Link to Schedule]
+
+Or reply to this email and I'll send you the cost calculator.
+
+Best regards,
+
+Rodolfo Alvarez
+Soil Seed & Water
+(520) 555-0123 | rodolfo@soilseedandwater.com
+
+P.S. The cost of inaction is real. But so is the opportunity. Operations that 
+address soil health see ROI within the first year. Want to see if that applies 
+to Apple Annie's Orchard?
+
+---
+Unsubscribe | Update Preferences | View in Browser
+
+================================================================================
+
+EXAMPLE EMAIL 5: CITRUS GROWER - INVITATION TO ENGAGE EMAIL
+================================================================================
+
+Subject: Final Thought: Why Citrus Operations Like Yours Need This Now
+
+Hi Robert,
+
+Over the past 10 weeks, I've shared insights about:
+• How soil health impacts citrus operations
+• The microbial bridge and nutrient cycling
+• Real results from farms like yours
+• The hidden costs of soil compaction
+
+Here's what I want you to know:
+
+If you're running a citrus operation in the Temecula region, soil health isn't 
+optional—it's essential for long-term success.
+
+The farmers seeing the best results aren't doing anything complicated. They're 
+simply focusing on building soil health first, then optimizing everything else.
+
+The Opportunity:
+
+Right now, you have a choice:
+• Continue with the status quo (rising costs, declining efficiency)
+• Take action to rebuild soil health (better results, lower costs)
+
+The window for action? It's now. Soil health improvements take time, but they 
+compound. Every season you wait is a season of lost opportunity.
+
+Ready to Discuss How This Applies to Newton Avocado Manor?
+
+I'd love to schedule a 15-minute call where I'll bring specific insights for 
+your operation. No sales pitch—just an honest conversation about:
+
+• Your current soil health situation
+• What's possible for Newton Avocado Manor
+• Whether this approach makes sense for you
+
+Here's what you'll get:
+• Free soil health assessment
+• Customized recommendations for your operation
+• No obligation—just valuable insights
+
+Let's schedule that call: [Link to Schedule]
+
+Or simply reply "yes" to this email and I'll reach out within 24 hours.
+
+I'm here to help, Robert. Whether that's answering questions, sharing 
+resources, or discussing your specific situation.
+
+Best regards,
+
+Rodolfo Alvarez
+Soil Seed & Water
+(520) 555-0123 | rodolfo@soilseedandwater.com
+
+P.S. I know your time is valuable. That's why I keep these emails short and 
+focused on value. If you're ready to explore how soil health can improve 
+Newton Avocado Manor's results, let's talk. No pressure—just insights.
+
+---
+Unsubscribe | Update Preferences | View in Browser
+
+================================================================================
+
+EMAIL EXAMPLES USAGE NOTES
+================================================================================
+
+These five email examples demonstrate:
+
+1. PERSONALIZATION: Each email uses actual farm names, crop types, and regions 
+   from our prospect database.
+
+2. PROFESSIONAL TONE: All emails maintain a professional yet conversational 
+   tone that builds trust.
+
+3. VALUE-FOCUSED: Each email provides genuine value before asking for anything.
+
+4. CLEAR CALLS-TO-ACTION: Every email includes specific, actionable next steps.
+
+5. CONSISTENT BRANDING: All emails use Rodolfo Alvarez's name and contact 
+   information consistently.
+
+6. CROP-SPECIFIC MESSAGING: Each email addresses the unique challenges and 
+   opportunities for the specific crop type.
+
+CUSTOMIZATION GUIDELINES:
+
+When using these examples for your prospects:
+
+• Replace farm names with actual prospect names from CRM
+• Update crop types to match prospect's primary crop
+• Adjust regions to match prospect's location
+• Personalize specific details based on CRM notes
+• Update contact information if using different representative
+• Modify examples and case studies to match prospect's situation
+
+These emails are ready to send but should be customized based on:
+• Prospect's specific challenges (from CRM notes)
+• Previous interactions (calls, visits, samples)
+• Crop type and acreage
+• Geographic region and seasonal timing
+• Engagement level and interest signals
+
+================================================================================
+
+12.13 PROSPECT DATABASE - CATEGORIZED LIST
+
+This section contains a comprehensive list of all identified prospects,
+cleaned and categorized by crop type. This database should be entered
+into CRM following the lead capture workflow outlined in Section 5.2.
+
+Total Prospects: 155
+
+GEOGRAPHIC VISUALIZATION
+--------------------------------------------------------------------------------
+
+The following map shows the geographic distribution of all identified
+prospects across the target region (300-mile radius from SSW operations).
+
+[IMAGE: assets/Map of prospects.png]
+
+To access the interactive map with detailed location information, click here: https://www.google.com/maps/d/u/0/viewer?mid=1ECUKb5dUn8lLStKvG-dFLPJgSiSJG4c&femb=1&ll=36.65540372330666%2C-94.7044042&z=3
+
+--------------------------------------------------------------------------------
+
+
+VINEYARD/WINERY
+--------------------------------------------------------------------------------
+
+Total: 118 prospects
+
+1. 1764 Vineyards
+   Address: 357 Treasure Rd Box 822, Pearce, AZ 85625
+   Phone: (520) 329-2590
+   Email: 1764vineyards@gmail.com
+   Website: https://www.1764vineyards.com/
+
+2. A. Torano Family Wines
+   Address: 14 S Eastbourne Ave, Tucson, AZ 85716
+   Phone: (520) 393-3332
+   Website: https://atoranowines.com/
+
+3. Agricola viñedos 5 Encinos
+   Address: 84634 Cananea, Sonora, Mexico
+
+4. Alcantara Vineyards and Winery
+   Address: 3445 S Grapevine Way, Camp Verde, AZ 86322
+   Phone: (928) 649-8463
+   Email: info@alcantaravineyard.com
+   Website: http://www.alcantaravineyard.com/
+
+5. Anam Cara Vineyard and B&B
+   Address: 40 Omega Ln, Elgin, AZ 85611
+
+6. AQUA CIELE ę TERRE
+   Address: 28 Old Hwy Ln, Sonoita, AZ 85637
+   Phone: (520) 264-8072
+   Email: store@aquacieleeterre.com
+   Website: https://aquacieleeterre.com/
+
+7. Aridus Wine Company Custom Crush Winery
+   Address: 1126 N Haskell Ave, Willcox, AZ 85643
+   Phone: (520) 766-2926
+   Email: info@ariduswineco.com
+   Website: https://www.ariduswineco.com/
+
+8. Aridus Wine Company Tasting Room
+   Address: 7173 E Main St, Scottsdale, AZ 85251
+   Phone: (520) 954-2676
+   Email: info@ariduswineco.com
+   Website: https://www.ariduswineco.com/
+
+9. Aridus Wine Company Tasting Room
+   Address: 145 N Railview Ave, Willcox, AZ 85643
+   Phone: (520) 507-2930
+   Email: info@ariduswineco.com
+   Website: https://www.ariduswineco.com/
+
+10. Arizona Hops and Vines
+   Address: 3450 AZ-82, Sonoita, AZ 85637
+   Phone: (301) 237-6556
+   Website: http://azhopsandvines.com/
+
+11. Arizona Stronghold Vineyards
+   Address: 4700 Old Highway 279, Camp Verde, AZ 86322, USA
+
+12. Arizona Stronghold Vineyards Old Town Cottonwood Tasting Room
+   Address: 1023 N Main St, Cottonwood, AZ 86326
+   Phone: (928) 639-2789
+   Email: info@azstronghold.com,nissa@azstronghold.com
+   Website: https://www.azstronghold.com/
+
+13. Arizona Stronghold Vineyards Old Town Scottsdale Tasting Room
+   Address: 4225 N Marshall Way Suite #2, Scottsdale, AZ 85251
+   Phone: (480) 779-1600
+   Email: info@azstronghold.com,nissa@azstronghold.com
+   Website: https://www.azstronghold.com/
+
+14. Arizona Winery Tours
+   Phone: (520) 201-6905
+   Website: http://www.arizonawinerytours.com/
+
+15. Autumn Sage Vineyards
+   Address: 90 Elgin Rd, Elgin, AZ 85611
+   Phone: (602) 904-2120
+   Email: info@autumnsage.com
+   Website: http://www.autumnsage.com/
+
+16. AZ Wine Hops Touring
+   Address: 4342 W Viewpointe Pl, Tucson, AZ 85741
+   Phone: (520) 554-0435
+   Email: info@azwinehopstouring.com
+   Website: https://azwinehopstouring.com/?utm_source=google&utm_medium=organic&utm_campaign=gbp
+
+17. Baja Arizona Tours
+   Phone: (520) 987-0076
+
+18. Birds and Barrels Vineyard
+   Address: 5000 E Arzberger Rd, Willcox, AZ 85643
+   Phone: (520) 507-0354
+   Email: chad@birdsandbarrels.com
+   Website: http://www.birdsandbarrels.com/
+
+19. Birds and Barrels Vineyards Rail Road tasting room
+   Address: 100 N Railroad Ave, Willcox, AZ 85643
+   Phone: (602) 478-6632
+   Email: chad@birdsandbarrels.com
+   Website: http://www.birdsandbarrels.com/
+
+20. Bodega Pierce Vineyard & Tasting Room
+   Address: 4511 E Robbs Rd, Willcox, AZ 85643
+   Phone: (602) 320-1722
+   Email: barbara@bodegapierce.com
+   Website: http://bodegapierce.com/
+
+21. Bodega Pierce Winery & Tasting Room
+   Address: 1341 AZ-89A, Clarkdale, AZ 86324
+   Phone: (928) 634-0301
+   Email: barbara@bodegapierce.com
+   Website: http://bodegapierce.com/
+
+22. Bruzzi Vineyard
+   Address: 47209 AZ-288, Young, AZ 85554
+   Phone: (928) 462-3314
+   Website: http://www.bruzzivineyard.com/
+
+23. Buhl Memorial Vineyard
+   Address: Fort Grant, AZ 85643
+
+24. Cabal Cellars
+   Address: 410 E Allen St, Tombstone, AZ 85638
+   Phone: (480) 483-5051
+   Website: http://www.cabalcellars.com/
+
+25. Caduceus Cellars
+   Address: 158 Main St, Jerome, AZ 86324, USA
+
+26. Callaghan Vineyards
+   Address: 336 Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 455-5322
+   Email: callaghanvineyards@gmail.com
+   Website: http://www.callaghanvineyards.com/
+
+27. Carlson Creek Vineyard
+   Address: 4574 E Robbs Rd, Willcox, AZ 85643
+   Phone: (520) 766-3000
+   Website: https://www.carlsoncreek.com/
+
+28. Carlson Creek Vineyard
+   Address: 115 N Railview Ave, Willcox, AZ 85643, USA
+
+29. Carlson Creek Vineyard, Scottsdale Tasting Room
+   Address: 4142 N Marshall Way, Scottsdale, AZ 85251
+   Phone: (480) 947-0636
+   Website: http://www.carlsoncreek.com/
+
+30. Charron Vineyards
+   Address: 18585 S Sonoita Hwy, Vail, AZ 85641
+   Phone: (520) 762-8585
+   Website: http://www.charronvineyards.com/
+
+31. Chateau Tumbleweed Winery & Tasting Room
+   Address: 1151 AZ-89A, Clarkdale, AZ 86324
+   Phone: (928) 634-0443
+   Email: info@chateautumbleweed.com
+   Website: http://www.chateautumbleweed.com/Visit-Us
+
+32. Chiricahua Ranch Vineyards
+   Address: 6223 E Cattle Dr, Willcox, AZ 85643
+   Phone: (480) 560-2605
+
+33. Clear Creek Vineyard & Winery, Home of the Rio Claro Wines
+   Address: 4053 AZ-260, Camp Verde, AZ 86322
+   Phone: (602) 859-7418
+   Website: http://www.clearcreekwineryaz.com/
+
+34. Colibri Vineyard & Vacation Rental
+   Address: 2825 W Hilltop Rd, Portal, AZ 85632
+   Phone: (928) 639-3004
+
+35. Copper Horse Vineyard
+   Address: 180 N Railroad Ave, Willcox, AZ 85643
+   Phone: (520) 507-7274
+   Email: copperhorsevineyard1@gmail.com
+   Website: https://copperhorsevineyard.net/
+
+36. Copper Horse Vineyard
+   Address: 3450 S Copper Horse Dr, Portal, AZ 85632
+   Phone: (520) 507-7274
+   Email: copperhorsevineyard1@gmail.com
+   Website: http://copperhorsevineyard.net/
+
+37. Cove Mesa Vineyard Winery Tasting Room
+   Address: 1210 S Western Dr, Cornville, AZ 86325
+   Phone: (928) 301-9909
+   Website: http://www.covemesa.com/
+
+38. D. H. LESCOMBES WINERY & TASTING ROOM
+   Address: 7075 NM-549, Deming, NM 88030
+   Phone: (575) 546-1179
+   Email: tastingroom@lescombeswinery.com
+   Website: https://lescombeswinery.com/locations/deming/
+
+39. DA Vines Vineyard Wines & Bistro
+   Address: 705 N Main St suite a, Cottonwood, AZ 86326
+   Phone: (928) 634-6710
+   Email: info@davinesvineyard.com
+   Website: https://davinesvineyard.com/
+
+40. Deep Sky Vineyard
+   Address: 124 Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 490-6170
+   Email: info@deepskyvineyard.com
+   Website: http://www.deepskyvineyard.com/
+
+41. Desert Rock Winery & Distillery
+   Address: 7302 E Helm Dr STE 1002, Scottsdale, AZ 85260
+   Phone: (480) 400-9955
+   Email: info@wineandspiritsthatrock.com
+   Website: http://www.wineandspiritsthatrock.com/
+
+42. Dos Cabezas WineWorks
+   Address: 3248 AZ-82, Sonoita, AZ 85637
+   Phone: (520) 455-5141
+   Website: http://www.doscabezas.com/
+
+43. Down Time Wines, Inc
+   Address: 393 W Warner Rd Ste. 109, Chandler, AZ 85225
+   Phone: (480) 307-9296
+   Website: https://www.downtimewines.com/
+
+44. Echo Canyon Vineyard, LLC
+   Address: 3222 N Echo Canyon Rd, Cornville, AZ 86325
+   Phone: (928) 592-2179
+
+45. Elgin Winery and Distillery
+   Address: 471 Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 455-9309
+   Website: http://elginwines.com/
+
+46. Flying Kite Vineyard & Tasting Room
+   Address: 435 Lower Elgin Rd, Elgin, AZ 85611
+   Phone: (602) 617-6155
+   Email: richard@flyingkitevineyard.com
+   Website: https://flyingkitevineyard.com/
+
+47. Flying Leap Vineyards
+   Address: 342 Elgin Rd, Elgin, AZ 85611, USA
+
+48. Flying Leap Vineyards & Distillery (Winery Estate - Elgin, AZ)
+   Address: 342 Elgin Rd, Elgin, AZ 85611
+   Phone: (888) 431-5777
+   Email: contact@flyingleapvineyards.com
+   Website: http://www.flyingleapvineyards.com/
+
+49. Four Tails Tasting Room
+   Address: 3170 AZ-83, Sonoita, AZ 85637
+   Phone: (520) 386-2878
+   Website: https://fourtailstastingroom.com/
+
+50. Four Tails Vineyard
+   Address: 274 E Pearce Road, Pearce, AZ 85625
+   Phone: (623) 693-6547
+   Website: http://www.fourtailsvineyard.com/
+
+51. Freitas Vineyard
+   Address: 962 S Main St, Cottonwood, AZ 86326
+   Phone: (928) 634-7901
+   Website: http://www.freitasvineyard.com/locations.html
+
+52. Garage-East
+   Address: 3000 E Ray Rd #7, Gilbert, AZ 85296
+   Phone: (480) 493-7151
+   Email: info@garage-east.com
+   Website: https://www.garage-east.com/
+
+53. Golden Rule Vineyards
+   Address: 469 S Haskell Ave, Willcox, AZ 85643
+   Phone: (520) 766-0001
+   Website: https://www.goldenrulevineyards.com/
+
+54. Hannah's Hill Vineyard
+   Address: 3989 AZ-82, Elgin, AZ 85611
+   Phone: (520) 456-9000
+   Email: hannahshill@msn.com
+   Website: http://www.hannahshill.com/
+
+55. High Lonesome Vineyard
+   Address: 8979 N High Lonesome Rd, McNeal, AZ 85617
+   Phone: (909) 557-4872
+   Email: highlonesomevineyard@gmail.com
+   Website: https://highlonesomevineyard.com/
+
+56. Hofmann Vineyards
+   Address: 9399 N High Lonesome Rd, McNeal, AZ 85617
+   Phone: (520) 403-2100
+   Website: http://www.hofmannvineyards.com/
+
+57. Javelina Leap Vineyard & Winery
+   Address: 1565 N Page Springs Rd, Cornville, AZ 86325
+   Phone: (928) 649-2681
+   Website: http://www.javelinaleapwinery.com/
+
+58. Keeling Schaefer Vineyards Willcox Tasting Room
+   Address: 154 N Railroad Ave, Willcox, AZ 85643
+   Phone: (520) 766-0600
+   Email: info@keelingschaefervineyards.com
+   Website: http://www.keelingschaefervineyards.com/
+
+59. Keeling Schaefer Vineyards, LLC
+   Address: 10277 Rock Creek Ln, Pearce, AZ 85625
+   Phone: (520) 824-2500
+   Email: info@keelingschaefervineyards.com
+   Website: http://www.keelingschaefervineyards.com/
+
+60. Kokopelli Winery
+   Phone: (480) 516-8848
+   Email: info@kokopelli.wine
+   Website: https://www.kokopelli.wine/
+
+61. La Esperanza Vineyard and Winery
+   Address: De La O Rd, Hanover, NM 88041
+   Phone: (505) 259-9523
+   Website: http://www.laesperanzavineyardandwinery.com/
+
+62. Lawrence Dunham Vineyard
+   Address: 13922 S Kuykendall Cutoff Rd, Pearce, AZ 85625
+   Phone: (520) 824-7273
+   Website: http://www.ldvwinery.com/
+
+63. LDV Vineyard
+   Address: Pearce, AZ 85625
+   Website: http://ldvwinery.com/
+
+64. LDV Winery
+   Address: 7134 E Stetson Dr B110, Scottsdale, AZ 85251
+   Phone: (480) 664-4822
+   Website: https://ldvwinery.com/
+
+65. LDV Winery
+   Address: 13922 S Kuykendall Cutoff Rd, Pearce, AZ 85625, USA
+
+66. Lescombes Family Vineyards - OFFICE
+   Address: 1325 De Baca Rd SE, Deming, NM 88030
+   Phone: (575) 546-9324
+   Email: info@lescombeswinery.com
+   Website: http://www.lfv.wine/
+
+67. Light Work Winery, LLC
+   Address: 370 Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 455-5582
+   Email: info@twistedunionwinecompany.com
+   Website: http://www.twistedunionwinecompany.com/
+
+68. Los Milics Vineyards
+   Address: 423 Upper Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 221-0180
+   Email: hola@losmilics.com,reservations@losmilics.com,casitas@losmilics.com
+   Website: https://losmilicsvineyards.com/
+
+69. Los Milics Vineyards Scottsdale Tasting Room
+   Address: 4151 N Marshall Way, Scottsdale, AZ 85251
+   Phone: (480) 390-1668
+   Email: hola@losmilics.com,reservations@losmilics.com,casitas@losmilics.com
+   Website: https://losmilicsvineyards.com/
+
+70. Luna Rossa Winery
+   Address: 3710 W Pine St, Deming, NM 88030
+   Phone: (575) 544-1160
+   Website: http://www.lunarossawinery.com/
+
+71. Merkin Vineyards Tasting Room & Osteria
+   Address: 1001 N Main St, Cottonwood, AZ 86326, USA
+
+72. Mogollon Vineyards
+   Address: 2430 AZ-69, Dewey, AZ 86327
+   Phone: (928) 243-8387
+   Email: info@mogollonvineyards.com
+   Website: https://mogollonvineyards.com/
+
+73. Noble Scape Designs LLC, DBA Villa Cassandra Vineyard
+   Address: 30373 W Villa Cassandra Way, Wickenburg, AZ 85390
+   Phone: (541) 232-2898
+
+74. Oak Creek Vineyards & Winery
+   Address: 1555 N Page Springs Rd, Cornville, AZ 86325
+   Phone: (928) 660-6935
+   Email: info@oakcreekvineyards.net
+   Website: https://oakcreekvineyards.net/
+
+75. Old Pueblo Cellars
+   Address: 10088 N St Patrick Rd, Tucson, AZ 85742
+   Phone: (520) 551-1011
+   Email: info@oldpueblocellars.com
+   Website: https://www.oldpueblocellars.com/
+
+76. Old Pueblo Vineyard
+   Address: 4923 E Arzberger Rd, Willcox, AZ 85643
+   Phone: (520) 551-1011
+   Website: https://oldpueblocellars.com/vineyards/#wilcox
+
+77. Page Springs Cellars Tasting Room & Bistro
+   Address: 1500 N Page Springs Rd, Cornville, AZ 86325
+   Phone: (928) 639-3004
+   Website: http://www.pagespringscellars.com/
+
+78. Painted Lady Vineyard
+   Address: Prescott, AZ 86305
+   Phone: (928) 899-2740
+
+79. Pillsbury Wine Company & Vineyard
+   Address: 6450 S Bennett Pl, Willcox, AZ 85643
+   Phone: (310) 508-3348
+   Website: http://www.pillsburywine.com/
+
+80. Playa Vineyard
+   Address: 6811 South Zarpara Lane, Willcox, AZ 85643
+
+81. Rhumb Line Vineyard & Lavender Farm
+   Address: 6210 S Rhumb Line Wy, Willcox, AZ 85643
+   Email: lodging@rhumblinevineyard.com
+   Website: https://www.lodging.rhumblinevineyard.com/
+
+82. Rune Wines
+   Address: 3969 AZ-82, Sonoita, AZ 85637
+   Phone: (520) 338-8823
+   Email: info@runewines.com
+   Website: http://www.runewines.com/
+
+83. Salt Mine Wine
+   Address: 536 W Salt Mine Rd, Camp Verde, AZ 86322
+   Phone: (928) 910-2075
+   Email: info@saltminewine.com
+   Website: http://saltminewine.com/
+
+84. Salvatore Vineyards Elgin
+   Address: 313 Elgin Rd, Elgin, AZ 85611
+   Phone: (480) 483-5051
+   Website: http://salvatorevineyards.com/
+
+85. Salvatore Vineyards Tasting Room
+   Address: 7064 E 5th Ave, Scottsdale, AZ 85251
+   Phone: (480) 423-2901
+   Website: http://www.passioncellars.com/
+
+86. Scale & Feather Meadery
+   Address: 1050 N Fairway Dr Building E, Suite 112, Avondale, AZ 85323
+   Phone: (623) 440-8931
+   Email: scaleandfeathermead@gmail.com
+   Website: http://www.scaleandfeather.com/
+
+87. Scottsdale Wine Trail
+   Address: 7134 E Stetson Dr B110, Scottsdale, AZ 85251
+   Phone: (480) 664-4822
+   Email: info@ldvwinery.com
+   Website: http://www.scottsdalewinetrail.com/contact/
+
+88. Shattuck Vineyard
+   Address: 43 Bridle Rd, Caballo, NM 87931
+   Phone: (915) 491-9459
+   Email: info@shattuckvineyard.com
+   Website: http://shattuckvineyard.com/
+
+89. Silver Strike Winery
+   Address: 334 E Allen St, Tombstone, AZ 85638
+   Phone: (520) 678-8200
+   Email: silverstrikewinery@gmail.com
+   Website: http://www.silverstrikewinery.com/
+
+90. Skyhaven Vineyards and Winery
+   Address: 5405 E Patriot Trail, Willcox, AZ 85643
+   Phone: (520) 255-2605
+   Email: bridget@skyhavenwines.com,chris@skyhavenwines.com
+   Website: http://www.skyhavenwines.com/
+
+91. Soaring Wines
+   Address: Commerical Building, 180 N Railroad Ave, Willcox, AZ 85643
+   Phone: (520) 348-0554
+   Email: info@soaringwines.com
+   Website: https://soaringwines.com/
+
+92. Sollenberger Vineyards & Winery
+   Address: 1199 Pyle Ranch Rd, Payson, AZ 85541
+   Phone: (602) 397-1724
+   Email: jsollenberger64@gmail.com
+   Website: http://sollenbergerwines.com/
+
+93. Sonoita Vineyards
+   Address: 290 Elgin Canelo Rd, Elgin, AZ 85611
+   Phone: (520) 455-5893
+   Email: winery@sonoitavineyards.com
+   Website: http://www.sonoitavineyards.com/
+
+94. Sonoran Wines / Vineyards
+   Address: 13154 AZ-181, Pearce, AZ 85625
+   Phone: (520) 338-9754
+   Website: http://www.sonoranwines.com/
+
+95. Southwest Wine Center
+   Address: 601 W Black Hills Dr, Clarkdale, AZ 86324
+   Phone: (928) 634-6566
+   Website: https://southwestwinecenter.org/
+
+96. Strive Vineyards
+   Address: 180 N Railroad Ave Suite C, Willcox, AZ 85643
+   Phone: (920) 850-1075
+   Email: contact@strivevineyards.com
+   Website: http://strivevineyards.com/
+
+97. Su Vino Winery
+   Address: 16099 N 82nd St Suite B9, Scottsdale, AZ 85260
+   Phone: (480) 994-8466
+   Email: info@suvinowinery.com
+   Website: http://www.suvinowinery.com/
+
+98. Sunset Ride Vineyards, Restaurant, and Art Gallery
+   Address: 3266 AZ-82, Sonoita, AZ 85637
+   Phone: (520) 216-7223
+   Website: http://www.sunsetride.com/
+
+99. The Meading Room
+   Address: 3470 AZ-82, Sonoita, AZ 85637
+   Phone: (520) 428-1170
+   Email: info@themeadingroom.com
+   Website: http://www.themeadingroom.com/
+
+100. The Original Jerome Winery
+   Address: 114 Jerome Ave, Jerome, AZ 86331
+   Phone: (928) 639-9593
+   Email: contact@sansoxygen.com,impallari@gmail.com,hello@rfuenzalida.com
+   Website: https://theoriginaljeromewinery.com/
+
+101. The Vineyard at Victory at Verrado
+   Address: N Verrado Way, Buckeye, AZ 85396
+
+102. The Wine Collective of Scottsdale, Wine Store, Wine Tasting & Wine Bar
+   Address: 4020 N Scottsdale Rd suite 104, Scottsdale, AZ 85251
+   Phone: (480) 912-1746
+   Email: thewinecollectivescottsdale@gmail.com
+   Website: https://www.the-wine-collective.com/
+
+103. Twisted Union Wine Company
+   Address: 370 Elgin Rd, Elgin, AZ 85611
+   Phone: (520) 455-5582
+   Email: info@twistedunionwinecompany.com
+   Website: https://twistedunionwinecompany.com/
+
+104. Upper Vineyard Verde Valley Campus
+   Address: 2450 Haskell Springs Rd, Clarkdale, AZ 86324
+
+105. Verde Valley Wine Trail
+   Address: 849 Cove Pkwy C, Cottonwood, AZ 86326
+   Phone: (928) 649-8463
+   Website: http://vvwinetrail.com/
+
+106. Vineyard Farmhouse
+   Address: 20549 E Germann Rd, Queen Creek, AZ 85142
+
+107. Vineyard Group
+   Address: 1223 S Clearview Ave # 105, Mesa, AZ 85209
+   Phone: (480) 222-5800
+
+108. Vino Stache Winery
+   Address: 6 Lone Mesquite Ct, Elgin, AZ 85611
+   Phone: (480) 266-0515
+   Email: brooke@vinostache.com
+   Website: http://www.vinostache.com/
+
+109. Vintner's Circle Scottsdale
+   Address: 2765 N Scottsdale Rd, Scottsdale, AZ 85257
+   Phone: (480) 696-7005
+
+110. Viñedo Cuatro Sierras - Uvas de Altura
+   Address: México 2, 84634 Son., Mexico
+
+111. Waggin' Vineyard & Estate
+   Address: 1540 E South St, Globe, AZ 85501
+   Phone: (928) 961-6250
+   Email: wagginvineyard@gmail.com
+   Website: https://www.wagginvineyard.com/
+
+112. Wilhelm Family Vineyards
+   Address: 21 Mountain Ranch Dr, Elgin, AZ 85611
+   Phone: (520) 455-9291
+   Website: https://www.wilhelmvineyards.com/
+
+113. WILLCOX WINE COUNTRY
+   Address: 157 N Railroad Ave, Willcox, AZ 85643
+   Phone: (520) 253-3038
+   Email: festivals@willcoxwinecountry.org
+   Website: http://willcoxwinecountry.org/
+
+114. Willcox Wine Country
+   Address: 1500 N Circle I Rd, Willcox, AZ 85643
+   Phone: (800) 200-2272
+
+115. Windmill Winery Tasting Room
+   Address: 1140 W Butte Ave, Florence, AZ 85132
+   Phone: (520) 858-6050
+   Website: https://www.thewindmillwinery.com/wine-tasting-room/?utm_source=google&utm_medium=GMBTR
+
+116. Winery 1912
+   Address: 320 AZ-89A #3, Sedona, AZ 86336
+   Phone: (928) 282-0715
+   Email: info@ndiscovered.com
+   Website: http://winery1912.com/
+
+117. Winey Cats at Granite Creek Vineyards
+   Address: 2515 N Rd 1 E, Chino Valley, AZ 86323
+   Phone: (928) 515-3714
+   Email: wineycats@gmail.com,nwineycats@gmail.com
+   Website: https://www.wineycats.com/
+
+118. Zarpara Vineyard
+   Address: 6777 South Zarpara Lane, Willcox, AZ 85643
+   Phone: (520) 222-7114
+   Email: info@zarpara.com
+   Website: http://www.zarpara.com/
+
+
+AVOCADO FARM
+--------------------------------------------------------------------------------
+
+Total: 8 prospects
+
+1. Avocado Monthly
+   Address: 6969 Rainbow Heights Rd, Fallbrook, CA 92028
+   Phone: (310) 390-0900
+
+2. Bantle Avocado Farm
+   Address: 4184 E Sandia Creek Terrace, Fallbrook, CA 92028
+   Phone: (760) 723-6904
+
+3. California Avocados Direct
+   Address: 6969 Rainbow Heights Rd, Fallbrook, CA 92028
+   Phone: (760) 451-4444
+   Email: info@californiaavocadosdirect.com
+   Website: https://www.californiaavocadosdirect.com/
+
+4. Lehman's Avocado Grove
+   Address: 29685 Longview Rd, Valley Center, CA 92082
+   Phone: (760) 742-4076
+
+5. Newton Avocado Manor
+   Address: 43200 Vista Bonita, Temecula, CA 92590
+   Phone: (951) 302-1846
+
+6. San Pasqual Avocado Co
+   Address: 11984 Sunset Heights Way, Valley Center, CA 92082
+   Phone: (760) 670-2710
+
+7. West Pak Avocado, Inc.
+   Address: 38655 Sky Canyon Dr Ste A, Murrieta, CA 92563
+   Phone: (951) 587-2300
+   Email: info@westpakavocado.com
+   Website: https://westpakavocado.com/
+
+8. Wild Acres Avocado Farm
+   Address: 38073 De Portola Rd #5904, Temecula, CA 92592
+   Phone: (951) 551-5198
+   Website: https://wildacresavocadofarm.com/
+
+
+STONE/POME FRUIT FARM
+--------------------------------------------------------------------------------
+
+Total: 4 prospects
+
+1. Apple Annie's Orchard
+   Address: 2081 W Hardy Rd, Willcox, AZ 85643, USA
+
+2. Aravaipa Farms Orchard & Inn
+   Address: 89395 E Aravaipa Rd, Winkelman, AZ 85192, USA
+
+3. Briggs & Eggers Orchards / Manzana Orchards LLC
+   Address: 27197 S Brookerson Rd, Willcox, AZ 85643, USA
+
+4. Schnepf Farms
+   Address: 24810 S Rittenhouse Rd, Queen Creek, AZ 85142, USA
+
+
+PISTACHIO FARM
+--------------------------------------------------------------------------------
+
+Total: 3 prospects
+
+1. David's Agrigold Farms
+   Address: 2801 N Adkins Rd, San Simon, AZ 85632, USA
+
+2. Mountain Man Nut & Fruit Co (Arizona pistachio orchards owner)
+   Address: 18498 W Marconi Ave, Surprise, AZ 85388, USA
+
+3. San Simon / Willcox Pistachio Growers Cluster
+   Address: San Simon & Willcox, AZ 85632–85643, USA (multiple orchards in region)
+
+
+GENERAL FARM
+--------------------------------------------------------------------------------
+
+Total: 22 prospects
+
+1. Adna Farms
+   Address: Cll Pico, Temecula, CA 92590
+   Phone: (626) 282-1231
+   Website: https://adnafarms.com/
+
+2. arizona wine growers festival
+   Address: 6106 S 32nd St, Phoenix, AZ 85042
+   Phone: (602) 243-9081
+   Website: http://www.azwinefestivalatthefarm.com/contact.html
+
+3. Ballous Farm
+   Address: 550 Golden Rd, Fallbrook, CA 92028
+   Phone: (760) 723-3055
+
+4. Barteau Farm
+   Address: 2534 Sweetwood Ave, Vista, CA 92084
+   Phone: (760) 941-8749
+
+5. Be Wise Ranch
+   Address: 20505 San Pasqual Rd, Escondido, CA 92025
+   Phone: (760) 745-6507
+   Website: http://bewiseranch.com/
+
+6. Cf Farming Inc
+   Address: 1355 Via Lazer Ct, Escondido, CA 92029
+   Phone: (760) 746-2437
+
+7. Dickinson Family Farms
+   Address: 714 Braemar Ter, Fallbrook, CA 92028
+   Phone: (760) 468-5849
+   Email: dickinsonfamilyfarms@gmail.com
+   Website: https://www.dickinsonfamilyfarms.com/
+
+8. Edge of Nowhere Farm, LLC
+   Address: 24215 W Radford Rd, Wittmann, AZ 85361
+   Phone: (602) 739-1522
+   Email: sales@eonfarm.com
+   Website: http://edgeofnowherefarm.com/
+
+9. Food Forest Cooperative
+   Address: 1500 W Vineyard Rd, Phoenix, AZ 85041
+   Phone: (602) 816-2848
+   Email: foodforestcooperative@gmail.com
+   Website: https://www.foodforestco-op.com/
+
+10. Hillcrest Healthy Grove
+   Address: 1250 Chase Ln, Fallbrook, CA 92028
+   Phone: (760) 731-2866
+
+11. Johnson Farms
+   Address: 9702 W Glendale Ave, Glendale, AZ 85305
+   Phone: (623) 872-1211
+
+12. King and Queen Farm
+   Address: 20549 E Germann Rd, Queen Creek, AZ 85142
+   Phone: (480) 242-4154
+   Website: http://www.kingandqueen.farm/
+
+13. Merchant's Garden
+   Address: 555 S Tucson Blvd, Tucson, AZ 85716
+   Phone: (520) 844-2070
+   Website: http://www.merchantsgarden.com/
+
+14. Morning Song Farm
+   Address: 2120 Rainbow Valley Blvd, Fallbrook, CA 92028
+   Phone: (760) 728-9121
+   Website: https://morningsongfarm.com/
+
+15. Polito Family Farms
+   Address: 2495 E Mission Rd, Fallbrook, CA 92028
+   Phone: (760) 473-7735
+   Email: info@politofamilyfarms.com
+   Website: https://www.politofamilyfarms.com/
+
+16. Rocky Top Ranch
+   Address: 10343 Fossil Creek Rd, Strawberry, AZ 85544
+   Website: http://www.rockytopranchaz.com/
+
+17. Sage Mountain Farm
+   Address: 35580 De Portola Rd, Temecula, CA 92592
+   Phone: (951) 676-0166
+   Website: https://www.sagemountainfarm.com/
+
+18. Sand n' Straw Community Farm
+   Address: 629 Mar Vista Dr, Vista, CA 92081
+   Phone: (619) 971-6589
+   Website: https://www.sandnstraw.com/
+
+19. Sundial Farm
+   Address: 2520 Progress St, Vista, CA 92081
+   Phone: (760) 726-0811
+
+20. The Farm on Wilkes Road
+   Address: 1451 Montiel Rd, Escondido, CA 92026
+   Phone: (760) 233-8378
+
+21. Wind Dancer Farm, LLC
+   Address: 44 W Cypress Ln, Portal, AZ 85632
+   Phone: (520) 815-6393
+   Email: info@winddancerfarmllc.com
+   Website: http://winddancerfarmllc.com/
+
+22. Zephyr Mountain Grove
+   Address: 20575 Stage Rd, Wildomar, CA 92595
+   Phone: (858) 433-9480
+   Email: zephyrmountain@gmail.com
+   Website: https://www.zephyrmountain.com/
+
+================================================================================
+
