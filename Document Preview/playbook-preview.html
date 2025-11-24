@@ -4,9 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>A specialty farmer. Program execution. Playbook. - Preview</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -48,7 +52,9 @@
         cursor: pointer;
         font-size: 20px;
         box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-        transition: background 0.2s ease, transform 0.2s ease;
+        transition:
+          background 0.2s ease,
+          transform 0.2s ease;
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -78,13 +84,13 @@
       .page {
         width: 8.5in;
         min-height: 11in;
-        max-height: 11in;
+        /* max-height: 11in; REMOVED to allow content measurement */
         padding: 1in;
         margin: 0 auto 20px;
         background: white;
         position: relative;
         box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
+        /* overflow: hidden; REMOVED to allow content measurement */
         page-break-inside: auto;
         break-inside: auto;
         page-break-after: always;
@@ -93,229 +99,28 @@
         display: flex;
         flex-direction: column;
       }
-      
+
       /* Page content wrapper that flows to next page when full */
       .page-content {
         flex: 1;
         min-height: 0;
       }
 
-      /* Cover page - exactly letter size */
-      .page#cover {
-        height: 11in;
-        min-height: 11in;
-        max-height: 11in;
-        overflow: hidden;
-        page-break-after: always;
-        break-after: page;
-      }
-
-      /* TOC page - can flow across multiple pages */
-      .page#toc {
-        height: 11in;
-        min-height: 11in;
-        max-height: 11in;
-        overflow: hidden;
-        page-break-after: auto;
-        break-after: auto;
-      }
-      
-      /* TOC content can flow to next page - same as other content pages */
-      .page#toc .page-content {
-        max-height: 9.5in;
-        overflow: hidden;
-        padding-bottom: 0.5in;
-        orphans: 2;
-        widows: 2;
-      }
-      
-      /* TOC title should stay with first items */
-      .page#toc h1 {
-        page-break-after: avoid;
-        break-after: avoid;
-        margin-bottom: 15pt;
-      }
-
-      /* Content pages - fixed letter size; JS splitter manages overflow */
-      .page:not(#cover):not(#toc) {
-        width: 8.5in;
-        height: 11in;
-        min-height: 11in;
-        max-height: 11in;
-        padding: 1in;
-        margin: 0 auto 20px;
+      /* Full page image styling */
+      .full-page-image-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
         background: white;
-        position: relative;
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15);
-        overflow: hidden;
-        page-break-after: always;
-        break-after: page;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-      }
-      
-      /* Content area fits within page; splitter will break into more pages */
-      .page:not(#cover):not(#toc) .page-content {
-        max-height: 9.5in; /* 11in page minus margins/page number buffer */
-        overflow: hidden;
-        padding-bottom: 0.5in; /* Space for page number at bottom */
-        /* Professional typography - prevent orphaned lines */
-        orphans: 2;
-        widows: 2;
       }
 
-      /* Last page - can be shorter if content doesn't fill it */
-      .page:last-of-type {
-        min-height: auto;
-        height: auto;
-        max-height: 11in;
-        overflow: visible;
-      }
-      
-      .page:last-of-type .page-content {
-        max-height: none;
-        overflow: visible;
-      }
-      
-      /* Sections (h2) always start on a new page */
-      .page:not(#cover):not(#toc) > .page-content > h2:first-child {
-        page-break-before: always;
-        break-before: page;
-        margin-top: 0;
-      }
-      
-      /* Ensure section1 starts on new page after TOC */
-      .page#section1 {
-        page-break-before: always;
-        break-before: page;
-      }
-
-      @media print {
-        body {
-          background: white;
-          padding: 0;
-        }
-        .page {
-          margin: 0;
-          box-shadow: none;
-          width: 8.5in;
-          min-height: 11in;
-          height: auto;
-          max-height: none;
-          overflow: visible;
-          page-break-after: always;
-          break-after: page;
-        }
-        .page#cover {
-          page-break-after: always;
-          break-after: page;
-          height: 11in;
-        }
-        .page#toc {
-          page-break-after: always;
-          break-after: page;
-          height: auto;
-          min-height: 11in;
-        }
-        .page:not(#cover):not(#toc) {
-          page-break-after: auto;
-          break-after: auto;
-          height: auto;
-          min-height: 11in;
-          max-height: none;
-        }
-        .page:last-of-type {
-          page-break-after: auto;
-          break-after: auto;
-          min-height: auto;
-        }
-        h2 {
-          page-break-before: always;
-          break-before: page;
-          page-break-after: avoid;
-          break-after: avoid;
-        }
-        .page > h2:first-child {
-          page-break-before: auto;
-          break-before: auto;
-        }
-        .toc-item {
-          page-break-inside: avoid;
-          break-inside: avoid;
-        }
-        /* Prevent orphaned lines - professional PDF standards */
-        p, li {
-          orphans: 2; /* Allow lists to stay on current page when space remains */
-          widows: 2;
-        }
-        /* Allow paragraph breaking but keep related content together */
-        p {
-          page-break-inside: auto;
-          break-inside: auto;
-        }
-        /* Allow list items to flow when needed (prevents whole list jumping pages) */
-        li {
-          page-break-inside: auto;
-          break-inside: auto;
-        }
-        /* Keep headings with following content */
-        h2, h3 {
-          page-break-after: avoid;
-          break-after: avoid;
-        }
-        .pdf-export-btn,
-        .floating-toc,
-        .search-toolbar,
-        .search-shell,
-        .search-toggle {
-          display: none;
-        }
-
-        /* Print-safe styling for enhanced elements */
-        h2::before,
-        h3::before,
-        .key-points::before,
-        .prospect-table th::before {
-          -webkit-print-color-adjust: exact;
-          color-adjust: exact;
-        }
-
-        h2 {
-          -webkit-text-fill-color: #34495e !important;
-          color: #34495e !important;
-        }
-
-        .prospect-table thead,
-        table:not(.prospect-table) thead {
-          -webkit-print-color-adjust: exact;
-          color-adjust: exact;
-        }
-
-        .prospect-table tbody tr:nth-child(even),
-        table:not(.prospect-table) tbody tr:nth-child(even) {
-          -webkit-print-color-adjust: exact;
-          color-adjust: exact;
-        }
-
-        /* Print-safe styling for all enhanced elements */
-        .emphasis-title,
-        .hook-point-box,
-        .email-example,
-        .example-box,
-        .cta-box,
-        .key-points {
-          -webkit-print-color-adjust: exact;
-          color-adjust: exact;
-        }
-        
-        /* Ensure proper page breaks for special content */
-        .email-example,
-        .hook-point-box,
-        .example-box {
-          page-break-inside: avoid;
-          break-inside: avoid;
-        }
+      .full-page-image-container img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
       .page-number {
@@ -323,3816 +128,520 @@
         bottom: 0.5in;
         right: 1in;
         font-size: 10pt;
-        color: #666;
+        color: #7f8c8d;
+        z-index: 20; /* Ensure page number is above full page image */
       }
 
       h1 {
-        font-size: 24pt;
-        text-align: center;
-        margin-bottom: 10pt;
+        font-size: 28pt;
+        font-weight: 700;
+        margin-bottom: 24pt;
+        border-bottom: 3px solid #333;
+        padding-bottom: 12pt;
+        letter-spacing: -0.5px;
         color: #2c3e50;
-        page-break-after: avoid;
-        position: relative;
-        padding: 15pt 0;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border-radius: 8pt;
-        border: 2px solid #e8ecf0;
-        box-shadow: 0 2pt 8pt rgba(0,0,0,0.08);
-      }
-
-      h1::before {
-        content: "📋";
-        font-size: 18pt;
-        margin-right: 8pt;
-        vertical-align: middle;
+        text-transform: uppercase;
       }
 
       h2 {
-        font-size: 18pt;
-        margin-top: 0;
-        margin-bottom: 15pt;
-        padding-top: 20pt;
-        padding-left: 45pt;
-        padding-bottom: 8pt;
-        color: #34495e;
-        background: linear-gradient(90deg, #3498db 0%, #2980b9 100%);
-        background-clip: text;
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        border-bottom: 3px solid transparent;
-        border-image: linear-gradient(90deg, #3498db 0%, #2980b9 70%, transparent 100%) 1;
-        position: relative;
-        page-break-before: always;
+        font-size: 20pt;
+        font-weight: 600;
+        margin-top: 24pt;
+        margin-bottom: 12pt;
+        color: #2c3e50;
+        border-bottom: 2px solid #ecf0f1;
+        padding-bottom: 6pt;
+        display: flex;
+        align-items: center;
         page-break-after: avoid;
-        break-before: page;
         break-after: avoid;
-        orphans: 2;
-        widows: 2;
-        font-weight: 700;
       }
 
       h2::before {
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 16pt;
-        width: 35pt;
-        height: 35pt;
+        content: attr(data-icon);
+        font-family: "Font Awesome 6 Free";
+        font-weight: 900;
+        font-size: 18pt;
+        margin-right: 12pt;
+        color: #3498db;
+        display: inline-block;
+        width: 30px;
         text-align: center;
-        line-height: 35pt;
-        background: rgba(52, 152, 219, 0.1);
-        border-radius: 50%;
-        box-shadow: 0 2pt 6pt rgba(52, 152, 219, 0.2);
-      }
-
-      /* Section-specific emoji icons */
-      h2:nth-of-type(1)::before { content: "ℹ️"; } /* Purpose - info */
-      h2:nth-of-type(2)::before { content: "🔍"; } /* Research - search */
-      h2:nth-of-type(3)::before { content: "💡"; } /* Value Prop - lightbulb */
-      h2:nth-of-type(4)::before { content: "🗄️"; } /* CRM - database */
-      h2:nth-of-type(5)::before { content: "📧"; } /* Outreach - envelope */
-      h2:nth-of-type(6)::before { content: "🌱"; } /* Nurturing - seedling */
-      h2:nth-of-type(7)::before { content: "💰"; } /* Sales - money */
-      h2:nth-of-type(8)::before { content: "⚙️"; } /* Implementation - gear */
-      h2:nth-of-type(9)::before { content: "📅"; } /* Timeline - calendar */
-      h2:nth-of-type(10)::before { content: "🔧"; } /* Tools - wrench */
-      h2:nth-of-type(11)::before { content: "📎"; } /* Appendix - paperclip */
-
-      /* First h2 in a page doesn't need page break */
-      .page > h2:first-child {
-        page-break-before: auto;
-        break-before: auto;
-        padding-top: 0;
       }
 
       h3 {
         font-size: 14pt;
-        margin-top: 18pt;
-        margin-bottom: 10pt;
-        padding-left: 30pt;
-        color: #2c3e50;
         font-weight: 600;
-        border-bottom: 2px solid transparent;
-        border-image: linear-gradient(90deg, #27ae60 0%, #2ecc71 50%, transparent 100%) 1;
-        padding-bottom: 6pt;
-        position: relative;
-        page-break-before: avoid;
+        margin-top: 18pt;
+        margin-bottom: 8pt;
+        color: #34495e;
         page-break-after: avoid;
-        break-before: avoid;
         break-after: avoid;
-        orphans: 2;
-        widows: 2;
-      }
-
-      h3::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #27ae60;
-        font-size: 12pt;
-        width: 24pt;
-        height: 24pt;
-        line-height: 24pt;
-        text-align: center;
-        background: rgba(39, 174, 96, 0.1);
-        border-radius: 4pt;
-        box-shadow: 0 1pt 3pt rgba(39, 174, 96, 0.2);
-        font-weight: bold;
+        border-left: 4px solid #3498db;
+        padding-left: 10pt;
       }
 
       h4 {
-        font-size: 12pt;
+        font-size: 11pt;
+        font-weight: 700;
         margin-top: 12pt;
-        margin-bottom: 6pt;
-        color: #34495e;
-        font-weight: 600;
+        margin-bottom: 4pt;
+        color: #2c3e50;
         text-transform: uppercase;
-        letter-spacing: 0.5pt;
-        page-break-before: avoid;
+        letter-spacing: 0.5px;
         page-break-after: avoid;
-        break-before: avoid;
         break-after: avoid;
-        orphans: 2;
-        widows: 2;
       }
 
-      /* Compact PDF-Appropriate Table Styling */
-      .prospect-table-container {
-        margin: 8pt 0;
-        page-break-inside: avoid;
+      p {
+        margin-bottom: 10pt;
+        text-align: justify;
+        font-size: 10.5pt;
+        color: #444;
       }
 
-      .prospect-table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 8pt;
-        margin: 0;
-        page-break-inside: auto;
-        border: 1pt solid #bdc3c7;
-      }
-
-      .prospect-table thead {
-        background: #34495e;
-        color: white;
-      }
-
-      .prospect-table th {
-        padding: 4pt 3pt;
-        text-align: left;
-        font-weight: 600;
-        font-size: 8pt;
-        border: 1pt solid #2c3e50;
-        white-space: nowrap;
-        text-transform: uppercase;
-        letter-spacing: 0.2pt;
-      }
-
-      .prospect-table td {
-        padding: 3pt 2pt;
-        border: 0.5pt solid #ddd;
-        vertical-align: top;
-        word-wrap: break-word;
-        line-height: 1.2;
-      }
-
-      .prospect-table tbody tr:nth-child(even) {
-        background-color: #f8f9fa;
-      }
-
-      .prospect-table td:first-child {
-        font-weight: 600;
-        text-align: center;
-        width: 3%;
-      }
-
-      .prospect-table td:nth-child(2) {
-        font-weight: 600;
-        width: 18%;
-      }
-
-      .prospect-table td:nth-child(3) {
-        width: 25%;
-      }
-
-      .prospect-table td:nth-child(4),
-      .prospect-table td:nth-child(5) {
-        width: 12%;
-      }
-
-      .prospect-table td:last-child {
-        width: 18%;
-      }
-
-      .prospect-table a {
-        color: #3498db;
-        text-decoration: none;
-        word-break: break-all;
-      }
-
-      .prospect-table a:hover {
-        text-decoration: underline;
-      }
-
-      /* Compact General Table Styling */
-      table:not(.prospect-table) {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 8pt 0;
-        font-size: 9pt;
-        page-break-inside: auto;
-        border: 1pt solid #bdc3c7;
-      }
-
-      table:not(.prospect-table) thead {
-        background: #34495e;
-        color: white;
-      }
-
-      table:not(.prospect-table) th {
-        padding: 4pt 3pt;
-        text-align: left;
-        font-weight: 600;
-        font-size: 9pt;
-        border: 1pt solid #2c3e50;
-        text-transform: uppercase;
-        letter-spacing: 0.2pt;
-      }
-
-      table:not(.prospect-table) td {
-        padding: 3pt;
-        border: 0.5pt solid #ddd;
-        vertical-align: top;
-        line-height: 1.2;
-      }
-
-      table:not(.prospect-table) tbody tr:nth-child(even) {
-        background-color: #f8f9fa;
-      }
-
-      /* Enhanced List Styling */
-      ul, ol {
-        margin: 8pt 0 12pt 0;
-        padding-left: 18pt;
-        line-height: 1.5;
+      ul,
+      ol {
+        margin-bottom: 12pt;
+        margin-left: 18pt;
+        font-size: 10.5pt;
       }
 
       li {
         margin-bottom: 4pt;
-        position: relative;
+        padding-left: 4pt;
       }
 
-      ul li::marker {
-        color: #3498db;
-        font-weight: bold;
-      }
-
-      ol li::marker {
-        color: #27ae60;
-        font-weight: bold;
-      }
-
-      /* Key Points Box Enhancement */
-      .key-points {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border-left: 4pt solid #3498db;
-        padding: 15pt;
-        margin: 15pt 0;
-        border-radius: 0 6pt 6pt 0;
-        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.05);
-        position: relative;
-      }
-
-      .key-points::before {
-        content: "\f0eb";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        position: absolute;
-        top: 15pt;
-        left: -12pt;
-        color: #3498db;
-        background: white;
-        padding: 6pt;
-        border-radius: 50%;
-        font-size: 10pt;
-        box-shadow: 0 2pt 6pt rgba(0, 0, 0, 0.1);
-      }
-
-      .key-points h4 {
-        color: #2c3e50;
-        margin-bottom: 8pt;
-        font-size: 11pt;
-      }
-
-      /* Enhanced Heading Hierarchy */
-      .emphasis-title {
-        font-size: 16pt;
-        font-weight: 700;
-        color: #e74c3c;
-        text-transform: uppercase;
-        letter-spacing: 1pt;
-        margin: 15pt 0 8pt 0;
-        text-align: center;
-        background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
-        padding: 10pt;
-        border: 2pt solid #e74c3c;
-        border-radius: 6pt;
-        box-shadow: 0 2pt 8pt rgba(231, 76, 60, 0.1);
-      }
-
-      .emphasis-title::before {
-        content: "⚡";
-        margin-right: 8pt;
-        font-size: 14pt;
-      }
-
-      .hook-point-title {
-        font-size: 14pt;
-        font-weight: 600;
-        color: #f39c12;
-        margin: 12pt 0 6pt 0;
-        padding-left: 25pt;
-        position: relative;
-        border-left: 3pt solid #f39c12;
-        padding-left: 15pt;
-      }
-
-      .hook-point-title::before {
-        content: "🎯";
-        position: absolute;
-        left: -12pt;
-        top: 50%;
-        transform: translateY(-50%);
-        background: white;
-        padding: 3pt;
-        border-radius: 50%;
-        box-shadow: 0 1pt 4pt rgba(243, 156, 18, 0.2);
-      }
-
-      /* Email Content Box */
-      .email-example {
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        border: 1pt solid #bdc3c7;
-        border-radius: 6pt;
-        padding: 12pt;
-        margin: 12pt 0;
-        font-family: "Courier New", monospace;
-        font-size: 9pt;
-        box-shadow: 0 2pt 8pt rgba(0, 0, 0, 0.05);
-        position: relative;
-      }
-
-      .email-example::before {
-        content: "📧 EMAIL TEMPLATE";
-        position: absolute;
-        top: -6pt;
-        left: 12pt;
-        background: white;
-        padding: 0 8pt;
-        font-size: 7pt;
-        font-weight: 600;
-        color: #7f8c8d;
-        text-transform: uppercase;
-        letter-spacing: 0.5pt;
-        font-family: "Georgia", "Times New Roman", serif;
-      }
-
-      .email-header {
-        border-bottom: 1pt solid #ecf0f1;
-        padding-bottom: 8pt;
-        margin-bottom: 8pt;
-        font-size: 8pt;
-      }
-
-      .email-header .field {
-        margin-bottom: 2pt;
-      }
-
-      .email-header .field-label {
-        font-weight: 600;
-        color: #34495e;
-        display: inline-block;
-        width: 60pt;
-      }
-
-      .email-body {
-        line-height: 1.4;
-        color: #2c3e50;
-      }
-
-      /* Example/Case Study Box */
-      .example-box {
-        background: linear-gradient(135deg, #f0f8ff 0%, #ffffff 100%);
-        border: 1pt solid #3498db;
-        border-left: 4pt solid #3498db;
-        border-radius: 0 6pt 6pt 0;
-        padding: 12pt;
-        margin: 12pt 0;
-        font-size: 9pt;
-        position: relative;
-      }
-
-      .example-box::before {
-        content: "💼 EXAMPLE";
-        position: absolute;
-        top: -6pt;
-        left: 12pt;
-        background: white;
-        padding: 0 8pt;
-        font-size: 7pt;
-        font-weight: 600;
-        color: #3498db;
-        text-transform: uppercase;
-        letter-spacing: 0.5pt;
-      }
-
-      /* Hook Point Emphasis Box */
-      .hook-point-box {
-        background: linear-gradient(135deg, #fff8dc 0%, #ffffff 100%);
-        border: 2pt solid #f39c12;
-        border-radius: 8pt;
-        padding: 15pt;
-        margin: 15pt 0;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 3pt 12pt rgba(243, 156, 18, 0.1);
-      }
-
-      .hook-point-box::before {
-        content: "🎯 HOOK POINT";
-        position: absolute;
-        top: -8pt;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        padding: 2pt 12pt;
-        font-size: 8pt;
-        font-weight: 700;
-        color: #f39c12;
-        text-transform: uppercase;
-        letter-spacing: 0.8pt;
-        border-radius: 12pt;
-        border: 2pt solid #f39c12;
-      }
-
-      .hook-point-content {
-        font-size: 11pt;
-        font-weight: 600;
-        color: #d68910;
-        font-style: italic;
-      }
-
-      /* Call-to-Action Box */
-      .cta-box {
-        background: linear-gradient(135deg, #e8f5e8 0%, #ffffff 100%);
-        border: 2pt solid #27ae60;
-        border-radius: 6pt;
-        padding: 12pt;
-        margin: 12pt 0;
-        text-align: center;
-        font-weight: 600;
-        color: #27ae60;
-        position: relative;
-      }
-
-      .cta-box::before {
-        content: "🚀 ACTION REQUIRED";
-        position: absolute;
-        top: -6pt;
-        left: 50%;
-        transform: translateX(-50%);
-        background: white;
-        padding: 0 8pt;
-        font-size: 7pt;
-        font-weight: 600;
-        color: #27ae60;
-        text-transform: uppercase;
-        letter-spacing: 0.5pt;
-      }
-
-      .cover-page {
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 9in;
-      }
-
-      .logo-container {
-        margin-bottom: 30pt;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-
-      .logo {
-        max-width: 200px;
-        max-height: 200px;
-        width: auto;
-        height: auto;
-      }
-
-      .cover-title {
-        font-size: 34pt;
-        font-weight: 700;
-        margin-bottom: 25pt;
-        color: #1a252f;
-        letter-spacing: 1pt;
-        line-height: 1.5;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        font-style: normal;
-        text-transform: none;
-      }
-      
-      .cover-title br {
-        display: block;
-        margin: 10pt 0;
-        content: "";
-      }
-      
-      .cover-title br:first-child {
-        margin-top: 0;
-      }
-      
-      .cover-title br:last-child {
-        margin-bottom: 0;
-      }
-
-      .cover-subtitle {
-        font-size: 18pt;
-        margin-bottom: 30pt;
-        color: #7f8c8d;
-      }
-
-      .cover-info {
-        font-size: 12pt;
-        margin-top: 40pt;
-        color: #7f8c8d;
-      }
-
-      /* Enhanced Paragraph and Content Styling */
-      p {
-        text-align: justify;
-        line-height: 1.6;
-        margin-bottom: 8pt;
-        hyphens: auto;
-        -webkit-hyphens: auto;
-        -moz-hyphens: auto;
-        text-rendering: optimizeLegibility;
-      }
-
-      /* Professional emphasis styling */
       strong {
-        font-weight: 700;
         color: #2c3e50;
+        font-weight: 700;
       }
 
-      em {
-        font-style: italic;
-        color: #34495e;
-      }
-
-      /* Professional blockquote styling */
-      blockquote {
-        border-left: 4pt solid #3498db;
-        padding-left: 15pt;
-        margin: 12pt 0;
-        font-style: italic;
-        color: #5d6d7e;
-        background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        padding: 10pt 15pt;
-        border-radius: 0 6pt 6pt 0;
-      }
-
-      /* Enhanced link styling */
       a {
         color: #3498db;
         text-decoration: none;
-        border-bottom: 1pt solid transparent;
-        transition: all 0.2s ease;
       }
 
       a:hover {
-        color: #2980b9;
-        border-bottom-color: #2980b9;
-      }
-
-      /* Professional code/monospace styling */
-      code {
-        font-family: "Courier New", Consolas, monospace;
-        background: #f8f9fa;
-        padding: 2pt 4pt;
-        border-radius: 2pt;
-        font-size: 9pt;
-        border: 1pt solid #ecf0f1;
-      }
-
-      .toc {
-        margin-top: 15pt;
-        font-size: 10pt;
-        page-break-inside: auto;
-      }
-
-      .toc-item {
-        margin: 6pt 0;
-        font-size: 10pt;
-        line-height: 1.5;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        /* Allow TOC items to flow to next page if needed */
-        page-break-after: auto;
-        break-after: auto;
-      }
-      
-      /* Keep main item with its subitems together */
-      .toc-item:has(.toc-subitem) {
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .toc-item a {
-        color: #3498db;
-        text-decoration: none;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      .toc-item a:hover {
         text-decoration: underline;
       }
 
-      .toc-item a span {
-        color: #7f8c8d;
-        font-weight: normal;
-      }
-
-      .toc-subitem {
-        margin-left: 15pt;
-        margin-top: 3pt;
-        margin-bottom: 2pt;
-        font-size: 9pt;
-        line-height: 1.4;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-      
-      /* Prevent orphaned subitems */
-      .toc-subitem:first-child {
-        margin-top: 4pt;
-      }
-
-      .toc-subitem a {
-        color: #7f8c8d;
-      }
-
-      p {
-        margin: 10pt 0;
-        text-align: justify;
-        font-size: 11pt;
-        orphans: 2;
-        widows: 2;
-      }
-
-      ul {
-        margin: 10pt 0;
-        margin-left: 30pt;
-        orphans: 2;
-        widows: 2;
-      }
-
-      li {
-        margin: 3pt 0;
-        font-size: 11pt;
-        page-break-inside: auto;
-        break-inside: auto;
-      }
-
-      .section-divider {
-        border-top: 1px solid #ecf0f1;
-        margin: 20pt 0;
-      }
-
-      .key-points {
-        background: #f8f9fa;
-        padding: 15pt;
-        margin: 15pt 0;
-        border-left: 4px solid #3498db;
-      }
-
-      .key-points h4 {
-        margin-top: 0;
-      }
-
-      /* Enhanced formatting styles */
-      .workflow-step {
-        background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-        border: 2px solid #e1e8ed;
-        border-radius: 8px;
-        padding: 12pt 15pt;
-        margin: 12pt 0;
-        position: relative;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .workflow-step::before {
-        content: counter(step-counter);
-        counter-increment: step-counter;
-        position: absolute;
-        left: -15px;
-        top: 12pt;
-        background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
-        color: white;
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        font-size: 12pt;
-        box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-      }
-
-      .workflow-container {
-        counter-reset: step-counter;
-        margin: 20pt 0;
-      }
-
-      .crop-type-card {
-        background: linear-gradient(135deg, #ffffff 0%, #f0f7ff 100%);
-        border: 2px solid #d6e9f5;
-        border-radius: 10px;
-        padding: 15pt;
-        margin: 12pt 0;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-
-      .crop-type-card h4 {
-        margin-top: 0;
-        margin-bottom: 10pt;
-        color: #2c3e50;
-        font-size: 13pt;
-        display: flex;
-        align-items: center;
-        gap: 10pt;
-      }
-
-      .crop-type-card .crop-icon {
-        font-size: 20pt;
-        color: #3498db;
-        width: 32pt;
-        height: 32pt;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: linear-gradient(135deg, #ebf5fb 0%, #d6eaf8 100%);
-        border-radius: 8px;
-        border: 1px solid #aed6f1;
-      }
-
-      .crop-type-card ul {
-        margin-left: 42pt;
-        margin-top: 8pt;
-      }
-
-      .info-box {
-        background: linear-gradient(135deg, #fff9e6 0%, #fffbf0 100%);
-        border-left: 4px solid #f39c12;
-        border-radius: 6px;
-        padding: 12pt 15pt;
-        margin: 15pt 0;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        box-shadow: 0 2px 6px rgba(243, 156, 18, 0.1);
-      }
-
-      .info-box.primary {
-        background: linear-gradient(135deg, #ebf5fb 0%, #d6eaf8 100%);
-        border-left-color: #3498db;
-        box-shadow: 0 2px 6px rgba(52, 152, 219, 0.1);
-      }
-
-      .info-box.success {
-        background: linear-gradient(135deg, #eafaf1 0%, #d5f4e6 100%);
-        border-left-color: #27ae60;
-        box-shadow: 0 2px 6px rgba(39, 174, 96, 0.1);
-      }
-
-      .section-box {
-        background: #ffffff;
-        border: 2px solid #e1e8ed;
-        border-radius: 10px;
-        padding: 18pt;
-        margin: 20pt 0;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      }
-
-      .section-box h3 {
-        margin-top: 0;
-        color: #2c3e50;
-        border-bottom: 2px solid #3498db;
-        padding-bottom: 8pt;
-        margin-bottom: 15pt;
-      }
-
-      .section-box h4 {
-        color: #34495e;
-        margin-top: 15pt;
-        margin-bottom: 10pt;
-      }
-
-      .highlight-text {
-        background: linear-gradient(120deg, #fff9c4 0%, #fffde7 100%);
-        padding: 2pt 6pt;
-        border-radius: 4px;
-        font-weight: 600;
-        color: #856404;
-      }
-
-      .lead-source-item {
-        background: #f8f9fa;
-        border-left: 3px solid #3498db;
-        padding: 10pt 12pt;
-        margin: 8pt 0;
-        border-radius: 4px;
-        page-break-inside: avoid;
-      }
-
-      .lead-source-item strong {
-        color: #2c3e50;
-        display: block;
-        margin-bottom: 4pt;
-        font-size: 11.5pt;
-      }
-
-      .lead-source-item ul {
-        margin-left: 20pt;
-        margin-top: 6pt;
-      }
-
-      /* Enhanced list styling */
-      ul.enhanced-list {
-        list-style: none;
-        margin-left: 0;
-        padding-left: 0;
-      }
-
-      ul.enhanced-list li {
-        padding-left: 25pt;
-        position: relative;
-        margin: 8pt 0;
-      }
-
-      ul.enhanced-list li::before {
-        content: "▸";
-        position: absolute;
-        left: 8pt;
-        color: #3498db;
-        font-weight: bold;
-        font-size: 14pt;
-      }
-
-      /* Visual separator */
-      .visual-separator {
-        height: 2px;
-        background: linear-gradient(90deg, transparent 0%, #3498db 50%, transparent 100%);
-        margin: 20pt 0;
-        border: none;
-      }
-
-      /* Bold section headers */
-      h3 strong, h4 strong {
-        color: #2c3e50;
-        font-weight: 700;
-      }
-
-      /* Enhanced paragraph styling for important text */
-      p.important {
-        background: #f8f9fa;
-        padding: 12pt;
-        border-left: 4px solid #3498db;
-        border-radius: 4px;
-        margin: 15pt 0;
-        font-weight: 500;
-      }
-
-      code {
-        background: #f4f4f4;
-        padding: 2pt 6pt;
-        border-radius: 3pt;
-        font-family: "Courier New", monospace;
-        font-size: 10pt;
-      }
-
-      /* Image support */
-      img {
-        max-width: 100%;
-        height: auto;
-        page-break-inside: avoid;
-        margin: 10pt 0;
-      }
-
+      /* Image styling */
       .image-container {
-        text-align: center;
         margin: 15pt 0;
+        text-align: center;
         page-break-inside: avoid;
-        break-inside: avoid;
-        width: 100%;
-        max-width: 100%;
-        box-sizing: border-box;
       }
-      
-      /* Full-page images don't need background/border */
-      .image-container.full-page-image {
-        background: transparent;
-        border: none;
-        border-radius: 0;
-        padding: 0;
-      }
-      
-      /* Regular image containers get subtle styling */
-      .image-container:not(.full-page-image) {
-        background: #f7f9fc;
-        border: 1px solid #e1e8f2;
-        border-radius: 8px;
-        padding: 8pt;
-      }
-      
+
       .image-container img {
-        display: block;
-        margin: 0 auto;
-      }
-
-      .crop-focus-image {
-        max-width: 65%;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .crop-focus-image img {
-        width: 100%;
-        height: auto;
-      }
-
-      .product-image {
         max-width: 100%;
-        margin: 0;
-        display: block;
-        text-align: center;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .product-image img {
-        width: 100%;
         height: auto;
         border-radius: 4px;
-        box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
-        border: 1px solid #e1e8ed;
-        display: block;
-      }
-      
-      .product-image .image-caption {
-        margin-top: 6pt;
-        font-size: 8.5pt;
-        color: #7f8c8d;
-        line-height: 1.3;
-      }
-
-      .product-section {
-        display: flex;
-        align-items: flex-start;
-        gap: 18pt;
-        margin-bottom: 25pt;
-        margin-top: 0;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        overflow: visible;
-      }
-      
-      .product-image-left {
-        flex: 0 0 200px;
-        max-width: 200px;
-        min-width: 180px;
-        align-self: flex-start;
-      }
-      
-      .product-text-right {
-        flex: 1 1 auto;
-        min-width: 0;
-        padding-top: 0;
-      }
-      
-      .product-text-right p {
-        margin-top: 6pt;
-        margin-bottom: 6pt;
-        line-height: 1.6;
-      }
-      
-      .product-text-right p:first-child {
-        margin-top: 0;
-        margin-bottom: 8pt;
-        font-size: 11.5pt;
-      }
-      
-      .product-text-right ul {
-        margin-top: 6pt;
-        margin-bottom: 8pt;
-      }
-      
-      .product-text-right p strong {
-        font-weight: 600;
-      }
-      
-      .product-image-left .product-image {
-        margin: 0;
-        max-width: 100%;
-      }
-      
-      .product-image-left .image-container {
-        padding: 6pt;
-        background: #fafbfc;
-        border: 1px solid #e8ecf0;
-        border-radius: 6px;
-      }
-      
-      /* Keep product sections together when possible */
-      .product-section:not(:last-child) {
-        margin-bottom: 28pt;
-      }
-      
-      /* Reduce spacing after SPECIALTY CROP BLENDS heading */
-      h4 + .product-section {
-        margin-top: 8pt;
-      }
-      
-      @media (max-width: 720px) {
-        .product-section {
-          flex-direction: column;
-        }
-        .product-image-left {
-          flex: 1 1 100%;
-          max-width: 100%;
-        }
-      }
-
-      .screenshot-gallery {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15pt;
-        justify-content: center;
-        align-items: flex-start;
-        margin: 20pt 0;
-        page-break-inside: avoid;
-        break-inside: avoid;
-      }
-
-      .gallery-item {
-        flex: 1 1 150px;
-        max-width: 190px;
-      }
-
-      .gallery-item img {
-        width: 100%;
-        height: auto;
-        border-radius: 10px;
-      }
-
-      .full-page-image {
-        max-width: 7.5in;
-        margin: 15pt auto 10pt;
-        page-break-inside: avoid;
-        break-inside: avoid;
-        text-align: center;
-      }
-
-      .full-page-image img {
-        width: 100%;
-        height: auto;
-        max-height: 8.5in;
-        object-fit: contain;
-        border: 1px solid #e1e8ed;
-        border-radius: 4px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
-      
-      /* Ensure cheat sheet gets its own page when needed */
-      h3:has(+ .full-page-image) {
-        page-break-after: avoid;
-      }
-      
-      .full-page-image {
-        page-break-before: auto;
-        page-break-after: auto;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border: 1px solid #eee;
       }
 
       .image-caption {
         font-size: 9pt;
         color: #7f8c8d;
-        margin-top: 5pt;
+        margin-top: 6pt;
         font-style: italic;
       }
 
-      .geo-scope-wrap {
-        display: flex;
-        align-items: flex-start;
-        gap: 14pt;
-        flex-wrap: wrap;
-        flex-direction: row-reverse;
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .geo-scope-wrap ul {
-        flex: 1 1 280px;
-        margin-top: 0;
-      }
-
-      .pipeline-diagram {
-        width: 100%;
-        max-width: 100%;
-        max-height: 6.25in;
-        height: auto;
-        margin: 14pt 0 6pt;
-        page-break-inside: avoid;
+      /* Product section styling */
+      .product-section {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        padding: 15pt;
+        margin: 15pt 0;
+        border-radius: 8px;
         break-inside: avoid;
-        display: block;
-        background: linear-gradient(135deg, #fdfefe, #f2f6fb);
-        padding: 12pt;
-        border-radius: 14px;
-        border: 1px solid #dbe5f3;
-        box-sizing: border-box;
-        box-shadow: 0 10px 30px rgba(36, 64, 97, 0.12);
-      }
-
-      .pipeline-bg {
-        fill: white;
-        stroke: #dbe7f3;
-        stroke-width: 2;
-      }
-      
-      .pipeline-band {
-        fill: rgba(52, 152, 219, 0.08);
-        stroke: #e2ebf6;
-        stroke-width: 2;
-      }
-
-      .pipeline-track {
-        stroke: #c7d7e6;
-        stroke-width: 10;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .pipeline-track-highlight {
-        stroke: url(#pipelineGradient);
-        stroke-width: 16;
-        fill: none;
-        stroke-linecap: round;
-        stroke-linejoin: round;
-      }
-
-      .pipeline-arrowhead {
-        fill: #617389;
-        opacity: 0.75;
-      }
-
-      .pipeline-connector {
-        stroke: #c2d4e8;
-        stroke-width: 4;
-      }
-
-      .pipeline-card {
-        fill: white;
-        stroke: #d0deef;
-        stroke-width: 2;
-        filter: drop-shadow(0 6px 14px rgba(36, 64, 97, 0.18));
-      }
-
-      .pipeline-card-title {
-        font-family: "Georgia", "Times New Roman", serif;
-        font-size: 24px;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-        fill: #1f2d3d;
-        text-anchor: middle;
-      }
-
-      .pipeline-card-subtitle {
-        font-family: "Georgia", "Times New Roman", serif;
-        font-size: 16px;
-        fill: #3b708d;
-        letter-spacing: 0.1px;
-        text-anchor: middle;
-      }
-
-      .pipeline-node {
-        stroke: #ffffff;
-        stroke-width: 5;
-        filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.16));
-      }
-
-      .pipeline-number {
-        font-family: "Georgia", "Times New Roman", serif;
-        font-size: 22px;
-        font-weight: bold;
-        fill: white;
-        text-anchor: middle;
-        dominant-baseline: middle;
-      }
-
-      .pipeline-note {
-        font-family: "Georgia", "Times New Roman", serif;
-        font-size: 13px;
-        fill: #526981;
-        font-weight: 600;
-        letter-spacing: 0.2px;
-      }
-
-      .stage-1 {
-        fill: #2e86de;
-      }
-
-      .stage-1-card {
-        fill: #eaf3ff;
-        stroke: #b9d4f5;
-      }
-
-      .stage-2 {
-        fill: #17a589;
-      }
-
-      .stage-2-card {
-        fill: #e8fbf4;
-        stroke: #b9ead8;
-      }
-
-      .stage-3 {
-        fill: #f39c12;
-      }
-
-      .stage-3-card {
-        fill: #fff5e6;
-        stroke: #f2cf9b;
-      }
-
-      .stage-4 {
-        fill: #5c6bc0;
-      }
-
-      .stage-4-card {
-        fill: #eef1ff;
-        stroke: #c3cbe9;
-      }
-
-      .stage-5 {
-        fill: #27ae60;
-      }
-
-      .stage-5-card {
-        fill: #e9f6ec;
-        stroke: #b7e3c5;
-      }
-
-      .stage-6 {
-        fill: #d35400;
-      }
-
-      .stage-6-card {
-        fill: #fff0e6;
-        stroke: #f5c7a8;
-      }
-
-      .stage-7 {
-        fill: #34495e;
-      }
-
-      .stage-7-card {
-        fill: #eef1f5;
-        stroke: #c7d0dc;
-      }
-
-      .search-shell {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        max-width: 520px;
-        width: min(520px, calc(100vw - 140px));
-        z-index: 1300;
         display: flex;
         flex-direction: column;
-        gap: 8px;
-        align-items: flex-end;
-      }
-
-      .search-toggle {
-        border: 1px solid #dce6f2;
-        background: #ffffff;
-        color: #1f2d3d;
-        border-radius: 999px;
-        padding: 10px 14px;
-        font-size: 11pt;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.12);
-        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, border 0.2s ease;
-        pointer-events: auto;
-      }
-
-      .search-toggle:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.14);
-        background: #f7faff;
-        border-color: #c5d7f2;
-      }
-
-      .search-shell:not(.collapsed) .search-toggle {
-        background: #eaf1ff;
-        border-color: #c8d8f5;
-        box-shadow: 0 12px 26px rgba(0, 0, 0, 0.14);
-      }
-
-      .search-toolbar {
-        width: 100%;
-        background: white;
-        padding: 12px 14px;
-        border: 1px solid #dce6f2;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
-        display: grid;
-        gap: 8px;
         align-items: center;
       }
 
-      .search-toolbar label {
-        font-size: 10pt;
-        color: #526981;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-      }
-
-      .search-input-row {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 8px;
-        align-items: center;
-      }
-
-      .search-field {
-        width: 100%;
-        padding: 10px 12px;
-        border: 1px solid #d6deea;
-        border-radius: 10px;
-        font-size: 12pt;
-        font-family: inherit;
-        background: #f9fbff;
-        transition: all 0.2s ease;
-      }
-
-      .search-field:focus {
-        outline: none;
-        border-color: #3498db;
-        background: #ffffff;
-        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
-      }
-
-      .search-clear {
-        padding: 10px 12px;
-        border: 1px solid #d6deea;
-        background: #f5f7fb;
-        color: #526981;
-        border-radius: 10px;
-        cursor: pointer;
-        font-size: 11pt;
-        transition: background 0.2s ease, color 0.2s ease, transform 0.1s ease;
-      }
-
-      .search-clear:hover {
-        background: #eaf1fb;
-        color: #34495e;
-      }
-
-      .search-clear:active {
-        transform: translateY(1px);
-      }
-
-      .search-status {
-        font-size: 9.5pt;
-        color: #7f8c8d;
-      }
-
-      .search-results {
-        max-height: 260px;
-        overflow-y: auto;
-        border-top: 1px solid #edf2f7;
-        padding-top: 6px;
-        display: none;
-      }
-
-      .search-results.active {
-        display: block;
-      }
-
-      .search-result {
-        width: 100%;
-        text-align: left;
-        background: #f9fbff;
-        border: 1px solid #e2e8f0;
-        border-radius: 10px;
-        padding: 8px 10px;
-        margin-bottom: 6px;
-        cursor: pointer;
-        transition: border 0.2s ease, transform 0.1s ease, box-shadow 0.2s ease;
-      }
-
-      .search-result:hover {
-        border-color: #bcd4f5;
-        box-shadow: 0 6px 18px rgba(52, 152, 219, 0.14);
-        transform: translateY(-1px);
-      }
-
-      .search-result-title {
-        font-size: 11pt;
-        color: #2c3e50;
-        font-weight: 700;
-        margin-bottom: 4px;
-      }
-
-      .search-preview {
-        font-size: 10pt;
-        color: #526981;
-        line-height: 1.45;
-      }
-
-      .search-result mark {
-        background: #fff4c2;
-        color: #2c3e50;
-        padding: 0 2px;
-        border-radius: 3px;
-      }
-
-      .search-hit-highlight {
-        background: #fff8d6;
-        transition: background 0.6s ease;
-      }
-
-      .search-shell.collapsed .search-toolbar {
-        display: none;
-      }
-
-      .floating-toc {
-        position: fixed;
-        right: 22px;
-        bottom: 28px;
-        width: 320px;
-        max-width: 85vw;
-        z-index: 1200;
-        font-size: 11pt;
-        color: #1f2d3d;
-      }
-
-      .toc-toggle {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 48px;
-        height: 48px;
-        border-radius: 24px;
-        border: none;
-        background: #ffffff;
-        color: #2c3e50;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-        cursor: pointer;
-        display: grid;
-        place-items: center;
-        transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease;
-      }
-
-      .toc-toggle:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 36px rgba(0, 0, 0, 0.2);
-        background: #f8fafc;
-      }
-
-      .toc-panel {
-        pointer-events: none;
-        opacity: 0;
-        transform: translateY(12px);
-        transition: opacity 0.25s ease, transform 0.25s ease;
-        background: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(5px);
-        box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-        border-radius: 12px;
-        padding: 14px;
-        margin-bottom: 10px;
-        max-height: min(70vh, 520px);
-        overflow: hidden;
-      }
-
-      .floating-toc.open .toc-panel {
-        pointer-events: auto;
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .floating-toc.open .toc-toggle {
-        transform: rotate(45deg);
-        background: #eaf1ff;
-      }
-
-      .toc-panel-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        padding-bottom: 8px;
-        border-bottom: 1px solid #ecf0f1;
-      }
-
-      .toc-kicker {
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        font-size: 9pt;
-        color: #7f8c8d;
-      }
-
-      .toc-title {
-        font-weight: 600;
-        color: #1a252f;
-        font-size: 12pt;
-      }
-
-      .toc-close {
-        border: none;
-        background: #f4f6f8;
-        color: #34495e;
-        width: 30px;
-        height: 30px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-
-      .toc-close:hover {
-        background: #e7ebf0;
-        transform: translateY(-1px);
-      }
-
-      .toc-body {
-        margin-top: 8px;
-        max-height: calc(min(70vh, 520px) - 56px);
-        overflow-y: auto;
-        padding-right: 4px;
-      }
-
-      .toc-section {
-        margin-bottom: 6px;
-        border-radius: 8px;
-        transition: background 0.2s ease;
-      }
-
-      .toc-section:hover {
-        background: #f8fafc;
-      }
-
-      .toc-section-header {
-        width: 100%;
-        border: none;
-        background: transparent;
-        color: #1f2d3d;
-        font-weight: 600;
-        font-size: 11pt;
-        text-align: left;
-        padding: 8px 6px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        cursor: pointer;
-        gap: 8px;
-      }
-
-      .toc-section-header .chevron {
-        transition: transform 0.2s ease;
-        font-size: 10pt;
-        color: #7f8c8d;
-      }
-
-      .toc-section.open .chevron {
-        transform: rotate(90deg);
-      }
-
-      .toc-section:hover .chevron {
-        color: #3498db;
-      }
-
-      .toc-link {
-        color: inherit;
-        text-decoration: none;
-        display: block;
-        width: 100%;
-      }
-
-      .toc-sublist {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.25s ease;
-        padding-left: 10px;
-      }
-
-      .toc-section.open .toc-sublist {
-        max-height: 500px;
-      }
-
-      .toc-sub-link {
-        display: block;
-        color: #4a6075;
-        text-decoration: none;
-        font-size: 10pt;
-        padding: 6px 8px;
-        border-radius: 6px;
-        transition: background 0.15s ease, color 0.15s ease;
-      }
-
-      .toc-sub-link:hover {
-        background: #eaf1ff;
-        color: #1f2d3d;
-      }
-
-      .toc-item-active > .toc-section-header,
-      .toc-sub-link.active {
-        background: #eaf1ff;
-        color: #1a252f;
-      }
-
-      .toc-pill {
-        position: absolute;
-        top: -12px;
-        right: 54px;
-        padding: 6px 10px;
-        background: #1f2d3d;
-        color: white;
-        border-radius: 999px;
-        font-size: 9pt;
-        letter-spacing: 0.04em;
-        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        transform: translateY(6px);
-        opacity: 0;
-        transition: opacity 0.25s ease, transform 0.25s ease;
-        pointer-events: none;
-      }
-
-      .floating-toc.open .toc-pill {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      @media (max-width: 1024px) {
-        .floating-toc {
-          right: 12px;
-          bottom: 18px;
-        }
-
-        .toc-panel {
-          width: calc(100vw - 32px);
-        }
-      }
-
-      @media (max-width: 720px) {
-        .floating-toc {
-          left: 50%;
-          transform: translateX(-50%);
-          width: calc(100vw - 30px);
-        }
-
-        .floating-toc.open .toc-panel {
-          box-shadow: 0 16px 36px rgba(0, 0, 0, 0.15);
-        }
-
-        .toc-toggle {
-          right: calc(50% - 24px);
-        }
-      }
-
-      @media (prefers-reduced-motion: reduce) {
-        .floating-toc *,
-        .floating-toc {
-          transition: none !important;
-        }
-      }
-
-      /* Geographic scope image sizing */
-      .geo-scope {
-        flex: 0 0 42%;
-        max-width: 42%;
-        min-width: 220px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      .geo-scope img,
-      .crop-challenges-image img {
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1;
-        object-fit: cover;
-        border-radius: 8px;
-      }
-
-      .geo-scope-wrap,
-      .crop-challenges-wrap {
-        display: flex;
-        align-items: flex-start;
-        gap: 14pt;
-        flex-wrap: wrap;
-        flex-direction: row-reverse;
-        justify-content: center;
-        margin-left: auto;
-        margin-right: auto;
-        margin-top: 10pt;
-        margin-bottom: 15pt;
-      }
-
-      .geo-scope-wrap ul,
-      .crop-challenges-wrap ul {
-        flex: 1 1 280px;
+      .product-section .image-container {
         margin-top: 0;
       }
 
-      .geo-scope,
-      .crop-challenges-image {
-        flex: 0 0 42%;
-        max-width: 42%;
-        min-width: 220px;
-        margin-left: auto;
-        margin-right: auto;
+      .product-section .image-container img {
+        max-height: 250px;
+        width: auto;
       }
 
-      @media (max-width: 720px) {
-        .geo-scope-wrap,
-        .crop-challenges-wrap {
-          flex-direction: column;
-        }
-        .geo-scope,
-        .crop-challenges-image {
-          flex: 1 1 100%;
-          max-width: 100%;
-        }
-        .product-image {
-          float: none;
-          max-width: 100%;
-          margin: 10pt auto;
-          display: block;
-        }
+      /* Cover page styling */
+      .cover-page {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+        padding: 0 40px;
       }
 
-      @media (max-width: 1400px) {
-        .search-shell {
-          right: 16px;
-          width: calc(100vw - 60px);
-        }
-        .search-toolbar {
-          box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-        }
+      .logo-container {
+        margin-bottom: 60pt;
       }
 
-      @media (max-width: 720px) {
-        .search-shell {
-          top: 16px;
-          width: calc(100vw - 32px);
-        }
-        .search-toggle {
-          width: 100%;
-          justify-content: center;
-        }
-        .search-input-row {
-          grid-template-columns: 1fr;
-        }
-        .search-clear {
-          width: 100%;
-        }
+      .logo {
+        max-width: 250px;
+        height: auto;
+      }
+
+      .cover-title {
+        font-size: 32pt;
+        font-weight: 700;
+        line-height: 1.2;
+        margin-bottom: 24pt;
+        color: #2c3e50;
+        text-transform: uppercase;
+        border-top: 4px solid #3498db;
+        border-bottom: 4px solid #3498db;
+        padding: 40px 0;
+      }
+
+      .cover-subtitle {
+        font-size: 14pt;
+        font-weight: 400;
+        color: #7f8c8d;
+        margin-bottom: 60pt;
+        font-style: italic;
+      }
+
+      .cover-info {
+        font-size: 11pt;
+        color: #95a5a6;
+        margin-top: auto;
+        border-top: 1px solid #ecf0f1;
+        padding-top: 20pt;
+      }
+
+      /* TOC styling */
+      .toc {
+        margin-top: 20pt;
+      }
+
+      .toc-item {
+        margin-bottom: 12pt;
+        border-bottom: 1px dotted #bdc3c7;
+        padding-bottom: 2pt;
+        display: block;
+      }
+
+      .toc-item a {
+        color: #2c3e50;
+        text-decoration: none;
+        display: flex;
+        justify-content: space-between;
+        font-weight: 600;
+      }
+
+      .toc-subitem {
+        margin-left: 20pt;
+        margin-top: 4pt;
+        font-size: 10pt;
+      }
+
+      .toc-subitem a {
+        font-weight: 400;
+        color: #34495e;
+      }
+
+      /* Table styling */
+      .prospect-table-container {
+        margin: 15pt 0;
+        overflow-x: auto;
+      }
+
+      .prospect-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 9pt;
+      }
+
+      .prospect-table th,
+      .prospect-table td {
+        padding: 8pt;
+        border: 1px solid #ddd;
+        text-align: left;
+      }
+
+      .prospect-table th {
+        background: #f4f6f8;
+        font-weight: 700;
+        color: #2c3e50;
+      }
+
+      .prospect-table tr:nth-child(even) {
+        background: #f9f9f9;
+      }
+
+      /* Special box styling */
+      .section-box,
+      .example-box,
+      .hook-point-box,
+      .key-points {
+        background: #fff;
+        border-left: 4px solid #3498db;
+        padding: 15pt;
+        margin: 15pt 0;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .example-box {
+        border-left-color: #27ae60;
+        background: #f9fff9;
+      }
+
+      .hook-point-box {
+        border-left-color: #e74c3c;
+        background: #fff5f5;
+        font-weight: 600;
+      }
+
+      .key-points {
+        border-left-color: #f39c12;
+        background: #fffdf5;
+      }
+
+      .email-example {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin: 15pt 0;
+        font-family: Arial, sans-serif;
+        font-size: 10pt;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+
+      .email-header {
+        background: #f5f5f5;
+        padding: 10pt;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .field {
+        margin-bottom: 4pt;
+      }
+
+      .field-label {
+        color: #7f8c8d;
+        font-weight: 600;
+        margin-right: 6pt;
+      }
+
+      .email-body {
+        padding: 15pt;
+      }
+
+      .emphasis-title {
+        font-size: 12pt;
+        font-weight: 700;
+        color: #c0392b;
+        margin: 15pt 0 5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-bottom: 1px solid #e74c3c;
+        display: inline-block;
+      }
+
+      /* Geographic Scope map styling */
+      .geo-scope {
+        text-align: center;
+        margin: 20pt 0;
+      }
+
+      .geo-scope img {
+        max-width: 100%;
+        max-height: 500px;
+        border: 1px solid #ddd;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Crop Challenges map styling */
+      .crop-challenges-image img {
+        max-width: 100%;
+        max-height: 400px;
       }
     </style>
   </head>
   <body>
-    <button
-      class="pdf-export-btn"
-      onclick="enhancedPDFExport()"
-      aria-label="Download PDF"
-      title="Download PDF"
-    >
-      ⬇︎
+    <button id="export-btn" class="pdf-export-btn" title="Download PDF">
+      <i class="fas fa-file-pdf"></i>
     </button>
-
-    <div class="search-shell collapsed" aria-label="Playbook search">
-      <button type="button" class="search-toggle" id="search-toggle" aria-expanded="false" aria-controls="search-panel">
-        🔍 Search playbook
-      </button>
-      <div class="search-toolbar" id="search-panel" role="search" aria-label="Search the playbook">
-        <label for="playbook-search">Search the playbook</label>
-        <div class="search-input-row">
-          <input
-            type="search"
-            id="playbook-search"
-            class="search-field"
-            placeholder="Search sections, tactics, or keywords"
-            aria-label="Search the playbook"
-          />
-          <button type="button" id="clear-search" class="search-clear" aria-label="Clear search">Clear</button>
-        </div>
-        <div class="search-status" id="search-status">Search sections, tactics, or keywords.</div>
-        <div class="search-results" id="search-results" role="listbox" aria-label="Search results"></div>
-      </div>
-    </div>
-
-    <div class="floating-toc" aria-label="Table of contents">
-      <div class="toc-pill">Navigate</div>
-      <button class="toc-toggle" aria-expanded="false" aria-controls="toc-panel" title="Open table of contents">≡</button>
-      <div class="toc-panel" id="toc-panel" role="navigation" aria-label="Table of contents">
-        <div class="toc-panel-header">
-          <div>
-            <div class="toc-kicker">On this playbook</div>
-            <div class="toc-title">Quick jump</div>
-          </div>
-          <button class="toc-close" aria-label="Close navigation">×</button>
-        </div>
-        <div class="toc-body">
-          <div class="toc-list"></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="container" id="document-content">
+    <div class="container">
       <!-- DYNAMIC_CONTENT -->
-      <div class="page" id="cover">
-        <div class="page-content">
-          <div class="logo-container">
-            <img src="assets/logo/ssw-logo.png" alt="Soil Seed & Water Logo" class="logo" id="ssw-logo" style="display: none" />
-          </div>
-          <div style="font-size: 16pt; margin-bottom: 20pt; color: #7f8c8d">SOIL SEED & WATER</div>
-          <div class="cover-title">
-            A specialty farmer.<br />
-            Program execution.<br />
-            Playbook.
-          </div>
-          <div class="cover-subtitle">Business-to-Business Market Segment</div>
-          <div style="font-size: 12pt; margin-top: 30pt; color: #7f8c8d">
-            Complete Guide for Targeting, Engaging, Selling,<br />
-            Implementing, and Supporting Specialty Orchard, Vineyard, and Avocado Clients
-          </div>
-          <div class="cover-info">
-            <br /><br />
-            Version 2.0<br />
-            Updated: November 2024
-          </div>
-          <div class="cover-info" style="margin-top: 18pt; font-size: 11pt; color: #7f8c8d">
-            Prepared by: Rodolfo Alvarez
-          </div>
-          <div style="margin-top: 60pt; font-size: 10pt; color: #95a5a6; max-width: 6in; margin-left: auto; margin-right: auto">
-            This document provides Soil Seed & Water representatives with a clear, standardized roadmap for delivering regenerative programs for orchards, vineyards, and avocados
-            using Pomona and SSW protocols.<br /><br />
-            All proprietary information contained herein is confidential and intended solely for internal use by Soil Seed & Water representatives.
-          </div>
-        </div>
-        <div class="page-number">1</div>
+      <div style="padding: 2in; text-align: center; color: #666">
+        <i class="fas fa-circle-notch fa-spin" style="font-size: 3em; color: #3498db; margin-bottom: 20px"></i>
+        <p>Loading Playbook Preview...</p>
       </div>
-
-      <!-- Table of Contents - Dynamically flows across multiple pages if content is too long -->
-      <div class="page" id="toc">
-        <div class="page-content">
-          <h1>TABLE OF CONTENTS</h1>
-          <div class="toc">
-          <div class="toc-item">
-            <a href="#section1">1. PURPOSE OF THE DOCUMENT <span>Page 3</span></a>
-          </div>
-          <div class="toc-item">
-            <a href="#section2">2. RESEARCH & ELIGIBILITY <span>Page 4</span></a>
-            <div class="toc-subitem"><a href="#section2">2.1 Crop Focus (Expanded)</a></div>
-            <div class="toc-subitem"><a href="#section2">2.2 Geographic Scope</a></div>
-            <div class="toc-subitem"><a href="#section2">2.3 Common Crop Challenges</a></div>
-            <div class="toc-subitem"><a href="#section2">2.4 Common Farmer Challenges</a></div>
-            <div class="toc-subitem"><a href="#section2">2.5 Suitability Criteria</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section3">4. VALUE PROPOSITION <span>Page 5</span></a>
-            <div class="toc-subitem"><a href="#section3">4.1 What We Offer</a></div>
-            <div class="toc-subitem"><a href="#section3">4.2 Why It Matters</a></div>
-            <div class="toc-subitem"><a href="#section3">4.3 How We Deliver</a></div>
-            <div class="toc-subitem"><a href="#section3">4.4 Why SSW Is Different</a></div>
-            <div class="toc-subitem"><a href="#section3">4.5 Economic Value Drivers</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section4">5. CRM INTEGRATION - COMPLETE WORKFLOW <span>Page 10</span></a>
-            <div class="toc-subitem"><a href="#section4">5.1 Lead Capture</a></div>
-            <div class="toc-subitem"><a href="#section4">5.2 Segmentation</a></div>
-            <div class="toc-subitem"><a href="#section4">5.3 Automations</a></div>
-            <div class="toc-subitem"><a href="#section4">5.4 Tracking & Analytics</a></div>
-            <div class="toc-subitem"><a href="#section4">5.5 Smart Calling Workflow</a></div>
-            <div class="toc-subitem"><a href="#section4">5.6 Farm Visits</a></div>
-            <div class="toc-subitem"><a href="#section4">5.7 Deals & Conversions</a></div>
-            <div class="toc-subitem"><a href="#section4">5.8 Reporting</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section5">6. OUTREACH STRATEGY & TACTICS <span>Page 11</span></a>
-            <div class="toc-subitem"><a href="#section5">6.1 Prospect Identification</a></div>
-            <div class="toc-subitem"><a href="#section5">6.2 Initial Outreach - Hook Point</a></div>
-            <div class="toc-subitem"><a href="#section5">6.3 Discovery Questions</a></div>
-            <div class="toc-subitem"><a href="#section5">6.4 Smart Calling Framework</a></div>
-            <div class="toc-subitem"><a href="#section5">6.5 Communication Template - Sean Example</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section6">7. LEAD NURTURING STRATEGY <span>Page 12</span></a>
-            <div class="toc-subitem"><a href="#section6">7.1 5-Email Nurture Series</a></div>
-            <div class="toc-subitem"><a href="#section6">7.2 Follow-Up Cadence</a></div>
-            <div class="toc-subitem"><a href="#section6">7.3 Newsletters</a></div>
-            <div class="toc-subitem"><a href="#section6">7.4 Samples and Gifts</a></div>
-            <div class="toc-subitem"><a href="#section6">7.5 Education → Credibility → Proposal Flow</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section7">8. SALES PROCESS <span>Page 13</span></a>
-            <div class="toc-subitem"><a href="#section7">8.1 Qualification Steps</a></div>
-            <div class="toc-subitem"><a href="#section7">8.2 Site Visit Scheduling</a></div>
-            <div class="toc-subitem"><a href="#section7">8.3 Proposal Structure</a></div>
-            <div class="toc-subitem"><a href="#section7">8.4 Pricing Logic</a></div>
-            <div class="toc-subitem"><a href="#section7">8.5 Closing Steps</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section8">9. IMPLEMENTATION <span>Page 14</span></a>
-            <div class="toc-subitem"><a href="#section8">9.1 Soil Test & Protocol Setup</a></div>
-            <div class="toc-subitem"><a href="#section8">9.2 Order Fulfillment & Delivery</a></div>
-            <div class="toc-subitem"><a href="#section8">9.3 Monitoring & Follow-Up</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section9">10. TIMELINE & KPIs <span>Page 15</span></a>
-            <div class="toc-subitem"><a href="#section9">10.1 Annual Calendar (Q1-Q4)</a></div>
-            <div class="toc-subitem"><a href="#section9">10.2 Key Performance Targets</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section10">11. TOOLS & PLATFORMS <span>Page 16</span></a>
-            <div class="toc-subitem"><a href="#section10">11.1 CRM</a></div>
-            <div class="toc-subitem"><a href="#section10">11.2 Route Planner</a></div>
-            <div class="toc-subitem"><a href="#section10">11.3 AI Advisors</a></div>
-          </div>
-          <div class="toc-item">
-            <a href="#section11">12. APPENDIX <span>Page 17</span></a>
-            <div class="toc-subitem"><a href="#section11">12.1 Pomona Blend Spec Sheet</a></div>
-            <div class="toc-subitem"><a href="#section11">12.2 Seriokai's Secret Blend Spec Sheet</a></div>
-            <div class="toc-subitem"><a href="#section11">12.3 Bucchas Blend Spec Sheet (Vines)</a></div>
-            <div class="toc-subitem"><a href="#section11">12.4 Orchard Protocol</a></div>
-            <div class="toc-subitem"><a href="#section11">12.5 Smart Calling Script</a></div>
-            <div class="toc-subitem"><a href="#section11">12.6 Email Templates</a></div>
-            <div class="toc-subitem"><a href="#section11">12.7 Sample Proposals</a></div>
-            <div class="toc-subitem"><a href="#section11">12.8 Maps of Target Orchards</a></div>
-            <div class="toc-subitem"><a href="#section11">12.9 CRM Screenshots/Mock-ups</a></div>
-            <div class="toc-subitem"><a href="#section11">12.10 Tradeshow Protocols</a></div>
-            <div class="toc-subitem"><a href="#section11">12.11 Regional Crop Research</a></div>
-          </div>
-        </div>
-        </div>
-        <div class="page-number">2</div>
-      </div>
-
-      <!-- Section 1: Purpose of the Document -->
-      <div class="page" id="section1">
-        <div class="page-content">
-          <h2>1. PURPOSE OF THE DOCUMENT</h2>
-
-        <p>
-          This document provides Soil Seed & Water representatives with a clear, standardized roadmap for targeting, engaging, selling, implementing,
-          and supporting specialty orchard, vineyard, and avocado clients in the Business-to-Business Market Segment.
-        </p>
-
-        <p>
-          This playbook establishes the complete outreach-to-fulfillment system, simplifies field execution, and aligns all teams on how to deliver
-          regenerative programs for orchards, vineyards, and avocados using Pomona and SSW protocols.
-        </p>
-
-        <div class="key-points">
-          <h4>KEY OBJECTIVES:</h4>
-          <ul>
-            <li>Standardize the sales approach across all representatives</li>
-            <li>Provide clear, actionable steps from lead generation to customer success</li>
-            <li>Integrate CRM workflows at every stage of the sales process</li>
-            <li>Establish measurable KPIs and timelines for program execution</li>
-            <li>Create a repeatable system for scaling orchard, vineyard, and avocado client acquisition</li>
-          </ul>
-        </div>
-
-        <h3>WHO THIS DOCUMENT IS FOR:</h3>
-        <ul>
-          <li>Sales representatives targeting specialty farmers</li>
-          <li>Field representatives conducting site visits</li>
-          <li>Marketing team developing campaigns and content</li>
-          <li>Management tracking performance and pipeline metrics</li>
-          <li>Operations team coordinating fulfillment and delivery</li>
-        </ul>
-
-        <h3>HOW TO USE THIS PLAYBOOK:</h3>
-        <p>
-          This document is designed as a step-by-step execution guide. Each section builds upon the previous one, creating a complete sales and
-          implementation system. Use the table of contents to navigate directly to specific sections as needed, but we recommend reviewing the entire
-          document to understand the full process flow.
-        </p>
-        </div>
-        <div class="page-number">3</div>
-      </div>
-
-      <div class="page" id="section2">
-        <div class="page-content">
-          <h2>2. RESEARCH & ELIGIBILITY</h2>
-
-        <p>
-          Thorough research ensures we focus on the orchards most likely to benefit from Pomona and SSW protocols. Use these criteria to build a
-          targeted list, qualify quickly, and assign priority before outreach begins.
-        </p>
-
-        <h3>2.1 Crop Focus (Expanded)</h3>
-        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
-          <li><strong>Pistachios:</strong> High-value nut crop with strong ROI on soil health and water-efficiency gains.</li>
-          <li><strong>Pome fruits (apples, pears):</strong> Focus on fruit quality, storability, and soil structure improvements.</li>
-          <li><strong>Stone fruits (peach, plum, cherry, apricot, nectarine):</strong> Emphasize fruit set, color, and consistency.</li>
-          <li>
-            <strong>Vineyards (wine/table/raisin grapes):</strong> Quality and yield stability through improved nutrient uptake and soil biology.
-          </li>
-          <li><strong>Avocados:</strong> Water efficiency, salinity management, and root health are primary levers.</li>
-          <li><strong>Citrus (orange, lemon, lime, grapefruit):</strong> Peel quality, brix, and stress mitigation in heat/drought.</li>
-          <li><strong>Other regional high-value orchards:</strong> Add local specialty crops as mapping reveals clusters.</li>
-        </ul>
-        <div class="image-container crop-focus-image" style="margin-top: 0;">
-          <img src="assets/Crop focus.png" alt="Crop Focus" />
-          <div class="image-caption">Crop Focus</div>
-        </div>
-
-        <h3>2.2 Geographic Scope</h3>
-        <div class="geo-scope-wrap">
-          <ul style="margin-bottom: 5pt; margin-top: 5pt;">
-            <li>300-mile target radius from SSW operations, segmented by priority zones.</li>
-            <li>Map by crop density and market value; create heatmaps of top counties/regions.</li>
-            <li>Flag irrigation water source (district, well, surface) and any water restrictions.</li>
-            <li>Note access/logistics: truck suitability, road conditions, and preferred delivery points.</li>
-          </ul>
-          <div class="image-container geo-scope" style="margin-top: 0;">
-            <img src="assets/300miradiouspicture.png" alt="Geographic Scope" />
-            <div class="image-caption">Geographic Scope - 300-mile Radius</div>
-          </div>
-        </div>
-
-        <h3>2.3 Common Crop Challenges</h3>
-        <div class="crop-challenges-wrap">
-          <ul style="margin-bottom: 5pt; margin-top: 5pt;">
-            <li>Low organic matter and weak soil structure</li>
-            <li>Compaction and limited infiltration</li>
-            <li>Water inefficiency and uneven distribution</li>
-            <li>Micronutrient deficiencies and poor nutrient uptake</li>
-            <li>Low water-holding capacity</li>
-            <li>Weed pressure and low microbial activity</li>
-          </ul>
-          <div class="image-container crop-challenges-image" style="margin-top: 0;">
-            <img src="assets/orchard soil compaction.png" alt="Orchard soil compaction" />
-            <div class="image-caption">Orchard soil compaction</div>
-          </div>
-        </div>
-
-        <h3>2.4 Common Farmer Challenges</h3>
-        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
-          <li>Limited equipment access or downtime for applications</li>
-          <li>Soil biology and nutrient management knowledge gaps</li>
-          <li>Logistics constraints (labor, timing, trucking)</li>
-          <li>Cost management pressures and aversion to input risk</li>
-        </ul>
-
-        <h3>2.5 Suitability Criteria</h3>
-        <ul style="margin-bottom: 5pt; margin-top: 5pt;">
-          <li>Crop compatibility with Pomona + supporting amendments</li>
-          <li>Economic viability (acreage, revenue potential, input cost baseline)</li>
-          <li>Access and logistics feasibility (equipment fit, delivery access)</li>
-          <li>Decision-maker identified and reachable (owner, farm manager, PCA/consultant)</li>
-          <li>Clear agronomic pain points we can solve (water, nutrition, soil structure)</li>
-        </ul>
-
-        <div class="key-points">
-          <h4>DATA TO CAPTURE IN CRM</h4>
-          <ul>
-            <li>Crop type, acreage, orchard age, and block layout</li>
-            <li>Water source and irrigation method (drip, micro-sprinkler, flood)</li>
-            <li>Current fertilizer/soil program and spend (if known)</li>
-            <li>Primary pain points and recent yield/quality trends</li>
-            <li>Equipment available for application and delivery constraints</li>
-            <li>Contact roles (owner, manager, PCA/CCAs) with phone/email preferences</li>
-          </ul>
-        </div>
-        </div>
-        <div class="page-number">4</div>
-      </div>
-
-      <div class="page" id="map-page">
-        <div class="page-content" style="display: flex; flex-direction: column; height: 100%;">
-          <h2>Target Orchards Map</h2>
-          <div class="image-container" style="flex: 1; display: flex; flex-direction: column; margin-top: 20px; height: 100%;">
-            <img src="assets/Map of prospects.png" alt="Target Orchards Map" style="width: 100%; height: 100%; object-fit: contain; flex: 1;">
-            <div class="image-caption">Target Orchards Map</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="page" id="section3">
-        <div class="page-content">
-          <h2>4. VALUE PROPOSITION</h2>
-        <p>
-          The value proposition is the foundation of every conversation with specialty orchard, vineyard, and avocado growers. This section provides the core messaging
-          that differentiates SSW from commodity suppliers and positions us as regenerative agriculture partners.
-        </p>
-
-        <h3>4.1 What We Offer</h3>
-        <p>
-          We deliver long-term orchard, vineyard, and avocado health and regeneration through our specialized crop blends and supporting SSW protocols. This is not a single-product sale—it's a comprehensive
-          regenerative soil health program designed to transform degraded soils into productive, resilient ecosystems.
-        </p>
-
-        <h4>CORE OFFERING:</h4>
-        <ul>
-          <li>Regenerative soil health programs tailored to specialty orchards, vineyards, and avocados</li>
-          <li>Crop-specific blends: <strong>Pomona</strong> (orchards), <strong>Seriokai's Secret</strong> (avocados/citrus), and <strong>Bucchas</strong> (vineyards)</li>
-          <li>Supporting protocols: Compost blends, compost tea extracts (drench), clean wood fiber, and mycorrhizal treatments</li>
-          <li>Customized application schedules aligned with crop phenology and seasonal needs</li>
-          <li>Ongoing field support, soil testing, and protocol adjustments</li>
-          <li>Complete logistics coordination: delivery, equipment support, and application guidance</li>
-        </ul>
-
-        <h4 style="margin-bottom: 8pt; margin-top: 15pt;">SPECIALTY CROP BLENDS:</h4>
-
-        <div class="product-section">
-          <div class="product-image-left">
-            <div class="image-container product-image">
-              <img src="assets/Pomona10lbs.jpg" alt="Pomona Blend - 9 lb bag" />
-              <div class="image-caption">Pomona Blend - 9 lb bag</div>
-            </div>
-          </div>
-          <div class="product-text-right">
-            <p><strong>1. POMONA BLEND</strong> - For Orchards (Stone Fruits, Pome Fruits, Pistachios)</p>
-            
-            <p><strong>DESCRIPTION:</strong></p>
-            <p>Pomona Blend is a granular, OMRI-listed plant food blend specifically formulated for pome and stone fruit trees. This blend provides targeted micronutrient support during critical growth phases to promote vigorous growth, abundant yields, and optimal fruit quality.</p>
-            
-            <p><strong>KEY CHARACTERISTICS:</strong></p>
-            <ul>
-              <li>Granular formulation</li>
-              <li>OMRI Listed for organic use</li>
-              <li>Made in USA</li>
-              <li>Best for: Pome and Stone Fruit Trees</li>
-            </ul>
-
-            <p><strong>KEY BENEFITS:</strong></p>
-            <ul>
-              <li>Specially formulated for pome and stone fruit trees to promote vigorous growth and abundant yields</li>
-              <li>Enriches soil with essential nutrients and beneficial microbes for healthier roots and disease resistance</li>
-              <li>Improves soil structure, aeration, and water retention for optimal fruit tree development</li>
-              <li>Supports robust photosynthesis and nutrient uptake with magnesium and zinc for stronger, more productive trees</li>
-            </ul>
-          </div>
-        </div>
-        </div>
-        <div class="page-number">5</div>
-      </div>
-
-      <div class="page" id="section3-2">
-        <div class="page-content">
-        <div class="product-section" style="margin-top: 0;">
-          <div class="product-image-left">
-            <div class="image-container product-image">
-              <img src="assets/Seriokai10lbs.jpg" alt="Seriokai's Secret Blend - 9 lb bag" />
-              <div class="image-caption">Seriokai's Secret Blend - 9 lb bag</div>
-            </div>
-          </div>
-          <div class="product-text-right">
-            <p><strong>2. SERIKAI'S SECRET BLEND</strong> - For Avocados and Citrus Trees</p>
-            
-            <p><strong>DESCRIPTION:</strong></p>
-            <p>Seriokai's Secret Blend is a granular, OMRI-listed plant food blend specially formulated for avocado and citrus trees. This blend combines premium organic ingredients to boost root strength, fruit yield, and disease resistance while improving soil structure and water retention.</p>
-            
-            <p><strong>KEY CHARACTERISTICS:</strong></p>
-            <ul>
-              <li>Granular formulation</li>
-              <li>OMRI Listed for organic use</li>
-              <li>Made in USA</li>
-              <li>Best for: Avocado and Citrus Trees</li>
-            </ul>
-
-            <p><strong>KEY BENEFITS:</strong></p>
-            <ul>
-              <li>Specially formulated for avocado and citrus trees to boost root strength, fruit yield, and disease resistance</li>
-              <li>Enriches soil with essential nutrients and beneficial microbes for sustained, balanced growth</li>
-              <li>Improves soil structure, water retention, and aeration for healthier, more resilient trees</li>
-              <li>Supports organic gardening with premium, natural ingredients for long-term soil vitality</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="product-section">
-          <div class="product-image-left">
-            <div class="image-container product-image">
-              <img src="assets/Bacchus1CF.jpg" alt="Bacchus Blend - 1 CF bag" />
-              <div class="image-caption">Bacchus Blend - 1 CF bag</div>
-            </div>
-          </div>
-          <div class="product-text-right">
-            <p><strong>3. BUCCHAS BLEND</strong> (VINES) - For Vineyards</p>
-            
-            <p><strong>DESCRIPTION:</strong></p>
-            <p>Bucchas Blend is specifically formulated for vineyard applications, designed to support grape vine health, fruit quality, and yield stability through improved nutrient uptake and soil biology. This blend addresses the unique needs of grape production systems.</p>
-            
-            <p><strong>KEY CHARACTERISTICS:</strong></p>
-            <ul>
-              <li>Formulated for vine crops</li>
-              <li>Optimized for grape production systems</li>
-              <li>Supports quality and yield stability</li>
-            </ul>
-
-            <p><strong>WHY BUCCHAS FOR VINEYARDS:</strong></p>
-            <p>Vineyards have distinct nutritional and soil health requirements compared to tree crops. Grape vines benefit from specific nutrient profiles and soil conditions that support quality fruit development, sugar accumulation (brix), and overall vine health. Bucchas Blend is formulated to address these vineyard-specific needs.</p>
-          </div>
-        </div>
-        </div>
-        <div class="page-number">6</div>
-      </div>
-
-      <div class="page" id="section3-3">
-        <div class="page-content">
-        <h4 style="margin-top: 0;">SUPPORTING PROTOCOL COMPONENTS:</h4>
-
-        <p><strong>4. Orchard/Vineyard Compost Blend</strong></p>
-        <ul>
-          <li>High-quality dairy compost applied under tree canopies</li>
-          <li>Builds organic matter, improves structure, creates microbial habitat</li>
-          <li>Year 1: 10 tons/canopy acre; maintenance: 5 tons/canopy acre annually</li>
-        </ul>
-
-        <p><strong>5. Compost Tea Extract (Drench)</strong></p>
-        <ul>
-          <li>Living microbial inoculant applied via water wagon or sprayer</li>
-          <li>Pre-bud break application (February–March) activates soil biology</li>
-          <li>Second application before nut set (June–July) supports nutrient cycling</li>
-          <li>Super cost-effective biological activation</li>
-        </ul>
-
-        <p><strong>6. Clean Wood Fiber</strong></p>
-        <ul>
-          <li>Mulch application between orchard rows</li>
-          <li>Erosion control, moisture retention, temperature regulation, weed suppression</li>
-          <li>Improves water infiltration by 50% and prevents topsoil loss</li>
-        </ul>
-
-        <p><strong>7. Mycorrhizal Backfill Mix</strong></p>
-        <ul>
-          <li>Specialized fungal blend for new plantings and tree replacement</li>
-          <li>One-time application establishes drought-tolerant root networks</li>
-          <li>10x more cost-effective than treating mature trees</li>
-        </ul>
-
-        <h3>4.2 Why It Matters</h3>
-        <p>
-          Specialty orchard farmers face mounting pressure: declining soil health, water scarcity, rising input costs, and the need to maintain or increase yields. Our
-          program addresses these challenges systematically, delivering measurable results that compound over time.
-        </p>
-
-        <h4>EXTENDED ORCHARD LIFESPAN:</h4>
-        <ul>
-          <li>Healthy soils support productive trees for 25–75+ years (vs. 15–20 years with degraded soils)</li>
-          <li>Reduced tree mortality through improved root health and stress tolerance</li>
-          <li>Legacy value: orchards become generational assets, not short-term investments</li>
-        </ul>
-
-        <h4>IMPROVED SOIL HEALTH:</h4>
-        <ul>
-          <li>Increased organic matter builds water-holding capacity and nutrient retention</li>
-          <li>Enhanced microbial activity improves nutrient cycling and reduces fertilizer dependency</li>
-          <li>Better soil structure prevents compaction and improves infiltration</li>
-          <li>Biological diversity creates resilient ecosystems that adapt to stress</li>
-        </ul>
-
-        <h4>ECONOMIC GAINS:</h4>
-        <ul>
-          <li>Yield lift: Improved nutrient availability and water efficiency directly increase production</li>
-          <li>Fertilizer reduction: Biological nutrient cycling reduces synthetic fertilizer needs by 20–40% over time</li>
-          <li>Cost savings: Reduced water usage (up to 40% in some cases) and lower input costs improve margins</li>
-          <li>Quality improvements: Better fruit/nut quality commands premium pricing</li>
-        </ul>
-        </div>
-        <div class="page-number">7</div>
-      </div>
-
-      <div class="page" id="section3-4">
-        <div class="page-content">
-        <h3>4.3 How We Deliver</h3>
-        <p>
-          SSW doesn't just sell products—we deliver complete regenerative programs with hands-on support at every stage. Our delivery model ensures proper
-          implementation, optimal timing, and continuous improvement.
-        </p>
-
-        <h4>ORCHARD-SPECIFIC TREATMENT PROTOCOLS:</h4>
-        <ul>
-          <li>Initial soil test and analysis to establish baseline and identify specific needs</li>
-          <li>Customized protocol development based on crop type, soil conditions, and farmer goals</li>
-          <li>Crop-specific timing: pistachio nut-set differs from citrus bloom, and protocols reflect this</li>
-          <li>Block-by-block adjustments for soil variations within the same orchard</li>
-        </ul>
-
-        <h4>CUSTOMIZED SUPPLEMENT BLENDS:</h4>
-        <ul>
-          <li>Pomona ratios determined by crop needs and soil test results</li>
-          <li>Supporting amendments selected based on deficiencies and goals</li>
-          <li>Blend adjustments over time as soil health improves and needs change</li>
-          <li>Volume pricing and multi-year commitment incentives</li>
-        </ul>
-
-        <h4>SEASONAL APPLICATION SCHEDULES:</h4>
-        <ul>
-          <li>Winter (Phase 1): Compost and wood fiber application for foundation building</li>
-          <li>Pre-bud break (Phase 2): First drench application to activate soil biology</li>
-          <li>Post leaf-out (Phase 3): Pomona blend application for nutrient support</li>
-          <li>Pre nut-set/fruit-set: Second drench application for peak demand support</li>
-          <li>Post-harvest: Maintenance applications and soil health monitoring</li>
-        </ul>
-
-        <h4>ONGOING FIELD SUPPORT AND CONSULTING:</h4>
-        <ul>
-          <li>Site visits: Monthly field visit weeks with on-site assessments</li>
-          <li>Soil monitoring: Regular testing to track improvements and adjust protocols</li>
-          <li>Photo documentation: Visual progress tracking in CRM</li>
-          <li>Problem-solving: Rapid response to issues with protocol adjustments</li>
-          <li>Education: Farmer training on regenerative principles and application methods</li>
-        </ul>
-
-        <h3>4.4 Why SSW Is Different</h3>
-        <p>
-          Most suppliers sell products. SSW delivers partnerships. This fundamental difference creates long-term value that commodity suppliers cannot match.
-        </p>
-
-        <h4>TRUE PARTNERSHIP APPROACH (NOT JUST PRODUCT SALES):</h4>
-        <ul>
-          <li>We invest in your success: Our revenue depends on your results, not just product volume</li>
-          <li>Long-term commitment: Multi-year programs with ongoing support, not transactional sales</li>
-          <li>Shared risk: Trial programs and performance-based pricing align our interests</li>
-          <li>Relationship focus: We know your operation, your challenges, and your goals</li>
-        </ul>
-        </div>
-        <div class="page-number">8</div>
-      </div>
-
-      <div class="page" id="section3-5">
-        <div class="page-content">
-        <h4 style="margin-top: 0;">DEEP EXPERTISE IN REGENERATIVE AGRICULTURE:</h4>
-        <ul>
-          <li>Specialized knowledge: Years of experience with tree crops and regenerative protocols</li>
-          <li>Proven results: Case studies and field data from successful implementations</li>
-          <li>Continuous learning: We stay current with latest research and adapt protocols</li>
-          <li>Problem-solving capability: We diagnose issues and adjust, not just sell more product</li>
-        </ul>
-
-        <h4>PRODUCTION CAPACITY AND CONSISTENCY:</h4>
-        <ul>
-          <li>Own production facilities: Dairy compost, worm castings, and Pomona blend manufactured in-house</li>
-          <li>Quality control: Consistent product quality you can depend on season after season</li>
-          <li>Scalability: Capacity to support large operations without supply constraints</li>
-          <li>Reliability: You won't face product shortages or quality variations</li>
-        </ul>
-
-        <h3>4.5 Economic Value Drivers</h3>
-        <p>
-          The economic case for SSW programs is built on multiple value drivers that compound over time. Understanding these drivers helps you communicate ROI and
-          justify investment to cost-conscious farmers.
-        </p>
-
-        <div class="key-points">
-          <h4>ECONOMIC CALCULATION FRAMEWORK:</h4>
-          <p>When presenting economic value, use this framework:</p>
-          <p><strong>1. Current State Baseline</strong></p>
-          <ul>
-            <li>Current yield (tons/acre or lbs/tree)</li>
-            <li>Current fertilizer costs per acre</li>
-            <li>Current water usage and costs</li>
-            <li>Current quality metrics and pricing</li>
-          </ul>
-          <p><strong>2. Projected Improvements (Year 3–5)</strong></p>
-          <ul>
-            <li>Yield increase: 10–30% (conservative estimate)</li>
-            <li>Fertilizer reduction: 20–40% (as biology takes over)</li>
-            <li>Water efficiency: 20–40% reduction in irrigation needs</li>
-            <li>Quality premium: 5–15% price improvement (if applicable)</li>
-          </ul>
-          <p><strong>3. Investment vs. Return</strong></p>
-          <ul>
-            <li>Program cost per acre (Year 1, Year 2–3, Year 4+)</li>
-            <li>Cost savings: Fertilizer + water reduction</li>
-            <li>Revenue increase: Yield lift × price</li>
-            <li>Net improvement: Revenue increase + cost savings - program cost</li>
-            <li>ROI timeline: When does cumulative benefit exceed cumulative cost?</li>
-          </ul>
-        </div>
-
-        <div class="key-points">
-          <h4>KEY MESSAGING POINTS:</h4>
-          <ul>
-            <li>"This is a capital investment in soil assets, not an expense"</li>
-            <li>"Your orchard can thrive for 75+ years with proper soil health"</li>
-            <li>"We're building a system that pays you back every year"</li>
-            <li>"The longer you wait, the more expensive regeneration becomes"</li>
-            <li>"Healthy soils are the foundation of profitable, sustainable farming"</li>
-          </ul>
-        </div>
-        </div>
-        <div class="page-number">9</div>
-      </div>
-
-      <div class="page" id="section4">
-        <div class="page-content">
-          <h2>5. CRM INTEGRATION - COMPLETE WORKFLOW</h2>
-          
-          <p>
-            Effective CRM integration is the backbone of successful orchard, vineyard, and avocado program execution. This section provides a complete workflow for capturing, managing, nurturing, and converting leads through every stage of the sales pipeline. All activities must be tracked in the CRM to ensure visibility, accountability, and data-driven decision-making.
-          </p>
-
-          <div style="margin: 18pt 0 12pt;">
-            <p style="margin-bottom: 8pt;"><strong>CRM PLATFORM:</strong></p>
-            <p style="color: #7f8c8d; font-style: italic; margin-left: 12pt;">[Which CRM platform is being used? (e.g., HubSpot, Salesforce, Pipedrive, Monday.com, custom solution)]</p>
-          </div>
-
-          <h4 style="margin-top: 20pt; margin-bottom: 10pt;">INTEGRATION REQUIREMENTS:</h4>
-          <ul style="margin-bottom: 18pt;">
-            <li style="margin-bottom: 6pt;">[What third-party integrations are needed? (e.g., email marketing platform, route planning software, calendar systems, payment processing)]</li>
-            <li style="margin-bottom: 6pt;">[What API connections are required?]</li>
-            <li style="margin-bottom: 6pt;">[What data synchronization needs exist?]</li>
-          </ul>
-
-          <div class="key-points" style="margin-top: 20pt;">
-            <h4 style="margin-top: 0; margin-bottom: 10pt;">NOTE:</h4>
-            <p style="margin-bottom: 12pt;">
-              The complete CRM Integration section (5.1 through 5.8) with detailed workflows, field requirements, automation specifications, and reporting structures is available in the main playbook text file. This section includes:
-            </p>
-            <ul style="margin-bottom: 12pt; padding-left: 20pt;">
-              <li style="margin-bottom: 8pt;"><strong>5.1 Lead Capture</strong> - Complete lead entry requirements and workflows</li>
-              <li style="margin-bottom: 8pt;"><strong>5.2 Segmentation</strong> - Multi-dimensional segmentation strategies</li>
-              <li style="margin-bottom: 8pt;"><strong>5.3 Automations</strong> - Email sequences, task automation, lead scoring</li>
-              <li style="margin-bottom: 8pt;"><strong>5.4 Tracking & Analytics</strong> - Comprehensive metrics and reporting</li>
-              <li style="margin-bottom: 8pt;"><strong>5.5 Smart Calling Workflow</strong> - Prioritized calling strategies</li>
-              <li style="margin-bottom: 8pt;"><strong>5.6 Farm Visits</strong> - Visit scheduling and documentation</li>
-              <li style="margin-bottom: 8pt;"><strong>5.7 Deals & Conversions</strong> - Deal management and pipeline tracking</li>
-              <li style="margin-bottom: 8pt;"><strong>5.8 Reporting</strong> - Executive, team, and custom reporting</li>
-            </ul>
-            <p style="margin-bottom: 0; font-size: 9.5pt; color: #7f8c8d;">
-              All sections use square brackets [ ] to indicate questions about needed information that should be filled in based on your specific CRM setup.
-            </p>
-          </div>
-        </div>
-        <div class="page-number">10</div>
-      </div>
-
-      <div class="page" id="section5">
-        <div class="page-content">
-          <h2>6. OUTREACH STRATEGY & TACTICS</h2>
-        <p>
-          Priority is fast, targeted outreach with clear hooks, clean lists, and disciplined call blocks. Keep messaging specific to orchards/vines, tie to pain
-          points, and log everything in CRM.
-        </p>
-
-        <h3>6.1 Smart Calling Focus</h3>
-        <ul>
-          <li>Target blocks with known pain (compaction, water limits, nutrient gaps) and clear economic upside.</li>
-          <li>Lead with a tight hook: “reduce water and fertilizer 20–40% while lifting yield and brix.”</li>
-          <li>Use short call blocks (60–90 minutes) with prebuilt lists and voicemails ready; log every attempt.</li>
-        </ul>
-
-        <h3>6.2 Smart Calling Cheat Sheet</h3>
-        <p style="margin-bottom: 12pt; color: #7f8c8d; font-style: italic;">Reference guide for effective calling strategies and conversation flows.</p>
-        <div class="image-container full-page-image">
-          <img src="assets/Smart Calling Cheat Sheet.png" alt="Smart Calling Cheat Sheet" />
-          <div class="image-caption">Smart Calling Cheat Sheet - Quick Reference Guide</div>
-        </div>
-        </div>
-        <div class="page-number">11</div>
-      </div>
-
-      <div class="page" id="section6">
-        <div class="page-content">
-          <h2>7. LEAD NURTURING STRATEGY</h2>
-          <p>Lead nurturing is the systematic process of building relationships with prospects through consistent, value-driven communication. This strategy transforms cold leads into warm prospects and ultimately into engaged customers by providing education, establishing credibility, and maintaining top-of-mind awareness.</p>
-          <p>The nurturing strategy combines automated email sequences with personalized touchpoints, creating a "I am automation" approach where automation handles routine communication while representatives focus on high-value personal interactions.</p>
-          <h4>KEY PRINCIPLES:</h4>
-          <ul>
-            <li>Value First: Every communication must provide genuine value before asking for anything</li>
-            <li>Consistency: Regular touchpoints maintain relationship momentum</li>
-            <li>Personalization: Automation feels personal through segmentation and customization</li>
-            <li>Education-Focused: Build trust through knowledge sharing, not selling</li>
-            <li>Multi-Channel: Email automation supplemented with personal calls, texts, and visits</li>
-            <li>Progressive Engagement: Move from awareness to interest to action systematically</li>
-          </ul>
-          <h4>STRATEGIC FOUNDATION:</h4>
-          <p>This nurturing strategy is built on proven methodologies from:</p>
-          <ul>
-            <li>Hook Point (Brendan Kane): Attention-grabbing messaging that cuts through noise</li>
-            <li>Smart Calling (Art Sobczak): Strategic, value-focused communication</li>
-            <li>SPIN Selling (Neil Rackham): Situation, Problem, Implication, Need-payoff questioning</li>
-            <li>Made to Stick (Chip & Dan Heath): Memorable, valuable content that resonates</li>
-            <li>Stories That Stick (Kindra Hall): Storytelling that builds connection and credibility</li>
-          </ul>
-          <h3>7.1 5-Email Nurture Series</h3>
-          <p>The 5-Email Nurture Series is an automated sequence that runs every 14 days, delivering value-focused content to prospects who have been contacted but haven't yet engaged or converted. This series builds trust, educates prospects, and positions SSW as a knowledgeable partner.</p>
-          <h4>SERIES OVERVIEW:</h4>
-          <ul>
-            <li>Frequency: One email every 14 days (2 weeks)</li>
-            <li>Total Duration: 10 weeks (70 days)</li>
-            <li>Goal: Progressive education and relationship building</li>
-            <li>Automation: Fully automated in CRM with personalization tokens</li>
-            <li>Exit Triggers: Engagement (reply, click, call) moves prospect to personal follow-up</li>
-          </ul>
-          <h4>EMAIL 1: THE HOOK POINT (Day 0 - Initial Contact)</h4>
-          <p><strong>OBJECTIVE:</strong> Capture attention and establish relevance</p>
-          <h4>SUBJECT LINE OPTIONS:</h4>
-          <ul>
-            <li>"[Crop Type] Farmers: One Soil Health Insight That Changes Everything"</li>
-            <li>"Why [Farm Name]'s [Crop] Operation Needs This Soil Strategy"</li>
-            <li>"The [Crop] Challenge Most Farmers Don't See Coming"</li>
-          </ul>
-          <p><strong>OPENING HOOK (First 2 sentences):</strong></p>
-          <ul>
-            <li>Reference their specific crop type and geographic region</li>
-            <li>Pose a thought-provoking question or share a surprising insight</li>
-            <li>Example: "If you're growing [crop] in [region], you're likely facing [specific challenge]. Most farmers don't realize this challenge is actually a soil health opportunity."</li>
-          </ul>
-          <h4>BODY STRUCTURE:</h4>
-          <ul>
-            <li>Problem identification (their challenge)</li>
-            <li>Insight or education (valuable information)</li>
-            <li>Soft value proposition (how SSW addresses this)</li>
-            <li>No hard sell - invitation to learn more</li>
-          </ul>
-          <h4>CALL-TO-ACTION:</h4>
-          <ul>
-            <li>"Reply with your biggest soil challenge - I'll send you a free resource"</li>
-            <li>"Click here to download our [Crop] Soil Health Guide"</li>
-            <li>"Would a 15-minute call make sense to discuss your operation?"</li>
-          </ul>
-          <h4>EMAIL 2: EDUCATIONAL VALUE (Day 14)</h4>
-          <p><strong>OBJECTIVE:</strong> Provide actionable education that demonstrates expertise</p>
-          <h4>SUBJECT LINE OPTIONS:</h4>
-          <ul>
-            <li>"The [Crop] Soil Health Factor Most Farmers Overlook"</li>
-            <li>"3 Soil Health Insights for [Crop] Operations Like Yours"</li>
-            <li>"Why [Crop] Quality Starts Below the Surface"</li>
-          </ul>
-          <h4>CONTENT FOCUS:</h4>
-          <ul>
-            <li>Deep dive into one specific soil health topic relevant to their crop</li>
-            <li>Share case study or example (anonymized if needed)</li>
-            <li>Provide actionable insights they can implement</li>
-            <li>Reference SSW methodology without heavy selling</li>
-          </ul>
-          <h4>CALL-TO-ACTION:</h4>
-          <ul>
-            <li>"Want to see how this applies to your specific operation?"</li>
-            <li>"Reply with questions - happy to help"</li>
-            <li>"Download our free [Crop] Protocol Guide"</li>
-          </ul>
-          <h4>EMAIL 3: SOCIAL PROOF & STORIES (Day 28)</h4>
-          <p><strong>OBJECTIVE:</strong> Build credibility through success stories and social proof</p>
-          <h4>SUBJECT LINE OPTIONS:</h4>
-          <ul>
-            <li>"How [Similar Farm] Increased [Crop] Quality by [X]%"</li>
-            <li>"The [Crop] Farmer Who Cut Fertilizer Costs by [X]%"</li>
-            <li>"Real Results: [Crop] Operations Using Regenerative Practices"</li>
-          </ul>
-          <h4>CONTENT FOCUS:</h4>
-          <ul>
-            <li>Success story from similar operation (same crop type, similar size)</li>
-            <li>Specific results and outcomes (yield, quality, cost savings)</li>
-            <li>Challenges overcome and solutions implemented</li>
-            <li>Testimonial or quote from satisfied customer</li>
-          </ul>
-          <h4>CALL-TO-ACTION:</h4>
-          <ul>
-            <li>"Want to see if this approach could work for [Farm Name]?"</li>
-            <li>"Schedule a 20-minute call to discuss your situation"</li>
-            <li>"Reply to learn more about our [Crop] programs"</li>
-          </ul>
-          <h4>EMAIL 4: PROBLEM-SOLUTION FRAMING (Day 42)</h4>
-          <p><strong>OBJECTIVE:</strong> Connect their challenges to SSW solutions through SPIN methodology</p>
-          <h4>SUBJECT LINE OPTIONS:</h4>
-          <ul>
-            <li>"The Hidden Cost of [Common Challenge] in [Crop] Operations"</li>
-            <li>"Why [Crop] Farmers Are Switching to Regenerative Practices"</li>
-            <li>"The [Crop] Challenge That's Costing You More Than You Think"</li>
-          </ul>
-          <p><strong>CONTENT STRUCTURE (SPIN Framework):</strong></p>
-          <ul>
-            <li>SITUATION: Acknowledge their current situation/challenges</li>
-            <li>PROBLEM: Identify specific problems they're likely facing</li>
-            <li>IMPLICATION: Show the cost/impact of not addressing these problems</li>
-            <li>NEED-PAYOFF: Present how addressing these creates value</li>
-          </ul>
-          <h4>CALL-TO-ACTION:</h4>
-          <ul>
-            <li>"Want to see how much [specific problem] is costing your operation?"</li>
-            <li>"Let's discuss your [crop] challenges - no pressure, just insights"</li>
-            <li>"Schedule a free soil health assessment"</li>
-          </ul>
-          <h4>EMAIL 5: INVITATION TO ENGAGE (Day 56)</h4>
-          <p><strong>OBJECTIVE:</strong> Create urgency and invite direct engagement</p>
-          <h4>SUBJECT LINE OPTIONS:</h4>
-          <ul>
-            <li>"Final Thought: Why [Crop] Operations Like Yours Need This Now"</li>
-            <li>"One Last Thing About [Farm Name]'s Soil Health"</li>
-            <li>"Before You Delete This: One [Crop] Insight Worth Your Time"</li>
-          </ul>
-          <h4>CALL-TO-ACTION:</h4>
-          <ul>
-            <li>"Ready to discuss how this applies to [Farm Name]?"</li>
-            <li>"Let's schedule a 15-minute call - I'll bring specific insights for your operation"</li>
-            <li>"Reply 'yes' if you'd like to learn more - no obligation"</li>
-          </ul>
-          <h4>POST-SERIES AUTOMATION:</h4>
-          <p>After Email 5, prospects enter one of three paths:</p>
-          <ol>
-            <li><strong>ENGAGED PROSPECTS</strong> (replied, clicked, called): Moved to personal follow-up queue, representative receives notification, personal outreach scheduled within 48 hours</li>
-            <li><strong>WARM BUT NOT ENGAGED:</strong> Enter monthly newsletter sequence, continue receiving value content, periodic re-engagement campaigns</li>
-            <li><strong>COLD/UNRESPONSIVE:</strong> Moved to quarterly re-engagement campaigns, lower priority in CRM, can be re-activated with new hook point</li>
-          </ol>
-          <h3>7.2 Follow-Up Cadence & Automation</h3>
-          <p>The follow-up cadence defines when and how to personally connect with prospects beyond automated emails. This "I am automation" approach ensures automation handles routine touchpoints while representatives focus on high-value personal interactions.</p>
-          <h4>AUTOMATION TOUCHPOINTS (Handled by CRM):</h4>
-          <ul>
-            <li>Email nurture sequence (every 14 days)</li>
-            <li>Newsletter delivery (monthly)</li>
-            <li>Birthday/holiday greetings</li>
-            <li>Seasonal content delivery</li>
-            <li>Re-engagement campaigns</li>
-            <li>Thank you messages after interactions</li>
-          </ul>
-          <h4>PERSONAL TOUCHPOINTS (Representative Action Required):</h4>
-          <ul>
-            <li>Initial hook point call (within 48 hours of first email)</li>
-            <li>Follow-up calls after email engagement (opens, clicks, replies)</li>
-            <li>Post-nurture series call (after Email 5)</li>
-            <li>Site visit follow-ups (within 24 hours)</li>
-            <li>Proposal delivery calls</li>
-            <li>Trial/sample follow-ups (7 days after delivery)</li>
-          </ul>
-          <h4>SMART CALLING INTEGRATION:</h4>
-          <p>Based on "Smart Calling" methodology, personal calls are strategic and value-focused:</p>
-          <h4>CALL TIMING:</h4>
-          <ul>
-            <li>After email opens/clicks: Within 48 hours</li>
-            <li>After email replies: Within 24 hours</li>
-            <li>After nurture series completion: Within 1 week</li>
-            <li>After site visit: Within 24 hours</li>
-            <li>After proposal delivery: Within 48 hours</li>
-          </ul>
-          <h4>PERSONAL FOLLOW-UP REQUIREMENTS:</h4>
-          <p>Representatives must personally follow up when:</p>
-          <ul>
-            <li>Prospect replies to any email (within 24 hours)</li>
-            <li>Prospect clicks link in email (within 48 hours)</li>
-            <li>Prospect requests information or sample (within 24 hours)</li>
-            <li>High engagement score reached (within 1 week)</li>
-            <li>Nurture series completed (within 1 week)</li>
-            <li>Site visit conducted (within 24 hours)</li>
-            <li>Proposal delivered (within 48 hours)</li>
-          </ul>
-          <h3>7.3 Newsletters & Value Content</h3>
-          <p>Monthly newsletters provide ongoing value to prospects and customers, maintaining top-of-mind awareness while delivering educational content. These newsletters reinforce SSW expertise and keep prospects engaged between major touchpoints.</p>
-          <h4>NEWSLETTER STRATEGY:</h4>
-          <ul>
-            <li>Frequency: Monthly (first week of each month)</li>
-            <li>Audience: All prospects and customers in CRM</li>
-            <li>Goal: Provide value, maintain relationship, drive engagement</li>
-            <li>Format: Educational content with soft calls-to-action</li>
-          </ul>
-          <h4>CONTENT STRUCTURE:</h4>
-          <p>Each newsletter includes:</p>
-          <ol>
-            <li><strong>SEASONAL INSIGHT (Hook Point):</strong> Relevant to current season/agricultural calendar, actionable insight for their crop type, attention-grabbing opening</li>
-            <li><strong>EDUCATIONAL CONTENT:</strong> Deep dive into one soil health topic, case study or success story, practical tips they can implement</li>
-            <li><strong>SSW UPDATES:</strong> Company news or updates (brief), new resources or tools available, upcoming events or webinars</li>
-            <li><strong>CALL-TO-ACTION:</strong> Soft invitation to engage, link to download resource, invitation to schedule call</li>
-          </ol>
-          <h3>7.4 Samples and Gifts Program</h3>
-          <p>The samples and gifts program provides tangible value to qualified prospects, demonstrating product quality and building goodwill. This program creates opportunities for hands-on experience and follow-up conversations.</p>
-          <h4>SAMPLE PROGRAM OVERVIEW:</h4>
-          <ul>
-            <li>Product: 9 lb trial bag of appropriate blend (Pomona, Seriokai's Secret, or Bucchas)</li>
-            <li>Qualification: Prospect must meet minimum criteria (acreage, crop fit, engagement)</li>
-            <li>Delivery: Branded packaging with educational materials</li>
-            <li>Follow-up: Automated and personal follow-up sequence</li>
-          </ul>
-          <h3>7.5 Education → Credibility → Proposal Flow</h3>
-          <p>The nurturing strategy follows a progressive flow that moves prospects from awareness to action through education, credibility building, and ultimately proposal delivery. This flow ensures prospects are well-informed and ready before receiving a formal proposal.</p>
-          <h4>PROGRESSIVE ENGAGEMENT FLOW:</h4>
-          <p><strong>STAGE 1: EDUCATION (Weeks 1-4)</strong></p>
-          <ul>
-            <li>Goal: Provide value and build awareness</li>
-            <li>Tactics: Hook point email, educational content, newsletters</li>
-            <li>Outcome: Prospect recognizes SSW as knowledgeable resource</li>
-          </ul>
-          <p><strong>STAGE 2: CREDIBILITY (Weeks 5-8)</strong></p>
-          <ul>
-            <li>Goal: Build trust through social proof and expertise</li>
-            <li>Tactics: Case studies, success stories, personal interactions</li>
-            <li>Outcome: Prospect trusts SSW as credible partner</li>
-          </ul>
-          <p><strong>STAGE 3: ENGAGEMENT (Weeks 9-12)</strong></p>
-          <ul>
-            <li>Goal: Create interest and desire to learn more</li>
-            <li>Tactics: Discovery calls, site visits, samples, personal follow-ups</li>
-            <li>Outcome: Prospect actively engages and wants to explore solutions</li>
-          </ul>
-          <p><strong>STAGE 4: PROPOSAL (Weeks 13+)</strong></p>
-          <ul>
-            <li>Goal: Present formal solution and close</li>
-            <li>Tactics: Customized proposal, ROI calculations, contract discussion</li>
-            <li>Outcome: Prospect becomes customer</li>
-          </ul>
-        </div>
-        <div class="page-number">12</div>
-      </div>
-
-      <div class="page" id="section7">
-        <div class="page-content">
-          <h2>8. SALES PROCESS</h2>
-        <p><em>Content to be added...</em></p>
-        </div>
-        <div class="page-number">13</div>
-      </div>
-
-      <div class="page" id="section8">
-        <div class="page-content">
-          <h2>9. IMPLEMENTATION</h2>
-        <p><em>Content to be added...</em></p>
-        </div>
-        <div class="page-number">14</div>
-      </div>
-
-      <div class="page" id="section9">
-        <div class="page-content">
-          <h2>10. TIMELINE & KPIs</h2>
-        <p><em>Content to be added...</em></p>
-        </div>
-        <div class="page-number">15</div>
-      </div>
-
-      <div class="page" id="section10">
-        <div class="page-content">
-          <h2>11. TOOLS & PLATFORMS</h2>
-        <p><em>Content to be added...</em></p>
-        </div>
-        <div class="page-number">16</div>
-      </div>
-
-      <div class="page" id="section11">
-        <div class="page-content">
-          <h2>12. APPENDIX</h2>
-
-        <h3>12.9 CRM Screenshots/Mock-ups</h3>
-        <p>Quick-reference visuals for the three specialty blends.</p>
-        <div class="screenshot-gallery">
-          <div class="image-container gallery-item">
-            <img src="assets/Pomona10lbs.jpg" alt="Pomona Blend - 10 lb bag" />
-            <div class="image-caption">Pomona Blend - 10 lb bag</div>
-          </div>
-          <div class="image-container gallery-item">
-            <img src="assets/Seriokai10lbs.jpg" alt="Seriokai's Secret Blend - 10 lb bag" />
-            <div class="image-caption">Seriokai's Secret Blend - 10 lb bag</div>
-          </div>
-          <div class="image-container gallery-item">
-            <img src="assets/Bacchus1CF.jpg" alt="Bacchus Blend - 1 CF bag" />
-            <div class="image-caption">Bacchus Blend - 1 CF bag</div>
-          </div>
-        </div>
-        </div>
-        <div class="page-number">17</div>
-      </div>
-
     </div>
 
     <script>
-      const tocState = {
-        observer: null,
-        mutationObserver: null,
-        rebuildTimer: null,
-      };
-
-      const smoothScrollToId = (targetId) => {
-        const target = document.getElementById(targetId);
-        if (!target) return;
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      };
-
-      const setActiveTocItem = (activeId) => {
-        document.querySelectorAll(".toc-sub-link.active, .toc-item-active").forEach((el) => {
-          el.classList.remove("active", "toc-item-active");
-        });
-
-        const subLink = document.querySelector(`.toc-sub-link[data-target="${activeId}"]`);
-        const sectionHeader = document.querySelector(`.toc-section-header[data-target="${activeId}"]`);
-
-        if (subLink) {
-          subLink.classList.add("active");
-          const parent = subLink.closest(".toc-section");
-          if (parent) {
-            parent.classList.add("toc-item-active", "open");
-          }
-        } else if (sectionHeader) {
-          const section = sectionHeader.closest(".toc-section");
-          if (section) {
-            section.classList.add("toc-item-active", "open");
-          }
-        }
-      };
-
-      const buildFloatingToc = () => {
-        const tocContainer = document.querySelector(".floating-toc");
-        const tocList = tocContainer?.querySelector(".toc-list");
-        if (!tocContainer || !tocList) return;
-
-        tocList.innerHTML = "";
-        if (tocState.observer) tocState.observer.disconnect();
-
-        const headings = Array.from(document.querySelectorAll(".page h2, .page h3"));
-        const usedIds = new Set();
-
-        headings.forEach((heading, index) => {
-          if (!heading.id) {
-            const base =
-              heading.textContent
-                .trim()
-                .toLowerCase()
-                .replace(/[^a-z0-9]+/g, "-")
-                .replace(/^-+|-+$/g, "") || `section-${index + 1}`;
-
-            let candidate = base;
-            let counter = 1;
-            while (usedIds.has(candidate)) {
-              candidate = `${base}-${counter++}`;
-            }
-            heading.id = candidate;
-            usedIds.add(candidate);
-          } else {
-            usedIds.add(heading.id);
-          }
-        });
-
-        const sections = [];
-        headings.forEach((heading) => {
-          if (heading.tagName === "H2") {
-            sections.push({ id: heading.id, title: heading.textContent.trim(), children: [] });
-          } else if (sections.length) {
-            sections[sections.length - 1].children.push({ id: heading.id, title: heading.textContent.trim() });
-          }
-        });
-
-        const fragment = document.createDocumentFragment();
-        sections.forEach((section, index) => {
-          const sectionEl = document.createElement("div");
-          sectionEl.className = "toc-section";
-          if (index === 0) sectionEl.classList.add("open");
-
-          const header = document.createElement("button");
-          header.className = "toc-section-header toc-link";
-          header.setAttribute("data-target", section.id);
-          header.setAttribute("aria-expanded", sectionEl.classList.contains("open"));
-          header.innerHTML = `<span>${section.title}</span><span class="chevron">›</span>`;
-          header.addEventListener("click", () => {
-            const isOpen = sectionEl.classList.toggle("open");
-            header.setAttribute("aria-expanded", isOpen);
-            smoothScrollToId(section.id);
-          });
-
-          const sublist = document.createElement("div");
-          sublist.className = "toc-sublist";
-
-          section.children.forEach((child) => {
-            const link = document.createElement("a");
-            link.className = "toc-sub-link";
-            link.href = `#${child.id}`;
-            link.setAttribute("data-target", child.id);
-            link.textContent = child.title;
-            sublist.appendChild(link);
-          });
-
-          sectionEl.appendChild(header);
-          if (section.children.length) sectionEl.appendChild(sublist);
-          fragment.appendChild(sectionEl);
-        });
-
-        tocList.appendChild(fragment);
-
-        tocState.observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                setActiveTocItem(entry.target.id);
-              }
-            });
-          },
-          {
-            rootMargin: "-35% 0px -45% 0px",
-            threshold: [0.2, 0.5, 0.8],
-          }
-        );
-
-        headings.forEach((heading) => tocState.observer.observe(heading));
-
-        if (tocState.mutationObserver) tocState.mutationObserver.disconnect();
-        tocState.mutationObserver = new MutationObserver(() => {
-          clearTimeout(tocState.rebuildTimer);
-          tocState.rebuildTimer = setTimeout(() => buildFloatingToc(), 250);
-        });
-
-        tocState.mutationObserver.observe(document.getElementById("document-content"), {
-          childList: true,
-          subtree: true,
-        });
-      };
-
-      const setupTocToggle = () => {
-        const tocContainer = document.querySelector(".floating-toc");
-        const toggleBtn = tocContainer?.querySelector(".toc-toggle");
-        const closeBtn = tocContainer?.querySelector(".toc-close");
-        if (!tocContainer || !toggleBtn) return;
-
-        const setOpen = (open) => {
-          tocContainer.classList.toggle("open", open);
-          toggleBtn.setAttribute("aria-expanded", String(open));
-        };
-
-        toggleBtn.addEventListener("click", () => {
-          setOpen(!tocContainer.classList.contains("open"));
-        });
-
-        closeBtn?.addEventListener("click", () => setOpen(false));
-
-        document.addEventListener("click", (event) => {
-          if (!tocContainer.contains(event.target) && tocContainer.classList.contains("open")) {
-            setOpen(false);
-          }
-        });
-      };
-
-      const registerSmoothScroll = () => {
-        document.addEventListener("click", (event) => {
-          const anchor = event.target.closest('a[href^="#"]');
-          if (!anchor) return;
-
-          const href = anchor.getAttribute("href");
-          if (!href || href === "#") return;
-          const targetId = href.replace("#", "");
-          const target = document.getElementById(targetId) || document.querySelector(href);
-          if (!target) return;
-
-          event.preventDefault();
-          smoothScrollToId(targetId);
-        });
-      };
-
-      const initializeNavigation = () => {
-        setupTocToggle();
-        buildFloatingToc();
-        registerSmoothScroll();
-      };
-
-      const initializeSearch = () => {
-        const searchInput = document.getElementById("playbook-search");
-        const searchResults = document.getElementById("search-results");
-        const searchStatus = document.getElementById("search-status");
-        const clearSearchBtn = document.getElementById("clear-search");
-        const searchShell = document.querySelector(".search-shell");
-        const searchToggle = document.getElementById("search-toggle");
-
-        if (!searchInput || !searchResults || !searchStatus || !searchShell) return;
-
-        const setSearchOpen = (open) => {
-          searchShell.classList.toggle("collapsed", !open);
-          if (searchToggle) searchToggle.setAttribute("aria-expanded", String(open));
-          if (open) {
-            searchInput.focus();
-            searchInput.select();
-          } else {
-            searchInput.blur();
-            if (!searchInput.value) {
-              searchResults.innerHTML = "";
-              searchResults.classList.remove("active");
-              searchStatus.textContent = "Search sections, tactics, or keywords.";
-            }
-          }
-        };
-
-        const searchableNodes = Array.from(document.querySelectorAll(".page h2, .page h3, .page h4, .page p, .page li"));
-        const searchIndex = [];
-        const searchIndexMap = new Map();
-
-        searchableNodes.forEach((node, idx) => {
-          const text = (node.textContent || "").trim().replace(/\s+/g, " ");
-          if (!text) return;
-
-          const page = node.closest(".page");
-          const heading = page?.querySelector("h1, h2");
-          const sectionTitle = heading ? heading.textContent.trim().replace(/\s+/g, " ") : "Playbook";
-          const searchId = `search-target-${idx}`;
-
-          node.dataset.searchId = searchId;
-
-          const entry = {
-            id: searchId,
-            text,
-            lower: text.toLowerCase(),
-            node,
-            sectionTitle,
-          };
-
-          searchIndex.push(entry);
-          searchIndexMap.set(searchId, entry);
-        });
-
-        const escapeHTML = (str) =>
-          str
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#39;");
-
-        const highlightTerms = (text, terms) => {
-          if (!terms.length) return escapeHTML(text);
-          const pattern = terms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|");
-          const regex = new RegExp(`(${pattern})`, "gi");
-          return text
-            .split(regex)
-            .map((segment, index) => {
-              if (index % 2 === 1) {
-                return `<mark>${escapeHTML(segment)}</mark>`;
-              }
-              return escapeHTML(segment);
-            })
-            .join("");
-        };
-
-        const renderResults = (value) => {
-          const query = value.trim().toLowerCase();
-          if (!query) {
-            searchResults.innerHTML = "";
-            searchResults.classList.remove("active");
-            searchStatus.textContent = "Search sections, tactics, or keywords.";
-            return;
-          }
-
-          const terms = query.split(/\s+/).filter(Boolean);
-          const matches = searchIndex
-            .map((item) => {
-              const matchedTerms = terms.filter((term) => item.lower.includes(term));
-              if (!matchedTerms.length) return null;
-              const score = matchedTerms.length * 2 - Math.min(item.text.length, 260) / 260;
-              return { ...item, matchedTerms, score };
-            })
-            .filter(Boolean)
-            .sort((a, b) => b.score - a.score)
-            .slice(0, 15);
-
-          if (!matches.length) {
-            searchResults.innerHTML = `<div class="search-result">No matches found.</div>`;
-            searchResults.classList.add("active");
-            searchStatus.textContent = `No matches for "${value.trim()}"`;
-            return;
-          }
-
-          searchResults.innerHTML = matches
-            .map((match) => {
-              const preview = match.text.length > 220 ? `${match.text.slice(0, 220)}…` : match.text;
-              const highlighted = highlightTerms(preview, terms);
-              return `
-                <button class="search-result" data-target="${match.id}" role="option" aria-label="Go to ${escapeHTML(match.sectionTitle)}">
-                  <div class="search-result-title">${escapeHTML(match.sectionTitle)}</div>
-                  <div class="search-preview">${highlighted}</div>
-                </button>
-              `;
-            })
-            .join("");
-          searchResults.classList.add("active");
-          searchStatus.textContent = `Showing ${matches.length} result${matches.length === 1 ? "" : "s"} for "${value.trim()}"`;
-        };
-
-        const focusMatch = (targetId) => {
-          const entry = searchIndexMap.get(targetId);
-          if (!entry) return;
-          entry.node.scrollIntoView({ behavior: "smooth", block: "start" });
-          entry.node.classList.add("search-hit-highlight");
-          setTimeout(() => entry.node.classList.remove("search-hit-highlight"), 1800);
-        };
-
-        searchToggle?.addEventListener("click", () => {
-          const isOpen = !searchShell.classList.contains("collapsed");
-          setSearchOpen(!isOpen);
-        });
-
-        searchResults.addEventListener("click", (event) => {
-          const target = event.target.closest(".search-result");
-          if (!target) return;
-          const targetId = target.getAttribute("data-target");
-          if (targetId) {
-            focusMatch(targetId);
-            setSearchOpen(false);
-          }
-        });
-
-        searchInput.addEventListener("focus", () => setSearchOpen(true));
-
-        searchInput.addEventListener("input", (event) => {
-          setSearchOpen(true);
-          renderResults(event.target.value);
-        });
-
-        searchInput.addEventListener("keydown", (event) => {
-          if (event.key === "Enter") {
-            event.preventDefault();
-            const firstResult = searchResults.querySelector(".search-result");
-            firstResult?.click();
-          } else if (event.key === "Escape") {
-            if (searchInput.value) {
-              searchInput.value = "";
-              renderResults("");
-            } else {
-              setSearchOpen(false);
-            }
-          }
-        });
-
-        clearSearchBtn?.addEventListener("click", () => {
-          searchInput.value = "";
-          renderResults("");
-          searchInput.focus();
-          setSearchOpen(true);
-        });
-
-        document.addEventListener("click", (event) => {
-          if (!searchShell.contains(event.target) && !searchShell.classList.contains("collapsed") && !searchInput.value) {
-            setSearchOpen(false);
-          }
-        });
-      };
-
-      // Split long sections into multiple exactly 11in tall pages
-      function splitContentIntoPages() {
-        console.log('🔄 Starting page splitting...');
-        
-        // Include TOC in pages to split (it can now flow across pages)
-        const pages = Array.from(document.querySelectorAll(".page:not(#cover)"));
-        console.log(`Found ${pages.length} content pages to process`);
-        
-        if (pages.length === 0) {
-          console.log('⚠️ No pages found to split');
-          return;
-        }
-        
-        // Safety check: ensure we have content before attempting to split
-        const hasContent = pages.some(p => {
-          const content = p.querySelector(".page-content");
-          return content && content.children.length > 0;
-        });
-        
-        if (!hasContent) {
-          console.log('⚠️ No content found in pages, skipping split to prevent data loss');
-          return;
-        }
-        
-        // Hide pages during splitting to prevent flash (polish)
-        pages.forEach(page => {
-          page.style.opacity = '0';
-          page.style.transition = 'opacity 0.3s ease-in';
-        });
-        
-        const PAGE_HEIGHT_IN = 11;
-        const PAGE_HEIGHT_PX = PAGE_HEIGHT_IN * 96; // 96px per inch at screen resolution
-        const PADDING_IN = 1; // 1 inch top padding
-        const PADDING_PX = PADDING_IN * 96;
-        const PAGE_NUMBER_SPACE_PX = 40; // Space for page number (0.42in) - reduced to allow more content
-        const LINE_HEIGHT_BUFFER_PX = 10; // Smaller buffer so short lists can stay on the current page - reduced to allow more content
-        const MAX_CONTENT_HEIGHT_PX = PAGE_HEIGHT_PX - PADDING_PX - PAGE_NUMBER_SPACE_PX - LINE_HEIGHT_BUFFER_PX; // Available content height with buffer
-        const isHeadingLike = (el) => {
-          if (!el || !el.tagName) return false;
-          const tag = el.tagName.toUpperCase();
-          if (tag === 'H2' || tag === 'H3' || tag === 'H4') return true;
-          if (tag === 'P') {
-            const text = (el.textContent || '').trim();
-            // Treat short all-caps paragraphs as headings
-            return text && text.length <= 140 && text === text.toUpperCase();
-          }
-          return false;
-        };
-        
-        console.log(`Max content height: ${MAX_CONTENT_HEIGHT_PX}px (${MAX_CONTENT_HEIGHT_PX / 96}in)`);
-        
-        pages.forEach((originalPage, pageIdx) => {
-          const content = originalPage.querySelector(".page-content");
-          if (!content) {
-            console.log(`⚠️ Page ${pageIdx} has no .page-content`);
-            return;
-          }
-          
-          // Save original styles
-          const originalContentStyle = {
-            maxHeight: content.style.maxHeight,
-            overflow: content.style.overflow,
-            height: content.style.height
-          };
-          
-          const originalPageStyle = {
-            height: originalPage.style.height,
-            maxHeight: originalPage.style.maxHeight
-          };
-          
-          // Temporarily remove restrictions for accurate measurement
-          content.style.maxHeight = 'none';
-          content.style.overflow = 'visible';
-          content.style.height = 'auto';
-          originalPage.style.height = 'auto';
-          originalPage.style.maxHeight = 'none';
-          
-          // Force reflow for accurate measurements
-          void originalPage.offsetHeight;
-          void content.offsetHeight;
-          
-          // Measure actual content height
-          const contentHeight = content.scrollHeight;
-          console.log(`Page ${originalPage.id}: content height = ${contentHeight}px (${(contentHeight / 96).toFixed(2)}in), max = ${MAX_CONTENT_HEIGHT_PX}px`);
-          
-          // Restore styles before checking
-          originalPage.style.height = '11in';
-          originalPage.style.maxHeight = '11in';
-          content.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
-          content.style.overflow = 'hidden';
-          
-          // Force reflow to get accurate measurement with restrictions
-          void originalPage.offsetHeight;
-          void content.offsetHeight;
-          
-          // Re-measure with restrictions applied
-          const restrictedHeight = content.scrollHeight;
-          
-          // If content fits in one page, we're done
-          if (restrictedHeight <= MAX_CONTENT_HEIGHT_PX) {
-            console.log(`✅ Page ${originalPage.id} fits in one page (${restrictedHeight}px <= ${MAX_CONTENT_HEIGHT_PX}px)`);
-            return;
-          }
-          
-          // Content exceeds - need to split
-          console.log(`✂️ Page ${originalPage.id} needs splitting (${restrictedHeight}px > ${MAX_CONTENT_HEIGHT_PX}px)`);
-          
-          // Temporarily remove restrictions again for splitting
-          content.style.maxHeight = 'none';
-          content.style.overflow = 'visible';
-          originalPage.style.height = 'auto';
-          originalPage.style.maxHeight = 'none';
-          
-          // Content exceeds - split it into multiple pages
-          console.log(`✂️ Splitting page ${originalPage.id} (content is ${contentHeight}px, exceeds ${MAX_CONTENT_HEIGHT_PX}px)`);
-          
-          const children = Array.from(content.children);
-          if (children.length === 0) {
-            console.log(`⚠️ Page ${originalPage.id} has no children`);
-            return;
-          }
-          
-          // Store children data before manipulation
-          const childrenData = children.map(child => ({
-            element: child,
-            html: child.outerHTML
-          }));
-          
-          console.log(`  Stored ${childrenData.length} children for processing`);
-          
-          // Clear original content (will rebuild it)
-          content.innerHTML = '';
-          
-          // Get section info
-          const sectionId = originalPage.id.replace(/-page\d+$/, '');
-          const pageNumberEl = originalPage.querySelector('.page-number');
-          let basePageNum = pageNumberEl ? parseInt(pageNumberEl.textContent) : 3;
-          
-          const newPages = [];
-          let currentPage = originalPage;
-          let currentPageContent = content;
-          let currentHeight = 0;
-          let pageCounter = 1;
-          
-          // Process each child element
-          childrenData.forEach((childData, childIdx) => {
-            // Create a temporary container to measure the child
-            const tempContainer = document.createElement('div');
-            tempContainer.style.cssText = 'position: absolute; visibility: hidden; width: 7.5in;';
-            tempContainer.innerHTML = childData.html;
-            document.body.appendChild(tempContainer);
-            
-            // Get the actual element from temp container
-            const childElement = tempContainer.firstElementChild;
-            if (!childElement) {
-              console.log(`  ⚠️ Child ${childIdx} has no element, skipping`);
-              document.body.removeChild(tempContainer);
-              return;
-            }
-            
-            // Clone the element to avoid DOM manipulation issues
-            const clonedElement = childElement.cloneNode(true);
-            
-            // Force reflow to measure height
-            void childElement.offsetHeight;
-            
-            const childHeight = childElement.offsetHeight || 100;
-            
-            console.log(`  Child ${childIdx} (${clonedElement.tagName}): height = ${childHeight}px, current total = ${currentHeight}px`);
-            
-            // Track what was before this element so we can keep headings with their first block
-            const prevBeforeAppend = currentPageContent.lastElementChild;
-
-            // Try adding the cloned element to current page
-            currentPageContent.appendChild(clonedElement);
-            
-            // Force reflow to get actual rendered height
-            void currentPageContent.offsetHeight;
-            void currentPage.offsetHeight;
-            const actualHeight = currentPageContent.scrollHeight;
-            
-            // Check if the actual rendered height exceeds the page limit (with buffer)
-            if (actualHeight > MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX) {
-              console.log(`  ⚠️ Child ${childIdx} would cause overflow (actual: ${actualHeight}px > max: ${MAX_CONTENT_HEIGHT_PX + LINE_HEIGHT_BUFFER_PX}px), creating new page`);
-              
-              // If the previous element was a heading-like block, move it with this element
-              let headingToMove = null;
-              if (isHeadingLike(prevBeforeAppend) && currentPageContent.contains(prevBeforeAppend)) {
-                headingToMove = prevBeforeAppend;
-                currentPageContent.removeChild(prevBeforeAppend);
-              }
-
-              // Remove the cloned element from current page
-              clonedElement.remove();
-              
-              // Create new page
-              const newPage = document.createElement('div');
-              newPage.className = 'page';
-              newPage.id = `${sectionId}-page${pageCounter + 1}`;
-              newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
-              
-              const newContent = document.createElement('div');
-              newContent.className = 'page-content';
-              newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.5in;';
-              
-              newPage.appendChild(newContent);
-              
-              // Add page number
-              const newPageNumber = document.createElement('div');
-              newPageNumber.className = 'page-number';
-              newPageNumber.textContent = basePageNum + pageCounter;
-              newPageNumber.style.cssText = 'position: absolute; bottom: 0.5in; right: 1in; font-size: 10pt; color: #666;';
-              newPage.appendChild(newPageNumber);
-              
-              // Insert after current page
-              currentPage.parentElement.insertBefore(newPage, currentPage.nextSibling);
-              newPages.push(newPage);
-              
-              // Switch to new page and add the cloned element
-              currentPage = newPage;
-              currentPageContent = newContent;
-              
-              // If we moved a heading, place it before the list
-              if (headingToMove) {
-                currentPageContent.appendChild(headingToMove);
-              }
-              currentPageContent.appendChild(clonedElement);
-              
-              // Update current height based on actual content
-              void currentPageContent.offsetHeight;
-              currentHeight = currentPageContent.scrollHeight;
-              pageCounter++;
-            } else {
-              // Element fits, update current height
-              currentHeight = actualHeight;
-            }
-            
-            // Clean up temp container
-            document.body.removeChild(tempContainer);
-          });
-          
-          // Ensure all pages have correct height and overflow settings
-          // Also verify no content is cut off at the bottom
-          [originalPage, ...newPages].forEach((p, idx) => {
-            p.style.height = '11in';
-            p.style.maxHeight = '11in';
-            const pc = p.querySelector('.page-content');
-            if (pc) {
-              // Set max height to prevent overflow
-              pc.style.maxHeight = MAX_CONTENT_HEIGHT_PX + 'px';
-              pc.style.overflow = 'hidden';
-              
-              // Final check: if content still exceeds, move last element to next page
-              void pc.offsetHeight;
-              const finalScrollHeight = pc.scrollHeight;
-              if (finalScrollHeight > MAX_CONTENT_HEIGHT_PX) {
-                console.log(`  ⚠️ Page ${p.id} still exceeds limit (${finalScrollHeight}px > ${MAX_CONTENT_HEIGHT_PX}px), moving overflow to next page`);
-                const lastChild = pc.lastElementChild;
-                if (lastChild && idx < newPages.length) {
-                  const nextPageContent = newPages[idx].querySelector('.page-content');
-                  if (nextPageContent) {
-                    lastChild.remove();
-                    nextPageContent.insertBefore(lastChild, nextPageContent.firstChild);
-                    console.log(`  ✅ Moved last element to next page`);
-                    // Re-check after moving
-                    void pc.offsetHeight;
-                    const newScrollHeight = pc.scrollHeight;
-                    if (newScrollHeight > MAX_CONTENT_HEIGHT_PX) {
-                      console.log(`  ⚠️ Page ${p.id} still exceeds after move, may need further splitting`);
-                    }
-                  }
-                } else if (lastChild && idx === newPages.length) {
-                  // Last page - create a new one if needed
-                  console.log(`  ⚠️ Last page exceeds, creating additional page`);
-                  const newPage = document.createElement('div');
-                  newPage.className = 'page';
-                  newPage.id = `${p.id}-continuation`;
-                  newPage.style.cssText = 'width: 8.5in; height: 11in; min-height: 11in; max-height: 11in; padding: 1in; margin: 0 auto 20px; background: white; position: relative; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.15); overflow: hidden; page-break-after: always; break-after: page; box-sizing: border-box; display: flex; flex-direction: column;';
-                  
-                  const newContent = document.createElement('div');
-                  newContent.className = 'page-content';
-                  newContent.style.cssText = 'flex: 1; min-height: 0; overflow: hidden; padding-bottom: 0.5in; max-height: ' + MAX_CONTENT_HEIGHT_PX + 'px;';
-                  
-                  const newPageNumber = document.createElement('div');
-                  newPageNumber.className = 'page-number';
-                  const pageNumEl = p.querySelector('.page-number');
-                  newPageNumber.textContent = pageNumEl ? parseInt(pageNumEl.textContent) + 1 : '?';
-                  newPageNumber.style.cssText = 'position: absolute; bottom: 0.5in; right: 1in; font-size: 10pt; color: #666;';
-                  
-                  newPage.appendChild(newContent);
-                  newPage.appendChild(newPageNumber);
-                  p.parentElement.insertBefore(newPage, p.nextSibling);
-                  
-                  lastChild.remove();
-                  newContent.appendChild(lastChild);
-                  newPages.push(newPage);
-                }
-              }
-            }
-          });
-          
-          // Final safety check: ensure no pages are empty
-          const allPages = [originalPage, ...newPages];
-          let hasEmptyPages = false;
-          allPages.forEach((p, idx) => {
-            const pc = p.querySelector('.page-content');
-            if (pc && pc.children.length === 0) {
-              console.log(`  ⚠️ WARNING: Page ${p.id} is empty after splitting!`);
-              hasEmptyPages = true;
-            } else {
-              console.log(`  ✅ Page ${p.id} has ${pc?.children.length || 0} children`);
-            }
-          });
-          
-          // If we have empty pages, something went wrong - restore original content
-          if (hasEmptyPages && childrenData.length > 0) {
-            console.log(`  ⚠️ Empty pages detected, attempting to restore content...`);
-            content.innerHTML = '';
-            childrenData.forEach(childData => {
-              const tempDiv = document.createElement('div');
-              tempDiv.innerHTML = childData.html;
-              while (tempDiv.firstChild) {
-                content.appendChild(tempDiv.firstChild);
-              }
-            });
-            // Remove any new pages we created
-            newPages.forEach(np => np.remove());
-            console.log(`  ✅ Content restored to original page`);
-          } else {
-            console.log(`✅ Split page ${originalPage.id} into ${newPages.length + 1} pages`);
-          }
-          
-          // Show page after splitting is complete (polish)
-          allPages.forEach(p => {
-            p.style.opacity = '1';
-          });
-        });
-        
-        // Show all pages after splitting is complete (polish)
-        const allProcessedPages = Array.from(document.querySelectorAll(".page:not(#cover):not(#toc)"));
-        allProcessedPages.forEach(page => {
-          page.style.opacity = '1';
-        });
-        
-        // Ensure product section styles are maintained after splitting
-        restoreProductSectionStyles();
-        
-        console.log('✅ Page splitting complete');
-      }
-      
-      // Restore product section styles that might have been lost during splitting
-      function restoreProductSectionStyles() {
-        const productSections = document.querySelectorAll('.product-section');
-        productSections.forEach(section => {
-          // Ensure flex layout is maintained
-          if (!section.style.display || section.style.display === 'none') {
-            section.style.display = 'flex';
-          }
-          section.style.alignItems = 'flex-start';
-          section.style.gap = '18pt';
-          section.style.marginBottom = '25pt';
-          section.style.marginTop = '0';
-          
-          // Ensure image containers maintain their structure
-          const imageLefts = section.querySelectorAll('.product-image-left');
-          imageLefts.forEach(imgLeft => {
-            imgLeft.style.flex = '0 0 200px';
-            imgLeft.style.maxWidth = '200px';
-            imgLeft.style.minWidth = '180px';
-          });
-          
-          // Ensure text containers maintain their structure
-          const textRights = section.querySelectorAll('.product-text-right');
-          textRights.forEach(textRight => {
-            textRight.style.flex = '1 1 auto';
-            textRight.style.minWidth = '0';
-            textRight.style.paddingTop = '0';
-          });
-        });
-      }
-
-
-      // Load dynamic playbook content
-      async function loadPlaybookContent() {
-        const container = document.getElementById("document-content");
-        const existingPages = container.querySelectorAll(".page");
-
-        // If the static content is already present, use it as-is to avoid duplicate TOC/pages; still run splitter to enforce paging
-        if (existingPages.length > 0) {
-          console.log("✅ Static playbook content already present; skipping fetch");
-          // Run splitting/navigation/search to ensure paging is applied
-          // Use longer timeout to ensure DOM is ready
-          setTimeout(() => {
-            splitContentIntoPages();
-            // Re-run splitter after a delay to catch any layout changes
-            setTimeout(() => {
-              splitContentIntoPages();
-              restoreProductSectionStyles();
-              initializeNavigation();
-              initializeSearch();
-            }, 200);
-          }, 100);
+      // Function to render the playbook content
+      function renderPlaybook(data) {
+        const container = document.querySelector(".container");
+        if (!data || !data.html) {
+          container.innerHTML = '<div style="padding: 2in; text-align: center; color: #e74c3c;">Failed to load playbook content</div>';
           return;
         }
 
-        const loadingHtml = '<div id="loading-message" style="text-align: center; padding: 40px; color: #666;"><p>Loading playbook content...</p></div>';
-        // Always reset container to a clean loading state
-        container.innerHTML = `<!-- DYNAMIC_CONTENT -->${loadingHtml}`;
+        container.innerHTML = "<!-- DYNAMIC_CONTENT -->" + data.html + "</div>";
 
-        try {
-          const response = await fetch("/api/playbook");
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.json();
-          
-          // Replace loading message with content
-          const loadingMsg = document.getElementById("loading-message");
-          if (loadingMsg) {
-            loadingMsg.outerHTML = data.html;
-          } else {
-            // If no loading message, insert content
-            container.innerHTML = '<!-- DYNAMIC_CONTENT -->' + data.html + '</div>';
-          }
-          
-          console.log(`✅ Playbook loaded: ${data.sections} sections`);
-          
-          // Initialize navigation and search after content loads
-          // Use multiple timeouts to ensure content is fully rendered before splitting
-          setTimeout(() => {
-            splitContentIntoPages();
-            // Re-run after longer delay to catch any late-rendered content
-            setTimeout(() => {
-              splitContentIntoPages();
-              restoreProductSectionStyles();
-              initializeNavigation();
-              initializeSearch();
-            }, 500);
-          }, 300);
-        } catch (error) {
-          console.error("❌ Error loading playbook:", error);
-          const loadingMsg = document.getElementById("loading-message");
-          if (loadingMsg) {
-            loadingMsg.innerHTML = `
-              <p><strong>Error loading playbook content</strong></p>
-              <p>${error.message}</p>
-              <p><button onclick="location.reload()" style="margin-top: 20px; padding: 10px 20px; cursor: pointer;">Retry</button></p>
-            `;
-            loadingMsg.style.color = "#e74c3c";
-          }
-        }
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        loadPlaybookContent();
-      });
-
-      // PDF Export Function
-      function exportToPDF() {
-        const btn = document.querySelector(".pdf-export-btn");
-        const originalText = btn.textContent;
-
-        btn.classList.add("exporting");
-        btn.textContent = "⏳ Generating PDF...";
-        btn.disabled = true;
-
-        // Wait for images to load
-        const images = document.querySelectorAll("img");
-        const imagePromises = Array.from(images).map((img) => {
-          if (img.complete && img.naturalWidth > 0) {
-            return Promise.resolve();
-          }
-          return new Promise((resolve) => {
-            img.onload = resolve;
-            img.onerror = resolve; // Continue even if image fails
-            setTimeout(resolve, 3000); // Timeout after 3 seconds
-          });
-        });
-
-        Promise.all(imagePromises).then(() => {
-          // Small delay to ensure everything is rendered
-          setTimeout(() => {
-            const element = document.getElementById("document-content");
-
-            if (!element) {
-              console.error("Document content element not found");
-              btn.classList.remove("exporting");
-              btn.textContent = "❌ Error - Element not found";
-              btn.disabled = false;
-              return;
-            }
-
-            // Ensure element is visible and has content
-            if (element.offsetHeight === 0 || element.offsetWidth === 0) {
-              console.error("Document content has no dimensions");
-              btn.classList.remove("exporting");
-              btn.textContent = "❌ Error - No content to export";
-              btn.disabled = false;
-              return;
-            }
-
-            // Scroll to top to ensure we start from the beginning
-            window.scrollTo(0, 0);
-            element.scrollIntoView({ behavior: "instant", block: "start" });
-
-            // Hide UI elements that shouldn't be in PDF
-            const exportBtn = document.querySelector(".pdf-export-btn");
-            const floatingToc = document.querySelector(".floating-toc");
-            const searchToolbar = document.querySelector(".search-toolbar");
-            const searchShell = document.querySelector(".search-shell");
-            const originalBtnDisplay = exportBtn ? exportBtn.style.display : "";
-            const originalTocDisplay = floatingToc ? floatingToc.style.display : "";
-            const originalSearchDisplay = searchToolbar ? searchToolbar.style.display : "";
-            const originalSearchShell = searchShell ? searchShell.style.display : "";
-
-            if (exportBtn) exportBtn.style.display = "none";
-            if (floatingToc) floatingToc.style.display = "none";
-            if (searchToolbar) searchToolbar.style.display = "none";
-            if (searchShell) searchShell.style.display = "none";
-
-            // Ensure element is visible and has proper dimensions
-            const originalBodyBg = document.body.style.background;
-            document.body.style.background = "#ffffff";
-
-            // Force a reflow to ensure rendering
-            void element.offsetHeight;
-
-            // Temporarily adjust styles for better PDF rendering
-            const pages = element.querySelectorAll(".page");
-            const originalStyles = [];
-            pages.forEach((page, index) => {
-              originalStyles[index] = {
-                overflow: page.style.overflow,
-                height: page.style.height,
-                minHeight: page.style.minHeight,
-                maxHeight: page.style.maxHeight
-              };
-              // Allow pages to flow naturally
-              page.style.overflow = "visible";
-              page.style.height = "auto";
-              page.style.minHeight = "auto";
-              page.style.maxHeight = "none";
-            });
-
-            const opt = {
-              margin: [0.5, 0.5, 0.5, 0.5],
-              filename: "Specialty_Farmer_Program_Execution_Playbook.pdf",
-              image: { type: "jpeg", quality: 0.98 },
-              html2canvas: {
-                scale: 2,
-                useCORS: true,
-                allowTaint: false,
-                letterRendering: true,
-                logging: false,
-                backgroundColor: "#ffffff",
-                removeContainer: false,
-              },
-              jsPDF: {
-                unit: "in",
-                format: "letter",
-                orientation: "portrait",
-              },
-              pagebreak: {
-                mode: "css",
-                before: ".page#cover, .page#toc, h2",
-                after: ".page#cover, .page#toc",
-                avoid: [".pipeline-diagram", ".image-container"],
-              },
-            };
-
-            // Use a promise to handle the export
-            const pdfPromise = html2pdf().set(opt).from(element);
-
-            const restoreStyles = () => {
-              // Restore page styles
-              pages.forEach((page, index) => {
-                if (originalStyles[index]) {
-                  page.style.overflow = originalStyles[index].overflow || "";
-                  page.style.height = originalStyles[index].height || "";
-                  page.style.minHeight = originalStyles[index].minHeight || "";
-                  page.style.maxHeight = originalStyles[index].maxHeight || "";
-                }
-              });
-              // Restore UI elements and styles
-              if (exportBtn) exportBtn.style.display = originalBtnDisplay;
-              if (floatingToc) floatingToc.style.display = originalTocDisplay;
-              if (searchToolbar) searchToolbar.style.display = originalSearchDisplay;
-              if (searchShell) searchShell.style.display = originalSearchShell;
-              document.body.style.background = originalBodyBg;
-            };
-
-            pdfPromise
-              .save()
-              .then(() => {
-                restoreStyles();
-                btn.classList.remove("exporting");
-                btn.textContent = originalText;
-                btn.disabled = false;
-              })
-              .catch((error) => {
-                console.error("PDF export error:", error);
-                console.error("Element dimensions:", {
-                  width: element.offsetWidth,
-                  height: element.offsetHeight,
-                  scrollWidth: element.scrollWidth,
-                  scrollHeight: element.scrollHeight,
-                });
-
-                restoreStyles();
-                btn.classList.remove("exporting");
-                btn.textContent = "❌ Error - Try Again";
-                btn.disabled = false;
-                setTimeout(() => {
-                  btn.textContent = originalText;
-                }, 3000);
-              });
-          }, 500);
-        });
-      }
-
-      // Handle logo loading
-      window.addEventListener("load", function () {
+        // Show logo on cover page if available
         const logo = document.getElementById("ssw-logo");
         if (logo) {
-          logo.addEventListener("load", function () {
-            this.style.display = "block";
-          });
-          logo.addEventListener("error", function () {
-            // Logo not found, hide the container
-            this.parentElement.style.display = "none";
-          });
-          // Try to load the logo
-          const logoPath = "assets/logo/ssw-logo.png";
-          const testImg = new Image();
-          testImg.onload = function () {
-            logo.src = logoPath;
-            logo.style.display = "block";
-          };
-          testImg.onerror = function () {
-            // Logo not found, hide container
-            document.querySelector(".logo-container").style.display = "none";
-          };
-          testImg.src = logoPath;
+          logo.style.display = "inline-block";
         }
+
+        // Wait for images to load before pagination
+        setTimeout(paginateContent, 1000);
+      }
+
+      // Pagination Logic
+      function paginateContent() {
+        console.log("Starting pagination...");
+        // Using Array.from to snapshot the initial list of pages
+        // We only want to process the ORIGINAL pages generated by the server
+        // New pages created during pagination shouldn't be re-processed in the main loop
+        const originalPages = Array.from(document.querySelectorAll(".page"));
+
+        originalPages.forEach((page) => {
+          // Skip cover page and TOC
+          if (page.id === "cover" || page.id === "toc") return;
+
+          paginateSinglePage(page);
+        });
+      }
+
+      function paginateSinglePage(page) {
+        // US Letter: 8.5in x 11in
+        // 96 DPI: 816px x 1056px
+        // Padding: 1in (96px) all around
+        // Content area height: 11in - 2in = 9in = 864px
+        // Content starts at 96px (padding-top)
+        // Safe bottom limit: 1056px - 96px (padding-bottom) = 960px
+        // We use slightly less to be safe: 950px
+        const PAGE_HEIGHT_PX = 1056;
+        const SAFE_BOTTOM_LIMIT = 950;
+        const CONTENT_START_TOP = 96;
+
+        // Check if page actually overflows
+        // scrollHeight includes padding
+        if (page.scrollHeight <= PAGE_HEIGHT_PX) return;
+
+        console.log(`Page ${page.id} overflows (${page.scrollHeight}px). Splitting...`);
+
+        // Create a new page for overflow content
+        const newPage = document.createElement("div");
+        newPage.className = "page";
+        newPage.id = `${page.id}-cont-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+
+        const newPageContent = document.createElement("div");
+        newPageContent.className = "page-content";
+        newPage.appendChild(newPageContent);
+
+        // Copy page number with "cont." suffix
+        const originalPageNum = page.querySelector(".page-number");
+        if (originalPageNum) {
+          const newPageNum = originalPageNum.cloneNode(true);
+          // Append " (cont.)" if not already present
+          if (!newPageNum.textContent.includes("(cont.)")) {
+            newPageNum.textContent = newPageNum.textContent + " (cont.)";
+          }
+          newPage.appendChild(newPageNum);
+        }
+
+        // Insert new page immediately after current page
+        page.parentNode.insertBefore(newPage, page.nextSibling);
+
+        // Move overflowing elements
+        const contentDiv = page.querySelector(".page-content");
+        if (!contentDiv) return;
+
+        const children = Array.from(contentDiv.children);
+        let moving = false;
+
+        for (let i = 0; i < children.length; i++) {
+          const child = children[i];
+
+          // If we've already started moving elements, move this one too
+          if (moving) {
+            newPageContent.appendChild(child);
+            continue;
+          }
+
+          // Calculate child position relative to the PAGE (not contentDiv)
+          // child.offsetTop is relative to contentDiv (which is at top: 0 inside page padding?)
+          // .page has padding: 1in. .page-content is inside.
+          // Let's rely on getBoundingClientRect for absolute precision relative to viewport,
+          // but simple offset calculation is safer if page is not scrolled.
+
+          // contentDiv offsetTop should be 96px (1in padding)
+          // child.offsetTop is relative to contentDiv
+          const childBottom = 96 + child.offsetTop + child.offsetHeight;
+
+          if (childBottom > SAFE_BOTTOM_LIMIT) {
+            console.log(`Element causes overflow (bottom: ${childBottom}). Moving to next page.`);
+            moving = true;
+            newPageContent.appendChild(child);
+          }
+        }
+
+        // If the new page ALSO overflows, recursively paginate it
+        // Use setTimeout to allow DOM to update/reflow
+        if (newPage.scrollHeight > PAGE_HEIGHT_PX) {
+          setTimeout(() => paginateSinglePage(newPage), 10);
+        }
+
+        // Check if original page is now empty (unlikely but possible if first element was huge)
+        // If contentDiv is empty, we might want to remove the page or warn
+        if (contentDiv.children.length === 0) {
+          console.warn(`Page ${page.id} became empty after pagination!`);
+        }
+      }
+
+      // Initial load
+      fetch("/api/playbook")
+        .then((response) => response.json())
+        .then((data) => {
+          renderPlaybook(data);
+        })
+        .catch((err) => {
+          console.error("Error loading playbook:", err);
+        });
+
+      // Listen for live reload changes
+      if (window.LiveReload) {
+        // This is handled by the livereload script
+      }
+
+      // PDF Export
+      document.getElementById("export-btn").addEventListener("click", function () {
+        const element = document.querySelector(".container");
+        const btn = this;
+
+        btn.classList.add("exporting");
+        btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+
+        const opt = {
+          margin: 0,
+          filename: "Orchards_Program_Execution_Playbook.pdf",
+          image: { type: "jpeg", quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: "in", format: "letter", orientation: "portrait" },
+          pagebreak: { mode: ["avoid-all", "css", "legacy"] },
+        };
+
+        html2pdf()
+          .set(opt)
+          .from(element)
+          .save()
+          .then(() => {
+            btn.classList.remove("exporting");
+            btn.innerHTML = '<i class="fas fa-file-pdf"></i>';
+          });
       });
     </script>
   </body>

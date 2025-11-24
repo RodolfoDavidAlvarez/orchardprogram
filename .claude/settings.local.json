@@ -1,7 +1,9 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm run preview:*)"
+      "Bash(npm run preview:*)",
+      "Bash(pkill:*)",
+      "Bash(node server.js)"
     ],
     "deny": []
   }

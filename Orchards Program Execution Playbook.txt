@@ -763,7 +763,109 @@ projections. All data exports support route planning and targeted outreach.
 6. OUTREACH STRATEGY & TACTICS
 ================================================================================
 
-6.1 RECOMMENDED RESOURCES & BOOKS
+6.1 SMART CALLING CHEAT SHEET REFERENCE
+================================================================================
+
+![Smart Calling Cheat Sheet](assets/Smart Calling Cheat Sheet.png)
+*Your complete reference guide for effective calling strategies and conversation flows.*
+
+6.2 CORE CALLING PHILOSOPHY & STRATEGY
+================================================================================
+
+SMART CALLING DEFINITION:
+Selecting business after gathering intelligence to make the call relevant. This includes field conditions until you understand why they might care.
+
+• Cold: Blind dialing, pitching features, annoying
+• Smart: Researching first, pitching results, engaging
+
+6.3 PRE-CALL INTELLIGENCE GATHERING
+================================================================================
+
+2-3 METHOD RESEARCH (3-5 minutes):
+• Sources: LinkedIn company, AgPubCo, SmartBrief, Google News
+• Look for: Company info, expansion plans, social footprint/history  
+• Triggers: New hires, funding, mergers, acquisitions
+
+6.4 THE VALUE PROPOSITION FRAMEWORK
+================================================================================
+
+THE POSSIBLE VALUE PROPOSITION:
+• P.V.P = Benefit - Cost
+• Push what they don't have: New yields, reduced inputs, not features
+• Avoid "We Help" phrasing - Use "We help companies like yours with [SPECIFIC OUTCOME]"
+
+6.5 STRATEGIC APPROACHES
+================================================================================
+
+STRATEGIES FOR SUCCESS:
+• View as "Assistant Buyers" - We're here to help, Please, Thanks
+• Charm Offensive: "Please tell him..." "Thanks!"
+• Use Their Name: "Hi Jim, Rich here..."
+• Ask for Help: "I wonder if you could help me..."
+
+6.6 THE OPENING STATEMENT PROTOCOL
+================================================================================
+
+THE SCRIPT (10 Seconds):
+1. Identify Yourself: "Hi [Name], this is [Your Name] with [Your Co.]"
+2. The Connection/Smart Part: "I saw that [specific research finding or company activity...]"
+3. The Value Statement/PVP: "We work with [similar companies] for ramping up speed..."
+4. The Bridge/Permission Question: "Does it make sense to explore that new concept?"
+
+6.7 WINNING VOICEMAIL STRATEGIES
+================================================================================
+
+VOICEMAIL FORMULA (Spark Curiosity):
+1. Name & Number (Slowly)
+2. The Hook (Trigger name)
+3. The Benefit (PVP)
+4. The Promise (Gain Hook)
+5. Repeat Name & Number
+
+Example: "We are soil/regen vendor. Meeting the hook. The benefit (PVP) [Email Call Back]. & 'Repeat Name & Number' (slowly). Try this between harvest/pre. Comment: Don't mention 'grapes' let curiosity work!!!"
+
+6.8 HANDLING OBJECTIONS & QUESTIONS
+================================================================================
+
+OBJECTION HANDLING SCRIPT:
+• "We are set/have supplier": "Just sent info" approach
+• "Not Interested": Validate & Suggest - acknowledge their quick response, ask for specificity
+• Company policy/won't share: "Just one question... based on my own experience yet" - based methodology
+• Compliance concerns: "Thanks for the overview"
+
+6.9 QUESTIONING STRATEGY & LISTENING
+================================================================================
+
+QUESTIONING FRAMEWORK:
+1. Status Quo - Current situation assessment
+2. Issues/Problem - Pain point identification
+3. Implications - Impact exploration
+4. Solution Questions - Benefit-focused inquiries
+
+Listen For Checklist: Hints of frustration, Emotions (frustration, hurry, curiosity)
+
+6.10 SMART CALLING TACTICAL FOCUS
+================================================================================
+
+EXECUTION PRIORITIES:
+• Target blocks with known pain (compaction, water limits, nutrient gaps) and clear economic upside
+• Lead with a tight hook: "reduce water and fertilizer 20–40% while lifting yield and brix"
+• Use short call blocks (60–90 minutes) with prebuilt lists and voicemails ready
+• Log every attempt in CRM with detailed notes
+• Focus on orchard/vineyard specific messaging
+• Tie directly to measurable pain points and ROI
+
+6.11 CALL BLOCK ORGANIZATION & TRACKING
+================================================================================
+
+CALL BLOCK SETUP:
+• Duration: 60-90 minute focused blocks
+• Preparation: Pre-built lists with research notes
+• Materials Ready: Scripts, objection responses, voicemail templates
+• CRM Logging: Every attempt, outcome, next steps
+• Follow-up Schedule: Immediate calendar blocking for callbacks
+
+6.12 RECOMMENDED RESOURCES & BOOKS
 ================================================================================
 
 The following books provide essential frameworks and strategies for effective outreach, 
