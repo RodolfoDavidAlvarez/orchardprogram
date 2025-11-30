@@ -15,6 +15,9 @@ const playbookPath = path.join(__dirname, 'Orchards Program Execution Playbook.t
 let playbookCache = null;
 let playbookLastModified = null;
 
+// In-memory store for comments (for prototype)
+let commentsStore = [];
+
 // Helper function to check if a port is available
 function isPortAvailable(port) {
     return new Promise((resolve) => {
@@ -41,6 +44,7 @@ async function findAvailablePort(startPort, maxAttempts = 10) {
 
 // Enable CORS for all routes
 app.use(cors());
+app.use(express.json()); // Ensure JSON parsing for POST requests
 
 // Parse playbook function
 function parsePlaybook() {
@@ -102,6 +106,29 @@ app.get('/api/playbook', (req, res) => {
     sections: cached.parsed.sections.length,
     timestamp: cached.timestamp
   });
+});
+
+// API endpoint to save comments/edits
+app.post('/api/comments', (req, res) => {
+  const { text, prompt, type } = req.body;
+  const comment = {
+    id: Date.now().toString(),
+    text,
+    prompt,
+    type: type || 'edit_request',
+    status: 'pending',
+    timestamp: new Date().toISOString()
+  };
+  
+  commentsStore.push(comment);
+  console.log('📝 New comment received:', comment);
+  
+  res.json({ status: 'saved', comment });
+});
+
+// API endpoint to get comments
+app.get('/api/comments', (req, res) => {
+  res.json(commentsStore);
 });
 
 // Inject live-reload script and watcher in development

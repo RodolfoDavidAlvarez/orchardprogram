@@ -25,53 +25,359 @@
       body {
         font-family: "Georgia", "Times New Roman", serif;
         background: #e8e8e8;
-        padding: 20px;
-        line-height: 1.5;
         color: #333;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+        height: 100vh;
+        overflow: hidden; /* Main body doesn't scroll, inner containers do */
       }
 
+      /* App Layout */
+      .app-layout {
+        display: flex;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      /* Sidebar Styles */
+      .sidebar {
+        width: 300px;
+        background: #2c3e50;
+        color: #ecf0f1;
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid #34495e;
+        flex-shrink: 0;
+        z-index: 100;
+        transition: width 0.3s ease;
+      }
+
+      .sidebar-header {
+        padding: 20px;
+        background: #243342;
+        border-bottom: 1px solid #34495e;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .sidebar-title {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #bdc3c7;
+      }
+      
+      /* Tabs for Sidebar */
+      .sidebar-tabs {
+        display: flex;
+        border-bottom: 1px solid #34495e;
+        background: #34495e;
+      }
+      
+      .sidebar-tab {
+        flex: 1;
+        padding: 10px;
+        text-align: center;
+        font-size: 12px;
+        cursor: pointer;
+        color: #bdc3c7;
+        background: transparent;
+        border: none;
+        border-bottom: 2px solid transparent;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-weight: 600;
+      }
+      
+      .sidebar-tab.active {
+        color: white;
+        border-bottom-color: #3498db;
+        background: #2c3e50;
+      }
+      
+      .sidebar-tab:hover {
+        color: white;
+      }
+
+      .sidebar-content {
+        flex: 1;
+        overflow-y: auto;
+        padding: 10px 0;
+        display: none; /* Hidden by default, shown via JS */
+      }
+      
+      .sidebar-content.active {
+        display: block;
+      }
+
+      .sidebar-toc-item {
+        display: block;
+        padding: 8px 20px;
+        color: #bdc3c7;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        border-left: 3px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .sidebar-toc-item:hover {
+        background: #34495e;
+        color: #fff;
+      }
+
+      .sidebar-toc-item.active {
+        background: #34495e;
+        color: #fff;
+        border-left-color: #3498db;
+      }
+
+      .sidebar-toc-subitem {
+        display: block;
+        padding: 6px 20px 6px 40px;
+        color: #95a5a6;
+        text-decoration: none;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 12px;
+        border-left: 3px solid transparent;
+        transition: all 0.2s;
+        cursor: pointer;
+      }
+
+      .sidebar-toc-subitem:hover {
+        color: #fff;
+      }
+
+      .sidebar-tools {
+        padding: 15px;
+        background: #243342;
+        border-top: 1px solid #34495e;
+      }
+
+      .tool-btn {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background: #34495e;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        margin-bottom: 8px;
+        cursor: pointer;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        text-align: left;
+        transition: background 0.2s;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tool-btn:hover {
+        background: #3e5871;
+      }
+      
+      .tool-btn.active {
+        background: #3498db;
+      }
+
+      .tool-btn i {
+        width: 20px;
+        text-align: center;
+      }
+
+      /* Comments List Styles */
+      .comment-item {
+        background: #34495e;
+        margin: 10px 15px;
+        padding: 10px;
+        border-radius: 4px;
+        border-left: 3px solid #3498db;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      
+      .comment-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 11px;
+        color: #95a5a6;
+        margin-bottom: 5px;
+      }
+      
+      .comment-text {
+        font-size: 13px;
+        color: #ecf0f1;
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      
+      .comment-context {
+        font-size: 11px;
+        color: #bdc3c7;
+        font-style: italic;
+        border-top: 1px solid #46637f;
+        padding-top: 5px;
+        margin-top: 5px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      /* AI Edit Panel */
+      .ai-panel {
+        display: none;
+        padding: 15px;
+        background: #2c3e50;
+        border-top: 1px solid #34495e;
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .ai-panel.visible {
+        display: flex;
+      }
+      
+      .ai-textarea {
+        width: 100%;
+        background: #34495e;
+        border: 1px solid #46637f;
+        border-radius: 4px;
+        color: white;
+        padding: 10px;
+        min-height: 80px;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        font-size: 13px;
+        resize: vertical;
+      }
+      
+      .ai-textarea:focus {
+        outline: none;
+        border-color: #3498db;
+      }
+      
+      .ai-actions {
+        display: flex;
+        justify-content: flex-end;
+        gap: 10px;
+      }
+      
+      .ai-btn {
+        padding: 6px 12px;
+        border-radius: 4px;
+        border: none;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      
+      .ai-btn-primary {
+        background: #3498db;
+        color: white;
+      }
+      
+      .ai-btn-primary:hover {
+        background: #2980b9;
+      }
+      
+      .ai-btn-secondary {
+        background: transparent;
+        color: #bdc3c7;
+        border: 1px solid #46637f;
+      }
+      
+      .ai-btn-secondary:hover {
+        background: #34495e;
+        color: white;
+      }
+
+      /* Comment Marker Icon in Text */
+      .comment-marker {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        background-color: #f39c12;
+        color: white;
+        border-radius: 50%;
+        font-size: 10px;
+        margin-left: 5px;
+        cursor: pointer;
+        vertical-align: middle;
+        position: relative;
+        z-index: 10;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        transition: transform 0.2s;
+      }
+      
+      .comment-marker:hover {
+        transform: scale(1.2);
+      }
+      
+      .comment-marker i {
+        pointer-events: none;
+      }
+
+      /* Selection Highlight */
+      .selection-highlight {
+        background-color: rgba(243, 156, 18, 0.2);
+        border-bottom: 2px solid #f39c12;
+        cursor: pointer;
+      }
+
+      /* Selection Popover */
+      .selection-popover {
+        position: fixed;
+        z-index: 1000;
+        background: #2c3e50;
+        border-radius: 4px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        padding: 5px;
+        display: none;
+        flex-direction: row;
+        gap: 5px;
+        transform: translate(-50%, -100%);
+        margin-top: -10px;
+      }
+      
+      .popover-btn {
+        background: transparent;
+        border: none;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+      
+      .popover-btn:hover {
+        background: #3e5871;
+      }
+
+      /* Main Content Area */
+      .main-content {
+        flex: 1;
+        overflow-y: auto;
+        background: #e8e8e8;
+        padding: 40px;
+        position: relative;
+      }
+
+      /* Original PDF Styles preserved */
       @page {
         size: letter;
         margin: 0.5in;
       }
 
       .pdf-export-btn {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        z-index: 2000;
-        width: 44px;
-        height: 44px;
-        background: #f4f6f8;
-        color: #34495e;
-        border: none;
-        padding: 0;
-        border-radius: 50%;
-        cursor: pointer;
-        font-size: 20px;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
-        transition:
-          background 0.2s ease,
-          transform 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .pdf-export-btn:hover {
-        background: #e7ebf0;
-        transform: translateY(-1px);
-      }
-
-      .pdf-export-btn:active {
-        transform: scale(0.96);
-      }
-
-      .pdf-export-btn.exporting {
-        background: #dfe3e7;
-        cursor: wait;
+        /* Moved to sidebar in new layout, keeping class for logic compatibility */
+        display: none; 
       }
 
       .container {
@@ -495,21 +801,114 @@
         margin: 0 auto;
         position: relative;
       }
+      
+      /* Print/Export Override */
+      @media print {
+        .app-layout {
+          display: block;
+          height: auto;
+          width: auto;
+        }
+        
+        .sidebar, .selection-popover, .ai-panel, .comment-marker {
+          display: none !important;
+        }
+        
+        .main-content {
+          padding: 0;
+          overflow: visible;
+          background: white;
+        }
+        
+        body {
+          height: auto;
+          overflow: visible;
+          background: white;
+        }
+        
+        .container {
+          margin: 0;
+        }
+      }
     </style>
   </head>
   <body>
-    <button id="export-btn" class="pdf-export-btn" title="Download PDF">
-      <i class="fas fa-file-pdf"></i>
-    </button>
-    <div class="container">
-      <!-- DYNAMIC_CONTENT -->
-      <div style="padding: 2in; text-align: center; color: #666">
-        <i class="fas fa-circle-notch fa-spin" style="font-size: 3em; color: #3498db; margin-bottom: 20px"></i>
-        <p>Loading Playbook Preview...</p>
+    
+    <div class="app-layout">
+      <!-- Sidebar Navigation -->
+      <div class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-title">Orchards Playbook</div>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="sidebar-tabs">
+          <button class="sidebar-tab active" onclick="switchTab('toc')">Sections</button>
+          <button class="sidebar-tab" onclick="switchTab('comments')">Comments</button>
+        </div>
+
+        <!-- TOC Content -->
+        <div class="sidebar-content active" id="sidebar-toc-content">
+          <!-- Dynamic TOC items will be injected here -->
+        </div>
+        
+        <!-- Comments Content -->
+        <div class="sidebar-content" id="sidebar-comments-content">
+          <div style="padding: 20px; text-align: center; color: #7f8c8d; font-size: 13px;">
+            No comments yet.<br>Select text to add one.
+          </div>
+        </div>
+        
+        <div class="ai-panel" id="ai-panel">
+          <div style="font-size: 12px; color: #bdc3c7; margin-bottom: 5px;">
+            <strong>EDIT REQUEST</strong>
+            <span id="selected-context-preview" style="font-style: italic; opacity: 0.7; margin-left: 5px;"></span>
+          </div>
+          <textarea class="ai-textarea" id="ai-prompt" placeholder="Describe changes or add a comment..."></textarea>
+          <div class="ai-actions">
+            <button class="ai-btn ai-btn-secondary" onclick="cancelAiEdit()">Cancel</button>
+            <button class="ai-btn ai-btn-primary" onclick="submitAiEdit()">Submit</button>
+          </div>
+        </div>
+
+        <div class="sidebar-tools">
+          <button class="tool-btn" id="sidebar-export-btn">
+            <i class="fas fa-file-pdf"></i> Download PDF
+          </button>
+          <button class="tool-btn" id="edit-mode-btn" onclick="toggleEditMode()">
+            <i class="fas fa-edit"></i> Edit Mode: OFF
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Document View -->
+      <div class="main-content" id="main-content">
+        <div class="container">
+          <!-- DYNAMIC_CONTENT -->
+          <div style="padding: 2in; text-align: center; color: #666">
+            <i class="fas fa-circle-notch fa-spin" style="font-size: 3em; color: #3498db; margin-bottom: 20px"></i>
+            <p>Loading Playbook Preview...</p>
+          </div>
+        </div>
       </div>
     </div>
 
+    <!-- Selection Popover -->
+    <div class="selection-popover" id="selection-popover">
+      <button class="popover-btn" onclick="requestEdit()">
+        <i class="fas fa-comment-alt"></i> Comment / Edit
+      </button>
+      <button class="popover-btn" onclick="copySelection()">
+        <i class="fas fa-copy"></i> Copy
+      </button>
+    </div>
+
     <script>
+      let isEditMode = false;
+      let currentSelectionRange = null;
+      let currentSelectionText = "";
+      let comments = [];
+
       // Function to render the playbook content
       function renderPlaybook(data) {
         const container = document.querySelector(".container");
@@ -519,6 +918,12 @@
         }
 
         container.innerHTML = "<!-- DYNAMIC_CONTENT -->" + data.html + "</div>";
+
+        // Render Sidebar TOC
+        renderSidebarTOC();
+        
+        // Load existing comments
+        fetchComments();
 
         // Show logo on cover page if available
         const logo = document.getElementById("ssw-logo");
@@ -530,6 +935,257 @@
         // Use a longer delay to ensure all layout is settled
         setTimeout(paginateContent, 1500);
       }
+      
+      // Fetch comments from server
+      function fetchComments() {
+        fetch('/api/comments')
+          .then(res => res.json())
+          .then(data => {
+            comments = data;
+            renderComments();
+          })
+          .catch(err => console.error('Error fetching comments:', err));
+      }
+      
+      // Render comments list
+      function renderComments() {
+        const container = document.getElementById('sidebar-comments-content');
+        
+        if (comments.length === 0) {
+          container.innerHTML = '<div style="padding: 20px; text-align: center; color: #7f8c8d; font-size: 13px;">No comments yet.<br>Select text to add one.</div>';
+          return;
+        }
+        
+        let html = '';
+        comments.reverse().forEach(comment => { // Show newest first
+          html += `<div class="comment-item" onclick="scrollToComment('${comment.id}')">
+            <div class="comment-meta">
+              <span>${new Date(comment.timestamp).toLocaleTimeString()}</span>
+              <span style="color: ${comment.status === 'pending' ? '#f39c12' : '#27ae60'}">${comment.status}</span>
+            </div>
+            <div class="comment-text">${escapeHtml(comment.prompt)}</div>
+            <div class="comment-context">"${escapeHtml(comment.text.substring(0, 50))}${comment.text.length > 50 ? '...' : ''}"</div>
+          </div>`;
+        });
+        
+        container.innerHTML = html;
+      }
+      
+      function escapeHtml(text) {
+        if (!text) return '';
+        return text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;")
+          .replace(/'/g, "&#039;");
+      }
+      
+      // Switch Sidebar Tab
+      window.switchTab = function(tabName) {
+        // Update tabs
+        document.querySelectorAll('.sidebar-tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Update content
+        document.querySelectorAll('.sidebar-content').forEach(content => {
+          content.classList.remove('active');
+        });
+        
+        if (tabName === 'toc') {
+          document.getElementById('sidebar-toc-content').classList.add('active');
+        } else {
+          document.getElementById('sidebar-comments-content').classList.add('active');
+        }
+      };
+      
+      // Render TOC in sidebar
+      function renderSidebarTOC() {
+        const sidebarContent = document.getElementById('sidebar-toc-content');
+        if (!sidebarContent) return;
+        
+        let tocHtml = '';
+        
+        // Add fixed link for Cover
+        tocHtml += `<div class="sidebar-toc-item" onclick="scrollToSection('cover')">Cover Page</div>`;
+        
+        // Find all headers in the rendered content
+        // We look for the H2 elements which represent main sections
+        const sections = document.querySelectorAll('.page h2');
+        
+        sections.forEach(section => {
+          const sectionId = section.parentElement.parentElement.id;
+          const title = section.innerText;
+          
+          tocHtml += `<div class="sidebar-toc-item" onclick="scrollToSection('${sectionId}')">${title}</div>`;
+        });
+        
+        sidebarContent.innerHTML = tocHtml;
+      }
+      
+      // Smooth scroll to section
+      window.scrollToSection = function(id) {
+        const element = document.getElementById(id);
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // Update active state
+            const items = document.querySelectorAll('.sidebar-toc-item');
+            items.forEach(item => item.classList.remove('active'));
+        }
+      };
+
+      // Toggle Edit Mode
+      function toggleEditMode() {
+        isEditMode = !isEditMode;
+        const btn = document.getElementById('edit-mode-btn');
+        const popover = document.getElementById('selection-popover');
+        
+        if (isEditMode) {
+            btn.innerHTML = '<i class="fas fa-edit"></i> Edit Mode: ON';
+            btn.classList.add('active');
+            document.body.style.cursor = 'text';
+        } else {
+            btn.innerHTML = '<i class="fas fa-edit"></i> Edit Mode: OFF';
+            btn.classList.remove('active');
+            document.body.style.cursor = 'default';
+            popover.style.display = 'none';
+            // Clear selections
+            window.getSelection().removeAllRanges();
+        }
+      }
+
+      // Handle Text Selection
+      document.addEventListener('selectionchange', () => {
+        if (!isEditMode) return;
+        
+        const selection = window.getSelection();
+        const popover = document.getElementById('selection-popover');
+        
+        if (selection.rangeCount > 0 && !selection.isCollapsed) {
+            const range = selection.getRangeAt(0);
+            const rect = range.getBoundingClientRect();
+            
+            // Only show if selection is within main content
+            if (rect.top > 0 && rect.left > 0) {
+                currentSelectionRange = range;
+                currentSelectionText = selection.toString();
+                
+                popover.style.display = 'flex';
+                popover.style.top = `${rect.top}px`;
+                popover.style.left = `${rect.left + (rect.width / 2)}px`;
+            }
+        } else {
+             // Hide popover if clicking outside
+        }
+      });
+
+      // Hide popover on click if no selection
+      document.addEventListener('click', (e) => {
+        if (!isEditMode) return;
+        const selection = window.getSelection();
+        if (selection.isCollapsed) {
+            const popover = document.getElementById('selection-popover');
+            // Don't hide if clicking IN the popover or sidebar
+            if (!popover.contains(e.target) && !document.querySelector('.sidebar').contains(e.target)) {
+                popover.style.display = 'none';
+            }
+        }
+      });
+
+      // Request AI Edit
+      window.requestEdit = function() {
+        const aiPanel = document.getElementById('ai-panel');
+        const contextPreview = document.getElementById('selected-context-preview');
+        
+        // Show panel
+        aiPanel.classList.add('visible');
+        
+        // Switch to comments tab
+        switchTab('comments');
+        
+        // Preview selected text (truncate)
+        const previewText = currentSelectionText.length > 30 
+            ? currentSelectionText.substring(0, 30) + '...' 
+            : currentSelectionText;
+        contextPreview.textContent = `"${previewText}"`;
+        
+        // Focus textarea
+        document.getElementById('ai-prompt').focus();
+        
+        // Hide popover
+        document.getElementById('selection-popover').style.display = 'none';
+      };
+      
+      // Submit AI Edit
+      window.submitAiEdit = function() {
+        const prompt = document.getElementById('ai-prompt').value;
+        if (!prompt) return;
+        
+        // Add visual marker to the text (Sticky Icon)
+        if (currentSelectionRange) {
+          const marker = document.createElement('span');
+          marker.className = 'comment-marker';
+          marker.innerHTML = '<i class="fas fa-comment"></i>';
+          marker.title = prompt;
+          
+          // Insert at end of selection
+          currentSelectionRange.collapse(false);
+          currentSelectionRange.insertNode(marker);
+          
+          // Highlight logic could be added here too
+        }
+        
+        // Send to server
+        fetch('/api/comments', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                text: currentSelectionText,
+                prompt: prompt,
+                type: 'edit_request'
+            })
+        })
+        .then(res => res.json())
+        .then(data => {
+            // Add to local list and render
+            comments.push(data.comment);
+            renderComments();
+            
+            // Reset UI
+            cancelAiEdit();
+            
+            // Visual feedback
+            const btn = document.getElementById('edit-mode-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-check"></i> Saved!';
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+            }, 2000);
+        });
+      };
+      
+      // Cancel AI Edit
+      window.cancelAiEdit = function() {
+        const aiPanel = document.getElementById('ai-panel');
+        aiPanel.classList.remove('visible');
+        document.getElementById('ai-prompt').value = '';
+      };
+      
+      // Copy Selection
+      window.copySelection = function() {
+        navigator.clipboard.writeText(currentSelectionText).then(() => {
+            const btn = document.querySelector('.popover-btn:nth-child(2)');
+            const icon = btn.querySelector('i');
+            icon.className = 'fas fa-check';
+            setTimeout(() => {
+                icon.className = 'fas fa-copy';
+                document.getElementById('selection-popover').style.display = 'none';
+            }, 1000);
+        });
+      };
 
       // Pagination Logic - Only split pages if content significantly overflows
       function paginateContent() {
@@ -671,13 +1327,14 @@
         // This is handled by the livereload script
       }
 
-      // PDF Export
-      document.getElementById("export-btn").addEventListener("click", function () {
+      // PDF Export Logic (Modified to clone content for cleanup before print)
+      document.getElementById("sidebar-export-btn").addEventListener("click", function () {
         const element = document.querySelector(".container");
         const btn = this;
+        const originalText = btn.innerHTML;
 
         btn.classList.add("exporting");
-        btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i>';
+        btn.innerHTML = '<i class="fas fa-circle-notch fa-spin"></i> Preparing PDF...';
 
         const opt = {
           margin: 0,
@@ -688,14 +1345,17 @@
           pagebreak: { mode: ["avoid-all", "css", "legacy"] },
         };
 
-        html2pdf()
-          .set(opt)
-          .from(element)
-          .save()
-          .then(() => {
-            btn.classList.remove("exporting");
-            btn.innerHTML = '<i class="fas fa-file-pdf"></i>';
-          });
+        // We need to wait a moment for UI to update
+        setTimeout(() => {
+            html2pdf()
+            .set(opt)
+            .from(element)
+            .save()
+            .then(() => {
+                btn.classList.remove("exporting");
+                btn.innerHTML = originalText;
+            });
+        }, 100);
       });
     </script>
   </body>
